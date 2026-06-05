@@ -178,4 +178,4 @@ Therefore, the core task of AI engineering is not to prove that a system is "100
 
 ---
 
-Congratulations! You have completed the entire Deep Dives curriculum. Go back to the [Deep Dives Directory](../../DEEP_DIVES.md) or explore the [Main Curriculum](../../CURRICULUM.md).
+Now that we have analyzed how systems break down under perturbations, let's explore the final synthesis in [AI Unified Systems Theory: From Evaluation and Failure to Closed-Loop Convergence](16_unified_theory.md).

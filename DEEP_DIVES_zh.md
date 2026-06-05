@@ -86,12 +86,13 @@ graph TD
 | **12. Diffusion 为什么会画画？** | 生成扩散模型的数理美学：AI 是如何把一片随机噪声雪花点“擦拭”出高清艺术画作的。 | [12_diffusion_art.md](docs/appendix_deep_dives/12_diffusion_art.md) | [12_diffusion_art_zh.md](docs/appendix_deep_dives/12_diffusion_art_zh.md) |
 | **13. RLHF 为什么越来越像人？** | 人类对齐与安全性防线：通过强化学习与 DPO 技术将野性模型驯化为得体助手。 | [13_rlhf_alignment.md](docs/appendix_deep_dives/13_rlhf_alignment.md) | [13_rlhf_alignment_zh.md](docs/appendix_deep_dives/13_rlhf_alignment_zh.md) |
 
-### 第六部分 — AI 评测与失效模式 (Part VI — Evaluation & Failure Modes)
+### 第六部分 — 评测、失效与统一系统理论 (Part VI — Evaluation, Failure & Unified Systems)
 
 | 章节 | 描述 | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **14. AI 评测体系** | 基准测试与人类对局竞技场：深度解析 MMLU、GPQA、SWE-bench 与 LMSYS 竞技场。 | [14_ai_evaluation.md](docs/appendix_deep_dives/14_ai_evaluation.md) | [14_ai_evaluation_zh.md](docs/appendix_deep_dives/14_ai_evaluation_zh.md) |
 | **15. AI 系统失效模式** | 从评测到崩溃：将检索失效、循环失效、对齐失效和评测过拟合形式化为隐式失效流形。 | [15_failure_modes.md](docs/appendix_deep_dives/15_failure_modes.md) | [15_failure_modes_zh.md](docs/appendix_deep_dives/15_failure_modes_zh.md) |
+| **16. AI 系统统一理论** | 从评测、失效到闭环收束：构建 AI 系统统一的五元组形式化公理体系，探讨双流形结构、评测-失效对偶性与终极收束。 | [16_unified_theory.md](docs/appendix_deep_dives/16_unified_theory.md) | [16_unified_theory_zh.md](docs/appendix_deep_dives/16_unified_theory_zh.md) |
 
 ---
 

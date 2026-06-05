@@ -178,4 +178,4 @@ $$\text{Intelligence} \equiv \text{Structured Performance} - \text{Structured Fa
 
 ---
 
-恭喜！你已完成了全部深潜专题的学习。返回 [深潜专题目录](../../DEEP_DIVES_zh.md) 或探索 [主课程体系](../../CURRICULUM.md)。
+现在我们已经剖析了系统在扰动下的崩溃机制，接下来让我们在 [AI 系统统一理论：从评测、失效到闭环收束](16_unified_theory_zh.md) 中，探究智能系统的终极统一图景。
