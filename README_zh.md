@@ -10,30 +10,75 @@
 
 ---
 
-## ⚡ 3秒理解系统数据流向 (3-Second Flow)
+## 🧭 系统架构图谱
 
 ```mermaid
 flowchart LR
-    UserQuery[用户提问] --> QueryRewriter[查询改写]
-    QueryRewriter --> SemanticCache{语义缓存命中?}
-    
-    SemanticCache -->|是| FastResponse[直接秒回答案 0.00s]
-    SemanticCache -->|否| VectorSearch[向量库检索 ChromaDB]
-    
-    VectorSearch --> Reranker[相关性重排序]
-    Reranker --> ExecutionController[执行控制中心 容灾/重试]
-    ExecutionController --> LLMRouter[大模型路由器 Ollama/API]
-    LLMRouter --> FinalOutput[大模型生成回答]
+    subgraph Pre [认知预处理层]
+        User([用户输入]) --> Rewriter[意图改写器]
+    end
+
+    subgraph Fast [语义缓存加速层]
+        Rewriter --> Cache{语义缓存}
+        Cache -->|命中| Hit[缓存命中 0.00s]
+    end
+
+    subgraph Search [检索与重排层]
+        Cache -->|未命中| DB[(Chroma 向量库)]
+        DB --> Reranker[交叉编码重排器]
+    end
+
+    subgraph Exec [执行与容灾控制层]
+        Reranker --> Controller{执行控制器}
+        Controller -->|首选路由| Ollama[本地 Ollama]
+        Controller -->|失效退避重试| CloudAPI[云端 API]
+    end
+
+    Ollama --> Final([大模型输出])
+    CloudAPI --> Final
+    Hit --> Final
+
+    classDef default fill:#111827,stroke:#374151,stroke-width:1px,color:#f9fafb;
+    classDef highlight fill:#10b981,stroke:#047857,stroke-width:2px,color:#fff;
+    classDef alert fill:#ef4444,stroke:#b91c1c,stroke-width:2px,color:#fff;
+    classDef title fill:#1f2937,stroke:#4b5563,stroke-width:1px,color:#f3f4f6;
+
+    class Hit highlight;
+    class CloudAPI alert;
 ```
 
 ---
 
-## 🚀 快速开始 (60秒极速体验)
+## 🚀 快速开始 (运行路径选择器)
 
-在本地快速尝试 AI-Model-Atlas：
-1. `git clone https://github.com/Hao610/AI-Model-Atlas.git`
-2. `cd projects/rag-app && python app.py`
-3. 上传 PDF，实时观察语义缓存优化与重排效果！
+选择你最想体验 `AI-Model-Atlas` 的路径，在 60 秒内上手：
+
+### ⚡ 路径 A：本地沙盒交互式 UI (推荐)
+在本地运行 Streamlit 可观测性面板，实时体验语义缓存、检索重排序与自愈控制：
+1. **克隆仓库并进入项目目录：**
+   ```bash
+   git clone https://github.com/Hao610/AI-Model-Atlas.git
+   cd AI-Model-Atlas/projects/rag-app
+   ```
+2. **安装核心依赖：**
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. **启动应用面板：**
+   ```bash
+   python app.py
+   ```
+   *提示：如果需要本地离线大模型支持，请确保 Ollama 服务已在后台运行。*
+
+### ☁️ 路径 B：终端直接运行脚本
+在终端中直接执行核心控制器脚本，观测意图改写与请求路由：
+```bash
+python core/execution_controller.py
+```
+
+### 📚 路径 C：概念与学习路线图
+如果你当前无法运行代码，可以从手把手教程入口开始阅读：
+👉 **[00_learning_map_zh.md](docs/phase1_0_to_1/00_learning_map_zh.md)**
 
 ---
 
@@ -55,9 +100,9 @@ flowchart LR
 
 ---
 
-## 🧠 系统工程深度剖析
+## 🧠 系统运行模型 (System Runtime Model)
 
-### ⚡ 系统性能基准指标
+### 1. 性能表现层 (Latency & Cache Metrics)
 
 *免责声明：以下性能指标均在本地开发测试环境（单卡 GPU / CPU 兜底模式）下测量得出，生产环境高负载下可能会有所偏差。*
 
@@ -68,7 +113,7 @@ flowchart LR
 | **混合动力模式** | ✅ | ✅ | OpenAI API | ~0.8s | 0.3s |
 | **混合动力模式** | ❌ | ✅ | OpenAI API | ~2.1s | 0.9s |
 
-### 🛡️ 故障容灾与自愈演示
+### 2. 系统可靠性层 (Failover & Self-Healing Logic)
 
 系统设计上具备完善的故障降配与容灾自愈能力，以确保服务高可用：
 
@@ -80,7 +125,7 @@ flowchart LR
 
 *最终效果：系统在此异常场景下依然保持正常响应与回答，避免客户端 unhandled 崩溃死锁。*
 
-### 🔍 执行控制状态机
+### 3. 系统控制流层 (Execution State & Routing Machine)
 
 底层流水线的每一次请求调用均在严密的控制状态机管理下运行：
 
