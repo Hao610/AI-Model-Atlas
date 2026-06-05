@@ -28,7 +28,7 @@ flowchart LR
 
 ---
 
-## ⚡ Quick Demo Path (60 seconds)
+## 🚀 Quick Start (60s Demo)
 
 Try AI-Model-Atlas locally in under a minute:
 1. `git clone https://github.com/Hao610/AI-Model-Atlas.git`
@@ -39,13 +39,7 @@ Try AI-Model-Atlas locally in under a minute:
 
 ## 💡 Why This Repository Exists
 
-Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas` goes further: production reliability, semantic caching, query reranking, execution control, and hybrid LLM routing — providing a real-world, engineer-grade cognitive RAG reference architecture.
-
----
-
-## 🔥 One-Line Pitch
-
-`AI-Model-Atlas` is a production-grade Cognitive RAG system with Semantic Cache, Query Rewriting, and Execution Control — designed for real-world AI engineering workflows.
+Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas` goes further, providing a real-world, engineer-grade cognitive RAG reference architecture. By integrating Semantic Cache, Query Rewriting, Relevance Reranking, and an Execution Controller, it bridges the gap between toy demos and production-ready systems.
 
 ---
 
@@ -61,7 +55,9 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas
 
 ---
 
-## ⚡ System Performance Benchmarks
+## 🧠 System Engineering Deep Dive
+
+### ⚡ Performance Benchmarks
 
 *Disclaimer: Benchmarks are measured under local development test environments (single GPU / CPU fallback mode) and may vary under production load.*
 
@@ -72,13 +68,11 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas
 | **Hybrid Mode** | ✅ | ✅ | OpenAI API | ~0.8s | 0.3s |
 | **Hybrid Mode** | ❌ | ✅ | OpenAI API | ~2.1s | 0.9s |
 
----
-
-## 🛡️ Failure Recovery & Self-Healing
+### 🛡️ Failure Recovery & Self-Healing
 
 The system is designed to gracefully degrade under backend failure conditions to preserve service uptime:
 
-### Scenario: Local Ollama backend goes offline
+#### Scenario: Local Ollama backend goes offline
 1. **ExecutionController** detects connection timeout or handshake failures.
 2. **Exponential Backoff Retry** mechanism triggers (automatic delays: 200ms -> 500ms -> 1s).
 3. **Graceful Fallback Routing** active: switches the query endpoint automatically to the configured cloud API (OpenAI/DeepSeek).
@@ -86,9 +80,7 @@ The system is designed to gracefully degrade under backend failure conditions to
 
 *Result: System continues responding to user queries without throwing unhandled terminal crashes.*
 
----
-
-## 🔍 Execution Controller State Machine
+### 🔍 Execution State Machine
 
 The workflow logic operates on a strict request control state machine:
 
@@ -224,25 +216,18 @@ Below is the structured learning path. Each phase is designed to build on the pr
 
 ---
 
-## 🔗 Contributing & Usage
+## 🌍 Built something useful?
 
-Feel free to bookmark this atlas or clone it to use as your personal reference notes ("Knowledge External Brain"). If you find it helpful, please star the repository!
+If this project helped you learn, build, or deploy Cognitive RAG systems, we invite you to join our growing community:
 
-For details on contributing, please read [CONTRIBUTING.md](CONTRIBUTING.md).
+* **Star & Fork** ⭐: Star the repository to show support and bookmark it for quick access.
+* **Share the Journey** 📢: Share the learning path or your own RAG implementation with other developers.
+* **Contribute** 🤝: Submit pull requests, report issues, or suggest new modules. Check out our [Contribution Guidelines](CONTRIBUTING.md) for details.
 
-## 🚀 Community & Support
+🚀 **Spread the word:**
 
-If this repository helped you understand and build production-grade RAG systems, consider supporting the project by starring ⭐, sharing, or contributing your ideas. Every star or share helps more developers discover this learning path.
-
-**Share on X / Twitter:**
-> 🚀 Built a production-grade Cognitive RAG system:
-> - Semantic Cache (ultra-fast responses)
-> - Query Rewriting (better retrieval accuracy)
-> - Reranking (higher relevance)
-> - Execution Controller (fallback + retry logic)
-> 
-> From learning → engineering → deployment.
-> GitHub: https://github.com/Hao610/AI-Model-Atlas
+> Built a production-grade Cognitive RAG system with Semantic Cache, Query Rewriting, Reranking, and Failure Recovery — from learning to deployment. Check out the AI-Model-Atlas!
+> 👉 https://github.com/Hao610/AI-Model-Atlas
 
 ---
 
