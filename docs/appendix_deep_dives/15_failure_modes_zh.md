@@ -127,6 +127,24 @@ $$\mathcal{P}_{\text{train}}(\mathcal{O}_i) \approx \mathcal{P}_{\text{test}}(\m
 
 ---
 
+## 3. 失效动力学与跨层级桥接
+
+### Definition 15.7 (运行轨迹崩溃的相变)
+在持续的真实世界扰动或分布偏移下，系统运行轨迹 $\tau$ 的退化并不是线性的。相反，它会经历一个相变过程：从稳定区，经过脆弱区，最终灾难性地跌落入失效吸引域：
+
+$$\text{稳定区} \xrightarrow{\text{扰动 } \delta} \text{脆弱区} \xrightarrow{\delta + d\delta} \text{灾难性崩溃}$$
+
+这种非线性相变意味着，在实验室中具有 $99\%$ 准确率的系统，一旦跨越临界工具误差或上下文边界，在线上可能会瞬间表现出 $0\%$ 的效用。
+
+### Proposition 15.1 (跨层级失效不变性)
+*所有系统性失效（检索、智能体循环、对齐和评测过拟合）都代表着相同的底层计算崩溃，仅在所应用的观测算子 $\mathcal{O}_i$ 的观测粒度上有所不同：*
+
+$$\mathcal{O}_{L_1}(\text{失效}) \equiv \text{单点症状} \quad \Longleftrightarrow \quad \mathcal{O}_{L_3}(\text{失效}) \equiv \text{轨迹发散}$$
+
+因此，单点错误（Level 1）仅仅是更深层次的轨迹循环崩塌（Level 3）在受限观测窗口下的静态投影。
+
+---
+
 ## 🗺️ 统一失效流形
 
 我们将所有系统级崩溃统一在单个几何流形下。
@@ -156,7 +174,7 @@ $$\text{Intelligence} \equiv \text{Structured Performance} - \text{Structured Fa
 
 ### 🔚 终结陈述
 > *AI 系统绝非无失效系统。*
-> *它们是在观测约束下进行优化的结构化失效流形。*
+> *它们是在有损观测算子监视下，在失效流形上进行优化的动态过程。*
 
 ---
 

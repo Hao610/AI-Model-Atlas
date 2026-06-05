@@ -127,6 +127,24 @@ This collapse leads to:
 
 ---
 
+## 3. Failure Dynamics & Cross-Scale Linking
+
+### Definition 15.7 (Phase Transition of Trajectory Collapse)
+Under continuous real-world perturbations or distribution shifts, the execution trajectory $\tau$ does not degrade linearly. Instead, it undergoes a phase transition from a stable region, through a brittle regime, to catastrophic collapse into a failure basin:
+
+$$\text{Stable} \xrightarrow{\text{Perturbation } \delta} \text{Brittle} \xrightarrow{\delta + d\delta} \text{Catastrophic Collapse}$$
+
+This non-linear transition means that a system with $99\%$ accuracy in the lab can suddenly exhibit $0\%$ utility online once a critical tool error or context boundary is crossed.
+
+### Proposition 15.1 (Cross-Scale Failure Invariance)
+*All systemic failures (retrieval, agent loops, alignment, and evaluation) represent the same underlying computation breakdown, differing only in the observational granularity of the operator $\mathcal{O}_i$ applied:*
+
+$$\mathcal{O}_{L_1}(\text{Failure}) \equiv \text{Pointwise symptom} \quad \Longleftrightarrow \quad \mathcal{O}_{L_3}(\text{Failure}) \equiv \text{Trajectory divergence}$$
+
+Thus, a pointwise error (Level 1) is simply the static projection of a deeper trajectory loop collapse (Level 3) under a restricted observation window.
+
+---
+
 ## 🗺️ The Unified Failure Manifold
 
 We unify all system breakdowns under a single geometric manifold.
@@ -156,7 +174,7 @@ Therefore, the core task of AI engineering is not to prove that a system is "100
 
 ### 🔚 Final Statement
 > *AI systems are not failure-free systems.*
-> *They are structured failure manifolds optimized under observational constraints.*
+> *They are optimization processes over failure manifolds observed through lossy evaluation operators.*
 
 ---
 
