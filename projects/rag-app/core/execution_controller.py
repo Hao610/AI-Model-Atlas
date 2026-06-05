@@ -28,6 +28,9 @@ class ExecutionController:
         current_mode = settings.RAG_MODE
         self.log(f"Initiating request execution. Main mode: {current_mode.upper()}")
         
+        # Performance latency tracking
+        start_time = time.time()
+        
         # 2. Router Invocation & Fallback Loop
         attempt = 0
         while attempt <= max_retries:
@@ -42,11 +45,14 @@ class ExecutionController:
                 else:
                     self.log(f"Attempt #{attempt}: Connecting to Cloud LLM API endpoint ({settings.API_MODEL})...")
                 
+                first_token_time = None
+                
                 # Fetch stream iterator
                 stream = self.router.generate_stream(system_prompt, user_prompt)
                 
                 # Inspect stream output generator (wrap generator to intercept start exceptions)
                 def generator_inspector():
+                    nonlocal first_token_time
                     iterator = iter(stream)
                     try:
                         # Grab first chunk to see if generation raises immediate errors
@@ -54,14 +60,25 @@ class ExecutionController:
                         if "⚠️" in first_chunk:
                             # Immediate system warning returned from router
                             raise ConnectionError(first_chunk.replace("\n", ""))
+                        
+                        first_token_time = time.time()
+                        ttft = first_token_time - start_time
+                        self.log(f"Success: First token latency (TTFT): {ttft:.4f} seconds.")
                         yield first_chunk
                     except StopIteration:
                         return
                     
                     # Yield remaining chunks if first chunk succeeded
+                    char_count = len(first_chunk)
                     for chunk in iterator:
+                        char_count += len(chunk)
                         yield chunk
                         
+                    end_time = time.time()
+                    duration = end_time - start_time
+                    tok_sec = (char_count / 4.0) / duration if duration > 0 else 0
+                    self.log(f"Execution complete. Total Latency: {duration:.4f}s | Speed: ~{tok_sec:.2f} tokens/s")
+                    
                 return generator_inspector()
                 
             except Exception as e:

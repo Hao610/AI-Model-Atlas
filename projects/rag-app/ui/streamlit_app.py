@@ -89,6 +89,22 @@ with st.sidebar:
     )
     
     st.divider()
+    
+    st.subheader("⚡ Performance Layer (v2.4)")
+    cache_active = st.toggle("Enable Semantic Cache", value=True)
+    cache_threshold = st.slider(
+        "Semantic Similarity Match Threshold", 
+        min_value=0.5, 
+        max_value=1.0, 
+        value=0.85, 
+        step=0.05,
+        help="Cosine metric threshold to yield a semantic query hit."
+    )
+    if st.button("Reset Semantic Cache Memory"):
+        st.session_state.pipeline.cache.clear()
+        st.success("Successfully flushed cache store.")
+        
+    st.divider()
     st.markdown("Created by Loi Chiang Hao as part of **[AI-Model-Atlas](https://github.com/Hao610/AI-Model-Atlas)**.")
 
 # Main dashboard interface
@@ -170,7 +186,9 @@ with col_left:
                     system_prompt=system_prompt,
                     rewrite_active=rewrite_active,
                     rerank_active=rerank_active,
-                    rerank_threshold=rerank_threshold
+                    rerank_threshold=rerank_threshold,
+                    cache_active=cache_active,
+                    cache_threshold=cache_threshold
                 )
                 
                 # Save source states
@@ -186,3 +204,12 @@ with col_left:
                 st.session_state.messages.append({"role": "assistant", "content": response_txt})
                 # Refresh page to show updated vector source expansion logs
                 st.rerun()
+
+# Add Cache Analytics Panel to Bottom of Sidebars
+with st.sidebar:
+    st.divider()
+    st.subheader("📊 Semantic Cache Analytics")
+    metrics = st.session_state.pipeline.metrics
+    st.metric("Cache Hit Rate", f"{metrics.get_hit_rate():.1f}%")
+    st.metric("Total Latency Saved", f"{metrics.total_time_saved:.4f} seconds")
+    st.metric("Cache Store Size", f"{len(st.session_state.pipeline.cache.store)} entries")
