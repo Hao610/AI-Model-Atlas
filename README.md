@@ -164,6 +164,6 @@ AI Model Atlas uses a dual-license model:
 - **Documentation, curriculum, diagrams, and educational materials**: Creative Commons Attribution 4.0 International (see [`/LICENSE`](LICENSE))
 - **Source code & runnable examples**: MIT License (see [`/LICENSE-CODE`](LICENSE-CODE))
 
-> This repository separates software licensing and content licensing for clarity and reuse safety.
+> This repository separates software licensing and content licensing for clarity and reuse safety. This repository is continuously updated; new content follows the same licensing model unless otherwise specified.
 
 Copyright (c) 2026 Loi Chiang Hao.

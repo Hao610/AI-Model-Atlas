@@ -166,6 +166,6 @@ AI Model Atlas 采用双协议模式（Dual-License Model）：
 - **文档、课程体系、图示与教学内容**：Creative Commons Attribution 4.0 International (详见 [`/LICENSE`](LICENSE))
 - **源代码与可运行示例项目**：MIT License (详见 [`/LICENSE-CODE`](LICENSE-CODE))
 
-> 本项目将软件代码许可与内容创作许可进行了严格分离，以确保清晰度与商业复用的安全性。
+> 本项目将软件代码许可与内容创作许可进行了严格分离，以确保清晰度与商业复用的安全性。本项目将持续更新，所有新增内容均默认遵循上述双协议模式，除非另有特别说明。
 
 Copyright (c) 2026 Loi Chiang Hao.
