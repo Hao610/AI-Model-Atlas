@@ -6,6 +6,8 @@
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
 [![Run Locally](https://img.shields.io/badge/▶_Local_Sandbox_App-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
 [![Colab Playground](https://img.shields.io/badge/▶_Colab_Playground_(Optional)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
@@ -159,13 +161,13 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 
 AI Model Atlas uses a dual-license model:
 
-- **Source code and runnable example projects**: [MIT License](LICENSE-CODE)
-- **Documentation, curriculum, diagrams, and educational content**: [CC BY 4.0](LICENSE)
+- **Source code & runnable examples**: MIT License (see [`/LICENSE-CODE`](LICENSE-CODE))
+- **Documentation, curriculum, diagrams, and educational materials**: Creative Commons Attribution 4.0 International (see [`/LICENSE`](LICENSE))
 
-License details:
-- Code → [LICENSE](LICENSE-CODE)
-- Content → [LICENSE-CC-BY](LICENSE) (https://creativecommons.org/licenses/by/4.0/)
+**SPDX: MIT AND CC-BY-4.0**
 
-Copyright (c) 2026 Loi Chiang Hao
+Copyright (c) 2026 Loi Chiang Hao.  
+Created and maintained by Loi Chiang Hao.
 
+> This repository separates software licensing and content licensing for clarity and reuse safety.
 Created and maintained by Loi Chiang Hao.
