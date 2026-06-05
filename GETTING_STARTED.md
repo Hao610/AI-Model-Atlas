@@ -1,5 +1,9 @@
 # 🧭 Getting Started with AI Model Atlas
 
+← Back to [README](README.md) | [中文版 (GETTING_STARTED_zh.md)](GETTING_STARTED_zh.md)
+
+---
+
 Welcome to the **AI Model Atlas** repository! This project is designed as a structured cognitive map of the large language model ecosystem—bridging the gap between zero-code tools, full-stack software development, and deep mathematical/architectural concepts.
 
 To make the most of your time here, please select the path below that best matches your background and goals:

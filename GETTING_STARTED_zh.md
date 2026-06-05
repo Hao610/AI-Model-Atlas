@@ -1,5 +1,9 @@
 # 🧭 AI Model Atlas 快速入门指南
 
+← 返回 [中文首页](README_zh.md) | [English Version (GETTING_STARTED.md)](GETTING_STARTED.md)
+
+---
+
 欢迎来到 **AI Model Atlas** 仓库！本项目旨在构建一个结构化的大语言模型（LLM）知识与技术地图——打通零代码工具、全栈软件开发与底层核心数学/算法原理之间的断层。
 
 为了帮您高效地探索本仓库，请根据您的背景和目标选择最适合您的阅读路径：
