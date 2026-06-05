@@ -69,6 +69,8 @@ python core/execution_controller.py
 If you want to read the step-by-step guides instead of running code, start here:
 👉 **[00_learning_map.md](docs/phase1_0_to_1/00_learning_map.md)**
 
+> **ℹ️ About Colab Playground**: Colab is provided as an optional fallback runtime. For a more reliable demo experience, we recommend running the local sandbox (Route A). Colab availability depends on Google's free backend capacity and may fail during peak usage.
+
 ---
 
 ### 🧩 What will I see in 30 seconds?

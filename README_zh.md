@@ -69,6 +69,8 @@ python core/execution_controller.py
 如果你当前无法运行代码，可以从手把手教程入口开始阅读：
 👉 **[00_learning_map_zh.md](docs/phase1_0_to_1/00_learning_map_zh.md)**
 
+> **ℹ️ 关于 Colab 在线体验**：Colab 仅作为可选的备用运行环境。如需更稳定的体验，建议使用本地沙盒（路径 A）。Colab 的可用性取决于 Google 免费后端算力资源池，高峰期可能出现分配失败。
+
 ---
 
 ### 🧩 运行后我能看到什么？
