@@ -1,7 +1,7 @@
 ---
-name: "🚀 功能建议 (Feature Request)"
-about: 提出关于 AI-Model-Atlas 的改进建议或创意。
-title: "[FEATURE] "
+name: "🚀 功能建议"
+about: 提出关于项目的改进建议或创意。
+title: "[功能建议] "
 labels: enhancement
 assignees: ""
 ---

@@ -1,7 +1,7 @@
 ---
-name: "❓ 提问与帮助 (Question / Support)"
-about: 询问使用疑问或请求对大模型开发概念的帮助。
-title: "[QUESTION] "
+name: "❓ 提问与帮助"
+about: 询问使用疑问或请求对开发概念的帮助。
+title: "[问题帮助] "
 labels: question
 assignees: ""
 ---

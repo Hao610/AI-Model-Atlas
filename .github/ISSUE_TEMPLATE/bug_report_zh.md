@@ -1,7 +1,7 @@
 ---
-name: "🐛 缺陷汇报 (Bug Report)"
-about: 提交 Bug 报告以帮助我们改进 AI-Model-Atlas。
-title: "[BUG] "
+name: "🐛 缺陷汇报"
+about: 提交缺陷报告以帮助我们改进项目。
+title: "[缺陷] "
 labels: bug
 assignees: ""
 ---
