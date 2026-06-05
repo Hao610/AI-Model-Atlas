@@ -16,7 +16,7 @@
 
 ```text
   0 ────────────────► 1 ────────────────► 10 ───────────────► 50 ──────────────► 100
-【阶段一：认知觉醒】 【阶段二：低代码构建】  【阶段三：开发者接入】 【阶段四：硬核微调部署】
+【阶段一：认知觉醒】 【阶段二：低代码构建】  【阶段三：开发构建与集成】 【阶段四：硬核微调部署】
   AI 核心概念与       工作流与智能体        API 调用与本地运行    量化、LoRA 微调
   提示词艺术          (Dify / RAG)          Streamlit 界面开发   云端 GPU 算力实操
 ```
@@ -38,7 +38,7 @@
 | | 12. 向量数据库入门 | 了解 Chroma、Milvus、FAISS 和 PGVector 的定位与选择。 | [12_vector_db.md](docs/phase2_1_to_10/12_vector_db.md) | [12_vector_db_zh.md](docs/phase2_1_to_10/12_vector_db_zh.md) |
 | | 13. AI 工作流架构 | 解析 用户 -> 智能体 -> RAG -> 大模型 的完整工作数据流向。 | [13_ai_workflows.md](docs/phase2_1_to_10/13_ai_workflows.md) | [13_ai_workflows_zh.md](docs/phase2_1_to_10/13_ai_workflows_zh.md) |
 | | 14. 真实应用案例 | 客服机器人、企业知识库、AI翻译等实战场景配置指南。 | [14_use_cases.md](docs/phase2_1_to_10/14_use_cases.md) | [14_use_cases_zh.md](docs/phase2_1_to_10/14_use_cases_zh.md) |
-| **阶段三：从 10 到 50**<br>*(开发者之路)* | 15. API 接入秘籍 | 申请 API 密钥 (Key)，并用几行最简的 Python 代码调用大模型。 | [15_api_guide.md](docs/phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](docs/phase3_10_to_50/15_api_guide_zh.md) |
+| **阶段三：从 10 到 50**<br>*(构建与集成)* | 15. API 接入秘籍 | 申请 API 密钥 (Key)，并用几行最简的 Python 代码调用大模型。 | [15_api_guide.md](docs/phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](docs/phase3_10_to_50/15_api_guide_zh.md) |
 | | 16. 计费与 Token 经济学 | Token计费原理、各大模型价格PK、GPU租用与API成本比对。 | [16_cost_and_tokens.md](docs/phase3_10_to_50/16_cost_and_tokens.md) | [16_cost_and_tokens_zh.md](docs/phase3_10_to_50/16_cost_and_tokens_zh.md) |
 | | 17. 本地大模型运行 | 使用 Ollama 和 LM Studio 在普通笔记本上本地跑起百亿模型。 | [17_local_llm.md](docs/phase3_10_to_50/17_local_llm.md) | [17_local_llm_zh.md](docs/phase3_10_to_50/17_local_llm_zh.md) |
 | | 18. 前端界面极速生成 | 使用 Streamlit 和 Gradio 一键为你的 AI 脚本套上好看的聊天网页。 | [18_ui_interfaces.md](docs/phase3_10_to_50/18_ui_interfaces.md) | [18_ui_interfaces_zh.md](docs/phase3_10_to_50/18_ui_interfaces_zh.md) |

@@ -16,7 +16,7 @@ Below is the structured learning path. Each phase is designed to build on the pr
 
 ```text
   0 ────────────────► 1 ────────────────► 10 ───────────────► 50 ──────────────► 100
-[Phase 1: Learn]   [Phase 2: Build]   [Phase 3: Integrate]  [Phase 4: Train & Deploy]
+[Phase 1: Learn]   [Phase 2: Build]   [Phase 3: Build & Integrate]  [Phase 4: Train & Deploy]
   Concepts &        Low-code RAG &     APIs & Local LLMs    Fine-Tuning, Quantization
   Prompt Art        Agent Workflows    & User Interfaces    & GPU Clusters
 ```
@@ -38,7 +38,7 @@ Below is the structured learning path. Each phase is designed to build on the pr
 | | 12. Vector Databases | Understanding Chroma, Milvus, FAISS, and PGVector. | [12_vector_db.md](docs/phase2_1_to_10/12_vector_db.md) | [12_vector_db_zh.md](docs/phase2_1_to_10/12_vector_db_zh.md) |
 | | 13. AI Workflows | Visualizing User -> Agent -> RAG -> LLM architectures. | [13_ai_workflows.md](docs/phase2_1_to_10/13_ai_workflows.md) | [13_ai_workflows_zh.md](docs/phase2_1_to_10/13_ai_workflows_zh.md) |
 | | 14. Real-World Use Cases | Core templates for CS Bots, Knowledge Bases, and AI Translators. | [14_use_cases.md](docs/phase2_1_to_10/14_use_cases.md) | [14_use_cases_zh.md](docs/phase2_1_to_10/14_use_cases_zh.md) |
-| **Phase 3: 10 to 50**<br>*(Integrate & Code)* | 15. API Integration | Requesting model keys and calling models via simple Python scripts. | [15_api_guide.md](docs/phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](docs/phase3_10_to_50/15_api_guide_zh.md) |
+| **Phase 3: 10 to 50**<br>*(Build & Integrate)* | 15. API Integration | Requesting model keys and calling models via simple Python scripts. | [15_api_guide.md](docs/phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](docs/phase3_10_to_50/15_api_guide_zh.md) |
 | | 16. Cost & Tokenomics | Calculating API expenses and GPU hosting cost metrics. | [16_cost_and_tokens.md](docs/phase3_10_to_50/16_cost_and_tokens.md) | [16_cost_and_tokens_zh.md](docs/phase3_10_to_50/16_cost_and_tokens_zh.md) |
 | | 17. Local LLM Runner | Deploying models locally using Ollama and LM Studio. | [17_local_llm.md](docs/phase3_10_to_50/17_local_llm.md) | [17_local_llm_zh.md](docs/phase3_10_to_50/17_local_llm_zh.md) |
 | | 18. UI Interfaces | Building clean web interfaces with Streamlit & Gradio. | [18_ui_interfaces.md](docs/phase3_10_to_50/18_ui_interfaces.md) | [18_ui_interfaces_zh.md](docs/phase3_10_to_50/18_ui_interfaces_zh.md) |
