@@ -2,189 +2,272 @@
 
 ---
 
-# 14. AI Evaluation: How Do We Know a Model is Strong?
-> **Benchmarks, human-in-the-loop arenas, and the limitations of test-based scoring.**
+# 14. AI Systems Evaluation Theory: How Do We Measure Intelligence?
+> **A formal technical framework for the limits, projections, and optimization loops of artificial intelligence measurement.**
 
-As tech giants and open-source communities release new models weekly, they always boast about higher scores. But what do these scores actually measure, and how can we trust them? Understanding AI evaluation is the final step in mapping the large language model landscape.
+As Large Language Models transition from static query engines to autonomous cognitive systems, traditional benchmark leaderboards are losing their diagnostic power. This chapter establishes a unified mathematical and systems engineering framework for evaluation—**AI Intelligence Measurement Theory (AIMT)**—framing evaluation not as a set of static tests, but as a lossy projection of a latent execution manifold.
 
 ---
 
-## ⚔️ The Benchmark Arms Race
+## 🌐 The AI Evaluation Stack (Observational Hierarchy)
 
-AI evaluation is not static; it is a dynamic, escalating cycle. As models grow more capable, the tests we use to measure them become obsolete. This cycle represents a continuous **Benchmark Arms Race**:
-`Model gains capability ──► Benchmark is saturated (100% score) ──► Benchmark becomes obsolete ──► Industry invents harder test ──► Model adapts`
+Before formalizing evaluation metrics, we categorize the observational boundaries of AI testing into a four-level hierarchy based on operator types:
 
-This process is similar to progression in video games: as players level up, the starter monsters no longer offer a challenge, forcing the developers to release a new high-level map. Today, because many models score >90% on early general knowledge tests, those benchmarks can no longer differentiate between top-tier models. This has forced the industry to constantly invent harder reasoning tests.
+```text
+  LEVEL 4: Distribution Shift Evaluation [O_L4] (AGI Boundary, out-of-distribution stability)
+      ▲
+      │
+  LEVEL 3: Trajectory Evaluation [O_L3] (Agentic loops, POMDP execution, RAG systems)
+      ▲
+      │
+  LEVEL 2: Chain Evaluation [O_L2] (Reasoning traces, CoT step-by-step verification)
+      ▲
+      │
+  LEVEL 1: Pointwise Evaluation [O_L1] (Static QA, single-turn mapping)
+```
 
 ### 🗺️ The Evolution of AI Testing
 
 ```text
-                      AI Evaluation Evolution
+                       AI Evaluation Evolution
 
-                 GLUE (2018): Basic NLP tasks
+                 GLUE (2018): Basic NLP pointwise classification
                        │
                        ▼
-                 SuperGLUE (2019): Harder NLP tasks
+                 SuperGLUE (2019): Harder NLP contextual tasks
                        │
                        ▼
-                 MMLU (2021): Knowledge & subjects
+                 MMLU (2021): Pointwise multi-subject knowledge
                        │
                        ▼
-                 HumanEval (2021): Code puzzles
+                 HumanEval (2021): Basic pointwise code generation
                        │
                        ▼
-                 GPQA (2023): Graduate PhD reasoning
+                 MATH (2021): Multi-step chain mathematical reasoning
                        │
                        ▼
-                 SWE-bench (2024): Software engineering issues
+                 GPQA (2023): Hard PhD-level chain reasoning
                        │
                        ▼
-                 AgentBench / GAIA (2025+): Dynamic Agent loops
+                 SWE-bench (2024): Multi-file software engineering trajectories
+                       │
+                       ▼
+                 AgentBench / GAIA (2025+): Dynamic agentic state environments
+                       │
+                       ▼
+                 BrowseComp (2025+): Web-browsing interactive execution loops
 ```
 
 ---
 
-## 📊 The Industry Standard Benchmarks
+## 🧬 Core Axiomatic Foundation
 
-To quantify a model's intelligence, researchers test it against standard datasets. The most common benchmarks include:
+We formulate evaluation as a functional mapping of a model, its system scaffolding, and a task environment onto a scalar utility value.
 
-1. **MMLU (Massive Multitask Language Understanding)**
-* **What it tests**: Multi-subject academic knowledge. It consists of multiple-choice questions ranging from elementary math and US history to professional law and computer science.
-* **Best for**: Evaluating a model's general knowledge breadth.
+### Definition 14.1 (Unified Evaluation System)
+Let $M$ be the model parameter manifold (neural weights), $S$ be the system operator (scaffolding, retrievers, tools), and $\mathcal{D}$ be the task environment distribution. The evaluation of the system is the expected utility of its execution trajectories $\tau$ under a specific observation operator:
 
-2. **GPQA (Graduate-Level Google-Proof Q&A)**
-* **What it tests**: Hard reasoning. It features ultra-difficult multiple-choice questions in biology, physics, and chemistry written by PhDs. The questions are specifically designed to be "Google-proof"—they cannot be solved by a simple web search.
-* **Best for**: Measuring reasoning limits. Even PhDs in other fields score only around 30% on it, while domain experts score 74%.
+$$\mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i) = \mathbb{E}_{\tau \sim \mathcal{D}} \left[ \mathcal{O}_i(M, S, \tau) \right]$$
 
-3. **HumanEval**
-* **What it tests**: Basic coding capability. It contains 164 Python programming tasks. The model must write code to solve them, and the code is executed to see if it passes all unit tests.
-* **Best for**: Evaluating junior-level coding logic.
+### Definition 14.2 (Observation Space)
+The formal Observation Space $\mathcal{O}$ is the set of projection operators that map the latent execution manifold into a measurable scalar score:
 
-4. **SWE-bench**
-* **What it tests**: Real-world software engineering. Unlike simple coding puzzles, SWE-bench feeds the model actual bug reports and pull requests from real GitHub repositories. The model must navigate a codebase, locate the bug, edit multiple files, and verify the patch.
-* **Best for**: Measuring agentic software engineering capabilities.
+$$\mathcal{O} = \{ \mathcal{O}_{\text{acc}}, \mathcal{O}_{\text{reason}}, \mathcal{O}_{\text{pref}}, \mathcal{O}_{\text{traj}} \}$$
 
-5. **LMSYS Chatbot Arena**
-* **What it tests**: Human preference. It is a blind, crowdsourced platform where users ask a question, and two anonymous models generate answers. The user votes on which answer is better, and the platform uses the Elo rating system (the chess ranking algorithm) to rank models.
-* **Best for**: Measuring conversational quality and alignment.
+where:
+* $\mathcal{O}_{\text{acc}}$ represents accuracy metrics over static pointwise QA.
+* $\mathcal{O}_{\text{reason}}$ represents multi-step trace verification.
+* $\mathcal{O}_{\text{pref}}$ represents stochastic human preference estimation.
+* $\mathcal{O}_{\text{traj}}$ represents success/failure metrics over sequential trajectories.
 
----
+### Theorem 14.0 (AI Evaluation Equivalence Theorem)
+*All AI evaluation methods are partial, lossy projections of a single unified evaluation functional $\mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i)$ under observational constraints.*
 
-## 🗺️ The AI Evaluation Pyramid
+### Theorem 14.1 (Observation Loss Principle / No Free Evaluation Theorem)
+*All evaluation methods involve information compression; there is no lossless measurement of system intelligence.*
 
-We can visualize these evaluation methodologies as a pyramid. At the base are simple, static knowledge tests; at the peak is dynamic human preference.
+$$\forall S, \quad \nexists \mathcal{O}_i \in \mathcal{O} \quad \text{s.t.} \quad \mathcal{O}_i(S) = S$$
+
+### The Commutative Diagram of AI Evaluation
+
+This diagram illustrates how all evaluation paradigms are lossy projections of the latent execution manifold $\mathcal{E}^*$ under different observational operators:
 
 ```text
-                     AI Evaluation Pyramid
-
-            Human Preference (LMSYS Arena)
-                     ▲
-                     │
-              Real World Tasks
-           (SWE-bench, AgentBench)
-                     ▲
-                     │
-             Reasoning Benchmarks
-               (GPQA, MATH)
-                     ▲
-                     │
-             Knowledge Benchmarks
-                   (MMLU)
+                           Latent Execution Manifold E*
+                                        │
+                                        ▼
+                           E(M, S, D, O_i) [Theorem 14.0]
+                                        │
+             ┌──────────────────────────┼──────────────────────────┐
+             │                          │                          │
+           O_acc                     O_pref                     O_traj
+      (Benchmarks: L1/L2)        (Arena: L3)                (Agents: L3)
+             │                          │                          │
+             └──────────────────────────┼──────────────────────────┘
+                                        │
+                                        ▼
+                          Distributional Invariance (L4)
+                              [Definition 14.5]
+                                        │
+                                        ▼
+                              Evaluation Loop (RL)
 ```
 
----
-
-## 🤖 Agentic Era & Dynamic Evaluation
-
-As AI transitions from static text generation to **autonomous agents** (as covered in Chapters 8 and 9), traditional static benchmarks fall short. An agent is not simply answering a question; it is planning, tool-calling, reading files, and executing shell commands.
-
-To test these dynamic behaviors, the industry has developed new benchmarks:
-* **AgentBench**: Evaluates agents in interactive environments, testing their ability to act as OS terminals, databases, and web browsers.
-* **GAIA (General AI Assistants)**: Proposes complex, multimodal tasks (e.g., *"Read page 4 of the attached PDF, search the web for the company's current stock price, calculate the dividend payout ratio, and output the final value"*). These tasks require robust planning, tool use, and multi-turn execution.
-* **BrowseComp**: Evaluates web-browsing agent capabilities, measuring how effectively agents navigate websites, locate information, and interact with web forms.
+### 🧠 The Operational Interpretation Layer
+Although all evaluation methods are projections of the latent execution manifold, each observation operator corresponds to a distinct **operational constraint regime**:
+* $\mathcal{O}_{\text{acc}}$: Memory-limited symbolic compression (static databases, rote knowledge).
+* $\mathcal{O}_{\text{pref}}$: Human-aligned stochastic selection (perceived capability, subjective preference).
+* $\mathcal{O}_{\text{traj}}$: Interactive control under partial observability (sequential decision environments).
 
 ---
 
-## 🪤 The Benchmark Trap (Why Benchmarks Fail)
+## 1. Static Benchmarks as Projections (L1/L2)
 
-While benchmarks are useful, relying on them blindly can be dangerous. As Goodhart's Law states: *"When a measure becomes a target, it ceases to be a good measure."*
+Traditional benchmarks focus on static knowledge retrieval and direct mathematical calculation.
 
-### 1. The Exam Analogy
-Doing well on an exam does not guarantee success in real work. A model scoring 90% on MMLU multiple-choice questions might still fail completely when asked to write a consistent, error-free API server for your company.
+### Corollary 14.1 (Benchmark Collapse / Static Projection)
+Let $x$ be the static input question, and $y$ be the ground-truth target. Under static pointwise benchmarks (Level 1 and 2), the observation operator collapses the trajectory space into a single-step loss function:
 
-### 2. Data Contamination (Cheating on the Exam)
-Because modern models are trained on the public internet, benchmark questions frequently leak into the model's training data. If a model has already seen the test questions and answers during training, its high score is a result of **memorization**, not intelligence.
+$$\mathcal{O}_{\text{acc}}(M, S, \tau) \approx \mathbb{I}[f_M(x) = y]$$
 
-### 3. Leaderboard Overfitting
-Developers often fine-tune their models specifically on datasets similar to the target benchmarks just to climb the public leaderboards. This results in models that look incredible on paper but underperform in actual user applications.
-
----
-
-## ⚖️ Offline vs. Online Evaluation
-
-In production AI engineering, there is a major gap between lab scores and real-world system performance:
-
-### 1. Offline Evaluation (The Lab)
-* **How it works**: Running models against golden datasets or static evaluation suites (like Ragas or TruLens).
-* **Focus**: Measuring abstract metrics like general factual accuracy, relevance, and semantic similarity.
-
-### 2. Online Evaluation (The Wild)
-* **How it works**: Real-time telemetry monitoring and A/B testing in production.
-* **Focus**: Real-world user behavior. A model that scores 85% on GPQA in the lab might look incredible, but in production, users might reject it if its response latency is too high, its fallback/error rate is unacceptable, its refusal rate is too high, or its tool call success rate is low. Successful products balance offline accuracy checks with online metrics like response speed, stability, refusal rates, and tool call success rates.
+This collapse creates three critical vulnerabilities:
+1. **Data Contamination**: Because the evaluation set is static, test samples leak into the training distribution $\mathcal{D}_{\text{train}}$, turning reasoning evaluation into simple **memorization**.
+2. **Leaderboard Overfitting**: Developers fine-tune models specifically on the benchmark distribution, maximizing pointwise performance at the cost of out-of-distribution generalization.
+3. **The Exam-Work Gap**: Pointwise correctness does not guarantee software development capability. A model scoring $90\%$ on MMLU multiple-choice questions can fail completely when writing clean, compilable codebase edits.
 
 ---
 
-## 📏 What Should Engineers Actually Measure?
+## 2. Stochastic Preference Projections (L3 - LMSYS Arena)
 
-If you are building a production RAG system, public benchmarks (like GPQA or MMLU) are irrelevant to your daily engineering. Instead, developers must evaluate the **RAG Metrics Quad**:
+To escape static question banks, the industry utilizes blind crowdsourced arenas like the LMSYS Chatbot Arena.
 
-### 1. Retrieval Quality
-* **Goal**: Did the retriever fetch the correct document chunks?
-* **Key Metrics**: 
-  * **Recall@K**: The percentage of relevant documents successfully retrieved in the Top K hits.
-  * **MRR (Mean Reciprocal Rank)**: Evaluates how high up the list the first relevant document appears.
-  * **NDCG (Normalized Discounted Cumulative Gain)**: Measures retrieval order quality (most relevant must be on top).
+### Definition 14.3 (Human Preference Estimator)
+The Arena models the preference rating (Elo) by presenting two model outputs ($A$ and $B$) to a user drawn from a user distribution $\mathcal{D}_{\text{user}}$, computing win probability via the logistic function:
 
-### 2. Generation Quality
-* **Goal**: Is the LLM's response correct and factual based on the retrieved text?
-* **Key Metrics**:
-  * **Faithfulness (Groundedness)**: Is the answer derived *only* from the retrieved context, or did the model hallucinate details?
-  * **Answer Correctness**: Is the generated response factually accurate and aligned with the ground truth?
-  * **Answer Relevance**: Does the generated text directly address the user's question?
+$$P(A \succ B) = \frac{1}{1 + 10^{(R_B - R_A)/400}}$$
 
-### 3. Latency (Speed)
-* **Goal**: Is the application fast enough to keep the user engaged?
-* **Key Metrics**:
-  * **TTFT (Time to First Token)**: Latency before the first word streams to the user.
-  * **Throughput**: Number of tokens generated per second.
-  * **P50 / P95 / P99 Latency**: The response time boundaries for 50%, 95%, and 99% of user requests.
+### Corollary 14.2 (Preference Misalignment)
+The Arena's observed rating is a stochastic projection of output style preference, not a direct measure of correctness:
 
-### 4. Cost
-* **Goal**: Is the system economically viable?
-* **Key Metrics**:
-  * **$/Query**: Average API cost per user query.
-  * **Token Efficiency**: The ratio of prompt tokens vs. output tokens (identifying bloated system prompts or redundant retrieval chunks).
+$$P(\text{Win}) = \pi_{\text{pref}}(\text{Output} \mid \mathcal{D}_{\text{user}}) \neq P(\text{Correctness} \mid \tau)$$
+
+This preference projection introduces two systemic biases:
+* **Perceived Intelligence vs. Measured Intelligence**: The Arena optimizes for *preference proxy metrics* (anthropomorphic formatting, politeness, structural length) over objective mathematical or code correctness.
+* **RLHF/DPO Collusion**: Models fine-tuned via RLHF/DPO (as discussed in [Chapter 13](13_rlhf_alignment.md)) exploit these human biases, boosting their Arena scores without improving core reasoning.
 
 ---
 
-## 🧭 What Comes Next?
+## 3. Trajectory Projections & POMDPs (L3 - Agents)
 
-Tracing the timeline of AI shows how evaluation and system architectures have evolved:
+As systems evolve into autonomous agents (covered in [Chapter 9](09_agent_mechanics.md)), they interact with external tools and dynamic environments.
+
+### Definition 14.4 (Agentic POMDP Environment)
+An agentic execution environment is formalized as a Partially Observable Markov Decision Process:
+
+$$\text{Agent Environment} = \langle S_P, A_P, T_P, R_P, \Omega, O_P \rangle$$
+
+where $S_P$ is the environment state, $A_P$ is the agent action space, $T_P: S_P \times A_P \rightarrow \mathcal{P}(S_P)$ is the transition dynamics, $R_P$ is the reward, and $O_P: S_P \times A_P \rightarrow \mathcal{P}(\Omega)$ defines the observation probabilities.
+
+### Corollary 14.3 (Trajectory Projection)
+Evaluating an agent requires assessing its state-action trajectory $\tau = (s_0, a_0, o_1, r_1, \dots, s_n)$ over time, rather than a single terminal state:
+
+$$\text{Eval}(\text{Agent}) = f(\tau)$$
+
+#### ✈️ Case Study: The Flight-Booking Agent
+Consider the goal *"Book the cheapest flight to Shanghai for tomorrow."*
+* A pointwise benchmark cannot measure this.
+* The agent must issue search actions ($a_0$), observe prices ($o_1$), parse table formats ($s_1$), recover from a timed-out API call ($a_1$), fill forms, and confirm the transaction.
+* The evaluation operator $\mathcal{O}_{\text{traj}}$ measures the success of the sequence under environmental constraints. This forms the foundation of dynamic tests like **AgentBench**, **GAIA**, and **BrowseComp**.
+
+---
+
+## 4. System Decomposition & Non-Reducibility
+
+Engineers often mistake model evaluation for system evaluation.
+
+### Theorem 14.2 (System Decomposition Theorem / System Irreducibility)
+Let $S$ be the system and $M$ be the model. The system performance is the composition of the model and its interaction operator $I$ (representing RAG retrieval, MCP tool access, memory windows, and hardware latency constraints):
+
+$$S = M \circ I$$
+
+### Corollary 14.4 (System Non-Reducibility)
+*System performance is not reducible to model performance ($S \neq M$).*
+
+A high-performing model does not guarantee a high-performing system:
+* In a RAG pipeline (see [Chapter 5](05_rag_principles.md)), if the retriever fetches noisy or incorrect chunks (due to bad chunking, as in [Chapter 4](04_vector_db.md)), even a model with $90\%$ GPQA accuracy will generate incorrect answers.
+* In an agentic pipeline (see [Chapter 9](09_agent_mechanics.md)), if tool call parameters fail or the memory context overflows (see [Chapter 7](07_needle_test.md)), the system collapses regardless of the model's raw parameters.
+
+---
+
+## 5. Multi-Objective Reasoning Evaluation (L2)
+
+Reasoning models (like DeepSeek-R1 and OpenAI o1 covered in [Chapter 11](11_reasoning_models.md)) introduce test-time compute.
+
+### Corollary 14.5 (Pareto Reasoning Frontier)
+Reasoning quality is a multi-objective optimization problem rather than a binary accuracy scalar:
+
+$$\text{Score} = f(\text{Correctness}, \text{Tokens}_{\text{think}}, \text{Time}, \text{Stability})$$
+
+This shift introduces a new evaluation paradigm:
+* **The Binary Fallacy**: Under traditional testing, correctness is binary ($\mathbb{I}[\text{Correct}]$). Under reasoning evaluation, we must measure the computational budget.
+* **Pareto Efficiency**: Better models are not simply those that are accurate, but those that achieve accuracy under lower computational budgets (maximizing correctness while minimizing $\text{Tokens}_{\text{think}}$ and inference time).
+
+---
+
+## 6. Distribution Shift & AGI Boundary (L4)
+
+What are the ultimate limits of evaluation, and how do they define AGI?
+
+### Definition 14.5 (Distributional Invariance Principle)
+An agent/system achieves Artificial General Intelligence (AGI) if and only if its evaluation performance remains invariant under arbitrary distribution shifts across unseen environments:
+
+$$\text{AGI} \iff \forall \mathcal{O}_i \in \mathcal{O}, \quad \forall \mathcal{D}' \in \mathbf{D}_{\text{shift}}, \quad \mathcal{E}(M, S, \mathcal{D}', \mathcal{O}_i) \sim \mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i)$$
+
+### Corollary 14.6 (AGI Generalization Bound)
+Let $\mathcal{D}_{\text{train}}$ be the training distribution and $\mathcal{D}_{\text{test}}$ be the shifted out-of-distribution evaluation set. The generalization gap measures the bounds of this shift:
+
+$$\text{AGI Gap} = \mathbb{E}_{\tau \sim \mathcal{D}_{\text{test}}}[L(M, S, \tau)] - \mathbb{E}_{\tau \sim \mathcal{D}_{\text{train}}}[L(M, S, \tau)]$$
+
+Static benchmarks only approximate intelligence under the independent and identically distributed (i.i.d.) assumption. True general intelligence is defined by performance stability under distribution shift.
+
+---
+
+## 7. The Latent Execution Manifold
+
+We close the theoretical loop of AI systems evaluation with a final collapse theorem.
+
+### Theorem 14.3 (Evaluation Collapse Theorem)
+*All evaluation methods (benchmarks, human preferences, trajectory tests) are lossy projections of a single latent execution manifold $\mathcal{E}^*$:*
+
+$$\forall \mathcal{O}_i \in \mathcal{O}, \quad \mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i) \text{ is a projection of } \mathcal{E}^*$$
+
+---
+
+## 🔄 The Evaluation Loop (Optimization Engine)
+
+Evaluation is not the end of the AI lifecycle—it is the training signal that drives optimization.
+
+### Corollary 14.7 (Evaluation Control Loop)
+The evaluation functional provides the feedback loop that updates both system infrastructure and model parameters:
+
+$$E_t \xrightarrow{\text{Optimize}} S_{t+1}, M_{t+1} \xrightarrow{\text{Deploy}} E_{t+1}$$
 
 ```text
-1950s: Rule-Based AI (Expert Systems, strict logic)
-  │
-  ▼
-2010s: Deep Learning (Feature representation, CNN/RNN)
-  │
-  ▼
-2020s: Foundation Models (Transformers, LLMs, parameter scaling)
-  │
-  ▼
-2025+: Agentic Systems (MCP, Planning, Tool use, loops)
-  │
-  ▼
-Future: Autonomous Cognitive Systems (Test-Time scaling, self-correcting logic)
+       ┌───────────────── System Telemetry ─────────────────┐
+       ▼                                                    │
+  Evaluation ──► SFT / DPO Fine-tuning ──► Deployment ──► Evaluation
+       ▲                                                    │
+       └────────────────── Parameter RL ────────────────────┘
 ```
 
-Congratulations! You have completed the Deep Dives. Go back to the [Deep Dives Directory](../../DEEP_DIVES.md) or explore the [Main Curriculum](../../CURRICULUM.md).
+This feedback cycle forms a closed-loop control system:
+1. **Evaluation** ($E_t$) exposes system vulnerabilities (retrieval failure, hallucination, agent loops).
+2. **Optimization** updates the interaction operator $I$ (RAG search parameters, tool schemas) and fine-tunes model parameter manifold $M$ (via DPO/RLHF).
+3. **Deployment** subjects the updated system to a new environment, initiating the next evaluation state ($E_{t+1}$).
+
+Evaluation is not merely a diagnostic tool—it is the gradient signal of adaptive intelligence systems.
+
+---
+
+## 📄 License
+This document is part of [AI Model Atlas](../../README.md), licensed under [CC BY 4.0](../../LICENSE).
