@@ -153,10 +153,13 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 
 ## 📄 License
 
-AI-Model-Atlas is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). For details, please refer to [LICENSE](LICENSE).
+AI-Model-Atlas uses a dual-license model:
 
-You are free to share, adapt, and use the contents commercially, provided that appropriate attribution is given.
+* Source code and runnable example projects are licensed under the [MIT License](LICENSE).
+* Documentation, curriculum, diagrams, and educational content are licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE-CONTENT).
 
-Copyright (c) 2026 AI-Model-Atlas
+You are free to share, adapt, and use the educational content commercially, provided that appropriate attribution is given. For code reuse, please retain the original copyright and license notice.
+
+Copyright (c) 2026 Loi Chiang Hao (AI-Model-Atlas)
 
 Created and maintained by Loi Chiang Hao.

@@ -101,4 +101,4 @@ stateDiagram-v2
 
 ## 📄 License
 
-This document is part of [AI-Model-Atlas](README.md), licensed under [CC BY 4.0](LICENSE).
+This document is part of [AI-Model-Atlas](README.md), licensed under [CC BY 4.0](LICENSE-CONTENT).

@@ -80,3 +80,9 @@ ollama pull llama3
 python app.py
 ```
 更详尽的测试流程，请阅读 **[START_HERE.md](START_HERE.md)**。
+
+---
+
+## 📄 开源协议
+
+本示例项目是 [AI-Model-Atlas](../../README_zh.md) 的一部分。源代码采用 [MIT License](../../LICENSE)，文档内容采用 [CC BY 4.0](../../LICENSE-CONTENT)。

@@ -153,12 +153,13 @@ python core/execution_controller.py
 
 ## 📄 开源协议 (License)
 
-AI-Model-Atlas 遵循 Creative Commons Attribution 4.0 International License (CC BY 4.0) 开源知识共享协议。
+AI-Model-Atlas 采用双协议模式：
 
-本项目采用 [CC BY 4.0 License](LICENSE)，详细条款请以英文 [LICENSE](LICENSE) 文件为准（英文版本为唯一授权法律文本）。
+* 源代码与可运行示例项目采用 [MIT License](LICENSE)。
+* 文档、课程体系、图示与教学内容采用 [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE-CONTENT)。
 
-只要您遵守署名等基本协议条款，即可自由分享、传播以及进行商业化利用。
+您可以自由分享、改编以及商业化使用本项目的教学内容，但需要保留适当署名；复用代码时，请保留原始版权与协议声明。
 
-Copyright (c) 2026 AI-Model-Atlas
+Copyright (c) 2026 Loi Chiang Hao (AI-Model-Atlas)
 
 Created and maintained by Loi Chiang Hao.
