@@ -267,7 +267,3 @@ This feedback cycle forms a closed-loop control system:
 
 Evaluation is not merely a diagnostic tool—it is the gradient signal of adaptive intelligence systems.
 
----
-
-## 📄 License
-This document is part of [AI Model Atlas](../../README.md), licensed under [CC BY 4.0](../../LICENSE).
