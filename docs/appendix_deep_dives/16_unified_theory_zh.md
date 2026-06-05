@@ -37,7 +37,7 @@ $$\mathcal{M}_{\text{AI}} = \mathcal{M}_{\text{performance}} \oplus \mathcal{M}_
 
 系统工程的优化目标被形式化为多目标约束问题：
 
-$$\min \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{F}(M, S, \tau)] \quad \text{s.t.} \quad \max \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i)]$$
+$$\min \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{F}(M, S, \tau)] \quad \text{s.t.} \quad \max \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{O}_i(M, S, \tau)]$$
 
 ---
 

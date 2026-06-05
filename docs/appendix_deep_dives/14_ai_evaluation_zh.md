@@ -226,7 +226,7 @@ $$\text{AGI} \iff \forall \mathcal{O}_i \in \mathcal{O}, \quad \forall \mathcal{
 ### Corollary 14.6 (AGI 泛化上界)
 设 $\mathcal{D}_{\text{train}}$ 为训练分布，$\mathcal{D}_{\text{test}}$ 为发生偏移的测试环境分布。泛化差距定义为这两者之间的损失期望差：
 
-$$\text{AGI Gap} = \mathbb{E}_{\tau \sim \mathcal{D}_{\text{test}}}[L(M, S, \tau)] - \mathbb{E}_{\tau \sim \mathcal{D}_{\text{train}}}[L(M, S, \tau)]$$
+$$\text{AGI Gap} = \mathbb{E}_{\tau \sim \mathcal{D}_{\text{train}}}[\mathcal{O}_i(M, S, \tau)] - \mathbb{E}_{\tau \sim \mathcal{D}_{\text{test}}}[\mathcal{O}_i(M, S, \tau)]$$
 
 静态基准测试只能在独立同分布 (i.i.d.) 假设下近似度量智能。真正的通用智能，由模型在任意未知环境下的**分布外泛化稳定性**所定义。
 

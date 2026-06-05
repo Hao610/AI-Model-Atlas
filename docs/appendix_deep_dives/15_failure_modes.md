@@ -7,7 +7,7 @@
 
 In [Chapter 14](14_ai_evaluation.md), we established the unified evaluation functional:
 
-$$\mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i) = \mathbb{E}_{\tau \sim \mathcal{D}} \left[ \mathcal{O}_i(M, S, \times) \right]$$
+$$\mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i) = \mathbb{E}_{\tau \sim \mathcal{D}} \left[ \mathcal{O}_i(M, S, \tau) \right]$$
 
 This framework answered the epistemic question: *"How is AI system performance measured?"* However, the critical counterpart in system engineering is: *"Under what conditions does the system collapse?"*
 
@@ -156,7 +156,7 @@ $$\min \int_{\tau \sim \mathcal{D}} \mathcal{F}(M, S, \tau) d\tau$$
 
 *Crucially, optimization does not destroy the failure manifold; it merely translates the boundary $\partial \mathcal{M}_F$ to another region of the parameter and system space.*
 
-### Corollary 15.5 (Evaluation-Failure Duality)
+### Corollary 15.4 (Evaluation-Failure Duality)
 *The observation operator $\mathcal{O}_i$ defined in Chapter 14 acts as a dual scanner: it simultaneously defines the system performance boundary and the failure manifold boundary.*
 
 ---

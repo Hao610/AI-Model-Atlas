@@ -37,7 +37,7 @@ where:
 
 The optimization objective of system engineering is formulated as a multi-objective constraint problem:
 
-$$\min \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{F}(M, S, \tau)] \quad \text{s.t.} \quad \max \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{E}(M, S, \mathcal{D}, \mathcal{O}_i)]$$
+$$\min \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{F}(M, S, \tau)] \quad \text{s.t.} \quad \max \mathbb{E}_{\tau \sim \mathcal{D}} [\mathcal{O}_i(M, S, \tau)]$$
 
 ---
 

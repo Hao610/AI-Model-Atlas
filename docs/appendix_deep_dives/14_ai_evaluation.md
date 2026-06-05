@@ -226,7 +226,7 @@ $$\text{AGI} \iff \forall \mathcal{O}_i \in \mathcal{O}, \quad \forall \mathcal{
 ### Corollary 14.6 (AGI Generalization Bound)
 Let $\mathcal{D}_{\text{train}}$ be the training distribution and $\mathcal{D}_{\text{test}}$ be the shifted out-of-distribution evaluation set. The generalization gap measures the bounds of this shift:
 
-$$\text{AGI Gap} = \mathbb{E}_{\tau \sim \mathcal{D}_{\text{test}}}[L(M, S, \tau)] - \mathbb{E}_{\tau \sim \mathcal{D}_{\text{train}}}[L(M, S, \tau)]$$
+$$\text{AGI Gap} = \mathbb{E}_{\tau \sim \mathcal{D}_{\text{train}}}[\mathcal{O}_i(M, S, \tau)] - \mathbb{E}_{\tau \sim \mathcal{D}_{\text{test}}}[\mathcal{O}_i(M, S, \tau)]$$
 
 Static benchmarks only approximate intelligence under the independent and identically distributed (i.i.d.) assumption. True general intelligence is defined by performance stability under distribution shift.
 
