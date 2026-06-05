@@ -46,20 +46,6 @@ flowchart LR
 
 ---
 
-## 📢 Share This Project
-
-**X / Twitter Post:**
-> 🚀 Built a production-grade Cognitive RAG system:
-> - Semantic Cache (ultra-fast responses)
-> - Query Rewriting (better retrieval accuracy)
-> - Reranking (higher relevance)
-> - Execution Controller (fallback + retry logic)
-> 
-> From learning → engineering → deployment.
-> GitHub: https://github.com/Hao610/AI-Model-Atlas
-
----
-
 ## 🎯 Who is this for?
 
 * 🧭 **Beginners** → Learn fundamental AI concepts with zero mathematical barrier and clear analogies.
@@ -170,6 +156,24 @@ Below is the structured learning path. Each phase is designed to build on the pr
 Feel free to bookmark this atlas or clone it to use as your personal reference notes ("Knowledge External Brain"). If you find it helpful, please star the repository!
 
 For details on contributing, please read [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## 🚀 Community & Support
+
+If this project helped you, consider:
+- **Starring** the repository on GitHub ⭐
+- **Sharing** it with others 🔗
+
+**Share on X / Twitter:**
+> 🚀 Built a production-grade Cognitive RAG system:
+> - Semantic Cache (ultra-fast responses)
+> - Query Rewriting (better retrieval accuracy)
+> - Reranking (higher relevance)
+> - Execution Controller (fallback + retry logic)
+> 
+> From learning → engineering → deployment.
+> GitHub: https://github.com/Hao610/AI-Model-Atlas
 
 ---
 
