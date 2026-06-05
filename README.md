@@ -71,7 +71,7 @@ Feel free to bookmark this atlas or clone it to use as your personal reference n
 
 ## 📄 License
 
-AI-Model-Atlas is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). For a detailed Chinese summary, please refer to [LICENSE_zh](LICENSE_zh).
+AI-Model-Atlas is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0). For details, please refer to [LICENSE](LICENSE).
 
 You are free to share, adapt, and use the contents commercially, provided that appropriate attribution is given.
 
