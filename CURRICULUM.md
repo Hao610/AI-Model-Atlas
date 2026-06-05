@@ -1,4 +1,4 @@
-# 📚 AI-Model-Atlas — Learning Curriculum
+# 📚 AI Model Atlas — Learning Curriculum
 
 ### The "0 to 100" Roadmap: From Zero to Production-Grade AI Systems
 
@@ -126,4 +126,4 @@ flowchart TD
 
 ## 📄 License
 
-This document is part of [AI-Model-Atlas](README.md), licensed under [CC BY 4.0](LICENSE-CC-BY).
+This document is part of [AI Model Atlas](README.md), licensed under [CC BY 4.0](LICENSE-CC-BY).

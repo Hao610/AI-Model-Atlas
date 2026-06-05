@@ -20,6 +20,11 @@ If the model lacks information on a topic, it will still pick the most plausible
 #### How RAG Prevents Hallucination
 RAG acts as a physical anchor for the model. By injecting verified, factual source texts directly into the prompt context, we shift the model's task from **generation from memory** to **reading comprehension**. The model is constrained to use only the provided context, reducing hallucination rates to near zero for structured retrieval pipelines.
 
+#### The Statistical Reality: Hallucinations Can Never Be 100% Eliminated
+It is crucial to understand that no matter how advanced LLMs become (even future models like GPT-8), **hallucinations can never be completely eliminated**. 
+* **Why**: LLMs are mathematical, probabilistic engines ($P(\text{word } n | \text{words } 1 \dots n-1)$). They do not reference a deterministic database of facts. 
+* **The Implication**: There is always a non-zero probability that the model will select a statistically fluent but factually incorrect token combination. RAG drastically reduces the error rate, but engineers must design systems with validation checks, guardrails, and human-in-the-loop validation for critical applications.
+
 ---
 
 To anchor our models, we give them reference text. But how much can they actually remember? Let's check in [Context Windows and the Needle in a Haystack Test](07_needle_test.md).

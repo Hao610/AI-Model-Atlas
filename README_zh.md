@@ -1,4 +1,4 @@
-# AI-Model-Atlas 🗺️ | AI 模型图谱
+# AI Model Atlas 🗺️ | AI 模型图谱
 
 ### 从 0 到生产级 RAG 系统：学习 · 构建 · 部署 · 优化
 
@@ -9,7 +9,10 @@
 [![本地沙盒 UI](https://img.shields.io/badge/▶_本地沙盒应用-10b981?style=for-the-badge&logo=play)](#%E8%B7%AF%E5%BE%84-a%E6%9C%AC%E5%9C%B0%E6%B2%99%E7%9B%92%E4%BA%A4%E4%BA%92%E5%BC%8F-ui-%E6%8E%A8%E8%8D%90)
 [![Colab 在线体验](https://img.shields.io/badge/▶_Colab_在线玩转_(可选)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
-欢迎来到 **AI-Model-Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的"字典式"实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。直接上手玩玩看！** 🚀
+> [!NOTE]
+> **第一次来到本项目？** 推荐从我们的 [🧭 快速入门指南](GETTING_STARTED_zh.md) 开始，选择最适合您目标的学习路径！
+
+欢迎来到 **AI Model Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的"字典式"实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。直接上手玩玩看！** 🚀
 
 ---
 
@@ -40,7 +43,7 @@ flowchart LR
 
 ## 🚀 快速开始 (运行路径选择器)
 
-选择你最想体验 `AI-Model-Atlas` 的路径，在 60 秒内上手：
+选择你最想体验 `AI Model Atlas` 的路径，在 60 秒内上手：
 
 ### 路径 A：本地沙盒交互式 UI (推荐)
 在本地运行 Streamlit 可观测性面板，实时体验语义缓存、检索重排序与自愈控制：
@@ -94,7 +97,7 @@ streamlit run app.py
 
 ## 💡 为什么发起本项目？
 
-市面上的 RAG 教程大多停留在 Embeddings 或简单检索演示。`AI-Model-Atlas` 更进一步，提供面向生产落地的工业级认知 RAG 系统参考架构。通过整合语义缓存、查询改写、检索重排与执行控制器，打通从 Demo 到生产级系统之间的最后一步。
+市面上的 RAG 教程大多停留在 Embeddings 或简单检索演示。`AI Model Atlas` 更进一步，提供面向生产落地的工业级认知 RAG 系统参考架构。通过整合语义缓存、查询改写、检索重排与执行控制器，打通从 Demo 到生产级系统之间的最后一步。
 
 ---
 
@@ -149,14 +152,14 @@ streamlit run app.py
 
 🚀 **一键分享：**
 
-> 我使用 Python 搭建了一个具备语义缓存、查询改写、重排与故障自愈的工业级认知 RAG 系统！推荐正在学习和构建 AI 应用的开发者看看 AI-Model-Atlas。
+> 我使用 Python 搭建了一个具备语义缓存、查询改写、重排与故障自愈的工业级认知 RAG系统！推荐正在学习和构建 AI 应用的开发者看看 AI Model Atlas。
 > 👉 https://github.com/Hao610/AI-Model-Atlas
 
 ---
 
 ## 📄 开源协议 (License)
 
-AI-Model-Atlas 采用双协议模式：
+AI Model Atlas 采用双协议模式：
 
 - **源代码与可运行示例项目**：[MIT License](LICENSE)
 - **文档、课程体系、图示与教学内容**：[CC BY 4.0](LICENSE-CC-BY)

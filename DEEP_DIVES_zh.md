@@ -1,8 +1,8 @@
-# 🧬 AI-Model-Atlas — Deep Dives (极客深潜专题)
+# 🧬 AI Model Atlas — Deep Dives (极客深潜专题)
 
 ### 从古典机器学习到推理大模型，追踪 AI 的数学与架构演进史。
 
-> 一部由 13 篇技术章节组成的高质量底层算法与大模型技术深度科普纪录片。
+> 一部由 14 篇技术章节组成的高质量底层算法与大模型技术深度科普纪录片。
 
 ← 返回 [中文首页](README_zh.md) | [English Version (DEEP_DIVES.md)](DEEP_DIVES.md)
 
@@ -48,14 +48,14 @@ graph TD
 
 ## 📚 深潜专题课程体系
 
-### 第一部分：现代模型的诞生 (Part I: The Birth of Modern Models)
+### 第一部分 — 现代模型的诞生 (Part I — Foundations)
 
 | 章节 | 描述 | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **01. 为什么 AI 会变聪明？** | 从规则系统到 GPT 的 70 年计算智能进化史。 | [01_ai_intelligence.md](docs/appendix_deep_dives/01_ai_intelligence.md) | [01_ai_intelligence_zh.md](docs/appendix_deep_dives/01_ai_intelligence_zh.md) |
 | **02. Transformer 为什么统治了一切？** | Attention 机制如何终结循环神经网络（RNN）的串行瓶颈，点燃大模型革命。 | [02_transformer.md](docs/appendix_deep_dives/02_transformer.md) | [02_transformer_zh.md](docs/appendix_deep_dives/02_transformer_zh.md) |
 
-### 第二部分：RAG 核心原理 (Part II: RAG Core Principles)
+### 第二部分 — RAG 核心原理 (Part II — RAG Fundamentals)
 
 | 章节 | 描述 | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
@@ -65,29 +65,35 @@ graph TD
 | **06. 为什么大模型会产生幻觉？** | 理解语言生成背后的概率本质，以及 RAG 是如何充当物理锚点的。 | [06_hallucination.md](docs/appendix_deep_dives/06_hallucination.md) | [06_hallucination_zh.md](docs/appendix_deep_dives/06_hallucination_zh.md) |
 | **07. 上下文窗口与 Needle in a Haystack 测试** | 为什么 100 万 Token 的大窗口不等于 100% 记住：揭秘“Lost in the Middle”盲区。 | [07_needle_test.md](docs/appendix_deep_dives/07_needle_test.md) | [07_needle_test_zh.md](docs/appendix_deep_dives/07_needle_test_zh.md) |
 
-### 第三部分：智能体时代 (Part III: The Agentic Era)
+### 第三部分 — 智能体时代 (Part III — Agentic Systems)
 
 | 章节 | 描述 | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **08. MCP —— AI 世界的 USB-C** | 终结 N x M 适配噩梦：Model Context Protocol 是如何统一大模型数据总线的。 | [08_mcp_protocol.md](docs/appendix_deep_dives/08_mcp_protocol.md) | [08_mcp_protocol_zh.md](docs/appendix_deep_dives/08_mcp_protocol_zh.md) |
 | **09. Agent 为什么不是 Prompt** | 控制论层面的自循环反馈：大模型大脑、长期记忆与工具执行的闭环控制。 | [09_agent_mechanics.md](docs/appendix_deep_dives/09_agent_mechanics.md) | [09_agent_mechanics_zh.md](docs/appendix_deep_dives/09_agent_mechanics_zh.md) |
 
-### 第四部分：下一代模型 (Part IV: Next-Generation Models)
+### 第四部分 — 下一代模型 (Part IV — Next-Generation Models)
 
 | 章节 | 描述 | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **10. MoE 专家混合架构** | 用稀疏激活打破稠密算力枷锁：大模型是如何做到高智能与白菜价并存的。 | [10_moe_architecture.md](docs/appendix_deep_dives/10_moe_architecture.md) | [10_moe_architecture_zh.md](docs/appendix_deep_dives/10_moe_architecture_zh.md) |
 | **11. 推理模型是怎么思考的？** | DeepSeek-R1 与 OpenAI o1 揭秘：系统 2 慢思考与强化学习带来的认知跃迁。 | [11_reasoning_models.md](docs/appendix_deep_dives/11_reasoning_models.md) | [11_reasoning_models_zh.md](docs/appendix_deep_dives/11_reasoning_models_zh.md) |
 
-### 第五部分：番外篇 (Part V: Appendix Dives)
+### 第五部分 — 番外篇 (Part V — Generative AI Appendix)
 
 | 章节 | 描述 | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **12. Diffusion 为什么会画画？** | 生成扩散模型的数理美学：AI 是如何把一片随机噪声雪花点“擦拭”出高清艺术画作的。 | [12_diffusion_art.md](docs/appendix_deep_dives/12_diffusion_art.md) | [12_diffusion_art_zh.md](docs/appendix_deep_dives/12_diffusion_art_zh.md) |
 | **13. RLHF 为什么越来越像人？** | 人类对齐与安全性防线：通过强化学习与 DPO 技术将野性模型驯化为得体助手。 | [13_rlhf_alignment.md](docs/appendix_deep_dives/13_rlhf_alignment.md) | [13_rlhf_alignment_zh.md](docs/appendix_deep_dives/13_rlhf_alignment_zh.md) |
 
+### 第六部分 — AI 评测与基准测试 (Part VI — Evaluation & Benchmarking)
+
+| 章节 | 描述 | English Guide | 中文指南 |
+| :--- | :--- | :--- | :--- |
+| **14. AI 评测体系** | 基准测试与人类对局竞技场：深度解析 MMLU、GPQA、SWE-bench 与 LMSYS 竞技场。 | [14_ai_evaluation.md](docs/appendix_deep_dives/14_ai_evaluation.md) | [14_ai_evaluation_zh.md](docs/appendix_deep_dives/14_ai_evaluation_zh.md) |
+
 ---
 
 ## 📄 开源协议
 
-本文档为 [AI-Model-Atlas](README_zh.md) 项目的一部分，遵循 [CC BY 4.0](LICENSE-CC-BY) 协议。
+本文档为 [AI Model Atlas](README_zh.md) 项目的一部分，遵循 [CC BY 4.0](LICENSE-CC-BY) 协议。

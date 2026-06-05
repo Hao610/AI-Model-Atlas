@@ -23,6 +23,11 @@ $$\overrightarrow{\text{King}} - \overrightarrow{\text{Man}} + \overrightarrow{\
 
 Embeddings turn language into geometry, allowing us to compute the "meaning distance" between any two sentences.
 
+#### Common Misconception: Embedding is NOT Compression
+A common mistake for beginners is thinking that embedding acts as a text compression tool. 
+* **The Misconception**: Believing that feeding a 1,000-word article to an embedding model compresses it into a "shortened summary" version.
+* **The Reality**: The embedding vector (e.g., 1536 float values) represents the **address coordinates** of the text's meaning in a multi-dimensional semantic space, not the text itself. It is a coordinate card, not a compressed ZIP file. You cannot reverse-engineer or reconstruct the original 1,000 words from its coordinate vector.
+
 ---
 
 With embeddings representing text as coordinates, let's learn how we search and retrieve them in [How Do Vector Databases Retrieve Meaning?](04_vector_db.md).

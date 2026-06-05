@@ -1,4 +1,4 @@
-# AI-Model-Atlas 🗺️
+# AI Model Atlas 🗺️
 
 ### From Zero to Production-Grade RAG Systems — Learn, Build, Deploy, and Optimize Real AI Applications
 
@@ -9,7 +9,10 @@
 [![Run Locally](https://img.shields.io/badge/▶_Local_Sandbox_App-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
 [![Colab Playground](https://img.shields.io/badge/▶_Colab_Playground_(Optional)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
-Welcome to the **AI-Model-Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models. Let's play! 🚀
+> [!NOTE]
+> **New here?** Start with our [🧭 Getting Started Guide](GETTING_STARTED.md) to choose the best roadmap for your goals!
+
+Welcome to the **AI Model Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models. Let's play! 🚀
 
 ---
 
@@ -40,7 +43,7 @@ flowchart LR
 
 ## 🚀 Quick Start (Run Path Selector)
 
-Select your preferred route to experience `AI-Model-Atlas` in under 60 seconds:
+Select your preferred route to experience `AI Model Atlas` in under 60 seconds:
 
 ### Route A: Local Sandbox Interactive UI (Recommended)
 Run the Streamlit observability app locally with semantic cache, reranking, and self-healing:
@@ -94,7 +97,7 @@ Here is the raw telemetry output from a typical cache-miss and cache-hit sequenc
 
 ## 💡 Why This Repository Exists
 
-Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas` goes further, providing a real-world, engineer-grade cognitive RAG reference architecture. By integrating Semantic Cache, Query Rewriting, Relevance Reranking, and an Execution Controller, it bridges the gap between toy demos and production-ready systems.
+Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI Model Atlas` goes further, providing a real-world, engineer-grade cognitive RAG reference architecture. By integrating Semantic Cache, Query Rewriting, Relevance Reranking, and an Execution Controller, it bridges the gap between toy demos and production-ready systems.
 
 ---
 
@@ -149,12 +152,12 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 
 🚀 **Spread the word:**
 
-> Built a production-grade Cognitive RAG system with Semantic Cache, Query Rewriting, Reranking, and Failure Recovery — from learning to deployment. Check out the AI-Model-Atlas!
+> Built a production-grade Cognitive RAG system with Semantic Cache, Query Rewriting, Reranking, and Failure Recovery — from learning to deployment. Check out the AI Model Atlas!
 > 👉 https://github.com/Hao610/AI-Model-Atlas
 
 ## 📄 License
 
-AI-Model-Atlas uses a dual-license model:
+AI Model Atlas uses a dual-license model:
 
 - **Source code and runnable example projects**: [MIT License](LICENSE)
 - **Documentation, curriculum, diagrams, and educational content**: [CC BY 4.0](LICENSE-CC-BY)

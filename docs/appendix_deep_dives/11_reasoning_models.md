@@ -25,6 +25,28 @@ These models are trained using large-scale Reinforcement Learning. The model is 
 
 This shifts AI from a simple text-generation autocomplete box into a systematic cognitive processor.
 
+#### The Draft Paper Analogy: GPT vs. Reasoning Models
+To understand the difference between standard LLMs (like GPT-4o) and Reasoning Models (like DeepSeek-R1 or o1), use this analogy:
+* **Standard LLM (Intuition)**: The model is in a game show. The moment it sees the question, it must blurt out the answer immediately, word-by-word, without pausing to think. If it starts the sentence with a wrong assumption, it is trapped and must hallucinate a justification to keep the sentence fluent.
+* **Reasoning Model (Deliberation)**: The model is given a draft paper. When asked a hard puzzle, it sits in silence, writes out calculations on the draft paper, double-checks its arithmetic, identifies its own mistakes, crosses out wrong paths, and *only* writes down the final clean answer once it is confident.
+
+#### The Cost of Logic & The Inference Scaling Law
+This shift in thinking introduces a new paradigm in AI economics and scaling:
+
+1. **Why Reasoning Models Are More Expensive**
+In standard models, the token budget is simple: you only pay for the words you see. In reasoning models, you must pay for both **Thinking Tokens** (the draft paper steps generated silently in the background) and **Answer Tokens** (the final visible output). Even a 5-word final answer could require 2,000 thinking tokens of intense computation, making logic highly resource-intensive.
+
+```text
+Standard LLM Token Budget:
+[ User Query ] ──► [ Answer Tokens ]
+
+Reasoning Model Token Budget:
+[ User Query ] ──► [ Thinking Tokens (Hidden draft) + Answer Tokens ]
+```
+
+2. **The Inference Scaling Law**
+Historically, the only way to make AI smarter was to scale **Training Compute** (feeding larger models more data during training). Reasoning models unlock a second dimension: **Inference Scaling (Test-Time Compute)**. By allowing the model to generate more thinking tokens (i.e., think longer and explore more logical branches), we can scale its performance on complex math, coding, and scientific reasoning tasks without retraining the base model.
+
 ---
 
 Reasoning models excel at logical text generation. But how do generative models create visual art? Let's dive into [Why Can AI Draw Pictures?](12_diffusion_art.md).

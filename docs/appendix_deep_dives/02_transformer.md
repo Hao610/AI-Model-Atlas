@@ -26,6 +26,24 @@ Parallel Attention (Transformer):
 ```
 
 Every word looks at every other word in the sentence at the exact same time, calculating a mathematical relationship score.
+
+#### Self-Attention in Action: Resolving Pronouns
+To understand how Self-Attention captures relationships, consider this sentence:
+> *"Tom gave Jerry his book."*
+
+Who does the word **"his"** refer to? Tom or Jerry? 
+* **The RNN Approach (Sequential Memory)**: An RNN reads word-by-word, continuously compressing its memory into a single vector. By the time it reads "his", the memory of "Tom" has been diluted through multiple mathematical operations. It has to rely on hope that the vector still retains the connection.
+* **The Transformer Approach (Self-Attention)**: When the Transformer processes the token `his`, Self-Attention calculates connection scores between `his` and every other word in the sentence simultaneously:
+
+```text
+Connection Scores for the word "his":
+"his" ──► "Tom"   (Score: 0.85)  ◄── Strongest connection!
+"his" ──► "Jerry" (Score: 0.12)
+"his" ──► "book"  (Score: 0.03)
+```
+
+The model immediately links `his` to `Tom` because of the high attention score. This direct, parallel connection between distant words is why Transformers understand context so well.
+
 * **Why it changed history**: 
   1. It resolved the forgetfulness problem because long-distance relationships were computed in a single step.
   2. It allowed massive GPU parallelization. Training speeds skyrocketed, allowing models to be fed the entire public internet.

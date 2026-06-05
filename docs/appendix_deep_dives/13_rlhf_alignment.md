@@ -26,4 +26,4 @@ Alignment is what forces the model to talk politely, refuse instructions on how 
 
 ---
 
-Congratulations! You have completed the Deep Dives. Go back to the [Deep Dives Directory](../../DEEP_DIVES.md) or explore the [Main Curriculum](../../CURRICULUM.md).
+Now that you know how we align models to human values, let's learn how we measure model progress in [AI Evaluation: How Do We Know a Model is Strong?](14_ai_evaluation.md).

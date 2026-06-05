@@ -27,6 +27,21 @@ Llama  ──┘             └──► Local Filesystem
 
 Now, developers only write one MCP connector for their tool, and any MCP-compliant model can immediately query, write, and interact with it. It standardizes how AI reads contexts, executes actions, and prompts local environments.
 
+#### Distinguishing the Concepts: Function Calling vs. MCP vs. Agent
+It is very common for beginners to confuse these three related concepts. Here is how they stack up in a typical system architecture:
+
+```text
+Application Layer ────► Agent (Autonomous execution system managing loops)
+       │
+Protocol Layer    ────► MCP (Standardized USB-C protocol for tools/data)
+       │
+Execution Layer   ────► Function Calling (Single-shot tool execution mechanism)
+```
+
+* **Function Calling**: The basic execution mechanism. It is a single-shot transaction where the model reads user text and decides: *"I need to run the function `get_weather(city='Paris')`."* It returns JSON parameters but doesn't run the tool itself or manage standard connections.
+* **Model Context Protocol (MCP)**: The protocol standard. It is the **USB-C of AI tool connections**. Instead of custom APIs, MCP standardizes how tools tell models what functions they have and how data is exchanged.
+* **Agent**: The autonomous application. It wraps around the model and protocol to run a continuous loop (state management, memory, planning, tools) until a complex goal is verified as completed.
+
 ---
 
 MCP standardizes the tools our models can use, but how do we build systems that plan and execute actions autonomously? Learn more in [Why an Agent is More Than a Prompt](09_agent_mechanics.md).
