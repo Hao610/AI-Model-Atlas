@@ -6,8 +6,8 @@
 
 [[English] (README.md)](README.md) | [中文]
 
-[![Colab 在线体验](https://img.shields.io/badge/▶_Colab_在线玩转-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 [![本地沙盒 UI](https://img.shields.io/badge/▶_本地沙盒应用-10b981?style=for-the-badge&logo=play)](#%E8%B7%AF%E5%BE%84-a%E6%9C%AC%E5%9C%B0%E6%B2%99%E7%9B%92%E4%BA%A4%E4%BA%92%E5%BC%8F-ui-%E6%8E%A8%E8%8D%90)
+[![Colab 在线体验](https://img.shields.io/badge/▶_Colab_在线玩转_(可选)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
 欢迎来到 **AI-Model-Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的"字典式"实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。直接上手玩玩看！** 🚀
 
