@@ -126,6 +126,7 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas
 | 🚀 **Run the system now** | ↑ [Quick Start](#-quick-start-run-path-selector) |
 | 🧠 **Understand the architecture** | 📐 [ARCHITECTURE.md](ARCHITECTURE.md) — Benchmarks, failure recovery, state machine |
 | 📚 **Learn AI from scratch** | 📚 [CURRICULUM.md](CURRICULUM.md) — 31-module "0 to 100" learning roadmap |
+| 🧬 **Deep dive into algorithms** | 🧬 [DEEP_DIVES.md](DEEP_DIVES.md) — The 13-chapter epic tech documentary |
 
 ---
 
