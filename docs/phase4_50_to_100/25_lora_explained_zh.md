@@ -46,4 +46,4 @@
 
 ---
 
-理解了 LoRA 的底层逻辑，接下来让我们去看看目前开源界最受欢迎的、不需要写一行代码就能进行 LoRA 训练的可视化神器：进入 [LLaMA-Factory 训练指南](26_llama_factory.md)。
+理解了 LoRA 的底层逻辑，接下来让我们去看看目前开源界最受欢迎的、不需要写一行代码就能进行 LoRA 训练的可视化神器：进入 [LLaMA-Factory 训练指南](26_llama_factory_zh.md)。

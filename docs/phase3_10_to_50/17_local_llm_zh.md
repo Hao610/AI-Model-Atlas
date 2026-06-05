@@ -67,4 +67,4 @@ print(response.choices[0].message.content)
 
 ---
 
-现在你已经可以在本地或云端调用大模型了。接下来，让我们为我们的 Python 脚本套上一个精美的网页聊天界面：进入 [前端界面极速生成](18_ui_interfaces.md)。
+现在你已经可以在本地或云端调用大模型了。接下来，让我们为我们的 Python 脚本套上一个精美的网页聊天界面：进入 [前端界面极速生成](18_ui_interfaces_zh.md)。

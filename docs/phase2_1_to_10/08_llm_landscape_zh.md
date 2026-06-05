@@ -62,4 +62,4 @@ ChatGPT     DeepSeek, Qwen
 
 ---
 
-了解了模型图谱后，让我们看看如何不需要任何代码，通过可视化工具快速配置一个 AI 员工：进入 [无代码 Agent 搭建](09_no_code_agents.md)。
+了解了模型图谱后，让我们看看如何不需要任何代码，通过可视化工具快速配置一个 AI 员工：进入 [无代码 Agent 搭建](09_no_code_agents_zh.md)。
