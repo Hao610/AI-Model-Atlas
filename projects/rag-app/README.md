@@ -1,92 +1,82 @@
-# 🗺️ Hybrid RAG Reference Application
+# 🧠 Cognitive RAG System with Execution Control & Semantic Cache
 
-This directory contains the reference-grade **Hybrid RAG Application** corresponding to the **v2.1 Release** of the **[AI-Model-Atlas](https://github.com/Hao610/AI-Model-Atlas)** curriculum.
+> **A production-grade, hybrid RAG reference architecture designed for extreme reliability, cognitive intelligence, and semantic acceleration.**
 
-Designed as both a clean, comprehensive teaching resource and a production-ready system blueprint, it features a dual runtime backend allowing users to toggle between a localized setup and commercial cloud endpoints.
+[English] | [中文 (README_zh.md)](README_zh.md)
+
+This project showcases a complete **Cognitive RAG System** demonstrating how to transition an AI application from a simple proof-of-concept into a resilient, production-ready system. It features a dual-inference backend allowing seamless runtime switching between local models (Ollama) and cloud APIs (OpenAI/DeepSeek).
 
 ---
 
-## 🛠️ Architecture & System Data Flow
+## 🗺️ System Data Flow & Architecture
 
 ```mermaid
 flowchart TD
-    A[PDF Upload] --> B[Recursive Chunking Layer]
-    B --> C[Embedding Engine]
-    C --> D[(ChromaDB Persistent Store)]
+    UserQuery[User Question] --> QueryRewriter[Query Rewriter]
+    QueryRewriter --> SemanticCacheCheck{Semantic Cache Hit?}
     
-    UserQuery[User Question] --> E[Retriever Collection Query]
-    D --> E
-    E --> F[Context Formulation]
-    F --> G[LLM Router Engine]
+    SemanticCacheCheck -->|Yes| InstantReturn[Return Cached Response]
+    SemanticCacheCheck -->|No| VectorSearch[ChromaDB Vector Retrieval]
     
-    G -->|local mode| H[Ollama Local Service]
-    G -->|cloud mode| I[DeepSeek / OpenAI API]
+    VectorSearch --> Reranker[Relevance Reranker]
+    Reranker --> ExecutionController[Execution Controller]
     
-    H --> J[Response Synthesis & Stream]
-    I --> J
-    J --> K[Streamlit Frontend Chat UI]
+    ExecutionController -->|Retry / Fallback| LLMRouter[LLM Router Engine]
+    LLMRouter -->|local| Ollama[Ollama Local LLM]
+    LLMRouter -->|cloud| CloudAPI[DeepSeek / OpenAI API]
+    
+    Ollama --> StreamOutput[Stream to UI & Cache Store]
+    CloudAPI --> StreamOutput
 ```
 
 ---
 
-## 📂 Project Directory Structure
+## ⚡ Key Highlights
+
+* **🧠 Cognitive Query Rewriting**: Standardizes and optimizes conversational queries by removing grammatical noise and syntax prefixes before vector search, improving retrieval accuracy.
+* **🛡️ Execution Control Plane**: Orchestrates all request lifetimes. Handles exponential backoff retries, connection timeouts, and automatic graceful degradation (seamlessly falling back from local Ollama to cloud API if local nodes go offline).
+* **⚡ Semantic Cache Layer**: Prevents redundant model execution. Repeated or semantically matching queries are bypassed and returned instantly with cosine similarity checks and length ratio boundaries.
+* **🔍 Deep Observability Dashboard**: Streamlit interface containing dynamic threshold parameters, pre-vs-post rerank document context diagnostics, and live system latency metrics (TTFT, throughput tokens/sec).
+
+---
+
+## 📂 System Packages Directory
 
 ```text
 rag-app/
-├── app.py                # Main project entrypoint
+├── app.py                # Subprocess runner launcher
 ├── requirements.txt      # Module dependencies (Streamlit, ChromaDB, pypdf)
-├── README.md             # This architecture design document
+├── START_HERE.md         # 1-minute quickstart guide
 │
 ├── config/
-│   └── settings.py       # Configuration parameters and environment parser
+│   └── settings.py       # Centralized runtime configuration state
 │
 └── core/
-    ├── llm_router.py     # Streaming router abstraction between local Ollama and APIs
-    ├── embeddings.py     # Local SentenceTransformer & OpenAI Embeddings API adapter
-    ├── chunking.py       # Recursive paragraph & sentence character splitter
-    ├── vectorstore.py    # ChromaDB persistent collection adapter
-    └── rag_pipeline.py   # Complete ingestion and query execution pipeline
+    ├── execution_controller.py  # Orchestrates retries, timeouts, and API fallbacks
+    ├── prompt_templates.py      # Centralized prompts and fallback boundaries
+    ├── llm_router.py            # Adapts output streaming for Ollama/Cloud API
+    ├── embeddings.py            # Local SentenceTransformers / OpenAI embeddings interface
+    ├── chunking.py              # Recursive character paragraph splitter
+    ├── vectorstore.py           # Persistent ChromaDB collection managers
+    └── intelligence/
+        ├── query_rewriter.py    # Removes prefix noise and conversational grammar
+        └── reranker.py          # Prunes context chunks using similarity metrics
 ```
 
 ---
 
-## ⚙️ Fast Local Setup & Installation
+## 🏃‍♂️ 1-Minute Setup & Launch
 
-### 1. Install Dependencies
-Make sure you have Python 3.9+ installed. Execute:
+To run the system locally, make sure you have python 3.9+ and Ollama running locally.
+
 ```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-### 2. Configure Local Settings (Optional)
-Create a `.env` file in this directory to customize execution:
-```env
-RAG_MODE=ollama
-OLLAMA_MODEL=llama3
-# If using Cloud API mode:
-# RAG_MODE=api
-# API_KEY=your_api_key_here
-# API_BASE_URL=https://api.deepseek.com/v1
-# API_MODEL=deepseek-chat
-```
-
-### 3. Start Local Services
-If you are running in the default `ollama` mode, make sure the Ollama application is active in the background and pull your model of choice:
-```bash
+# Start Ollama local model
 ollama pull llama3
-```
 
-### 4. Run the Application
-Start the interactive user dashboard:
-```bash
+# Launch the dashboard
 python app.py
 ```
-This launches a browser session pointing to the Streamlit local server (typically `http://localhost:8501`).
-
----
-
-## 💡 Key Highlights
-
-* **Multi-Backend Router**: Decoupled interface to route model inference dynamically to locally running LLMs (via Ollama) or public endpoints.
-* **Granular Extraction Provenance**: Side-by-side comparison log displaying the distance calculation metrics, source file attributes, and chunk indexes for retrieved paragraphs.
-* **Recursive Splitting**: Text chunks are parsed cleanly across paragraph and sentence margins to preserve text context and cohesion.
+For detailed workflow walkthroughs, read **[START_HERE.md](START_HERE.md)**.
