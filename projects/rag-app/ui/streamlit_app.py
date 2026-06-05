@@ -75,6 +75,20 @@ with st.sidebar:
     chunk_overlap = st.slider("Chunk Overlap Buffer", min_value=10, max_value=500, value=100, step=10)
     
     st.divider()
+    
+    st.subheader("🧠 Intelligence Layer (v2.3)")
+    rewrite_active = st.toggle("Enable Query Rewriting", value=True)
+    rerank_active = st.toggle("Enable Context Reranking", value=True)
+    rerank_threshold = st.slider(
+        "Rerank Cosine Cutoff", 
+        min_value=0.1, 
+        max_value=2.0, 
+        value=1.2, 
+        step=0.1,
+        help="Chroma DB Cosine Distance: Lower numbers mean closer/higher similarity matches."
+    )
+    
+    st.divider()
     st.markdown("Created by Loi Chiang Hao as part of **[AI-Model-Atlas](https://github.com/Hao610/AI-Model-Atlas)**.")
 
 # Main dashboard interface
@@ -153,7 +167,10 @@ with col_left:
                 # Run query
                 stream, sources = st.session_state.pipeline.execute_query(
                     query=user_query,
-                    system_prompt=system_prompt
+                    system_prompt=system_prompt,
+                    rewrite_active=rewrite_active,
+                    rerank_active=rerank_active,
+                    rerank_threshold=rerank_threshold
                 )
                 
                 # Save source states

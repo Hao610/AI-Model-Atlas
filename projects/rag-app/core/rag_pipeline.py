@@ -5,6 +5,8 @@ from core.chunking import recursive_character_chunking
 from core.vectorstore import VectorStoreManager
 from core.llm_router import LLMRouter
 from core.execution_controller import ExecutionController
+from core.intelligence.query_rewriter import QueryRewriter
+from core.intelligence.reranker import Reranker
 from config.settings import settings
 
 class RAGPipeline:
@@ -13,6 +15,8 @@ class RAGPipeline:
         self.vectorstore = VectorStoreManager(self.embeddings)
         self.router = LLMRouter()
         self.controller = ExecutionController(self.router)
+        self.rewriter = QueryRewriter(self.router)
+        self.reranker = Reranker()
         self.collection_name = "default_rag"
         
     def ingest_pdf(self, file_path: str, chunk_size: int = 800, chunk_overlap: int = 100) -> int:
@@ -52,18 +56,32 @@ class RAGPipeline:
             
         return len(chunks)
         
-    def execute_query(self, query: str, system_prompt: str = None, max_results: int = 4):
-        """Retrieves contexts, forwards context and settings variables to Execution Controller, and yields streams."""
-        # Retrieve matched contexts
+    def execute_query(self, query: str, system_prompt: str = None, max_results: int = 4, 
+                      rewrite_active: bool = True, rerank_active: bool = True, rerank_threshold: float = 1.5):
+        """Retrieves contexts, optimizes using intelligence modules, and yields streams."""
+        # 1. Query Rewriting optimization
+        optimized_query = self.rewriter.rewrite(query, active=rewrite_active)
+        self.controller.log(f"Original Query: '{query}' | Rewritten to: '{optimized_query}'")
+        
+        # 2. Retrieve matched contexts
         matches = self.vectorstore.query(
             collection_name=self.collection_name,
-            query_text=query,
+            query_text=optimized_query,
             n_results=max_results
         )
         
+        # 3. Relevance Reranking
+        filtered_matches = self.reranker.rerank(
+            matches, 
+            query=optimized_query, 
+            active=rerank_active, 
+            distance_threshold=rerank_threshold
+        )
+        self.controller.log(f"Vector search matched {len(matches)} chunks. Rerank filter retained {len(filtered_matches)} chunks.")
+        
         context_str = ""
         sources = []
-        for match in matches:
+        for match in filtered_matches:
             context_str += f"\n[Source: {match['metadata'].get('source', 'Unknown')}]\n{match['content']}\n"
             sources.append(match)
             
