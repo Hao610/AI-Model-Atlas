@@ -52,7 +52,7 @@ Let's look at the difference in results:
 If you ask AI to solve a hard math riddle or logic puzzle, it might rush to a wrong answer. To fix this, tell the AI to:
 > *"Think step-by-step before answering."*
 
-This forces the model to write out its reasoning steps first, which dramatically increases accuracy.
+This can encourage the model to reason more carefully, which often improves results on suitable math and logic tasks.
 
 ---
 

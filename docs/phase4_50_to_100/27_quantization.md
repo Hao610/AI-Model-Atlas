@@ -15,15 +15,15 @@ To solve this, we use **Model Quantization**.
 Quantization is the process of compressing a model by lowering the mathematical precision of its weight coordinates.
 
 Think of it like digital audio or images:
-* **FP16 (High Resolution)**: A lossless, raw audio file (FLAC/WAV). Sounds perfect, but takes up massive disk space.
-* **INT4 (Compressed)**: A high-quality MP3 file. The human ear can barely tell the difference, but the file size is **75% smaller**.
+* **FP16 (High Resolution)**: A lossless, raw audio file (FLAC/WAV). It preserves more detail, but takes up massive disk space.
+* **INT4 (Compressed)**: A high-quality MP3 file. It is much smaller, but the amount of quality loss depends on the model, task, and quantization method.
 
 ```text
     FP16 Precision (16-bit) ──► INT8 (8-bit) ──► INT4 (4-bit)
     [ 140GB VRAM Needed ]        [ 70GB VRAM ]    [ 40GB VRAM ]
 ```
 
-By converting the model weights from 16-bit decimal numbers (`FP16`) to simple 4-bit integers (`INT4`), we compress the memory footprint by 4 times, with only a negligible loss in logical reasoning capability!
+By converting the model weights from 16-bit decimal numbers (`FP16`) to 4-bit values (`INT4`), we can greatly reduce the memory footprint. The quality tradeoff is often acceptable for many inference workloads, but it should be measured on your own tasks.
 
 ---
 
@@ -55,7 +55,7 @@ $$\text{Required VRAM (in GB)} = (\text{Parameter Count in Billions}) \times \fr
 ### Example: Running a 70B model at 4-bit quantization (INT4)
 $$70 \times \frac{4}{8} \times 1.2 = 42\text{ GB of VRAM}$$
 
-Instead of needing $140\text{ GB}$ of enterprise VRAM, you can run this model on two consumer **RTX 3090/4090** GPUs ($24\text{ GB} \times 2 = 48\text{ GB}$)!
+Instead of needing $140\text{ GB}$ of enterprise VRAM just to store FP16 weights, a 4-bit setup may fit on two consumer **RTX 3090/4090** GPUs ($24\text{ GB} \times 2 = 48\text{ GB}$). In practice, feasibility depends on context length, KV cache size, batching, runtime overhead, and whether your inference engine supports efficient multi-GPU loading.
 
 ---
 

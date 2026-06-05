@@ -40,7 +40,7 @@ Fine-tuning is the process of taking an existing pre-trained model (like Llama 3
 Only fine-tune if you meet one of the following scenarios:
 
 ### 1. You need extreme format consistency
-* *Example*: You need the model to output a very complex JSON structure *every single time* without fail. Prompts can fail 1% of the time. Fine-tuning reduces this error rate to near 0%.
+* *Example*: You need the model to output a very complex JSON structure consistently. Prompts may still fail on edge cases, while fine-tuning can reduce recurring format errors when paired with evaluation and validation.
 
 ### 2. You want to mimic a highly specific style or voice
 * *Example*: Training a model to write exactly like a specific historical figure, or matching your brand's unique copywriting style using 10,000 past articles.

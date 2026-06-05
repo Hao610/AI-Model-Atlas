@@ -43,7 +43,7 @@ When your workflows are not linear (e.g. if the user says "No", go back to Step 
 ## 🔍 How to Start?
 
 1. **If you want to build a content writing or marketing pipeline**: Use **CrewAI**. It is highly intuitive and gets multi-agent systems running in minutes.
-2. **If you need complex logic loops, human-in-the-loop approvals, and absolute control**: Invest the time to learn **LangGraph**. It is the industry standard for production-grade AI systems.
+2. **If you need complex logic loops, human-in-the-loop approvals, and precise control**: Invest the time to learn **LangGraph**. It is a strong choice for production-grade AI workflows where explicit state management matters.
 
 ---
 

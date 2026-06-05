@@ -59,10 +59,11 @@ flowchart LR
    ```
    *提示：如果需要本地离线大模型支持，请确保 Ollama 服务已在后台运行。*
 
-### 路径 B：终端直接运行脚本
-在终端中直接执行核心控制器脚本，观测意图改写与请求路由：
+### 路径 B：直接启动 Streamlit 应用
+进入可运行示例项目，并从终端启动交互式应用面板：
 ```bash
-python core/execution_controller.py
+cd projects/rag-app
+streamlit run app.py
 ```
 
 ### 路径 C：概念与学习路线图

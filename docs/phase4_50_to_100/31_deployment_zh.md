@@ -34,22 +34,23 @@ pip install vllm
 ```
 
 ### 第三步：一键启动 OpenAI 兼容接口服务
-使用 vLLM 的 OpenAI 包装器接口命令启动。vLLM 会自动帮你从 Hugging Face 或 ModelScope（魔搭社区，国内极速下载）下载对应的模型文件并加载到显存中：
+使用 vLLM 的 OpenAI 兼容接口命令启动。vLLM 会自动帮你从 Hugging Face 或 ModelScope（魔搭社区，国内极速下载）下载对应的模型文件并加载到显存中：
 
 ```bash
-python -m vllm.entrypoints.openai.api_server \
-    --model Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen2.5-7B-Instruct \
     --port 8000 \
     --host 0.0.0.0
 ```
 
-*看到终端输出 `Uvicorn running on http://0.0.0.0:8000`，说明你的接口服务已经上线成功！*
+*看到终端输出服务监听在 `0.0.0.0:8000`，说明接口服务已经启动。较旧版本的 vLLM 可能仍使用 `python -m vllm.entrypoints.openai.api_server`，如命令不一致，请以你安装的 vLLM 版本文档为准。*
+
+**安全提醒：** `--host 0.0.0.0` 会让服务监听所有网卡。不要在没有鉴权、防火墙、限流和访问控制的情况下，把这个端口直接暴露到公网。
 
 ---
 
 ## 🔗 在你的前端网页或 App 中调用云端模型
 
-现在，你只需要回到你的 Streamlit 网页代码或 Python 脚本中，修改 API 客户端的连接地址为你租用的云服务器的公网 IP 即可：
+现在，你可以回到 Streamlit 网页代码或 Python 脚本中，修改 API 客户端的连接地址为你租用的云服务器地址。如果要公网访问，建议先通过带鉴权的网关或反向代理转发，不要直接调用裸露的 vLLM 端口：
 
 ```python
 from openai import OpenAI
@@ -57,7 +58,7 @@ from openai import OpenAI
 # 将 base_url 指向你云端 GPU 服务器的公网 IP 和端口
 client = OpenAI(
     base_url="http://您的服务器公网IP:8000/v1",
-    api_key="vllm-server"  # 私有服务器不需要Key，填占位符即可
+    api_key="请使用真实密钥或受保护的网关凭据"
 )
 
 response = client.chat.completions.create(

@@ -34,22 +34,23 @@ pip install vllm
 ```
 
 ### 3. Launch the Server
-Start the server using vLLM's OpenAI-compatible API wrapper. vLLM will automatically download the model from Hugging Face and load it into your GPU:
+Start the server using vLLM's OpenAI-compatible API server. vLLM will automatically download the model from Hugging Face and load it into your GPU:
 
 ```bash
-python -m vllm.entrypoints.openai.api_server \
-    --model Qwen/Qwen2.5-7B-Instruct \
+vllm serve Qwen/Qwen2.5-7B-Instruct \
     --port 8000 \
     --host 0.0.0.0
 ```
 
-*Note: Your API server is now running on port `8000`.*
+*Note: Your API server is now listening on port `8000`. Older vLLM versions may use `python -m vllm.entrypoints.openai.api_server`, so check your installed vLLM version if the command differs.*
+
+**Security warning:** `--host 0.0.0.0` exposes the service on all network interfaces. Do not expose this endpoint directly to the public internet without authentication, firewall rules, rate limiting, and access controls.
 
 ---
 
 ## 🔗 How to Connect from Your Frontend App
 
-Now, you can edit your local Python script or Streamlit app to point to your new cloud server's public IP address:
+Now, you can edit your local Python script or Streamlit app to point to your new cloud server's IP address. For public deployments, put this API behind an authenticated gateway or reverse proxy instead of calling an unprotected vLLM port directly:
 
 ```python
 from openai import OpenAI
@@ -57,7 +58,7 @@ from openai import OpenAI
 # Connect to your cloud GPU server IP
 client = OpenAI(
     base_url="http://your-cloud-ip:8000/v1",
-    api_key="not-needed-for-private-server"
+    api_key="use-a-real-secret-when-exposed"
 )
 
 response = client.chat.completions.create(

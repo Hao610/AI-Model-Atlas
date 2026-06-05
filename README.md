@@ -59,10 +59,11 @@ Run the Streamlit observability app locally with semantic cache, reranking, and 
    ```
    *Note: Ensure Ollama is running locally if you want offline model execution.*
 
-### Route B: Direct Execution Script
-Test the core cognitive query rewriting and routing logic directly inside your terminal:
+### Route B: Run the Streamlit App Directly
+Enter the runnable example project and start the dashboard from your terminal:
 ```bash
-python core/execution_controller.py
+cd projects/rag-app
+streamlit run app.py
 ```
 
 ### Route C: Guided Conceptual Onboarding

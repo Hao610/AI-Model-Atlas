@@ -28,7 +28,7 @@ st.markdown("""
         border-radius: 8px;
     }
 </style>
-""", unsafe_allowed_code=True)
+""", unsafe_allow_html=True)
 
 # Initialize Session State
 if "pipeline" not in st.session_state:
@@ -60,6 +60,14 @@ with st.sidebar:
     st.divider()
     
     st.subheader("🛠️ Model Options")
+    previous_config = {
+        "mode": settings.RAG_MODE,
+        "ollama_model": settings.OLLAMA_MODEL,
+        "api_model": settings.API_MODEL,
+        "api_key": settings.API_KEY,
+        "api_base_url": settings.API_BASE_URL,
+    }
+
     if settings.RAG_MODE == "ollama":
         settings.OLLAMA_MODEL = st.text_input("Ollama LLM Model name", value=settings.OLLAMA_MODEL)
         st.info("Ensure Ollama service is active locally and the model is pulled (`ollama pull <model>`).")
@@ -67,6 +75,16 @@ with st.sidebar:
         settings.API_MODEL = st.text_input("Cloud API Model name", value=settings.API_MODEL)
         settings.API_KEY = st.text_input("API Access Key", value=settings.API_KEY, type="password")
         settings.API_BASE_URL = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL)
+
+    current_config = {
+        "mode": settings.RAG_MODE,
+        "ollama_model": settings.OLLAMA_MODEL,
+        "api_model": settings.API_MODEL,
+        "api_key": settings.API_KEY,
+        "api_base_url": settings.API_BASE_URL,
+    }
+    if current_config != previous_config:
+        st.session_state.pipeline = RAGPipeline()
         
     st.divider()
     

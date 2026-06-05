@@ -39,7 +39,7 @@ Many modern model creators restrict usage to protect their business:
   * **Commercial Use**: Free to use commercially *unless* your app reaches **700 million monthly active users** (at which point you must request a license from Meta).
   * **Derivative work rule**: You cannot use Llama outputs to train competing language models.
 * **Qwen License (Alibaba)**:
-  * Similar to Llama, but has user-count thresholds (typically free up to 100 million monthly active users depending on the model version).
+  * Qwen licenses vary by model and release. Some Qwen models are released under permissive licenses such as Apache 2.0, while others may use custom terms. Always check the specific model card before commercial use.
 * **DeepSeek License (DeepSeek-APGL-like / Custom)**:
   * Permits commercial usage, but forbids using model outputs to improve other competing models.
 
@@ -47,7 +47,7 @@ Many modern model creators restrict usage to protect their business:
 
 ## 💡 Summary Checklist for Beginners
 
-1. **If you are building a commercial startup**: Stick to **MIT** or **Apache 2.0** libraries, and check if your model (like Llama/Qwen) has monthly active user (MAU) restrictions that you might cross.
+1. **If you are building a commercial startup**: Stick to **MIT** or **Apache 2.0** libraries where possible, and check each model's exact license terms, including any monthly active user (MAU), attribution, or output-use restrictions.
 2. **If you are training a model**: NEVER use outputs from OpenAI (GPT) or Anthropic (Claude) to train your open weights model; their Terms of Service strictly forbid creating competing models using their generation.
 
 ---
