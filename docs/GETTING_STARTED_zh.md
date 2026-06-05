@@ -1,6 +1,6 @@
 # 🧭 AI Model Atlas 快速入门指南
 
-← 返回 [中文首页](README_zh.md) | [English Version (GETTING_STARTED.md)](GETTING_STARTED.md)
+← 返回 [中文首页](../README_zh.md) | [English Version (GETTING_STARTED.md)](GETTING_STARTED.md)
 
 ---
 
@@ -28,7 +28,7 @@
 * **适用场景**：获得直观、可视化的底层数学与工程折中方案解释（例如 Chunk 尺寸权衡、Reranker 重排、推理扩展定律 Inference Scaling Laws）。
 
 ### 4. 我只想立刻克隆仓库，跑起来看效果
-> **推荐入口**：[中文版首页 - 运行路径选择](README_zh.md#-运行路径选择)
+> **推荐入口**：[中文版首页 - 运行路径选择](../README_zh.md#-运行路径选择)
 * **内容定位**：快速安装和上手指南，手把手教你如何配置本地 Ollama 服务、运行交互式命令行以及测试 RAG 知识库。
 * **适用场景**：希望在 5 分钟内搭建好本地测试沙盒环境的开发者。
 
@@ -38,7 +38,7 @@
 
 | 文档 | 核心聚焦 | 技术深度 | 核心图示 |
 | :--- | :--- | :--- | :--- |
-| [README_zh.md](README_zh.md) | 项目概览与快速启动 | 中等 | 系统运行架构图 |
+| [README_zh.md](../README_zh.md) | 项目概览与快速启动 | 中等 | 系统运行架构图 |
 | [GETTING_STARTED_zh.md](GETTING_STARTED_zh.md) | 仓库入口与导航选择 | 初级 | 目标受众分布图 |
 | [CURRICULUM_zh.md](CURRICULUM_zh.md) | 31 模块学习路线图 | 初级至高级 | 学习路线拓扑图 |
 | [ARCHITECTURE_zh.md](ARCHITECTURE_zh.md) | 系统设计与性能指标 | 高级 | 系统状态机与延迟指标 |
@@ -48,4 +48,4 @@
 
 ## 📄 开源协议
 
-本文档为 [AI Model Atlas](README_zh.md) 项目的一部分，遵循 [CC BY 4.0](LICENSE-CC-BY) 协议。
+本文档为 [AI Model Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE-CC-BY) 协议。

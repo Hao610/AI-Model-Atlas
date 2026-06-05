@@ -2,7 +2,7 @@
 
 > Engineering-grade deep dive into the Cognitive RAG system internals: benchmarks, failure recovery, and execution control.
 
-← Back to [README](README.md) | [中文架构文档 (ARCHITECTURE_zh.md)](ARCHITECTURE_zh.md)
+← Back to [README](../README.md) | [中文架构文档 (ARCHITECTURE_zh.md)](ARCHITECTURE_zh.md)
 
 ---
 
@@ -101,4 +101,4 @@ stateDiagram-v2
 
 ## 📄 License
 
-This document is part of [AI Model Atlas](README.md), licensed under [CC BY 4.0](LICENSE-CC-BY).
+This document is part of [AI Model Atlas](../README.md), licensed under [CC BY 4.0](../LICENSE-CC-BY).

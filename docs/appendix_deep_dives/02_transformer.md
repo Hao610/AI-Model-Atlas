@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (02_transformer_zh.md)](02_transformer_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (02_transformer_zh.md)](02_transformer_zh.md)
 
 ---
 

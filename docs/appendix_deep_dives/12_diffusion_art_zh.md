@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (12_diffusion_art.md)](12_diffusion_art.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (12_diffusion_art.md)](12_diffusion_art.md) | [中文]
 
 ---
 

@@ -10,7 +10,7 @@
 [![Colab 在线体验](https://img.shields.io/badge/▶_Colab_在线玩转_(可选)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
 > [!NOTE]
-> **第一次来到本项目？** 推荐从我们的 [🧭 快速入门指南](GETTING_STARTED_zh.md) 开始，选择最适合您目标的学习路径！
+> **第一次来到本项目？** 推荐从我们的 [🧭 快速入门指南](docs/GETTING_STARTED_zh.md) 开始，选择最适合您目标的学习路径！
 
 欢迎来到 **AI Model Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的"字典式"实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。直接上手玩玩看！** 🚀
 
@@ -127,9 +127,9 @@ streamlit run app.py
 | 你的目标 | 前往 |
 | :--- | :--- |
 | 🚀 **立刻运行系统** | ↑ [快速开始](#-快速开始-运行路径选择器) |
-| 🧠 **理解系统架构** | 📐 [ARCHITECTURE_zh.md](ARCHITECTURE_zh.md) — 性能指标、容灾自愈、状态机 |
-| 📚 **从零学习 AI** | 📚 [CURRICULUM_zh.md](CURRICULUM_zh.md) — 31 模块 "从 0 到 100" 学习路线图 |
-| 🧬 **深潜算法原理** | 🧬 [DEEP_DIVES_zh.md](DEEP_DIVES_zh.md) — 13 篇 AI 底层算法与大模型技术纪录片 |
+| 🧠 **理解系统架构** | 📐 [ARCHITECTURE_zh.md](docs/ARCHITECTURE_zh.md) — 性能指标、容灾自愈、状态机 |
+| 📚 **从零学习 AI** | 📚 [CURRICULUM_zh.md](docs/CURRICULUM_zh.md) — 31 模块 "从 0 到 100" 学习路线图 |
+| 🧬 **深潜算法原理** | 🧬 [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 13 篇 AI 底层算法与大模型技术纪录片 |
 
 ---
 
@@ -147,8 +147,8 @@ streamlit run app.py
 
 * **点亮 Star & Fork** ⭐：点亮 Star 以示支持，并 Fork 项目以便快速检索。
 * **分享学习旅程** 📢：将本图谱或你自己的 RAG 实战成果分享给更多开发者。
-* **参与共建** 🤝：提交 Pull Request、反馈 Bug 或提出新模块建议。详情请参阅我们的[贡献指南](CONTRIBUTING_zh.md)。
-* **社区规范** 🧭：参与前请先阅读我们的[行为准则](CODE_OF_CONDUCT_zh.md)与[安全政策](SECURITY_zh.md)。
+* **参与共建** 🤝：提交 Pull Request、反馈 Bug 或提出新模块建议。详情请参阅我们的[贡献指南](.github/CONTRIBUTING_zh.md)。
+* **社区规范** 🧭：参与前请先阅读我们的[行为准则](.github/CODE_OF_CONDUCT_zh.md)与[安全政策](.github/SECURITY_zh.md)。
 
 🚀 **一键分享：**
 

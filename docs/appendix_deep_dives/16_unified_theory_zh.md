@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (16_unified_theory.md)](16_unified_theory.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (16_unified_theory.md)](16_unified_theory.md) | [中文]
 
 ---
 
@@ -92,4 +92,4 @@ $$\text{AI} = \text{投影能力 (Projected Capability)} - \text{隐式失效 (H
 
 ---
 
-恭喜！你已完成了全部深潜专题的学习。返回 [深潜专题目录](../../DEEP_DIVES_zh.md) 或探索 [主课程体系](../../CURRICULUM.md)。
+恭喜！你已完成了全部深潜专题的学习。返回 [深潜专题目录](../DEEP_DIVES_zh.md) 或探索 [主课程体系](../CURRICULUM.md)。

@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (09_agent_mechanics_zh.md)](09_agent_mechanics_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (09_agent_mechanics_zh.md)](09_agent_mechanics_zh.md)
 
 ---
 

@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (15_failure_modes_zh.md)](15_failure_modes_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (15_failure_modes_zh.md)](15_failure_modes_zh.md)
 
 ---
 

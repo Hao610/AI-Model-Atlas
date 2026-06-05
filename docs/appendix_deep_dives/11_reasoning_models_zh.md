@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (11_reasoning_models.md)](11_reasoning_models.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (11_reasoning_models.md)](11_reasoning_models.md) | [中文]
 
 ---
 

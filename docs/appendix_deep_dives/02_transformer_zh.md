@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (02_transformer.md)](02_transformer.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (02_transformer.md)](02_transformer.md) | [中文]
 
 ---
 

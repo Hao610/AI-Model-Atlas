@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (09_agent_mechanics.md)](09_agent_mechanics.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (09_agent_mechanics.md)](09_agent_mechanics.md) | [中文]
 
 ---
 

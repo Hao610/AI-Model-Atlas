@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (13_rlhf_alignment_zh.md)](13_rlhf_alignment_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (13_rlhf_alignment_zh.md)](13_rlhf_alignment_zh.md)
 
 ---
 

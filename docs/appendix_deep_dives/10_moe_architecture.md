@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (10_moe_architecture_zh.md)](10_moe_architecture_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (10_moe_architecture_zh.md)](10_moe_architecture_zh.md)
 
 ---
 

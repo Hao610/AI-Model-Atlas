@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (03_embedding_zh.md)](03_embedding_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (03_embedding_zh.md)](03_embedding_zh.md)
 
 ---
 

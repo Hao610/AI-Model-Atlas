@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (04_vector_db_zh.md)](04_vector_db_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (04_vector_db_zh.md)](04_vector_db_zh.md)
 
 ---
 

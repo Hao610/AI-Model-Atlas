@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (06_hallucination_zh.md)](06_hallucination_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (06_hallucination_zh.md)](06_hallucination_zh.md)
 
 ---
 

@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (11_reasoning_models_zh.md)](11_reasoning_models_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (11_reasoning_models_zh.md)](11_reasoning_models_zh.md)
 
 ---
 

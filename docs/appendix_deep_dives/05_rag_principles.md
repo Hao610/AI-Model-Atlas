@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (05_rag_principles_zh.md)](05_rag_principles_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (05_rag_principles_zh.md)](05_rag_principles_zh.md)
 
 ---
 

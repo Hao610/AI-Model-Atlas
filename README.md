@@ -10,7 +10,7 @@
 [![Colab Playground](https://img.shields.io/badge/▶_Colab_Playground_(Optional)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
 > [!NOTE]
-> **New here?** Start with our [🧭 Getting Started Guide](GETTING_STARTED.md) to choose the best roadmap for your goals!
+> **New here?** Start with our [🧭 Getting Started Guide](docs/GETTING_STARTED.md) to choose the best roadmap for your goals!
 
 Welcome to the **AI Model Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models. Let's play! 🚀
 
@@ -127,9 +127,9 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI Model Atlas
 | Your Goal | Where to Go |
 | :--- | :--- |
 | 🚀 **Run the system now** | ↑ [Quick Start](#-quick-start-run-path-selector) |
-| 🧠 **Understand the architecture** | 📐 [ARCHITECTURE.md](ARCHITECTURE.md) — Benchmarks, failure recovery, state machine |
-| 📚 **Learn AI from scratch** | 📚 [CURRICULUM.md](CURRICULUM.md) — 31-module "0 to 100" learning roadmap |
-| 🧬 **Deep dive into algorithms** | 🧬 [DEEP_DIVES.md](DEEP_DIVES.md) — The 13-chapter epic tech documentary |
+| 🧠 **Understand the architecture** | 📐 [ARCHITECTURE.md](docs/ARCHITECTURE.md) — Benchmarks, failure recovery, state machine |
+| 📚 **Learn AI from scratch** | 📚 [CURRICULUM.md](docs/CURRICULUM.md) — 31-module "0 to 100" learning roadmap |
+| 🧬 **Deep dive into algorithms** | 🧬 [DEEP_DIVES.md](docs/DEEP_DIVES.md) — The 13-chapter epic tech documentary |
 
 ---
 
@@ -147,8 +147,8 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 
 * **Star & Fork** ⭐: Star the repository to show support and bookmark it for quick access.
 * **Share the Journey** 📢: Share the learning path or your own RAG implementation with other developers.
-* **Contribute** 🤝: Submit pull requests, report issues, or suggest new modules. Check out our [Contribution Guidelines](CONTRIBUTING.md) for details.
-* **Community Rules** 🧭: Read our [Code of Conduct](CODE_OF_CONDUCT.md) and [Security Policy](SECURITY.md) before contributing.
+* **Contribute** 🤝: Submit pull requests, report issues, or suggest new modules. Check out our [Contribution Guidelines](.github/CONTRIBUTING.md) for details.
+* **Community Rules** 🧭: Read our [Code of Conduct](.github/CODE_OF_CONDUCT.md) and [Security Policy](.github/SECURITY.md) before contributing.
 
 🚀 **Spread the word:**
 

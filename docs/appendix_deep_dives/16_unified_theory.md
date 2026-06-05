@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (16_unified_theory_zh.md)](16_unified_theory_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (16_unified_theory_zh.md)](16_unified_theory_zh.md)
 
 ---
 
@@ -92,4 +92,4 @@ $$\text{AI} = \text{Projected Capability} - \text{Hidden Failure}$$
 
 ---
 
-Congratulations! You have completed the entire Deep Dives curriculum. Go back to the [Deep Dives Directory](../../DEEP_DIVES.md) or explore the [Main Curriculum](../../CURRICULUM.md).
+Congratulations! You have completed the entire Deep Dives curriculum. Go back to the [Deep Dives Directory](../DEEP_DIVES.md) or explore the [Main Curriculum](../CURRICULUM.md).

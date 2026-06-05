@@ -1,6 +1,6 @@
 # 🧭 Getting Started with AI Model Atlas
 
-← Back to [README](README.md) | [中文版 (GETTING_STARTED_zh.md)](GETTING_STARTED_zh.md)
+← Back to [README](../README.md) | [中文版 (GETTING_STARTED_zh.md)](GETTING_STARTED_zh.md)
 
 ---
 
@@ -28,7 +28,7 @@ To make the most of your time here, please select the path below that best match
 * **Best for**: Getting visual, intuitive explanations of the underlying math and engineering trade-offs (e.g., Chunking size, Reranking, Inference Scaling Laws).
 
 ### 4. I just want to clone the repository and run the code right now
-> **Recommended Starting Point**: [README Quick Start](README.md#-run-path-selector)
+> **Recommended Starting Point**: [README Quick Start](../README.md#-run-path-selector)
 * **What it is**: A direct installation guide to launch the interactive runtime console, configure local models via Ollama, and test the RAG workspace.
 * **Best for**: Hands-on developers looking to run a sandbox environment in under 5 minutes.
 
@@ -38,7 +38,7 @@ To make the most of your time here, please select the path below that best match
 
 | Document | Primary Focus | Technical Level | Key Visuals |
 | :--- | :--- | :--- | :--- |
-| [README.md](README.md) | Project Overview & Quick Start | Intermediate | System Runtime Poster |
+| [README.md](../README.md) | Project Overview & Quick Start | Intermediate | System Runtime Poster |
 | [GETTING_STARTED.md](GETTING_STARTED.md) | Entry point & Navigation | Beginner | Target Audience Map |
 | [CURRICULUM.md](CURRICULUM.md) | 31-Module structured roadmap | Beginner to Advanced | Learning Path flow diagram |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System design & Benchmarks | Advanced | State Flowchart & Benchmarks |
@@ -48,4 +48,4 @@ To make the most of your time here, please select the path below that best match
 
 ## 📄 License
 
-This document is part of [AI Model Atlas](README.md), licensed under [CC BY 4.0](LICENSE-CC-BY).
+This document is part of [AI Model Atlas](../README.md), licensed under [CC BY 4.0](../LICENSE-CC-BY).

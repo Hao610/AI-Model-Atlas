@@ -1,4 +1,4 @@
-← Back to [Deep Dives Directory](../../DEEP_DIVES.md) | [English] | [中文 (01_ai_intelligence_zh.md)](01_ai_intelligence_zh.md)
+← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (01_ai_intelligence_zh.md)](01_ai_intelligence_zh.md)
 
 ---
 

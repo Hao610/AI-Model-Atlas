@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (13_rlhf_alignment.md)](13_rlhf_alignment.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (13_rlhf_alignment.md)](13_rlhf_alignment.md) | [中文]
 
 ---
 

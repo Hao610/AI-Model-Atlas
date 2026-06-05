@@ -1,4 +1,4 @@
-← 返回 [深潜专题目录](../../DEEP_DIVES_zh.md) | [[English] (15_failure_modes.md)](15_failure_modes.md) | [中文]
+← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (15_failure_modes.md)](15_failure_modes.md) | [中文]
 
 ---
 
