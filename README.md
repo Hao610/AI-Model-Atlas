@@ -66,3 +66,15 @@ Below is the structured learning path. Each phase is designed to build on the pr
 ## 🔗 Contributing & Usage
 
 Feel free to bookmark this atlas or clone it to use as your personal reference notes ("Knowledge External Brain"). If you find it helpful, please star the repository!
+
+---
+
+## 📄 License
+
+AI-Model-Atlas is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+You are free to share, adapt, and use the contents commercially, provided that appropriate attribution is given.
+
+Copyright (c) 2026 AI-Model-Atlas
+
+Created and maintained by Loi Chiang Hao.

@@ -66,3 +66,15 @@
 ## 🔗 使用与共建
 
 你可以将它加入收藏夹，或直接 `git clone` 到本地作为你的 **“AI 知识外脑”** 随时查阅。如果您觉得这些整理对您有启发，欢迎在 GitHub 点亮 **Star ⭐**！
+
+---
+
+## 📄 开源协议 (License)
+
+AI-Model-Atlas 遵循 Creative Commons Attribution 4.0 International License (CC BY 4.0) 开源知识共享协议。
+
+只要您遵守署名等基本协议条款，即可自由分享、传播以及进行商业化利用。
+
+Copyright (c) 2026 AI-Model-Atlas
+
+Created and maintained by Loi Chiang Hao.
