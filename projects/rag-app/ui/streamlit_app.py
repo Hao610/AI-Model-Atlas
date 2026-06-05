@@ -111,6 +111,14 @@ with col_right:
                 st.code(match['content'], language="text")
     else:
         st.info("Retrieved reference context text snippets will display here when queries execute.")
+        
+    st.subheader("⚙️ System Controller Traces")
+    controller_logs = st.session_state.pipeline.controller.get_logs()
+    if controller_logs:
+        for log_entry in controller_logs:
+            st.text(log_entry)
+    else:
+        st.info("Execution, retry, and fallback logs will stream here during runtimes.")
 
 with col_left:
     st.subheader("💬 Interactive RAG Assistant")

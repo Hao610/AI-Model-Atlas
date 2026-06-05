@@ -27,7 +27,7 @@ class LLMRouter:
                 "stream": True
             }
             try:
-                response = requests.post(url, json=payload, stream=True, timeout=30)
+                response = requests.post(url, json=payload, stream=True, timeout=8)
                 response.raise_for_status()
                 for line in response.iter_lines():
                     if line:
@@ -36,11 +36,10 @@ class LLMRouter:
                         if content:
                             yield content
             except Exception as e:
-                yield f"\n⚠️ Error connecting to local Ollama client: {str(e)}. Please check if Ollama service is running on {settings.OLLAMA_HOST}."
+                raise ConnectionError(f"Ollama connection error: {str(e)}")
         else:
             if not settings.API_KEY:
-                yield "\n⚠️ API Key is missing. Please set API_KEY in your env or settings."
-                return
+                raise ValueError("API Key is missing from settings configuration.")
             try:
                 stream = self.client.chat.completions.create(
                     model=settings.API_MODEL,
@@ -48,11 +47,12 @@ class LLMRouter:
                         {"role": "system", "content": system_prompt},
                         {"role": "user", "content": user_prompt}
                     ],
-                    stream=True
+                    stream=True,
+                    timeout=12
                 )
                 for chunk in stream:
                     content = chunk.choices[0].delta.content
                     if content:
                         yield content
             except Exception as e:
-                yield f"\n⚠️ Cloud LLM API Error: {str(e)}"
+                raise ConnectionError(f"Cloud LLM API connection error: {str(e)}")
