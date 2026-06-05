@@ -28,6 +28,21 @@ flowchart LR
 
 ---
 
+## ⚡ 60秒极速体验
+
+在本地快速尝试 AI-Model-Atlas：
+1. `git clone https://github.com/Hao610/AI-Model-Atlas.git`
+2. `cd projects/rag-app && python app.py`
+3. 上传 PDF，实时观察语义缓存优化与重排效果！
+
+---
+
+## 💡 为什么发起本项目？
+
+市面上的 RAG 教程大多停留在 Embeddings 或简单检索演示。`AI-Model-Atlas` 更进一步：提供生产级可靠性、语义缓存、查询重排、执行控制以及混合 LLM 路由，实现面向工程师的认知 RAG 系统参考架构。
+
+---
+
 ## 🔥 一句话定位 (One-Line Pitch)
 
 `AI-Model-Atlas` 是一个专为实际 AI 工程工作流设计的工业级认知 RAG 系统，融合了语义缓存、查询改写与请求执行控制面。
@@ -157,13 +172,9 @@ flowchart TD
 
 参与贡献指南，请阅读 [CONTRIBUTING_zh.md](CONTRIBUTING_zh.md)。
 
----
-
 ## 🚀 社区支持与共建 (Community & Support)
 
-如果您觉得本项目对您有帮助，欢迎：
-- 在 GitHub 点亮 **Star ⭐**
-- **分享** 给身边的开发者伙伴 🔗
+如果本项目帮助你理解或构建了生产级 RAG 系统，欢迎通过点亮⭐、分享或贡献你的想法来支持项目。每一个 star 或分享，都能让更多开发者受益。
 
 **社交分享文案（微博 / 朋友圈 / 开发者社区）：**
 > 🚀 我用 Python 手搭了一个工业级 RAG 系统：
