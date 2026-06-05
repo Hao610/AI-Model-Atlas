@@ -85,4 +85,4 @@ python app.py
 
 ## 📄 开源协议
 
-本示例项目是 [AI-Model-Atlas](../../README_zh.md) 的一部分。源代码采用 [MIT License](../../LICENSE)，文档内容采用 [CC BY 4.0](../../LICENSE-CONTENT)。
+本示例项目是 [AI-Model-Atlas](../../README_zh.md) 的一部分。源代码采用 [MIT License](../../LICENSE)，文档内容采用 [CC BY 4.0](../../LICENSE-CC-BY)。

@@ -158,11 +158,11 @@ streamlit run app.py
 AI-Model-Atlas 采用双协议模式：
 
 - **源代码与可运行示例项目**：[MIT License](LICENSE)
-- **文档、课程体系、图示与教学内容**：[CC BY 4.0](LICENSE-CONTENT)
+- **文档、课程体系、图示与教学内容**：[CC BY 4.0](LICENSE-CC-BY)
 
 协议详情：
 - 代码 → [LICENSE](LICENSE)
-- 内容 → [LICENSE-CONTENT](LICENSE-CONTENT) (https://creativecommons.org/licenses/by/4.0/)
+- 内容 → [LICENSE-CC-BY](LICENSE-CC-BY) (https://creativecommons.org/licenses/by/4.0/)
 
 Copyright (c) 2026 Loi Chiang Hao
 
