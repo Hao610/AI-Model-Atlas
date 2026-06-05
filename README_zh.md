@@ -6,6 +6,8 @@
 
 [[English] (README.md)](README.md) | [中文]
 
+[![运行体验](https://img.shields.io/badge/▶_60秒极速体验-10b981?style=for-the-badge&logo=play)](#%E8%B7%AF%E5%BE%84-a%E6%9C%AC%E5%9C%B0%E6%B2%99%E7%9B%92%E4%BA%A4%E4%BA%92%E5%BC%8F-ui-%E6%8E%A8%E8%8D%90)
+
 欢迎来到 **AI-Model-Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的“字典式”实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。**
 
 ---
@@ -14,37 +16,23 @@
 
 ```mermaid
 flowchart LR
-    subgraph Pre [认知预处理层]
-        User([用户输入]) --> Rewriter[意图改写器]
-    end
-
-    subgraph Fast [语义缓存加速层]
-        Rewriter --> Cache{语义缓存}
-        Cache -->|命中| Hit[缓存命中 0.00s]
-    end
-
-    subgraph Search [检索与重排层]
-        Cache -->|未命中| DB[(Chroma 向量库)]
-        DB --> Reranker[交叉编码重排器]
-    end
-
-    subgraph Exec [执行与容灾控制层]
-        Reranker --> Controller{执行控制器}
-        Controller -->|首选路由| Ollama[本地 Ollama]
-        Controller -->|失效退避重试| CloudAPI[云端 API]
-    end
-
-    Ollama --> Final([大模型输出])
-    CloudAPI --> Final
-    Hit --> Final
+    Query([用户提问]) --> Pre[1. 意图改写与预处理]
+    Pre --> Cache{2. 语义缓存拦截?}
+    
+    Cache -->|命中| CacheHit[毫秒级缓存响应 0.00s]
+    Cache -->|未命中| RAG[3. 向量检索与重排]
+    
+    RAG --> Controller[4. 请求执行控制面]
+    Controller --> LLM[5. 混合大模型路由]
+    
+    CacheHit --> Output([输出回答])
+    LLM --> Output
 
     classDef default fill:#111827,stroke:#374151,stroke-width:1px,color:#f9fafb;
     classDef highlight fill:#10b981,stroke:#047857,stroke-width:2px,color:#fff;
-    classDef alert fill:#ef4444,stroke:#b91c1c,stroke-width:2px,color:#fff;
     classDef title fill:#1f2937,stroke:#4b5563,stroke-width:1px,color:#f3f4f6;
 
-    class Hit highlight;
-    class CloudAPI alert;
+    class CacheHit highlight;
 ```
 
 ---
@@ -53,7 +41,7 @@ flowchart LR
 
 选择你最想体验 `AI-Model-Atlas` 的路径，在 60 秒内上手：
 
-### ⚡ 路径 A：本地沙盒交互式 UI (推荐)
+### 路径 A：本地沙盒交互式 UI (推荐)
 在本地运行 Streamlit 可观测性面板，实时体验语义缓存、检索重排序与自愈控制：
 1. **克隆仓库并进入项目目录：**
    ```bash
@@ -70,13 +58,13 @@ flowchart LR
    ```
    *提示：如果需要本地离线大模型支持，请确保 Ollama 服务已在后台运行。*
 
-### ☁️ 路径 B：终端直接运行脚本
+### 路径 B：终端直接运行脚本
 在终端中直接执行核心控制器脚本，观测意图改写与请求路由：
 ```bash
 python core/execution_controller.py
 ```
 
-### 📚 路径 C：概念与学习路线图
+### 路径 C：概念与学习路线图
 如果你当前无法运行代码，可以从手把手教程入口开始阅读：
 👉 **[00_learning_map_zh.md](docs/phase1_0_to_1/00_learning_map_zh.md)**
 
@@ -102,7 +90,7 @@ python core/execution_controller.py
 
 ## 🧠 系统运行模型 (System Runtime Model)
 
-### 1. 性能表现层 (Latency & Cache Metrics)
+### ⚡ 极速体验 (用户直观感受)
 
 *免责声明：以下性能指标均在本地开发测试环境（单卡 GPU / CPU 兜底模式）下测量得出，生产环境高负载下可能会有所偏差。*
 
@@ -113,7 +101,7 @@ python core/execution_controller.py
 | **混合动力模式** | ✅ | ✅ | OpenAI API | ~0.8s | 0.3s |
 | **混合动力模式** | ❌ | ✅ | OpenAI API | ~2.1s | 0.9s |
 
-### 2. 系统可靠性层 (Failover & Self-Healing Logic)
+### 🛡️ 稳如磐石 (异常与故障恢复)
 
 系统设计上具备完善的故障降配与容灾自愈能力，以确保服务高可用：
 
@@ -125,7 +113,7 @@ python core/execution_controller.py
 
 *最终效果：系统在此异常场景下依然保持正常响应与回答，避免客户端 unhandled 崩溃死锁。*
 
-### 3. 系统控制流层 (Execution State & Routing Machine)
+### 🧭 智能决策 (控制面决策路径)
 
 底层流水线的每一次请求调用均在严密的控制状态机管理下运行：
 

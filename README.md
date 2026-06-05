@@ -6,6 +6,8 @@
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
+[![Run Demo](https://img.shields.io/badge/▶_Run_Demo_in_60s-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
+
 Welcome to the **AI-Model-Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models.
 
 ---
@@ -14,37 +16,23 @@ Welcome to the **AI-Model-Atlas**! This repository is a comprehensive, beginner-
 
 ```mermaid
 flowchart LR
-    subgraph Pre [Cognitive Preprocessing Layer]
-        User([User Query]) --> Rewriter[Query Rewriter]
-    end
-
-    subgraph Fast [Semantic Cache Acceleration]
-        Rewriter --> Cache{Semantic Cache}
-        Cache -->|Hit| Hit[Cache Hit 0.00s]
-    end
-
-    subgraph Search [Context Retrieval & Reranking]
-        Cache -->|Miss| DB[(Chroma Vector DB)]
-        DB --> Reranker[Cross-Encoder Reranker]
-    end
-
-    subgraph Exec [Execution Failover & Control]
-        Reranker --> Controller{Controller}
-        Controller -->|Primary| Ollama[Local Ollama]
-        Controller -->|Failover / Retry| CloudAPI[Cloud API]
-    end
-
-    Ollama --> Final([LLM Output])
-    CloudAPI --> Final
-    Hit --> Final
+    Query([User Query]) --> Pre[1. Preprocess & Rewrite]
+    Pre --> Cache{2. Semantic Cache?}
+    
+    Cache -->|Hit| CacheHit[Fast Cache Output 0.00s]
+    Cache -->|Miss| RAG[3. Vector Search & Rerank]
+    
+    RAG --> Controller[4. Execution Controller]
+    Controller --> LLM[5. Hybrid LLM Route]
+    
+    CacheHit --> Output([Final Output])
+    LLM --> Output
 
     classDef default fill:#111827,stroke:#374151,stroke-width:1px,color:#f9fafb;
     classDef highlight fill:#10b981,stroke:#047857,stroke-width:2px,color:#fff;
-    classDef alert fill:#ef4444,stroke:#b91c1c,stroke-width:2px,color:#fff;
     classDef title fill:#1f2937,stroke:#4b5563,stroke-width:1px,color:#f3f4f6;
 
-    class Hit highlight;
-    class CloudAPI alert;
+    class CacheHit highlight;
 ```
 
 ---
@@ -53,7 +41,7 @@ flowchart LR
 
 Select your preferred route to experience `AI-Model-Atlas` in under 60 seconds:
 
-### ⚡ Route A: Local Sandbox Interactive UI (Recommended)
+### Route A: Local Sandbox Interactive UI (Recommended)
 Run the Streamlit observability app locally with semantic cache, reranking, and self-healing:
 1. **Clone the repository and navigate to the project directory:**
    ```bash
@@ -70,13 +58,13 @@ Run the Streamlit observability app locally with semantic cache, reranking, and 
    ```
    *Note: Ensure Ollama is running locally if you want offline model execution.*
 
-### ☁️ Route B: Direct Execution Script
+### Route B: Direct Execution Script
 Test the core cognitive query rewriting and routing logic directly inside your terminal:
 ```bash
 python core/execution_controller.py
 ```
 
-### 📚 Route C: Guided Conceptual Onboarding
+### Route C: Guided Conceptual Onboarding
 If you want to read the step-by-step guides instead of running code, start here:
 👉 **[00_learning_map.md](docs/phase1_0_to_1/00_learning_map.md)**
 
@@ -102,7 +90,7 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas
 
 ## 🧠 System Runtime Model
 
-### 1. Performance Layer (Latency & Cache Metrics)
+### ⚡ Speed (What you feel)
 
 *Disclaimer: Benchmarks are measured under local development test environments (single GPU / CPU fallback mode) and may vary under production load.*
 
@@ -113,7 +101,7 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI-Model-Atlas
 | **Hybrid Mode** | ✅ | ✅ | OpenAI API | ~0.8s | 0.3s |
 | **Hybrid Mode** | ❌ | ✅ | OpenAI API | ~2.1s | 0.9s |
 
-### 2. Reliability Layer (Failover & Self-Healing Logic)
+### 🛡️ Stability (When things break)
 
 The system is designed to gracefully degrade under backend failure conditions to preserve service uptime:
 
@@ -125,7 +113,7 @@ The system is designed to gracefully degrade under backend failure conditions to
 
 *Result: System continues responding to user queries without throwing unhandled terminal crashes.*
 
-### 3. Control Layer (Execution State & Routing Machine)
+### 🧭 Logic (How choices are made)
 
 The workflow logic operates on a strict request control state machine:
 
