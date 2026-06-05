@@ -4,6 +4,8 @@ First of all, thank you for showing interest in contributing to the **AI-Model-A
 
 Please follow these simple rules when proposing changes:
 
+Before you submit a PR, please also read our [Code of Conduct](CODE_OF_CONDUCT.md) and [Security Policy](SECURITY.md).
+
 ---
 
 ## 🚦 How to Contribute

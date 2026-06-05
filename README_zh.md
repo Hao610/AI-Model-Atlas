@@ -144,6 +144,7 @@ streamlit run app.py
 * **点亮 Star & Fork** ⭐：点亮 Star 以示支持，并 Fork 项目以便快速检索。
 * **分享学习旅程** 📢：将本图谱或你自己的 RAG 实战成果分享给更多开发者。
 * **参与共建** 🤝：提交 Pull Request、反馈 Bug 或提出新模块建议。详情请参阅我们的[贡献指南](CONTRIBUTING_zh.md)。
+* **社区规范** 🧭：参与前请先阅读我们的[行为准则](CODE_OF_CONDUCT_zh.md)与[安全政策](SECURITY_zh.md)。
 
 🚀 **一键分享：**
 

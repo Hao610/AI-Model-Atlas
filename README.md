@@ -144,6 +144,7 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 * **Star & Fork** ⭐: Star the repository to show support and bookmark it for quick access.
 * **Share the Journey** 📢: Share the learning path or your own RAG implementation with other developers.
 * **Contribute** 🤝: Submit pull requests, report issues, or suggest new modules. Check out our [Contribution Guidelines](CONTRIBUTING.md) for details.
+* **Community Rules** 🧭: Read our [Code of Conduct](CODE_OF_CONDUCT.md) and [Security Policy](SECURITY.md) before contributing.
 
 🚀 **Spread the word:**
 
