@@ -149,17 +149,17 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 > Built a production-grade Cognitive RAG system with Semantic Cache, Query Rewriting, Reranking, and Failure Recovery — from learning to deployment. Check out the AI-Model-Atlas!
 > 👉 https://github.com/Hao610/AI-Model-Atlas
 
----
-
 ## 📄 License
 
 AI-Model-Atlas uses a dual-license model:
 
-* Source code and runnable example projects are licensed under the [MIT License](LICENSE).
-* Documentation, curriculum, diagrams, and educational content are licensed under the [Creative Commons Attribution 4.0 International License (CC BY 4.0)](LICENSE-CONTENT).
+- **Source code and runnable example projects**: [MIT License](LICENSE)
+- **Documentation, curriculum, diagrams, and educational content**: [CC BY 4.0](LICENSE-CONTENT)
 
-You are free to share, adapt, and use the educational content commercially, provided that appropriate attribution is given. For code reuse, please retain the original copyright and license notice.
+License details:
+- Code → [LICENSE](LICENSE)
+- Content → [LICENSE-CONTENT](LICENSE-CONTENT) (https://creativecommons.org/licenses/by/4.0/)
 
-Copyright (c) 2026 Loi Chiang Hao (AI-Model-Atlas)
+Copyright (c) 2026 Loi Chiang Hao
 
 Created and maintained by Loi Chiang Hao.
