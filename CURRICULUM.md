@@ -28,6 +28,34 @@ flowchart TD
 
 ---
 
+> [!NOTE]
+> **💡 Quick Note on the Reading Order:**
+> The 31 modules listed in the table below are physically organized linearly by technical level (Phases 1 to 4). However, to keep your learning experience smooth and cohesive, the `Next Chapter` link at the bottom of each document is linked **non-linearly by cognitive dependency** (e.g., *No-Code Agents* skips *Multimodal AI* and goes straight to *RAG Introduction*).
+> 
+> We highly recommend **following the navigation links at the bottom of each page** for a guided, step-by-step experience, or using this curriculum as a **dictionary** to lookup specific topics. You can also expand the section below to view our 4 curated learning tracks:
+
+<details>
+<summary><b>🔍 Expand to view the 4 Curated Reading Tracks (Recommended Flow)</b></summary>
+
+* **🔄 Track A: Zero-Code / No-Code Application Track (For Beginners & Productivity)**
+  * **Flow**: `01 (What is AI)` ➔ `02 (Prompt Art)` ➔ `03 (Licenses)` ➔ `04 (AI Tools)` ➔ `05 (Model Zoo)` ➔ `07 (Glossary)` ➔ `08 (LLM Landscape)` ➔ `09 (No-Code Agents)` ➔ `11 (RAG Intro)` ➔ `12 (Vector DB)` ➔ `13 (AI Workflows)` ➔ `14 (Use Cases)`.
+  * **Goal**: Learn how core concepts connect to visual agents, custom knowledge bases, and automation loops without writing code.
+
+* **🔄 Track B: Full-Stack Developer & RAG Engineering Track (For Software & AI Engineers)**
+  * **Flow**: `14 (Use Cases)` ➔ `15 (API Integration)` ➔ `17 (Local LLM)` ➔ `18 (UI Interfaces)` ➔ `19 (Agent Frameworks)` ➔ `20 (Embeddings)` ➔ `22 (Model Evaluation)` ➔ `24 (Why Fine-Tune)`.
+  * **Goal**: Code your way from simple API scripting to multi-agent frontends and advanced semantic search logic.
+
+* **🔄 Track C: Data Engineering, Assets & Fine-Tuning Track (For ML & DevOps Engineers)**
+  * **Flow**: `06 (Hugging Face)` ➔ `10 (Multimodal AI)` ➔ `16 (Cost & Tokens)` ➔ `23 (Data Prep)` ➔ `24 (Why Fine-Tune)` ➔ `25 (LoRA)` ➔ `26 (LLaMA-Factory)` ➔ `27 (Quantization)` ➔ `28 (GPU Selection)` ➔ `30 (Safety & Alignment)` ➔ `31 (Cloud Deployment)`.
+  * **Goal**: Focus on the heavy-lifting pipeline of models: data curation, token economics, LoRA fine-tuning, quantization, and cloud serving.
+
+* **⚡ Track D: High-Concurrency & Low-Latency Architecture (For Backend & Architecture Geeks)**
+  * **Flow**: `21 (RAG System Design)` ➔ `29 (Inference Optimization)`.
+  * **Goal**: Master performance optimizations: from Reranker latency filters to KV Cache memory saving and high-throughput vLLM orchestration.
+</details>
+
+---
+
 ### 🎬 Phase 1: Learn & Awaken (0 to 1)
 > **This phase demystifies AI. You will learn core concepts, open-source rules, prompting frameworks, and how to navigate the AI ecosystem.**
 * **Goal**: Go from zero AI knowledge to feeling comfortable using and comparing modern model platforms.
