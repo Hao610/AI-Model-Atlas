@@ -161,13 +161,9 @@ If this project helped you learn, build, or deploy Cognitive RAG systems, we inv
 
 AI Model Atlas uses a dual-license model:
 
-- **Source code & runnable examples**: MIT License (see [`/LICENSE-CODE`](LICENSE-CODE))
 - **Documentation, curriculum, diagrams, and educational materials**: Creative Commons Attribution 4.0 International (see [`/LICENSE`](LICENSE))
-
-**SPDX: MIT AND CC-BY-4.0**
-
-Copyright (c) 2026 Loi Chiang Hao.  
-Created and maintained by Loi Chiang Hao.
+- **Source code & runnable examples**: MIT License (see [`/LICENSE-CODE`](LICENSE-CODE))
 
 > This repository separates software licensing and content licensing for clarity and reuse safety.
-Created and maintained by Loi Chiang Hao.
+
+Copyright (c) 2026 Loi Chiang Hao.
