@@ -86,11 +86,12 @@ graph TD
 | **12. How AI Draws Pictures** | Understanding Diffusion: How Stable Diffusion and Flux turn noise into high-art. | [12_diffusion_art.md](docs/appendix_deep_dives/12_diffusion_art.md) | [12_diffusion_art_zh.md](docs/appendix_deep_dives/12_diffusion_art_zh.md) |
 | **13. Why GPT Talks Like a Human** | RLHF and DPO: The mechanics of alignment and how safety boundaries are established. | [13_rlhf_alignment.md](docs/appendix_deep_dives/13_rlhf_alignment.md) | [13_rlhf_alignment_zh.md](docs/appendix_deep_dives/13_rlhf_alignment_zh.md) |
 
-### Part VI — Evaluation & Benchmarking
+### Part VI — Evaluation & Failure Modes
 
 | Chapter | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **14. AI Evaluation** | Benchmarks and human-in-the-loop arenas: understanding MMLU, GPQA, SWE-bench, and LMSYS Chatbot Arena. | [14_ai_evaluation.md](docs/appendix_deep_dives/14_ai_evaluation.md) | [14_ai_evaluation_zh.md](docs/appendix_deep_dives/14_ai_evaluation_zh.md) |
+| **15. AI System Failure Modes** | From evaluation to breakdown: formalizing retrieval, loop, alignment, and evaluation failures into a latent failure manifold. | [15_failure_modes.md](docs/appendix_deep_dives/15_failure_modes.md) | [15_failure_modes_zh.md](docs/appendix_deep_dives/15_failure_modes_zh.md) |
 
 ---
 

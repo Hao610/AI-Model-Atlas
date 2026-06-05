@@ -267,3 +267,7 @@ This feedback cycle forms a closed-loop control system:
 
 Evaluation is not merely a diagnostic tool—it is the gradient signal of adaptive intelligence systems.
 
+---
+
+Now that we have established the math behind system telemetry and evaluation, let's explore why systems collapse in [AI System Failure Modes: Why Intelligent Systems Fail](15_failure_modes.md).
+
