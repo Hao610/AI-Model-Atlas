@@ -117,6 +117,8 @@ flowchart TD
 
 你可以将它加入收藏夹，或直接 `git clone` 到本地作为你的 **“AI 知识外脑”** 随时查阅。如果您觉得这些整理对您有启发，欢迎在 GitHub 点亮 **Star ⭐**！
 
+参与贡献指南，请阅读 [CONTRIBUTING_zh.md](CONTRIBUTING_zh.md)。
+
 ---
 
 ## 📄 开源协议 (License)
