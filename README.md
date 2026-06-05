@@ -23,7 +23,8 @@ Below is the structured learning path. Each phase is designed to build on the pr
 
 | Phase | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- | :--- |
-| **Phase 1: 0 to 1**<br>*(Learn & Awaken)* | 1. What is AI? | AI, Machine Learning, and Deep Learning explained via analogies. | [what_is_ai.md](docs/phase1_0_to_1/what_is_ai.md) | [what_is_ai_zh.md](docs/phase1_0_to_1/what_is_ai_zh.md) |
+| **Phase 1: 0 to 1**<br>*(Learn & Awaken)* | 0. Learning Map | Choose your custom pathway (Zero-Code vs Low-Code vs Full-Stack). | [learning_map.md](docs/phase1_0_to_1/learning_map.md) | [learning_map_zh.md](docs/phase1_0_to_1/learning_map_zh.md) |
+| | 1. What is AI? | AI, Machine Learning, and Deep Learning explained via analogies. | [what_is_ai.md](docs/phase1_0_to_1/what_is_ai.md) | [what_is_ai_zh.md](docs/phase1_0_to_1/what_is_ai_zh.md) |
 | | 2. Prompt Art | Structured frameworks (ROLE, Few-Shot) for talking to AI. | [prompt_art.md](docs/phase1_0_to_1/prompt_art.md) | [prompt_art_zh.md](docs/phase1_0_to_1/prompt_art_zh.md) |
 | | 3. Open Source Licenses | MIT, Apache 2.0, and commercial limits of models (e.g. Llama 3). | [licenses.md](docs/phase1_0_to_1/licenses.md) | [licenses_zh.md](docs/phase1_0_to_1/licenses_zh.md) |
 | | 4. AI Tools Guide | Web-based daily productivity tools (ChatGPT, Claude, Midjourney). | [ai_tools.md](docs/phase1_0_to_1/ai_tools.md) | [ai_tools_zh.md](docs/phase1_0_to_1/ai_tools_zh.md) |
@@ -43,15 +44,17 @@ Below is the structured learning path. Each phase is designed to build on the pr
 | | 18. UI Interfaces | Building clean web interfaces with Streamlit & Gradio. | [ui_interfaces.md](docs/phase3_10_to_50/ui_interfaces.md) | [ui_interfaces_zh.md](docs/phase3_10_to_50/ui_interfaces_zh.md) |
 | | 19. Agent Frameworks | Comparing CrewAI, AutoGen, LangChain, and LangGraph. | [agent_frameworks.md](docs/phase3_10_to_50/agent_frameworks.md) | [agent_frameworks_zh.md](docs/phase3_10_to_50/agent_frameworks_zh.md) |
 | | 20. Embeddings Deep Dive | Transforming text into vectors and measuring cosine similarity. | [embeddings.md](docs/phase3_10_to_50/embeddings.md) | [embeddings_zh.md](docs/phase3_10_to_50/embeddings_zh.md) |
-| | 21. Model Evaluation | Methods: BLEU, Human Eval, Chatbot Arena, and LLM-as-a-Judge. | [evaluation.md](docs/phase3_10_to_50/evaluation.md) | [evaluation_zh.md](docs/phase3_10_to_50/evaluation_zh.md) |
-| **Phase 4: 50 to 100**<br>*(Train & Deploy)* | 22. Data Preparation | Formatting JSON/JSONL datasets and synthetic data generation. | [data_preparation.md](docs/phase4_50_to_100/data_preparation.md) | [data_preparation_zh.md](docs/phase4_50_to_100/data_preparation_zh.md) |
-| | 23. Why Fine-Tune? | When prompt engineering fails and model customization is needed. | [finetuning.md](docs/phase4_50_to_100/finetuning.md) | [finetuning_zh.md](docs/phase4_50_to_100/finetuning_zh.md) |
-| | 24. LoRA Explained | Under the hood of Low-Rank Adaptation (the math-free version). | [lora_explained.md](docs/phase4_50_to_100/lora_explained.md) | [lora_explained_zh.md](docs/phase4_50_to_100/lora_explained_zh.md) |
-| | 25. LLaMA-Factory Guide | Click-and-train GUI for fine-tuning without writing custom code. | [llama_factory.md](docs/phase4_50_to_100/llama_factory.md) | [llama_factory_zh.md](docs/phase4_50_to_100/llama_factory_zh.md) |
-| | 26. Model Quantization | GGUF vs FP16, compressing 70B models down to consumer GPUs. | [quantization.md](docs/phase4_50_to_100/quantization.md) | [quantization_zh.md](docs/phase4_50_to_100/quantization_zh.md) |
-| | 27. GPU Selection Guide | Finding the right hardware (RTX 4090 vs cloud GPU clusters). | [gpu_selection.md](docs/phase4_50_to_100/gpu_selection.md) | [gpu_selection_zh.md](docs/phase4_50_to_100/gpu_selection_zh.md) |
-| | 28. Safety & Alignment | RLHF, DPO, Guardrails, and understanding model boundaries. | [safety_alignment.md](docs/phase4_50_to_100/safety_alignment.md) | [safety_alignment_zh.md](docs/phase4_50_to_100/safety_alignment_zh.md) |
-| | 29. Cloud Deployment | Renting compute on AutoDL/RunPod and serving models to users. | [deployment.md](docs/phase4_50_to_100/deployment.md) | [deployment_zh.md](docs/phase4_50_to_100/deployment_zh.md) |
+| | 21. RAG System Design | Chunking, reranking (Cross-Encoders), metadata filter logic. | [rag_system_design.md](docs/phase3_10_to_50/rag_system_design.md) | [rag_system_design_zh.md](docs/phase3_10_to_50/rag_system_design_zh.md) |
+| | 22. Model Evaluation | Methods: BLEU, Human Eval, Chatbot Arena, and LLM-as-a-Judge. | [evaluation.md](docs/phase3_10_to_50/evaluation.md) | [evaluation_zh.md](docs/phase3_10_to_50/evaluation_zh.md) |
+| **Phase 4: 50 to 100**<br>*(Train & Deploy)* | 23. Data Preparation | Formatting JSON/JSONL datasets and synthetic data generation. | [data_preparation.md](docs/phase4_50_to_100/data_preparation.md) | [data_preparation_zh.md](docs/phase4_50_to_100/data_preparation_zh.md) |
+| | 24. Why Fine-Tune? | When prompt engineering fails and model customization is needed. | [finetuning.md](docs/phase4_50_to_100/finetuning.md) | [finetuning_zh.md](docs/phase4_50_to_100/finetuning_zh.md) |
+| | 25. LoRA Explained | Under the hood of Low-Rank Adaptation (the math-free version). | [lora_explained.md](docs/phase4_50_to_100/lora_explained.md) | [lora_explained_zh.md](docs/phase4_50_to_100/lora_explained_zh.md) |
+| | 26. LLaMA-Factory Guide | Click-and-train GUI for fine-tuning without writing custom code. | [llama_factory.md](docs/phase4_50_to_100/llama_factory.md) | [llama_factory_zh.md](docs/phase4_50_to_100/llama_factory_zh.md) |
+| | 27. Model Quantization | GGUF vs FP16, compressing 70B models down to consumer GPUs. | [quantization.md](docs/phase4_50_to_100/quantization.md) | [quantization_zh.md](docs/phase4_50_to_100/quantization_zh.md) |
+| | 28. GPU Selection Guide | Finding the right hardware (RTX 4090 vs cloud GPU clusters). | [gpu_selection.md](docs/phase4_50_to_100/gpu_selection.md) | [gpu_selection_zh.md](docs/phase4_50_to_100/gpu_selection_zh.md) |
+| | 29. Inference Optimization | KV Cache, continuous batching, streaming, throughput logic. | [inference_optimization.md](docs/phase4_50_to_100/inference_optimization.md) | [inference_optimization_zh.md](docs/phase4_50_to_100/inference_optimization_zh.md) |
+| | 30. Safety & Alignment | RLHF, DPO, Guardrails, and understanding model boundaries. | [safety_alignment.md](docs/phase4_50_to_100/safety_alignment.md) | [safety_alignment_zh.md](docs/phase4_50_to_100/safety_alignment_zh.md) |
+| | 31. Cloud Deployment | Renting compute on AutoDL/RunPod and serving models to users. | [deployment.md](docs/phase4_50_to_100/deployment.md) | [deployment_zh.md](docs/phase4_50_to_100/deployment_zh.md) |
 
 ---
 

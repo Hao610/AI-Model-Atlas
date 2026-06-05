@@ -23,7 +23,8 @@
 
 | 阶段 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- | :--- |
-| **阶段一：从 0 到 1**<br>*(认知与觉醒)* | 1. 什么是 AI？ | 用大白话和生活实例解释什么是机器学习、深度学习和大模型。 | [what_is_ai.md](docs/phase1_0_to_1/what_is_ai.md) | [what_is_ai_zh.md](docs/phase1_0_to_1/what_is_ai_zh.md) |
+| **阶段一：从 0 到 1**<br>*(认知与觉醒)* | 0. 学习路线导航 | 选择属于你的通关路线（零代码体验 vs 低代码搭建 vs 硬核研发）。 | [learning_map.md](docs/phase1_0_to_1/learning_map.md) | [learning_map_zh.md](docs/phase1_0_to_1/learning_map_zh.md) |
+| | 1. 什么是 AI？ | 用大白话和生活实例解释什么是机器学习、深度学习和大模型。 | [what_is_ai.md](docs/phase1_0_to_1/what_is_ai.md) | [what_is_ai_zh.md](docs/phase1_0_to_1/what_is_ai_zh.md) |
 | | 2. 提示词艺术 | 掌握 ROLE 框架、Few-Shot 样本等高效与大模型对话的公式。 | [prompt_art.md](docs/phase1_0_to_1/prompt_art.md) | [prompt_art_zh.md](docs/phase1_0_to_1/prompt_art_zh.md) |
 | | 3. 开源协议指南 | MIT、Apache 2.0 到底是什么？为什么有些模型不能拿来商用？ | [licenses.md](docs/phase1_0_to_1/licenses.md) | [licenses_zh.md](docs/phase1_0_to_1/licenses_zh.md) |
 | | 4. 常用 AI 工具 | 开箱即用的办公与创意工具全景图 (ChatGPT, Claude, Midjourney)。 | [ai_tools.md](docs/phase1_0_to_1/ai_tools.md) | [ai_tools_zh.md](docs/phase1_0_to_1/ai_tools_zh.md) |
@@ -43,15 +44,17 @@
 | | 18. 前端界面极速生成 | 使用 Streamlit 和 Gradio 一键为你的 AI 脚本套上好看的聊天网页。 | [ui_interfaces.md](docs/phase3_10_to_50/ui_interfaces.md) | [ui_interfaces_zh.md](docs/phase3_10_to_50/ui_interfaces_zh.md) |
 | | 19. 智能体开发框架 | 对比 CrewAI、AutoGen、LangChain、LangGraph，教你如何选择。 | [agent_frameworks.md](docs/phase3_10_to_50/agent_frameworks.md) | [agent_frameworks_zh.md](docs/phase3_10_to_50/agent_frameworks_zh.md) |
 | | 20. 向量表示与匹配 | 文本如何变成浮点数数组？解释余弦相似度匹配的物理意义。 | [embeddings.md](docs/phase3_10_to_50/embeddings.md) | [embeddings_zh.md](docs/phase3_10_to_50/embeddings_zh.md) |
-| | 21. Model Evaluation | 如何判定大模型好坏？详解 BLEU、Human Eval 与大模型裁判。 | [evaluation.md](docs/phase3_10_to_50/evaluation.md) | [evaluation_zh.md](docs/phase3_10_to_50/evaluation_zh.md) |
-| **阶段四：从 50 到 100**<br>*(硬核与超越)* | 22. 数据准备与清洗 | JSON/JSONL格式规范、去重Checklist、大模型生成合成数据。 | [data_preparation.md](docs/phase4_50_to_100/data_preparation.md) | [data_preparation_zh.md](docs/phase4_50_to_100/data_preparation_zh.md) |
-| | 23. 为什么要微调？ | 为什么提示词不能解决所有问题？什么时候该训练专属模型。 | [finetuning.md](docs/phase4_50_to_100/finetuning.md) | [finetuning_zh.md](docs/phase4_50_to_100/finetuning_zh.md) |
-| | 24. LoRA 极简原理解释 | 用修图软件中的“滤镜图层”通俗解释低秩适应（LoRA）原理。 | [lora_explained.md](docs/phase4_50_to_100/lora_explained.md) | [lora_explained_zh.md](docs/phase4_50_to_100/lora_explained_zh.md) |
-| | 25. LLaMA-Factory 训练 | 图形化微调利器：无需手写 PyTorch 训练循环，一键点选训练。 | [llama_factory.md](docs/phase4_50_to_100/llama_factory.md) | [llama_factory_zh.md](docs/phase4_50_to_100/llama_factory_zh.md) |
-| | 26. 模型量化压缩 | 什么是 GGUF/INT4？为什么量化能让 70B 模型挤进民用显卡。 | [quantization.md](docs/phase4_50_to_100/quantization.md) | [quantization_zh.md](docs/phase4_50_to_100/quantization_zh.md) |
-| | 27. 显卡选型备忘录 | RTX 4090/5090 能跑什么？A100、H100 究竟贵在哪里？ | [gpu_selection.md](docs/phase4_50_to_100/gpu_selection.md) | [gpu_selection_zh.md](docs/phase4_50_to_100/gpu_selection_zh.md) |
-| | 28. 对齐与安全围栏 | 解释 RLHF、DPO 以及为什么大模型会拒绝回答你的敏感问题。 | [safety_alignment.md](docs/phase4_50_to_100/safety_alignment.md) | [safety_alignment_zh.md](docs/phase4_50_to_100/safety_alignment_zh.md) |
-| | 29. 云端 GPU 算力部署 | 租用 AutoDL / RunPod 显卡，并完成开源模型的私有化服务上线。 | [deployment.md](docs/phase4_50_to_100/deployment.md) | [deployment_zh.md](docs/phase4_50_to_100/deployment_zh.md) |
+| | 21. RAG 系统架构设计 | 进阶切片策略（Sliding Window）、重排（Rerank）数理过滤逻辑。 | [rag_system_design.md](docs/phase3_10_to_50/rag_system_design.md) | [rag_system_design_zh.md](docs/phase3_10_to_50/rag_system_design_zh.md) |
+| | 22. Model Evaluation | 如何判定大模型好坏？详解 BLEU、Human Eval 与大模型裁判。 | [evaluation.md](docs/phase3_10_to_50/evaluation.md) | [evaluation_zh.md](docs/phase3_10_to_50/evaluation_zh.md) |
+| **阶段四：从 50 到 100**<br>*(硬核与超越)* | 23. 数据准备与清洗 | JSON/JSONL格式规范、去重Checklist、大模型生成合成数据。 | [data_preparation.md](docs/phase4_50_to_100/data_preparation.md) | [data_preparation_zh.md](docs/phase4_50_to_100/data_preparation_zh.md) |
+| | 24. 为什么要微调？ | 为什么提示词不能解决所有问题？什么时候该训练专属模型。 | [finetuning.md](docs/phase4_50_to_100/finetuning.md) | [finetuning_zh.md](docs/phase4_50_to_100/finetuning_zh.md) |
+| | 25. LoRA 极简原理解释 | 用修图软件中的“滤镜图层”通俗解释低秩适应（LoRA）原理。 | [lora_explained.md](docs/phase4_50_to_100/lora_explained.md) | [lora_explained_zh.md](docs/phase4_50_to_100/lora_explained_zh.md) |
+| | 26. LLaMA-Factory 训练 | 图形化微调利器：无需手写 PyTorch 训练循环，一键点选训练。 | [llama_factory.md](docs/phase4_50_to_100/llama_factory.md) | [llama_factory_zh.md](docs/phase4_50_to_100/llama_factory_zh.md) |
+| | 27. 模型量化压缩 | 什么是 GGUF/INT4？为什么量化能让 70B 模型挤进民用显卡。 | [quantization.md](docs/phase4_50_to_100/quantization.md) | [quantization_zh.md](docs/phase4_50_to_100/quantization_zh.md) |
+| | 28. 显卡选型备忘录 | RTX 4090/5090 能跑什么？A100、H100 究竟贵在哪里？ | [gpu_selection.md](docs/phase4_50_to_100/gpu_selection.md) | [gpu_selection_zh.md](docs/phase4_50_to_100/gpu_selection_zh.md) |
+| | 29. 推理优化与高并发服务 | 深入 KV Cache、动态批处理（Continuous Batching）、流式推理。 | [inference_optimization.md](docs/phase4_50_to_100/inference_optimization.md) | [inference_optimization_zh.md](docs/phase4_50_to_100/inference_optimization_zh.md) |
+| | 30. 对齐与安全围栏 | 解释 RLHF、DPO 以及为什么大模型会拒绝回答你的敏感问题。 | [safety_alignment.md](docs/phase4_50_to_100/safety_alignment.md) | [safety_alignment_zh.md](docs/phase4_50_to_100/safety_alignment_zh.md) |
+| | 31. 云端 GPU 算力部署 | 租用 AutoDL / RunPod 显卡，并完成开源模型的私有化服务上线。 | [deployment.md](docs/phase4_50_to_100/deployment.md) | [deployment_zh.md](docs/phase4_50_to_100/deployment_zh.md) |
 
 ---
 
