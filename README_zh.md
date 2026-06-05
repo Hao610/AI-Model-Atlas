@@ -1,10 +1,62 @@
 # AI-Model-Atlas 🗺️ | AI 模型图谱
 
-> **零基础到生产部署的系统化 AI 工程实战路线图。**
+### 从 0 到生产级 RAG 系统：学习 · 构建 · 部署 · 优化
+
+> **一个具备语义缓存、查询重写、重排与执行控制的工业级智能 RAG 系统 —— 为开发者、研究者和 AI 工程师打造。**
 
 [[English] (README.md)](README.md) | [中文]
 
 欢迎来到 **AI-Model-Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的“字典式”实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。**
+
+---
+
+## ⚡ 3秒理解系统数据流向 (3-Second Flow)
+
+```mermaid
+flowchart LR
+    UserQuery[用户提问] --> QueryRewriter[查询改写]
+    QueryRewriter --> SemanticCache{语义缓存命中?}
+    
+    SemanticCache -->|是| FastResponse[直接秒回答案 0.00s]
+    SemanticCache -->|否| VectorSearch[向量库检索 ChromaDB]
+    
+    VectorSearch --> Reranker[相关性重排序]
+    Reranker --> ExecutionController[执行控制中心 容灾/重试]
+    ExecutionController --> LLMRouter[大模型路由器 Ollama/API]
+    LLMRouter --> FinalOutput[大模型生成回答]
+```
+
+---
+
+## 🔥 一句话定位 (One-Line Pitch)
+
+`AI-Model-Atlas` 是一个专为实际 AI 工程工作流设计的工业级认知 RAG 系统，融合了语义缓存、查询改写与请求执行控制面。
+
+---
+
+## 🚀 本项目提供什么 (Key Features)
+
+- **🧠 认知级 RAG 架构**：从查询意图理解到检索相关性优化的完整生产级闭环。
+- **⚡ 语义缓存加速**：通过向量相似度匹配与长度比例控制拦截重复请求，实现毫秒级超快响应。
+- **🔄 查询意图改写**：内置智能正则和提示词过滤器，去除口语噪音，精准提取检索意图。
+- **🎯 检索相关性重排**：支持设定余弦距离阈值过滤无效噪声片段，保证大模型上下文的高可信度。
+- **🛡️ 强大的请求控制面**：统一接管请求生命周期，支持指数级退避重试、连接超时控制与故障降级（本地 Ollama 掉线自动切至云端 API 兜底）。
+- **🌐 混合大模型推理后端**：支持在本地 Ollama (Llama 3/DeepSeek) 与云端 API 之间进行热切换。
+- **📊 可观测性能看板**：Streamlit 终端实时量化首 Token 延迟 (TTFT) 与吞吐速率 (Tokens/秒)。
+
+---
+
+## 📢 社交共建分享
+
+**微博 / 朋友圈 / 开发者社区文案：**
+> 🚀 我用 Python 手搭了一个工业级 RAG 系统：
+> - 语义缓存（实现毫秒级快速响应）
+> - 查询改写（极大提升向量检索召回率）
+> - 精准重排（大幅优化上下文相关性）
+> - 执行控制器（故障自愈、自动降级与重试）
+> 
+> 包含从零基础概念学习、工程搭建到微调部署的完整闭环。
+> 项目地址: https://github.com/Hao610/AI-Model-Atlas
 
 ---
 
