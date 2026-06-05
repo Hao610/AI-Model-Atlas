@@ -6,9 +6,10 @@
 
 [[English] (README.md)](README.md) | [中文]
 
-[![运行体验](https://img.shields.io/badge/▶_60秒极速体验-10b981?style=for-the-badge&logo=play)](#%E8%B7%AF%E5%BE%84-a%E6%9C%AC%E5%9C%B0%E6%B2%99%E7%9B%92%E4%BA%A4%E4%BA%92%E5%BC%8F-ui-%E6%8E%A8%E8%8D%90)
+[![Colab 在线体验](https://img.shields.io/badge/▶_Colab_在线玩转-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
+[![本地沙盒 UI](https://img.shields.io/badge/▶_本地沙盒应用-10b981?style=for-the-badge&logo=play)](#%E8%B7%AF%E5%BE%84-a%E6%9C%AC%E5%9C%B0%E6%B2%99%E7%9B%92%E4%BA%A4%E4%BA%92%E5%BC%8F-ui-%E6%8E%A8%E8%8D%90)
 
-欢迎来到 **AI-Model-Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的“字典式”实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。**
+欢迎来到 **AI-Model-Atlas** (AI 模型图谱)！本项目是一个系统化、面向初学者的“字典式”实战指南。我们的目标是：**帮助没有任何 IT、代码或算法背景的零基础学习者，一路打通关，直到能够调用、本地运行、量化并微调大模型。直接上手玩玩看！** 🚀
 
 ---
 
@@ -67,6 +68,24 @@ python core/execution_controller.py
 ### 路径 C：概念与学习路线图
 如果你当前无法运行代码，可以从手把手教程入口开始阅读：
 👉 **[00_learning_map_zh.md](docs/phase1_0_to_1/00_learning_map_zh.md)**
+
+---
+
+### 🧩 运行后我能看到什么？
+
+以下是系统在“缓存未命中”与“缓存命中”状态下的典型终端/看板输出日志：
+
+```text
+[🔄 查询改写] 意图归一化: "帮我查一下 Llama 3 开源协议" -> "llama 3 license parameters"
+[⚡ 语义缓存] 未命中! ❌ 正在路由至向量库检索与大模型调用。
+[🎯 相关重排] 成功通过相似度阈值过滤 (余弦距离评分: 0.89)。
+[回复内容]   "Llama 3 遵循 LLAMA 3 社区许可协议..." (响应时延: 1.25秒)
+
+--- 再次输入相同提问: "帮我查一下 Llama 3 开源协议" ---
+[🔄 查询改写] 意图归一化: "帮我查一下 Llama 3 开源协议" -> "llama 3 license parameters"
+[⚡ 语义缓存] 命中! ✅ 成功拦截，直接绕过向量检索与大模型推理。
+[回复内容]   "Llama 3 遵循 LLAMA 3 社区许可协议..." (响应时延: 0.0001秒)
+```
 
 ---
 

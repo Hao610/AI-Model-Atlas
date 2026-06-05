@@ -6,9 +6,10 @@
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
-[![Run Demo](https://img.shields.io/badge/▶_Run_Demo_in_60s-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
+[![Run on Colab](https://img.shields.io/badge/▶_Colab_Playground-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
+[![Run Locally](https://img.shields.io/badge/▶_Local_Sandbox_App-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
 
-Welcome to the **AI-Model-Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models.
+Welcome to the **AI-Model-Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models. Let's play! 🚀
 
 ---
 
@@ -67,6 +68,24 @@ python core/execution_controller.py
 ### Route C: Guided Conceptual Onboarding
 If you want to read the step-by-step guides instead of running code, start here:
 👉 **[00_learning_map.md](docs/phase1_0_to_1/00_learning_map.md)**
+
+---
+
+### 🧩 What will I see in 30 seconds?
+
+Here is the raw telemetry output from a typical cache-miss and cache-hit sequence:
+
+```text
+[🔄 Rewrite] Query normalized: "Tell me about Llama 3 license" -> "llama 3 license parameters"
+[⚡ Cache]   Miss! ❌ Routing to retrieval & hybrid LLM.
+[🎯 Rerank]  Passed Margin Filter (Cosine similarity: 0.89).
+[Response]  "Llama 3 is licensed under..." (Latency: 1.25s)
+
+--- Ask again: "Tell me about Llama 3 license" ---
+[🔄 Rewrite] Query normalized: "Tell me about Llama 3 license" -> "llama 3 license parameters"
+[⚡ Cache]   Hit! ✅ Bypassing vector search and LLM invocation.
+[Response]  "Llama 3 is licensed under..." (Latency: 0.0001s)
+```
 
 ---
 
