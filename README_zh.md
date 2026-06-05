@@ -71,7 +71,7 @@
 
 ## 📄 开源协议 (License)
 
-AI-Model-Atlas 遵循 Creative Commons Attribution 4.0 International License (CC BY 4.0) 开源知识共享协议。
+AI-Model-Atlas 遵循 Creative Commons Attribution 4.0 International License (CC BY 4.0) 开源知识共享协议。详细中文说明请参考 [LICENSE_zh](LICENSE_zh)。
 
 只要您遵守署名等基本协议条款，即可自由分享、传播以及进行商业化利用。
 
