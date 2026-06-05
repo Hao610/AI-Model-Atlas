@@ -48,4 +48,4 @@ To make the most of your time here, please select the path below that best match
 
 ## 📄 License
 
-This document is part of [AI Model Atlas](../README.md), licensed under [CC BY 4.0](../LICENSE-CC-BY).
+This document is part of [AI Model Atlas](../README.md), licensed under [CC BY 4.0](../LICENSE).

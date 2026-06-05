@@ -126,4 +126,4 @@ flowchart TD
 
 ## 📄 License
 
-This document is part of [AI Model Atlas](../README.md), licensed under [CC BY 4.0](../LICENSE-CC-BY).
+This document is part of [AI Model Atlas](../README.md), licensed under [CC BY 4.0](../LICENSE).

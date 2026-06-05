@@ -126,4 +126,4 @@ flowchart TD
 
 ## 📄 开源协议
 
-本文档为 [AI Model Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE-CC-BY) 协议。
+本文档为 [AI Model Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE) 协议。
