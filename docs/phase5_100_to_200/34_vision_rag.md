@@ -1,31 +1,55 @@
 # Module 34: Vision RAG & OCR
 
-Traditional Retrieval-Augmented Generation (RAG) pipelines often struggle with rich-document formats like PDFs. While standard text extraction tools can capture paragraphs of text, they usually fail catastrophically when dealing with structured or visual elements like **Tables** and **Images**. Vision RAG and Optical Character Recognition (OCR) bridge this gap by enabling the extraction, understanding, and chunking of complex visual layouts.
-
-## The Challenges of Parsing PDFs
-
-PDFs are essentially instructions on where to draw characters and lines on a canvas; they lack semantic structure (like HTML tags). This poses two major challenges for RAG systems:
-
-1. **Tables:** Standard parsers often extract tables row-by-row or column-by-column as a jumbled stream of text. The relationships between headers and cell values are lost, making it impossible for an LLM to accurately answer data-driven queries.
-2. **Images and Charts:** Important information encapsulated in diagrams, flowcharts, or infographics is entirely skipped or poorly transcribed by basic text extractors.
-
-If these visual elements are simply ignored or mangled, the resulting embeddings will be incomplete or misleading, severely degrading the accuracy of the RAG system.
-
-## Table-Aware Chunking
-
-To preserve the semantic integrity of tabular data, we use a technique called **Table-Aware Chunking**. 
-
-Instead of chunking a document purely by character count or paragraph breaks, Table-Aware Chunking detects the boundaries of a table. It ensures that the entire table (or a logical subset of it, along with its headers) is kept together in a single chunk. Alternatively, it can convert the table into a markdown or HTML format before embedding, preserving the row/column structure so the LLM can "read" the table correctly during generation.
-
-## Leveraging `pdfplumber` and `PyMuPDF`
-
-We utilize robust PDF processing libraries to prevent data fragmentation:
-
-* **`pdfplumber`:** Excellent for precise, programmatic extraction of tables. It analyzes the lines and character intersections to reconstruct the table grid. By using `pdfplumber`, we can accurately identify bounding boxes for tables, extract the cell contents cleanly, and format them as Markdown tables. This guarantees that table data is not split across multiple, disconnected text chunks.
-* **`PyMuPDF` (fitz):** A highly performant library used for rendering pages and extracting images. For Vision RAG, we use `PyMuPDF` to extract high-resolution images of charts or complex visual blocks. These images can then be processed by a Vision-Language Model (VLM) or an OCR engine (like Tesseract or cloud OCR APIs) to generate descriptive text summaries, which are then embedded and added to the vector store.
-
-By combining `pdfplumber` for structured tables and `PyMuPDF` for visual elements, our RAG pipeline transitions from "text-only" to "document-aware," unlocking the full knowledge contained within complex reports and papers.
+[English] | [中文 (34_vision_rag_zh.md)](34_vision_rag_zh.md)
 
 ---
 
-← Prev: [33 rag evaluation.md](./33_rag_evaluation.md) | Next: [35 graph rag.md](35_graph_rag.md) →
+Your shiny new RAG system works flawlessly on plain text documents. You ask it to summarize a company's history, and it answers perfectly. But then, you upload a corporate financial report (PDF). You ask a simple question: "What was the revenue in Q3 2024?" The system hallucinates or says it doesn't know. 
+
+Why is it failing on corporate PDFs? Because it destroyed the tables. It's time to give your RAG system "eyes".
+
+## The Core Insight: Tables Are Not Text, They Are Structure
+
+Most naive document loaders and OCR tools treat pages as a flat sequence of words. When they encounter a table, they read it left-to-right, line-by-line, completely oblivious to the columns and rows that give the numbers meaning.
+
+**Tables are the hardest part of RAG.**
+
+### The Destruction of Structure: A Visual Demo
+
+Imagine a simple financial table:
+
+| Metric | Q3 2024 | Q4 2024 |
+|---|---|---|
+| Revenue | $150M | $200M |
+| Expenses | $100M | $120M |
+
+**How a simple chunker reads it (The Text Destruction):**
+`Metric Q3 2024 Q4 2024 Revenue $150M $200M Expenses $100M $120M`
+
+Once flattened into this string, the relationship between "Revenue", "Q3 2024", and "$150M" is gone. If a user asks "What was Q4 Expense?", the LLM sees `$200M Expenses $100M`, gets confused, and hallucinates.
+
+**How a Vision RAG system sees it (The Structured Layout):**
+A Vision RAG system preserves the bounding boxes and HTML/Markdown representation of the table.
+
+```html
+<table>
+  <tr><th>Metric</th><th>Q3 2024</th><th>Q4 2024</th></tr>
+  <tr><td>Revenue</td><td>$150M</td><td>$200M</td></tr>
+  <tr><td>Expenses</td><td>$100M</td><td>$120M</td></tr>
+</table>
+```
+
+## How to Give Your RAG System Eyes
+
+Instead of blindly stripping text, modern Vision RAG pipelines use multi-modal models or advanced document parsing tools to understand the *layout* of the page.
+
+1. **Layout Detection:** The system first identifies regions on the PDF: "This is a paragraph," "This is an image," "This is a table."
+2. **Table Extraction:** Specialized models (like Table Transformer) extract tables and convert them into structured formats (Markdown or HTML).
+3. **Multi-Modal Embeddings:** Some advanced systems embed images of the tables directly using vision-language models, preserving all visual context.
+4. **Summary Augmentation:** We can pass the structured table to an LLM to write a plain-text summary of the table, and store *both* the summary and the raw table in our vector database.
+
+By respecting the visual layout of documents, we stop destroying data before our LLM even gets a chance to read it.
+
+---
+
+← Prev: [33 rag evaluation](33_rag_evaluation.md) | Next: [35 graph rag](35_graph_rag.md) →

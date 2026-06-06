@@ -139,13 +139,10 @@ flowchart TD
 
 ---
 
-### 🛸 Appendix: Frontier AI Radar
-> **Beyond Phase 5: A conceptual preview of where the AI industry is heading next.**
-* **MCP (Model Context Protocol)**: AI's USB-C interface. Letting AI uniformly call external tools.
-* **Multi-Agent**: One AI is like a person; multiple AIs working together is like a team.
-* **Long Context**: Million-token context windows. Letting AI read an entire book at once.
-* **World Models**: Letting AI learn to simulate the real physical world.
-* **Robotics**: Giving AI a physical body to interact with the environment.
+### 🛸 Appendix: Where AI May Go Next 🔭
+> **The course ends here, but the exploration has just begun.**
+
+[Read the Epilogue: Where AI May Go Next](phase5_100_to_200/appendix_future.md)
 
 ---
 

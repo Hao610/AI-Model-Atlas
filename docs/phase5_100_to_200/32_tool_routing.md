@@ -1,26 +1,59 @@
 # Module 32: Tool Routing (Agentic RAG)
 
-## Introduction
-Welcome to Module 32! In this module, we will explore Tool Routing, a core concept in Agentic Retrieval-Augmented Generation (RAG). Imagine you are in a massive hardware store and you need a specific tool to fix a leak. Instead of wandering the aisles yourself, you ask a knowledgeable assistant at the front desk. They listen to your problem and instantly guide you to the exact aisle and shelf where the right tool is kept. This is precisely what Tool Routing does in an AI system: it intelligently directs a user's query to the most appropriate tool or data source to get the job done.
+[English] | [中文 (32_tool_routing_zh.md)](32_tool_routing_zh.md)
 
-## Why do we need this?
-As AI applications grow, they often need to consult multiple, distinct sources of information or perform various specific actions. For instance, an AI might have access to a database of mathematical formulas, a live weather API, and a document store of company policies. If a user asks "What's the weather like in Tokyo?", the AI shouldn't search the math database or the policy documents. Doing so would be slow, costly, and likely yield poor results. We need a "dispatcher" that understands the user's intent and routes the query only to the tool designed to handle it. This makes the system efficient, accurate, and scalable.
+Welcome to the next level of AI engineering. You've built a basic RAG (Retrieval-Augmented Generation) pipeline, where your model fetches relevant documents to answer a question. That's a great start. But what happens when the user asks a question that requires real-time data, complex math, or writing and running code? 
 
-## How it works (Our ToolRouter Example)
-Let's look at how this works in practice, using the `ToolRouter` concept from our AI Model Atlas project.
+A standard RAG pipeline will fail. It only knows how to search its static database. 
 
-Think of the `ToolRouter` as the intelligent dispatcher we mentioned earlier:
-1. **The Request**: A user submits a query to the AI system.
-2. **The Assessment**: The `ToolRouter` analyzes the intent and context of the user's request. It doesn't try to answer the question itself; instead, it determines *how* to answer it.
-3. **The Decision**: Based on its analysis, the router selects the best tool from its available toolkit. For example, if the query is "Summarize the latest research paper on transformers," the router selects the document retrieval tool. If the query is "Calculate the trajectory of a satellite," it selects the math calculation tool.
-4. **The Handoff**: The router passes the query to the chosen tool.
-5. **The Result**: The tool processes the query, retrieves the information, and the system uses that information to generate a final response for the user.
+Now, how do you make it an orchestrated system? Enter **Agentic RAG** and **Tool Routing**.
 
-In our project, this might look like a router choosing between querying a local database of model metadata versus triggering an external web search to find the latest updates on a new AI model release.
+> **Core Insight:** AI is no longer just a model, it's a system.
 
-## Summary
-Tool Routing transforms a simple "ask and answer" AI into a versatile, capable agent. By understanding intent and directing queries to specialized tools, we create a system that is fast, accurate, and capable of handling a wide variety of complex tasks.
+## Why ChatGPT Isn't Just One Model
+
+When you interact with modern AI products like ChatGPT or Claude, you aren't just talking to a single, monolithic language model. You are interacting with an orchestrated ecosystem.
+
+If you ask for the latest weather, it searches the web. If you ask it to plot a graph, it writes Python code and executes it in a secure sandbox. The language model isn't doing the math or the web scraping directly—it's acting as a **Router** that decides *which tool to use*.
+
+Here is a simplified view of how this architecture works:
+
+```text
+User
+  │
+  ▼
+[ Router (LLM) ] ──▶ (Needs current data?) ──▶ [ Search ]
+  │
+  ├──▶ (Needs exact math?) ──────────────────▶ [ Calc ]
+  │
+  └──▶ (Needs data analysis/execution?) ─────▶ [ CodeRunner ]
+  │
+  ▼
+(Tool execution results returned)
+  │
+  ▼
+[ LLM Synthesizes Final Answer ]
+  │
+  ▼
+User
+```
+
+## How Tool Routing Works
+
+In Agentic RAG, the language model is given a "toolbox" (a list of available functions or APIs) along with descriptions of what each tool does. 
+
+When a user prompt comes in, the process is:
+1. **Analyze:** The LLM reads the prompt and evaluates if it can answer directly or if it needs help from a tool.
+2. **Route:** If a tool is needed, the LLM outputs a structured command (like JSON) specifying the tool name and the arguments to pass into it.
+3. **Execute:** The system intercepts this command, runs the external tool (e.g., querying an API), and captures the output.
+4. **Synthesize:** The tool's output is fed back into the LLM, which then reads the result and crafts a natural, accurate response for the user.
+
+## From Pipeline to Autonomous Agent
+
+By implementing tool routing, you graduate from building static "pipelines" to building "agents." 
+
+Your AI is no longer a passive encyclopedia. It is an active problem solver that can plan, gather information from multiple sources, interact with external software, and synthesize complex answers. As an AI Systems Engineer, your job shifts from merely tuning prompts to designing the robust, reliable tools your agent will wield.
 
 ---
 
-← Prev: [31 deployment.md](../phase4_50_to_100/31_deployment.md) | Next: [33 rag evaluation.md](33_rag_evaluation.md) →
+← Prev: [31 deployment](../phase4_50_to_100/31_deployment.md) | Next: [33 rag evaluation](33_rag_evaluation.md) →

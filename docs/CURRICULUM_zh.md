@@ -139,13 +139,10 @@ flowchart TD
 
 ---
 
-### 🛸 附录：前沿技术雷达 (Frontier AI Radar)
-> **超越 Phase 5：写给新手的未来 AI 发展概览**
-* **MCP (Model Context Protocol)**: AI 的 USB-C 接口。让 AI 统一、标准化地调用外部工具。
-* **Multi-Agent (多智能体)**: 一个 AI 像一个人，多个 AI 协作就像一个团队。
-* **Long Context (超长上下文)**: 百万级 Token。让 AI 一次性读完整本书，甚至代替部分 RAG 搜索。
-* **World Models (世界模型)**: 让 AI 学会模拟、理解真实的物理世界法则。
-* **Robotics (具身智能)**: 给 AI 装上身体，在物理环境里执行任务。
+### 🛸 附录: AI 的下一步去向 🔭
+> **课程结束了，但探索才刚开始。**
+
+[阅读后记：AI 的下一步去向](phase5_100_to_200/appendix_future_zh.md)
 
 ---
 

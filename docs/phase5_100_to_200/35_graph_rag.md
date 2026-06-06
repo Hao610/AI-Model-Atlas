@@ -1,35 +1,41 @@
 # Module 35: GraphRAG (Advanced)
 
-Welcome to Module 35! In this module, we will explore **GraphRAG**, an advanced Retrieval-Augmented Generation approach that leverages Knowledge Graphs to provide more comprehensive answers, especially for complex, globally-oriented queries.
+[English] | [中文 (35_graph_rag_zh.md)](35_graph_rag_zh.md)
 
-> [!IMPORTANT]
-> **Please Read Before Panicking!**
-> GraphRAG is designed for **HIGHLY relational data** (such as legal case files, medical research, or complex financial networks). It is **NOT** required for most standard RAG systems (like customer support bots or personal knowledge bases). Don't worry if this sounds extremely complex—standard vector RAG is more than enough for 95% of use cases!
+Imagine you are investigating a complex corporate fraud case or researching a rare disease across thousands of medical journals. In these scenarios, matching paragraphs of text isn't enough. You need to know that "Company A" owns "Subsidiary B", which transferred funds to "Executive C". You are dealing with a massive web of legal or medical data where finding connections between entities is more important than matching text.
 
-## What is a Knowledge Graph?
+This is where GraphRAG (Retrieval-Augmented Generation with Knowledge Graphs) comes in. The core insight here is simple but profound: **"Relationships are more important than content."**
 
-A Knowledge Graph represents data as a network rather than isolated text chunks. It consists of two main components:
-- **Nodes:** Entities (e.g., people, places, concepts, organizations).
-- **Edges:** The relationships between these entities (e.g., "works for", "is located in", "treats").
+## What is GraphRAG?
 
-By structuring data this way, we can explicitly capture the connections that might be lost when text is simply chopped into vector chunks.
+Traditional RAG systems slice documents into chunks and retrieve them based on semantic similarity. They are great at answering "What does the manual say about X?" but terrible at answering "How are X, Y, and Z connected across our entire company history?"
 
-## Why Do Knowledge Graphs Help with Global Summaries?
+GraphRAG builds a Knowledge Graph—a web of nodes (entities) and edges (relationships)—from your data. When a user asks a question, the system traverses this graph to retrieve connected facts, providing the LLM with structured context rather than just a list of text chunks.
 
-Standard vector RAG excels at **local queries**—finding a specific fact within a specific document. However, it often struggles with **global queries**, such as "What are the main themes across this entire dataset?" or "Summarize the major conflicts in this universe."
+## When Do You Actually Need It?
 
-GraphRAG solves this by grouping nodes into hierarchical communities. When asked a global question, the system can summarize these communities bottom-up, allowing the LLM to understand the overarching narrative of the entire dataset rather than just piecing together a few top-k semantic matches.
+> [!WARNING]
+> **GraphRAG Is Not Magic**
+> 
+> GraphRAG solves structure problems, not knowledge problems. It is highly effective for specific domains like legal case law, medical research, or complex supply chain analysis where relationships dictate the answer. However, the industry hype claiming "GraphRAG = Next Gen RAG" that replaces everything is false. For 90% of normal document retrieval tasks, Hybrid Search + RRF (Reciprocal Rank Fusion) is usually enough, much cheaper, and easier to maintain.
 
-## The Two-Stage Extraction Process
+Use GraphRAG when your questions look like:
+*   "What are the indirect connections between Patient 0 and the new outbreak?"
+*   "Who are all the board members of companies associated with this legal dispute?"
 
-GraphRAG typically involves a complex pipeline to turn raw text into a usable graph, often referred to as a two-stage extraction process:
+Do **not** use GraphRAG for:
+*   "Summarize this PDF."
+*   "How do I reset my password?"
 
-1. **Entity and Relationship Extraction:**
-   The raw text is broken into chunks, and an LLM is used to identify all entities (Nodes) and the relationships between them (Edges). This stage transforms unstructured text into structured graph data.
-   
-2. **Community Detection and Summarization:**
-   Algorithms (like Leiden) group closely connected nodes into "communities." The LLM then generates summaries for each of these communities. During retrieval, these community summaries are used to generate comprehensive answers that span the entire dataset.
+## How It Works (The Simplified Version)
+
+1.  **Entity Extraction:** An LLM reads your raw documents and extracts entities (People, Organizations, Diseases, Locations).
+2.  **Relationship Mapping:** The LLM identifies how these entities are connected (e.g., "Person A" *is CEO of* "Organization B").
+3.  **Graph Construction:** These entities and relationships are stored in a Graph Database (like Neo4j).
+4.  **Graph Retrieval:** When a query is asked, the system finds the relevant starting entities and traverses their connections to build a comprehensive context window.
+5.  **Generation:** The LLM uses this mapped-out network to answer the question.
+
+GraphRAG is powerful, but it requires significant engineering effort to build and maintain the knowledge graph. Choose it only when the relationships between your data points hold the true value of your information.
 
 ---
-
-← Prev: [34 vision rag.md](./34_vision_rag.md) | Next: [36 ai safety.md](36_ai_safety.md) →
+← Prev: [34 vision rag](34_vision_rag.md) | Next: [36 ai safety](36_ai_safety.md) →
