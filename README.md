@@ -1,7 +1,7 @@
 # AI Model Atlas 🗺️
 ## From Toy RAG to Production-Grade AI Systems
 
-> **A full-stack RAG system that shows why production AI is harder than tutorials suggest.**
+> **A full-stack RAG system that shows why most “RAG tutorials” break in real production.**
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
@@ -18,11 +18,11 @@ AI Model Atlas goes beyond that—into real production failure points: routing, 
 
 ## ⚠️ Why this exists (the real problem)
 
-Most RAG systems in tutorials look simple:
-> User ➔ Embedding Search ➔ LLM
+Most RAG systems in tutorials look like this:
+> User ➔ Embedding Search ➔ LLM ➔ Done
 
-But real systems fail in ways tutorials never show:
-* ❌ **Everything goes to vector search** (no routing between tools)
+But real systems don't work like this in production:
+* ❌ **Everything collapses into vector search** (no routing logic)
 * ❌ **Every query hits the LLM** (no caching layer)
 * ❌ **No evaluation** or quality feedback loops
 * ❌ **No retry / failure recovery** logic
@@ -33,16 +33,20 @@ But real systems fail in ways tutorials never show:
 
 ---
 
-## 🧱 What this system actually is
+## 🧱 Core System Components
 
-A modular RAG execution architecture with production-style components:
-* 🎯 **Query Routing** (Calculator / Web / Vector / Graph)
-* ⚡ **Semantic Cache** (instant responses, zero LLM calls on hit)
-* 🧠 **GraphRAG** (multi-hop structured reasoning)
-* 🔍 **Hybrid Retrieval** (BM25 + Dense + RRF fusion)
-* 🧪 **Evaluation Layer** (LLM-as-a-judge scoring)
-* 🛠️ **Execution Controller** (timeouts, retries, fallback logic)
-* 📦 **Deterministic pipeline state design**
+Instead of a chatbot, this is a full RAG execution system:
+
+* **Level 1 — Intelligence Routing**
+  - Query Routing (tool selection logic)
+* **Level 2 — Retrieval Layer**
+  - Hybrid Retrieval (BM25 + Dense + RRF fusion)
+  - GraphRAG reasoning layer
+* **Level 3 — Optimization Layer**
+  - Semantic Cache (zero-LLM hit path)
+* **Level 4 — Reliability Layer**
+  - Evaluation engine
+  - Execution controller (retry / fallback / timeout)
 
 ---
 
