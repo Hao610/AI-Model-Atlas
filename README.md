@@ -8,6 +8,8 @@ This project is **not a production framework or deployment system**. It is an ed
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
+👉 **New here? Start with our [🧭 Getting Started Guide](docs/GETTING_STARTED.md) to choose your learning path!**
+
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg?style=for-the-badge)](LICENSE)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](LICENSE-CODE)
 [![Run Locally](https://img.shields.io/badge/▶_Local_Sandbox_App-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
