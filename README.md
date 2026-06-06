@@ -2,7 +2,7 @@
 
 ### From Zero to Production-Grade RAG Systems — Learn, Build, Deploy, and Optimize Real AI Applications
 
-> **A production-ready Cognitive RAG system with Semantic Cache, Query Rewriting, Reranking, and Execution Control — built for developers, researchers, and AI engineers.**
+> **A production-ready Agentic RAG system with Tool Routing, Evaluation, Vision, Graph Knowledge, Semantic Cache, Query Rewriting, and Execution Control.**
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
@@ -105,13 +105,16 @@ Most RAG tutorials stop at embeddings or naïve retrieval demos. `AI Model Atlas
 
 ## 🚀 What This Project Offers
 
-- **🧠 Cognitive RAG Architecture**: Complete pipeline integration of query understanding and retrieval optimization.
-- **⚡ Semantic Cache**: Lightweight vector embedding dictionary checks for extreme latency reduction.
-- **🔄 Query Rewriting**: Dynamic regex and prompt filters to normalize user intents before retrieval.
-- **🎯 Relevance Reranking**: Distance margin filters to optimize context text blocks before inference.
+- **🚦 Retrieval Orchestration Layer**: A deterministic regex-based router dispatching queries to Calculator, Web Search, Graph, or Vector tools.
+- **📊 Lightweight Evaluation Framework**: A native LLM-as-a-judge engine designed to evaluate routing accuracy, faithfulness, and groundedness.
+- **👁️ Vision RAG & Structural Parsing**: Transparent, multi-engine extraction (`pdfplumber` + `PyMuPDF`) that preserves explicit table boundaries and natively filters structural images.
+- **📦 Table-Aware Chunking**: Dynamic atomic vector blocks to guarantee tabular integrity during LLM retrieval.
+- **🕸️ GraphRAG Knowledge Network**: A native, lightweight Knowledge Graph extractor using NetworkX with two-stage relation extraction and 1-hop traversal routing.
+- **🧠 Cognitive Query Rewriting**: Dynamic regex and prompt filters to normalize user intents before retrieval.
+- **🎯 Relevance Reranking**: Reciprocal Rank Fusion (RRF) combining Dense and Sparse (BM25) search scores.
 - **🛡️ Execution Controller**: Orchestrated request center with fallback routing, exponential backoffs, and timeouts.
 - **🌐 Hybrid LLM Core**: Dynamic routing between local Ollama installations and commercial OpenAI/DeepSeek API endpoints.
-- **📊 Observability Dashboard**: Streamlit frontends measuring time-to-first-token (TTFT) and throughput tokens/sec speeds.
+- **⚡ Semantic Cache**: Lightweight vector embedding dictionary checks for extreme latency reduction.
 
 ---
 
