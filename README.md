@@ -2,7 +2,7 @@
 
 ## A Learning-Focused RAG Architecture Simulator
 
-AI Model Atlas is a **learning-focused system design simulator** for understanding how production RAG systems actually work, and why most tutorial-level implementations fail in real-world scenarios.
+AI Model Atlas is a **learning-focused system design simulator** for understanding how production RAG systems actually work, and why most tutorial implementations fail in real-world scenarios.
 
 This project is **not a production framework or deployment system**. It is an educational system for studying real-world AI architecture patterns.
 
@@ -17,50 +17,41 @@ This project is **not a production framework or deployment system**. It is an ed
 
 ## 📌 What this project is
 
-AI Model Atlas breaks down how modern RAG systems behave under real-world complexity.
+AI Model Atlas explains how modern RAG systems behave under real-world complexity.
 
 It helps you understand:
 * How production RAG systems are structured
-* Why simple “vector search ➔ LLM” pipelines break
+* Why “vector search ➔ LLM” pipelines break
 * Where routing, caching, and orchestration become necessary
 * How system design changes from demo ➔ production scale
 
 ---
 
-## ⚠️ The problem with most RAG tutorials
+## ⚠️ The core problem in most RAG tutorials
 
 Most RAG systems look like this:
 > User ➔ Embedding Search ➔ LLM
 
-This is simple, but incomplete. In real-world systems, this design fails because:
+This is simple, but incomplete. In real systems, this design fails because:
 * No routing between tools (everything goes to vector search)
 * No caching layer (every request hits the LLM)
 * No evaluation or feedback loop
 * No failure recovery or retry logic
 * No hybrid retrieval (BM25 + dense + fusion)
-* No system-level orchestration or control flow
+* No system-level orchestration
 
-👉 This project exists to make these missing layers visible.
+👉 This project exists to expose these missing layers.
 
 ---
 
 ## 🧱 System design (conceptual)
 
-This is not a chatbot. It is a **decomposition of a full RAG system architecture**:
-
-### 🧠 Intelligence Layer
-* Query routing (tool selection logic)
-
-### 🔍 Retrieval Layer
-* Hybrid retrieval (BM25 + dense + RRF fusion)
-* Graph-based reasoning concepts (GraphRAG)
-
-### ⚡ Optimization Layer
-* Semantic caching (fast-path execution simulation)
-
-### 🛡️ Reliability Layer
-* Evaluation concepts (LLM-as-a-judge)
-* Execution control (retry / fallback / timeout logic)
+This is not a chatbot — it is a decomposition of a full RAG architecture:
+* 🧠 Query routing (tool selection logic)
+* 🔍 Hybrid retrieval (BM25 + dense + RRF fusion)
+* ⚡ Semantic caching (fast-path execution)
+* 🛡️ Evaluation concepts (LLM-as-a-judge)
+* 🔁 Execution control (retry / fallback / timeout)
 
 ---
 
@@ -114,6 +105,8 @@ Repeat query:
 ## ⭐ Note
 
 This project is intended for **learning and system design exploration only**, not production deployment.
+
+---
 
 ## 🧭 System Architecture Poster
 
