@@ -9,6 +9,7 @@ class ToolType(Enum):
     VECTOR = "vector"
     WEB = "web"
     CALCULATOR = "calculator"
+    GRAPH = "graph"
     LLM = "llm"
 
 @dataclass
@@ -27,6 +28,7 @@ class ToolRouter:
         # Deterministic routing patterns
         self.math_patterns = [r'calculate', r'\d+[\+\-\*\/\^]\d+', r'how much is', r'\^']
         self.web_patterns = [r'latest', r'today', r'recent', r'current', r'news', r'now', r'price']
+        self.graph_patterns = [r'relation', r'connect', r'theme', r'overview', r'between', r'map', r'who is related to']
         
     def route(self, query: str) -> RouteDecision:
         query_lower = query.lower()
@@ -43,10 +45,7 @@ class ToolRouter:
                 return decision
                 
         # 2. Web Search Check
-        # Important: "What is CUDA?" should skip this and go to Vector.
         for pattern in self.web_patterns:
-            # Avoid matching words inside other words, e.g. "knowledge" has "now" inside?
-            # Using boundaries for some words:
             if re.search(r'\b' + pattern + r'\b', query_lower):
                 decision = RouteDecision(
                     tool=ToolType.WEB,
@@ -55,8 +54,19 @@ class ToolRouter:
                 )
                 self._log_decision(query, decision)
                 return decision
+
+        # 3. Graph Search Check
+        for pattern in self.graph_patterns:
+            if re.search(r'\b' + pattern + r'\b', query_lower):
+                decision = RouteDecision(
+                    tool=ToolType.GRAPH,
+                    confidence=0.92,
+                    reason="relational_query_detected"
+                )
+                self._log_decision(query, decision)
+                return decision
                 
-        # 3. Default to Hybrid Vector Search
+        # 4. Default to Hybrid Vector Search
         decision = RouteDecision(
             tool=ToolType.VECTOR,
             confidence=0.88,

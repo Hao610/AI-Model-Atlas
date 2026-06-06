@@ -42,5 +42,23 @@
     "expected_element_type": "table",
     "reference_answer": "",
     "tags": ["table"]
+  },
+  {
+    "id": "graph_001",
+    "query": "How is RRF related to BM25?",
+    "expected_route": "graph",
+    "expected_entity": "RRF",
+    "expected_relation": "BM25",
+    "reference_answer": "RRF combines scores from BM25 sparse retrieval and dense vector retrieval.",
+    "tags": ["graph", "retrieval"]
+  },
+  {
+    "id": "graph_002",
+    "query": "What overarching theme connects Ollama and DeepSeek in this system?",
+    "expected_route": "graph",
+    "expected_entity": "Ollama",
+    "expected_relation": "DeepSeek",
+    "reference_answer": "Both are LLM backends orchestrated by the LLMRouter for graceful degradation.",
+    "tags": ["graph", "retrieval"]
   }
 ]

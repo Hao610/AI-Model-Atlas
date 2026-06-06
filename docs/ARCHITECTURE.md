@@ -14,12 +14,19 @@ flowchart LR
     Pre --> Cache{2. Semantic Cache?}
     
     Cache -->|Hit| CacheHit[Fast Cache Output 0.00s]
-    Cache -->|Miss| RAG[3. Vector Search & Rerank]
+    Cache -->|Miss| Router[3. Tool Router]
     
-    RAG --> Controller[4. Execution Controller]
+    Router -->|Math / Web| ExternalTool[Calculator / Web Search]
+    Router -->|Graph| GraphRAG[GraphRAG 1-Hop Context]
+    Router -->|Vector| RAG[Vector Search & Rerank]
+    
+    ExternalTool --> Output([Final Output])
+    GraphRAG --> Controller[4. Execution Controller]
+    RAG --> Controller
+    
     Controller --> LLM[5. Hybrid LLM Route]
     
-    CacheHit --> Output([Final Output])
+    CacheHit --> Output
     LLM --> Output
 
     classDef default fill:#111827,stroke:#374151,stroke-width:1px,color:#f9fafb;
@@ -45,6 +52,10 @@ flowchart LR
   - *Source:* [`execution_controller.py`](../projects/rag-app/core/execution_controller.py)
 - **🌐 Hybrid LLM Core**: Dynamic routing between local Ollama installations and commercial OpenAI/DeepSeek API endpoints.
   - *Source:* [`llm_router.py`](../projects/rag-app/core/llm_router.py)
+- **👁️ Structural Parsing & Table-Aware Chunking (Vision RAG)**: Complete atomic chunking for Markdown tables and PyMuPDF image extractions to prevent data fragmentation.
+  - *Source:* [`parsing/pdf_parser.py`](../projects/rag-app/core/parsing/pdf_parser.py) | [`chunking/element_chunker.py`](../projects/rag-app/core/chunking/element_chunker.py)
+- **🕸️ Lightweight Native GraphRAG**: Memory-based NetworkX Knowledge Graph running on a two-stage LLM entity/relation extraction architecture with 1-Hop traversal routing.
+  - *Source:* [`graph/graph_store.py`](../projects/rag-app/core/graph/graph_store.py) | [`graph/graph_search_tool.py`](../projects/rag-app/core/graph/graph_search_tool.py)
 
 ---
 

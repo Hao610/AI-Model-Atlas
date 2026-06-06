@@ -13,6 +13,9 @@ from core.cache.cache_metrics import CacheMetrics
 from core.tools.router import ToolRouter, ToolType
 from core.tools.calculator import CalculatorTool
 from core.tools.web import WebSearchTool
+from core.graph.graph_store import GraphStore
+from core.graph.graph_retriever import GraphRetriever
+from core.graph.graph_search_tool import GraphSearchTool
 from config.settings import settings
 
 class RAGPipeline:
@@ -28,6 +31,9 @@ class RAGPipeline:
         self.tool_router = ToolRouter()
         self.calculator = CalculatorTool()
         self.web_search = WebSearchTool()
+        self.graph_store = GraphStore()
+        self.graph_retriever = GraphRetriever(self.router, self.graph_store)
+        self.graph_search = GraphSearchTool(self.graph_retriever)
         self.traces = [] # Stores PipelineTrace dictionaries for Stage B Evaluation
         self.collection_name = "default_rag"
         
@@ -171,6 +177,16 @@ class RAGPipeline:
         for match in filtered_matches:
             context_str += f"\n[Source: {match['metadata'].get('source', 'Unknown')}]\n{match['content']}\n"
             sources.append(match)
+            
+        # Graph Augmentation
+        if route_decision.tool == ToolType.GRAPH:
+            self.controller.log("Graph route detected. Augmenting context with 1-hop Graph Traversal...")
+            graph_context = self.graph_search.run(query)
+            if graph_context:
+                self.controller.log("Graph context successfully retrieved.")
+                context_str = f"--- GRAPH KNOWLEDGE ---\n{graph_context}\n\n--- VECTOR KNOWLEDGE ---\n{context_str}"
+            else:
+                self.controller.log("No graph nodes matched query entities.")
             
         trace["retrieved_docs"] = [m["id"] for m in sources]
         trace["context"] = context_str

@@ -14,12 +14,19 @@ flowchart LR
     Pre --> Cache{2. 语义缓存拦截?}
     
     Cache -->|命中| CacheHit[极速返回 0.00s]
-    Cache -->|未命中| RAG[3. 混合向量检索与重排]
+    Cache -->|未命中| Router[3. 意图工具路由]
     
-    RAG --> Controller[4. 执行控制中心]
-    Controller --> LLM[5. 双模 LLM 路由]
+    Router -->|计算 / 搜索| ExternalTool[计算器 / 联网搜索]
+    Router -->|图谱| GraphRAG[GraphRAG 1-Hop 上下文]
+    Router -->|向量| RAG[混合向量检索与重排]
     
-    CacheHit --> Output([最终输出])
+    ExternalTool --> Output([最终输出])
+    GraphRAG --> Controller[4. 执行控制中心]
+    RAG --> Controller
+    
+    Controller --> LLM[5. 双模 LLM 推理]
+    
+    CacheHit --> Output
     LLM --> Output
 
     classDef default fill:#111827,stroke:#374151,stroke-width:1px,color:#f9fafb;
@@ -41,10 +48,13 @@ flowchart LR
   - *源码路径:* [`intelligence/query_rewriter.py`](../projects/rag-app/core/intelligence/query_rewriter.py)
 - **🎯 混合检索与 RRF 重排**: 融合 ChromaDB 稠密向量与 BM25 稀疏检索，并通过倒数秩融合(RRF)进行双重打分排序。
   - *源码路径:* [`intelligence/reranker.py`](../projects/rag-app/core/intelligence/reranker.py) | [`vectorstore.py`](../projects/rag-app/core/vectorstore.py)
-- **🛡️ 执行控制平面**: 统一接管请求生命周期，处理超时、异常、指数退避重试。
   - *源码路径:* [`execution_controller.py`](../projects/rag-app/core/execution_controller.py)
 - **🌐 双模 LLM 推理层**: 动态解耦 Ollama 本地模型与商业云端 API (如 OpenAI/DeepSeek)。
   - *源码路径:* [`llm_router.py`](../projects/rag-app/core/llm_router.py)
+- **👁️ 结构化解析与原子化切片 (Vision RAG)**: 引入 `pdfplumber` 获取表格原生 Markdown 并保持原子切块，同时由 `PyMuPDF` 精准提取关键配图。
+  - *源码路径:* [`parsing/pdf_parser.py`](../projects/rag-app/core/parsing/pdf_parser.py) | [`chunking/element_chunker.py`](../projects/rag-app/core/chunking/element_chunker.py)
+- **🕸️ 原生轻量级知识图谱 (GraphRAG)**: 抛弃重度图数据库，采用 NetworkX 在内存中构建关系网。通过大模型两阶段抽取提取实体与关系，并在查询时支持 1-Hop 路由补充。
+  - *源码路径:* [`graph/graph_store.py`](../projects/rag-app/core/graph/graph_store.py) | [`graph/graph_search_tool.py`](../projects/rag-app/core/graph/graph_search_tool.py)
 
 ---
 
