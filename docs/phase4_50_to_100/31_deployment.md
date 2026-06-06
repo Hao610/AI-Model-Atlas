@@ -73,6 +73,8 @@ print(response.choices[0].message.content)
 
 ---
 
-🎉 **Congratulations! You have completed the AI-Model-Atlas!**
+🎉 **Congratulations! You have completed Phase 4 (50 to 100).**
 
-You went from learning basic definitions all the way to cloud GPU deployment. You now have the full context needed to build, fine-tune, and run custom AI systems. Bookmark this atlas, and use it as your personal tech dictionary. Good luck on your AI journey!
+You went from learning basic definitions all the way to cloud GPU deployment. Now, let's step into the true frontier.
+
+Next, we enter **Phase 5: Frontier AI Architecture (100 to 200)**, where you'll build your first agentic workflow: [Tool Routing (Agentic RAG)](../phase5_100_to_200/32_tool_routing.md).
