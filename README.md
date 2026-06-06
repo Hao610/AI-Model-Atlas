@@ -1,7 +1,7 @@
 # AI Model Atlas 🗺️
 ## From Toy RAG to Production-Grade AI Systems
 
-A production-style **RAG architecture playground** that demonstrates what actually breaks when moving from simple embedding-based tutorials to real-world AI systems.
+> **A full-stack RAG system that shows why production AI is harder than tutorials suggest.**
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
@@ -10,49 +10,51 @@ A production-style **RAG architecture playground** that demonstrates what actual
 [![Run Locally](https://img.shields.io/badge/▶_Local_Sandbox_App-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
 [![Colab Playground](https://img.shields.io/badge/▶_Colab_Playground_(Optional)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
-Most RAG demos stop at “vector search + LLM”. **AI Model Atlas goes further — into production failure points: routing, caching, evaluation, orchestration, and recovery.**
+Most RAG demos stop at: **Vector Search ➔ LLM ➔ Done**.
+
+AI Model Atlas goes beyond that—into real production failure points: routing, caching, evaluation, orchestration, and recovery.
 
 ---
 
-## ⚠️ Why this exists
+## ⚠️ Why this exists (the real problem)
 
-Most RAG tutorials look like this:
-> User → Embedding Search → LLM → Done
+Most RAG systems in tutorials look simple:
+> User ➔ Embedding Search ➔ LLM
 
-But real systems break in places tutorials never show:
-* ❌ **No routing between tools** (everything goes to vector search)
-* ❌ **No caching layer** (every query is expensive and slow)
-* ❌ **No evaluation** or quality feedback loop
-* ❌ **No failure recovery** or retry logic
-* ❌ **No hybrid retrieval** strategy (e.g. dense + sparse fusion)
-* ❌ **No orchestration** or state control between components
+But real systems fail in ways tutorials never show:
+* ❌ **Everything goes to vector search** (no routing between tools)
+* ❌ **Every query hits the LLM** (no caching layer)
+* ❌ **No evaluation** or quality feedback loops
+* ❌ **No retry / failure recovery** logic
+* ❌ **No hybrid retrieval** strategy (BM25 + dense + fusion)
+* ❌ **No system-level orchestration** or control flow
 
-**This project is built to expose and fix those gaps.**
+👉 **This project is built to expose and fix these gaps.**
 
 ---
 
 ## 🧱 What this system actually is
 
-A modular RAG execution architecture with real production-style components:
-* 🎯 **Query Routing Engine** (Calculator / Web / Vector / Graph)
-* ⚡ **Semantic Cache Layer** (instant hit bypassing LLM + retrieval)
-* 🧠 **GraphRAG Knowledge Layer** (multi-hop reasoning over structured relations)
-* 🔍 **Hybrid Retrieval System** (BM25 + Dense + RRF reranking)
-* 🧪 **Evaluation Engine** (LLM-as-a-judge for quality + faithfulness)
-* 🛠️ **Execution Controller** (timeouts, fallback, retry policies)
-* 📦 **Stateful Pipeline Design** (deterministic execution flow)
+A modular RAG execution architecture with production-style components:
+* 🎯 **Query Routing** (Calculator / Web / Vector / Graph)
+* ⚡ **Semantic Cache** (instant responses, zero LLM calls on hit)
+* 🧠 **GraphRAG** (multi-hop structured reasoning)
+* 🔍 **Hybrid Retrieval** (BM25 + Dense + RRF fusion)
+* 🧪 **Evaluation Layer** (LLM-as-a-judge scoring)
+* 🛠️ **Execution Controller** (timeouts, retries, fallback logic)
+* 📦 **Deterministic pipeline state design**
 
 ---
 
 ## 🧩 What makes this different
 
-Instead of building a simple "chatbot demo", this project focuses on:
-> 🧠 How real AI systems behave under complexity, failure, and scale.
+Instead of building another “chatbot demo”, this project focuses on:
+> 🧠 **How real AI systems behave under complexity, failure, and scale.**
 
 It is designed as:
 * A **learning system** (36 guided modules from 0 to 200)
 * A **reference architecture**
-* A **production simulation environment for RAG systems**
+* A **production simulation environment**
 
 ---
 
@@ -94,14 +96,14 @@ Latency → ~0.0001s
 ## 🚀 Who this is for
 
 * Developers building RAG applications
-* Engineers moving from demos ➔ production systems
+* Engineers moving from demo ➔ production systems
 * AI learners who want system-level understanding
-* Anyone building agentic or tool-using LLM systems
+* Anyone building agentic / tool-using LLM systems
 
 ---
 
 ## ⭐ If this helps you understand real RAG systems
-Star the repo — and use it as a reference architecture for building production AI systems.
+Star the repo — and use it as a reference architecture for production AI systems.
 
 ---
 
