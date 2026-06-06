@@ -1,7 +1,7 @@
 # AI Model Atlas 🗺️ | AI 模型图谱
 ## 从玩具级 RAG 到生产级 AI 系统
 
-> **一个全栈 RAG 系统，展示为什么绝大多数“RAG 教程”在真实生产环境中都会崩溃。**
+> **一个全栈 RAG 系统，旨在展示为什么绝大多数“RAG 教程”在真实生产环境中都会崩溃。**
 
 [[English] (README.md)](README.md) | [中文]
 
@@ -10,18 +10,14 @@
 [![本地沙盒 UI](https://img.shields.io/badge/▶_本地沙盒应用-10b981?style=for-the-badge&logo=play)](#%E8%B7%AF%E5%BE%84-a%E6%9C%AC%E5%9C%B0%E6%B2%99%E7%9B%92%E4%BA%A4%E4%BA%92%E5%BC%8F-ui-%E6%8E%A8%E8%8D%90)
 [![Colab 在线体验](https://img.shields.io/badge/▶_Colab_在线玩转_(可选)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
-绝大多数 RAG 演示都止步于：**向量检索 ➔ 大模型 ➔ 生成答案**。
-
-AI Model Atlas 走得更远 —— 深入剖析生产环境中的故障痛点：路由、缓存、评测、编排与自愈。
-
 ---
 
 ## ⚠️ 为什么存在本项目（真实问题）
 
-大多数 RAG 教程的运行逻辑都非常简单：
+大多数 RAG 教程的运行逻辑都非常简单 —— 而这恰恰是问题所在：
 > 用户 ➔ 向量检索 ➔ 大模型 ➔ 结束
 
-但在真实系统的生产环境中，会遇到教程中从未提及的崩溃点：
+但当真实生产系统长成这样时，它们会瞬间崩溃：
 * ❌ **一切查询都退化到向量检索**（工具之间缺乏智能路由）
 * ❌ **每一次查询都会去调用大模型**（缺少语义缓存层）
 * ❌ **没有任何质量评测与反馈闭环**
@@ -33,11 +29,11 @@ AI Model Atlas 走得更远 —— 深入剖析生产环境中的故障痛点：
 
 ---
 
-## 🧱 核心系统组件
+## 🧱 核心系统架构
 
 本系统不是一个简单的聊天机器人，而是一个完整的 RAG 执行系统：
 
-* **第一层 — 智能意图路由 (Level 1 — Intelligence Routing)**
+* **🧠 第一层 — 智能意图路由 (Level 1 — Intelligence Routing)**
   - 查询智能路由 (工具选择逻辑)
 * **第二层 — 混合检索层 (Level 2 — Retrieval Layer)**
   - 混合检索 (BM25 + 密集向量 + RRF 重排)

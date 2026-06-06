@@ -1,7 +1,7 @@
 # AI Model Atlas 🗺️
 ## From Toy RAG to Production-Grade AI Systems
 
-> **A full-stack RAG system that shows why most “RAG tutorials” break in real production.**
+> **A full-stack RAG system built to show why most RAG tutorials fail in production.**
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
@@ -18,10 +18,10 @@ AI Model Atlas goes beyond that—into real production failure points: routing, 
 
 ## ⚠️ Why this exists (the real problem)
 
-Most RAG systems in tutorials look like this:
+Most RAG systems in tutorials look simple — and that’s the problem:
 > User ➔ Embedding Search ➔ LLM ➔ Done
 
-But real systems don't work like this in production:
+But production systems break immediately when they look like this:
 * ❌ **Everything collapses into vector search** (no routing logic)
 * ❌ **Every query hits the LLM** (no caching layer)
 * ❌ **No evaluation** or quality feedback loops
@@ -33,18 +33,18 @@ But real systems don't work like this in production:
 
 ---
 
-## 🧱 Core System Components
+## 🧱 Core System Architecture
 
 Instead of a chatbot, this is a full RAG execution system:
 
-* **Level 1 — Intelligence Routing**
+* **🧠 Level 1 — Intelligence Layer**
   - Query Routing (tool selection logic)
-* **Level 2 — Retrieval Layer**
+* **🔍 Level 2 — Retrieval Layer**
   - Hybrid Retrieval (BM25 + Dense + RRF fusion)
   - GraphRAG reasoning layer
-* **Level 3 — Optimization Layer**
-  - Semantic Cache (zero-LLM hit path)
-* **Level 4 — Reliability Layer**
+* **⚡ Level 3 — Optimization Layer**
+  - Semantic Cache (zero-LLM fast path)
+* **🛡️ Level 4 — Reliability Layer**
   - Evaluation engine
   - Execution controller (retry / fallback / timeout)
 
