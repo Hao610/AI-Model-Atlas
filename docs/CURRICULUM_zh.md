@@ -139,10 +139,15 @@ flowchart TD
 
 ---
 
-### 🛸 附录: AI 的下一步去向 🔭
-> **课程结束了，但探索才刚开始。**
+### 🛸 附录 🔭
+> **扩展阅读系统架构与前沿趋势。**
 
-[阅读后记：AI 的下一步去向](phase5_100_to_200/appendix_future_zh.md)
+* **附录 A: 使用 Docker 进行 RAG 系统解耦编排**
+  - 学习如何将你的 RAG 管道拆分为多服务、事件驱动的生产级解耦容器系统。
+  - [English Guide (英文指南)](phase5_100_to_200/appendix_docker_orchestration.md) | [中文指南](phase5_100_to_200/appendix_docker_orchestration_zh.md)
+* **附录 B: AI 的下一步去向（后记）**
+  - 展望 MCP、多智能体、物理机器人以及世界模型等技术前沿。
+  - [English Guide (英文指南)](phase5_100_to_200/appendix_future.md) | [中文指南](phase5_100_to_200/appendix_future_zh.md)
 
 ---
 

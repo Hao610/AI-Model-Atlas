@@ -14,4 +14,4 @@ The course ends here, but the exploration has just begun.
 ## Congratulations! 🎉
 You have completed the AI Model Atlas! Thank you for joining us on this incredible journey from the absolute basics to the cutting edge of artificial intelligence. Keep building, keep exploring, and keep learning!
 
-← Prev: [36 ai safety](36_ai_safety.md)
+← Prev: [appendix docker orchestration](appendix_docker_orchestration.md)

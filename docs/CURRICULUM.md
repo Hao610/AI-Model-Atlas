@@ -139,10 +139,15 @@ flowchart TD
 
 ---
 
-### 🛸 Appendix: Where AI May Go Next 🔭
-> **The course ends here, but the exploration has just begun.**
+### 🛸 Appendices 🔭
+> **Extend your learning with project architecture and future frontiers.**
 
-[Read the Epilogue: Where AI May Go Next](phase5_100_to_200/appendix_future.md)
+* **Appendix A: Decoupling RAG with Docker Orchestration**
+  - Learn how to wrap your RAG pipeline into a multi-service, event-driven, production-grade decoupled system.
+  - [English Guide](phase5_100_to_200/appendix_docker_orchestration.md) | [中文指南](phase5_100_to_200/appendix_docker_orchestration_zh.md)
+* **Appendix B: Where AI May Go Next (Epilogue)**
+  - A brief outlook on MCP, Multi-Agent systems, World Models, and more.
+  - [English Guide](phase5_100_to_200/appendix_future.md) | [中文指南](phase5_100_to_200/appendix_future_zh.md)
 
 ---
 

@@ -49,4 +49,4 @@ You can build a fun prototype in a weekend, but moving it to production means ex
 If your system goes off the rails, it's not the model's fault—it's your system's fault. Designing for safety isn't an afterthought or an appendix; it is the fundamental requirement for deploying AI that users can actually trust.
 
 ---
-← Prev: [35 graph rag](35_graph_rag.md) | Next: [appendix future](appendix_future.md) →
+← Prev: [35 graph rag](35_graph_rag.md) | Next: [appendix docker orchestration](appendix_docker_orchestration.md) →
