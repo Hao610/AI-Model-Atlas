@@ -2,7 +2,7 @@
 
 ### The "0 to 100" Roadmap: From Zero to Production-Grade AI Systems
 
-> A structured, phase-based learning path covering 31 modules across 4 stages — from basic AI concepts to cloud-scale model deployment.
+> A structured, phase-based learning path covering 35 modules across 5 stages — from basic AI concepts to frontier agentic architectures.
 
 ← Back to [README](../README.md) | [中文课程 (CURRICULUM_zh.md)](CURRICULUM_zh.md)
 
@@ -19,7 +19,8 @@ flowchart TD
     PathA --> P1[Phase 1: Concepts, Prompts & AI Tools]
     PathB --> P2[Phase 2: Workflows, Dify & No-Code Agents]
     PathC --> P3[Phase 3: APIs, Python, Embeddings & RAG Design]
-    PathC --> P4[Phase 4: LoRA Fine-Tuning, Quantization & Cloud GPU Deploy]
+    P3 --> P4[Phase 4: LoRA Fine-Tuning, Quantization & Cloud GPU Deploy]
+    P4 --> P5[Phase 5: Agentic Routing, Evaluation & Multimodal RAG]
 
     classDef default fill:#1f2937,stroke:#374151,stroke-width:1px,color:#f9fafb;
     classDef highlight fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff;
@@ -121,6 +122,19 @@ flowchart TD
 | **29. Inference Optimization** | KV Cache, continuous batching, streaming, throughput logic. | [29_inference_optimization.md](phase4_50_to_100/29_inference_optimization.md) | [29_inference_optimization_zh.md](phase4_50_to_100/29_inference_optimization_zh.md) |
 | **30. Safety & Alignment** | RLHF, DPO, Guardrails, and understanding model boundaries. | [30_safety_alignment.md](phase4_50_to_100/30_safety_alignment.md) | [30_safety_alignment_zh.md](phase4_50_to_100/30_safety_alignment_zh.md) |
 | **31. Cloud Deployment** | Renting compute on AutoDL/RunPod and serving models to users. | [31_deployment.md](phase4_50_to_100/31_deployment.md) | [31_deployment_zh.md](phase4_50_to_100/31_deployment_zh.md) |
+
+---
+
+### 🌌 Phase 5: Frontier AI Architecture (100 to 200)
+> **This phase pushes you into the bleeding edge. You will construct agentic workflows, establish quantitative evaluation baselines, and expand into multi-modal inputs.**
+* **Goal**: Evolve your RAG pipeline from a passive search engine into an evaluated, multi-modal autonomous system.
+
+| Module | Description | English Guide | 中文指南 |
+| :--- | :--- | :--- | :--- |
+| **32. Tool Routing (Agentic RAG)** | Replacing static pipelines with intelligent dispatch routers (Calculator, Web). | [32_tool_routing.md](phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](phase5_100_to_200/32_tool_routing_zh.md) |
+| **33. RAG Evaluation** | Establishing baselines with Ragas (Faithfulness, Context Precision). | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
+| **34. Vision RAG & OCR** | Processing complex PDF charts, tables, and raw image inputs. | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
+| **35. GraphRAG (Advanced)** | Extracting entities and mapping knowledge graphs for global queries. | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
 
 ---
 

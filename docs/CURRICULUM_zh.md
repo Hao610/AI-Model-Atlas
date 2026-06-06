@@ -2,7 +2,7 @@
 
 ### "从 0 到 100" 全栈 AI 学习路线图
 
-> 一套系统化、分阶段的学习路径，涵盖 4 大阶段、31 个模块 —— 从 AI 基础概念到云端规模化部署。
+> 一套系统化、分阶段的学习路径，涵盖 5 大阶段、35 个模块 —— 从 AI 基础概念到前沿的智能体架构体系。
 
 ← 返回 [中文首页](../README_zh.md) | [English Curriculum (CURRICULUM.md)](CURRICULUM.md)
 
@@ -19,7 +19,8 @@ flowchart TD
     PathA --> P1[阶段一：AI 核心概念、提示词艺术与办公工具]
     PathB --> P2[阶段二：工作流设计、Dify 搭建与无代码 Agent]
     PathC --> P3[阶段三：API 编写、Python 开发、Embeddings 与 RAG 设计]
-    PathC --> P4[阶段四：LoRA 微调实操、模型量化压缩与云端算力服务部署]
+    P3 --> P4[阶段四：LoRA 微调实操、模型量化压缩与云端算力服务部署]
+    P4 --> P5[阶段五：智能体路由、量化评测体系与多模态 RAG]
 
     classDef default fill:#1f2937,stroke:#374151,stroke-width:1px,color:#f9fafb;
     classDef highlight fill:#3b82f6,stroke:#1d4ed8,stroke-width:2px,color:#fff;
@@ -121,6 +122,19 @@ flowchart TD
 | **29. 推理优化与高并发服务** | 深入 KV Cache、动态批处理（Continuous Batching）、流式推理。 | [29_inference_optimization.md](phase4_50_to_100/29_inference_optimization.md) | [29_inference_optimization_zh.md](phase4_50_to_100/29_inference_optimization_zh.md) |
 | **30. 对齐与安全围栏** | 解释 RLHF、DPO 以及为什么大模型会拒绝回答你的敏感问题。 | [30_safety_alignment.md](phase4_50_to_100/30_safety_alignment.md) | [30_safety_alignment_zh.md](phase4_50_to_100/30_safety_alignment_zh.md) |
 | **31. 云端 GPU 算力部署** | 租用 AutoDL / RunPod 显卡，并完成开源模型的私有化服务上线。 | [31_deployment.md](phase4_50_to_100/31_deployment.md) | [31_deployment_zh.md](phase4_50_to_100/31_deployment_zh.md) |
+
+---
+
+### 🌌 阶段五：前沿架构与智能体 (从 100 到 200)
+> **本阶段将带你进入真正的无人区。你将把静态的 RAG 系统演进为能够自主思考、调用工具、看懂图片并接受量化评测的智能体大脑。**
+* **学习目标**：从被动的搜索系统进化为可评测的、多模态自治的 Agentic RAG 系统。
+
+| 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
+| :--- | :--- | :--- | :--- |
+| **32. Tool Routing (智能体路由)** | 告别静态流水线，实现能够调用计算器与联网搜索的意图路由器。 | [32_tool_routing.md](phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](phase5_100_to_200/32_tool_routing_zh.md) |
+| **33. RAG 系统量化评测** | 建立基准！使用 Ragas 测量 Faithfulness 与上下文精度。 | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
+| **34. 视觉 Vision RAG 与 OCR** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
+| **35. GraphRAG (知识图谱)** | 进阶大杀器：实体抽取与图数据库融合检索，解决全局总结问题。 | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
 
 ---
 

@@ -10,6 +10,9 @@ from core.intelligence.query_rewriter import QueryRewriter
 from core.intelligence.reranker import Reranker
 from core.cache.semantic_cache import SemanticCache
 from core.cache.cache_metrics import CacheMetrics
+from core.tools.router import ToolRouter, ToolType
+from core.tools.calculator import CalculatorTool
+from core.tools.web import WebSearchTool
 from config.settings import settings
 
 class RAGPipeline:
@@ -22,6 +25,10 @@ class RAGPipeline:
         self.reranker = Reranker()
         self.cache = SemanticCache(self.embeddings)
         self.metrics = CacheMetrics()
+        self.tool_router = ToolRouter()
+        self.calculator = CalculatorTool()
+        self.web_search = WebSearchTool()
+        self.traces = [] # Stores PipelineTrace dictionaries for Stage B Evaluation
         self.collection_name = "default_rag"
         
     def reload_llm(self):
@@ -71,6 +78,44 @@ class RAGPipeline:
                       rewrite_active: bool = True, rerank_active: bool = True, rerank_threshold: float = 1.5,
                       cache_active: bool = True, cache_threshold: float = 0.9):
         """Retrieves contexts, optimizes using intelligence modules, and yields streams."""
+        start_time = time.time()
+        
+        # 0. Tool Routing Layer (Stage A)
+        self.controller.log("Analyzing intent via ToolRouter...")
+        route_decision = self.tool_router.route(query)
+        
+        # Initialize PipelineTrace
+        trace = {
+            "query": query,
+            "route": route_decision.tool.value,
+            "confidence": route_decision.confidence,
+            "reason": route_decision.reason,
+            "retrieved_docs": [],
+            "answer": "",
+            "latency": 0.0
+        }
+        
+        # Handle Non-RAG Routes (Calculator / Web)
+        if route_decision.tool == ToolType.CALCULATOR:
+            self.controller.log("Router dispatched to CalculatorTool.")
+            result = self.calculator.run(query)
+            trace["answer"] = result
+            trace["latency"] = time.time() - start_time
+            self.traces.append(trace)
+            def calc_stream():
+                yield f"🧮 **Calculator Result:**\n`{result}`"
+            return calc_stream(), []
+            
+        elif route_decision.tool == ToolType.WEB:
+            self.controller.log("Router dispatched to WebSearchTool.")
+            result = self.web_search.run(query)
+            trace["answer"] = result
+            trace["latency"] = time.time() - start_time
+            self.traces.append(trace)
+            def web_stream():
+                yield f"🌐 **Web Search Action:**\n{result}"
+            return web_stream(), []
+
         # 1. Semantic Cache check
         if cache_active:
             self.controller.log("Checking Semantic Cache...")
@@ -85,6 +130,10 @@ class RAGPipeline:
                 # Yield cached stream instantly
                 def cached_stream():
                     yield cached_response
+                    
+                trace["answer"] = cached_response
+                trace["latency"] = duration
+                self.traces.append(trace)
                 return cached_stream(), []
             else:
                 self.controller.log("Cache Miss. Continuing vector retrieval workflow.")
@@ -128,6 +177,8 @@ class RAGPipeline:
             context_str += f"\n[Source: {match['metadata'].get('source', 'Unknown')}]\n{match['content']}\n"
             sources.append(match)
             
+        trace["retrieved_docs"] = [m["id"] for m in sources]
+            
         # Dispatch execution and return control flows
         stream = self.controller.execute(
             query=query,
@@ -135,12 +186,18 @@ class RAGPipeline:
             system_prompt=system_prompt
         )
         
-        # Wrap stream to cache the generated output on completion
+        # Wrap stream to cache the generated output on completion and log trace
         def stream_cacher():
             collected_response = ""
             for chunk in stream:
                 collected_response += chunk
                 yield chunk
+            
+            # Finalize Trace
+            trace["answer"] = collected_response
+            trace["latency"] = time.time() - start_time
+            self.traces.append(trace)
+            
             if cache_active and collected_response and "⚠️" not in collected_response:
                 self.cache.put(query, collected_response)
                 self.controller.log("Successfully cached response mapping in Semantic Cache memory.")
