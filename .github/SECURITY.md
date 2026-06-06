@@ -1,6 +1,6 @@
 # Security Policy
 
-Thank you for helping keep AI-Model-Atlas secure!
+Thank you for helping keep AI Model Atlas secure!
 
 ## Supported Versions
 
@@ -15,7 +15,7 @@ Currently, security updates are only provided for the latest version on the `mai
 
 Please **DO NOT** report security vulnerabilities through public GitHub issues.
 
-If you believe you have found a security vulnerability in AI-Model-Atlas (e.g., exposed API keys, prompt injection risks in the RAG app, or dependency vulnerabilities), please report it directly to the maintainer via email:
+If you believe you have found a security vulnerability in AI Model Atlas (e.g., exposed API keys, prompt injection risks in the RAG app, or dependency vulnerabilities), please report it directly to the maintainer via email:
 
 **Email:** loichianghao@gmail.com
 

@@ -1,6 +1,6 @@
 # Contributing Guidelines 🤝
 
-First of all, thank you for showing interest in contributing to the **AI-Model-Atlas**! It is community builders like you that make open-source education outstanding.
+First of all, thank you for showing interest in contributing to the **AI Model Atlas**! It is community builders like you that make open-source education outstanding.
 
 Please follow these simple rules when proposing changes:
 

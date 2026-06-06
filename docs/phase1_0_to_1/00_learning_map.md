@@ -2,7 +2,7 @@
 
 [English] | [中文 (00_learning_map_zh.md)](00_learning_map_zh.md)
 
-Welcome to the **AI-Model-Atlas**! With over 30 modules spanning basic concepts to GPU cluster deployments, it is easy to feel overwhelmed. 
+Welcome to the **AI Model Atlas**! With over 30 modules spanning basic concepts to GPU cluster deployments, it is easy to feel overwhelmed. 
 
 This guide acts as your syllabus. Depending on your background and goals, choose one of the three learning pathways below.
 
@@ -12,7 +12,7 @@ This guide acts as your syllabus. Depending on your background and goals, choose
 
 ```text
                ┌────────────────────────┐
-               │    AI-Model-Atlas      │
+               │    AI Model Atlas      │
                │   (Syllabus Start)     │
                └───────────┬────────────┘
                            │

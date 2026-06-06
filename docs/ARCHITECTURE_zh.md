@@ -1,4 +1,4 @@
-# 📐 AI-Model-Atlas — 系统架构文档
+# 📐 AI Model Atlas — 系统架构文档
 
 > 认知级 RAG 系统的工程深度剖析：性能指标、容灾自愈与执行控制。
 
@@ -116,4 +116,4 @@ stateDiagram-v2
 
 ## 📄 开源协议
 
-本文档为 [AI-Model-Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE) 协议。
+本文档为 [AI Model Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE) 协议。

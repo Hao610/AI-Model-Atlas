@@ -1,6 +1,6 @@
 ---
 name: "🐛 Bug Report"
-about: Report a bug to help us improve AI-Model-Atlas.
+about: Report a bug to help us improve AI Model Atlas.
 title: "[BUG] "
 labels: bug
 assignees: ""

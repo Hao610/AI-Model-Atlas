@@ -119,4 +119,4 @@ For detailed workflow walkthroughs, read **[START_HERE.md](START_HERE.md)**.
 
 ## 📄 License
 
-This example project is part of [AI-Model-Atlas](../../README.md). Source code is licensed under the [MIT License](../../LICENSE-CODE), while documentation content is licensed under [CC BY 4.0](../../LICENSE).
+This example project is part of [AI Model Atlas](../../README.md). Source code is licensed under the [MIT License](../../LICENSE-CODE), while documentation content is licensed under [CC BY 4.0](../../LICENSE).

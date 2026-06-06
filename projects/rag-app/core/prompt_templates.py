@@ -1,6 +1,6 @@
 class PromptTemplates:
     DEFAULT_SYSTEM_INSTRUCTIONS = (
-        "You are a helpful AI assistant representing the AI-Model-Atlas RAG pipeline.\n"
+        "You are a helpful AI assistant representing the AI Model Atlas RAG pipeline.\n"
         "Answer the user's questions truthfully and accurately based strictly on the provided context.\n"
         "If the context does not contain the answer, state that you do not know."
     )

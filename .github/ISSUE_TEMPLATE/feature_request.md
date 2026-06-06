@@ -1,6 +1,6 @@
 ---
 name: "🚀 Feature Request"
-about: Suggest an idea or enhancement for AI-Model-Atlas.
+about: Suggest an idea or enhancement for AI Model Atlas.
 title: "[FEATURE] "
 labels: enhancement
 assignees: ""

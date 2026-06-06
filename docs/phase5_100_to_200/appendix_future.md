@@ -12,6 +12,6 @@ The course ends here, but the exploration has just begun.
 - **Scientific AI**: The application of machine learning to accelerate discoveries in biology, chemistry, materials science, and physics. Example: Google DeepMind's AlphaFold 3 predicting the structures and interactions of all life's molecules with unprecedented accuracy.
 
 ## Congratulations! 🎉
-You have completed the AI-Model-Atlas! Thank you for joining us on this incredible journey from the absolute basics to the cutting edge of artificial intelligence. Keep building, keep exploring, and keep learning!
+You have completed the AI Model Atlas! Thank you for joining us on this incredible journey from the absolute basics to the cutting edge of artificial intelligence. Keep building, keep exploring, and keep learning!
 
 ← Prev: [36 ai safety](36_ai_safety.md)

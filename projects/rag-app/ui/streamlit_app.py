@@ -8,7 +8,7 @@ from config.settings import settings
 
 # Page styling settings
 st.set_page_config(
-    page_title="AI-Model-Atlas | Hybrid RAG Reference App",
+    page_title="AI Model Atlas | Hybrid RAG Reference App",
     page_icon="🗺️",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -46,7 +46,7 @@ if "ingested_file" not in st.session_state:
     st.session_state.ingested_file = None
 
 st.title("🗺️ Hybrid RAG Reference Application")
-st.caption("v2.1 Reference-Grade Implementation | Built on top of the AI-Model-Atlas Roadmap")
+st.caption("v2.1 Reference-Grade Implementation | Built on top of the AI Model Atlas Roadmap")
 
 # Sidebar settings configuration panel
 with st.sidebar:
