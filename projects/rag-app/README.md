@@ -39,6 +39,8 @@ flowchart TD
 
 * **🚦 Retrieval Orchestration Layer**: A deterministic regex-based router that intercepts queries and dispatches them to specialized tools (Calculator, Web Search, or Vector DB) before engaging the heavy LLM pipeline.
 * **📊 Lightweight Evaluation Framework**: A native LLM-as-a-judge engine designed to evaluate system performance across metrics like Routing Accuracy, Faithfulness, Answer Relevancy, Context Precision, and Groundedness.
+* **👁️ Vision RAG & Structural Parsing**: Transparent, multi-engine extraction (`pdfplumber` + `PyMuPDF`) that gracefully extracts explicit table boundaries and natively filters structural images.
+* **📦 Table-Aware Chunking**: Abandons naive text splitters for tables, dynamically preserving full Markdown tables as atomic vector blocks to guarantee tabular integrity during LLM retrieval.
 * **🧠 Cognitive Query Rewriting**: Standardizes and optimizes conversational queries by removing grammatical noise and syntax prefixes before vector search, improving retrieval accuracy.
 * **🛡️ Execution Control Plane**: Orchestrates all request lifetimes. Handles exponential backoff retries, connection timeouts, and automatic graceful degradation (seamlessly falling back from local Ollama to cloud API if local nodes go offline).
 * **⚡ Persistent Semantic Cache**: Prevents redundant model execution. Repeated or semantically matching queries are bypassed and returned instantly. State is persisted securely to local JSON, surviving system restarts.
@@ -64,7 +66,11 @@ rag-app/
     ├── prompt_templates.py      # Centralized prompts and fallback boundaries
     ├── llm_router.py            # Adapts output streaming for Ollama/Cloud API
     ├── embeddings.py            # Local SentenceTransformers / OpenAI embeddings interface
-    ├── chunking.py              # Recursive character paragraph splitter
+    ├── chunking/
+    │   └── element_chunker.py       # Table-aware atomic element chunking
+    ├── parsing/
+    │   ├── models.py                # Unified ParsedElement dataclass
+    │   └── pdf_parser.py            # Structural pdfplumber/PyMuPDF extractor
     ├── vectorstore.py           # Dual Indexing ChromaDB + BM25 persistent manager
     ├── cache/
     │   ├── semantic_cache.py    # Persistent semantic similarity cache engine

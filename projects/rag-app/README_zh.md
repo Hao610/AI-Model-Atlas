@@ -39,6 +39,8 @@ flowchart TD
 
 * **🚦 检索编排与路由层 (Retrieval Orchestration Layer)**：基于确定性正则的意图路由器。在调用昂贵的大模型推理前，先对问题进行意图分发，可将请求路由至“计算器”、“联网搜索”或传统的“混合向量检索”分支。
 * **📊 轻量级量化评测体系 (Lightweight Evaluation Framework)**：不依赖黑盒第三方库，纯原生手工实现的 LLM-as-a-judge 裁判引擎。实时对系统生成的每一条数据进行路由准确率 (Routing Accuracy)、忠实度 (Faithfulness)、上下文精确度 (Context Precision) 与扎实度 (Groundedness) 评分。
+* **👁️ 结构化解析引擎 (Structural Parsing)**：通过引入 `pdfplumber` 与 `PyMuPDF`，在完全透明可控的前提下，精准提取 PDF 中的表格边界并输出原生 Markdown，同时过滤掉无用装饰图片，对业务图表进行提取。
+* **📦 原子化表格切片 (Table-Aware Chunking)**：抛弃传统的暴力文本切片机制。系统能识别 `table` 和 `image` 元素，并作为独立不可分割的原子 Chunk 灌入 ChromaDB，彻底解决表格被拦腰截断导致的幻觉问题。
 * **🧠 认知查询改写 (Cognitive Query Rewriting)**：在向量数据库检索前，自动剥离口语化提问噪音与语法修饰，大幅提升检索的召回率与准确度。
 * **🛡️ 执行控制平面 (Execution Control Plane)**：统一接管请求生命周期。实现指数级退避重试、连接超时控制以及优雅的**故障降级降配 (Ollama 掉线自动秒切云端 API)**。
 * **⚡ 语义缓存持久化 (Persistent Semantic Cache)**：避免重复算力浪费。对相同或高度相似的语义问题进行命中拦截，状态持久化到本地 JSON，重启系统不丢失。
@@ -64,7 +66,11 @@ rag-app/
     ├── prompt_templates.py      # 治理层：管理提示词规范与兜底提示词
     ├── llm_router.py            # 推理层：对接 Ollama/云端 API 的流式输出
     ├── embeddings.py            # 向量层：本地 sentence-transformers 或云端嵌入接口
-    ├── chunking.py              # 切片层：递归式字符切片
+    ├── chunking/
+    │   └── element_chunker.py       # 保证表格完整性的原子化切分器
+    ├── parsing/
+    │   ├── models.py                # 统一的 ParsedElement 数据契约
+    │   └── pdf_parser.py            # pdfplumber/PyMuPDF 结构化解析引擎
     ├── vectorstore.py           # 存储层：ChromaDB + BM25 双路索引管理器
     ├── cache/
     │   ├── semantic_cache.py    # 持久化存储的语义级查询缓存中心
