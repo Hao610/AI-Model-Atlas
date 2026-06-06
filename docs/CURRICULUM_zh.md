@@ -132,9 +132,22 @@ flowchart TD
 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- |
 | **32. Tool Routing (智能体路由)** | 告别静态流水线，实现能够调用计算器与联网搜索的意图路由器。 | [32_tool_routing.md](phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](phase5_100_to_200/32_tool_routing_zh.md) |
-| **33. RAG 系统量化评测** | 建立基准！使用 Ragas 测量 Faithfulness 与上下文精度。 | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
-| **34. 视觉 Vision RAG 与 OCR** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
-| **35. GraphRAG (知识图谱)** | 进阶大杀器：实体抽取与图数据库融合检索，解决全局总结问题。 | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
+| **33. RAG Evaluation (量化评测)** | 如何证明 RAG 系统真的变强了？深入理解 Faithfulness、上下文精度与 LLM-as-a-Judge 裁判引擎。 | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
+| **34. Vision RAG (视觉增强与解析)** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
+| **35. GraphRAG (进阶图谱搜索)** | 专为高密度关联数据设计的关系图谱。在法律、医疗等垂直领域极其有用，但在大多数基础 RAG 中并非刚需。 | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
+
+---
+
+### 🛸 附录：前沿技术雷达 (Frontier AI Radar)
+> **超越 Phase 5：写给新手的未来 AI 发展概览**
+* **MCP (Model Context Protocol)**: AI 的 USB-C 接口。让 AI 统一、标准化地调用外部工具。
+* **Multi-Agent (多智能体)**: 一个 AI 像一个人，多个 AI 协作就像一个团队。
+* **Long Context (超长上下文)**: 百万级 Token。让 AI 一次性读完整本书，甚至代替部分 RAG 搜索。
+* **World Models (世界模型)**: 让 AI 学会模拟、理解真实的物理世界法则。
+* **Robotics (具身智能)**: 给 AI 装上身体，在物理环境里执行任务。
+
+*课后推荐阅读：*
+* **36. AI Safety & Alignment (AI 安全与对齐)**: AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？
 
 ---
 

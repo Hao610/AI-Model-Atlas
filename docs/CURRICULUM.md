@@ -132,9 +132,22 @@ flowchart TD
 | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
 | **32. Tool Routing (Agentic RAG)** | Replacing static pipelines with intelligent dispatch routers (Calculator, Web). | [32_tool_routing.md](phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](phase5_100_to_200/32_tool_routing_zh.md) |
-| **33. RAG Evaluation** | Establishing baselines with Ragas (Faithfulness, Context Precision). | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
+| **33. RAG Evaluation** | How do we know a RAG system is actually improving? Faithfulness, Relevancy, Context Precision, and LLM-as-a-Judge. | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
 | **34. Vision RAG & OCR** | Processing complex PDF charts, tables, and raw image inputs. | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
-| **35. GraphRAG (Advanced)** | Extracting entities and mapping knowledge graphs for global queries. | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
+| **35. GraphRAG (Advanced)** | Knowledge graphs for highly relational data. Useful in domains such as law, medicine, and research. Not required for most RAG systems. | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
+
+---
+
+### 🛸 Appendix: Frontier AI Radar
+> **Beyond Phase 5: A conceptual preview of where the AI industry is heading next.**
+* **MCP (Model Context Protocol)**: AI's USB-C interface. Letting AI uniformly call external tools.
+* **Multi-Agent**: One AI is like a person; multiple AIs working together is like a team.
+* **Long Context**: Million-token context windows. Letting AI read an entire book at once.
+* **World Models**: Letting AI learn to simulate the real physical world.
+* **Robotics**: Giving AI a physical body to interact with the environment.
+
+*Optional Bonus Reading:*
+* **36. AI Safety & Alignment**: Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems?
 
 ---
 
