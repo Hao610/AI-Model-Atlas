@@ -26,4 +26,4 @@
 
 ---
 
-为了锚定模型，我们给它们提供参考文本。但它们实际上能记住多少？让我们在 [上下文窗口与 Needle in a Haystack 测试](07_needle_test.md) 中一探究竟。
+为了锚定模型，我们给它们提供参考文本。但它们实际上能记住多少？让我们在 [上下文窗口与 Needle in a Haystack 测试](07_needle_test_zh.md) 中一探究竟。

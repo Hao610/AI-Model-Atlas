@@ -53,4 +53,4 @@ Transformer 的并行注意力机制:
 
 ---
 
-理解了 Transformer 之后，让我们在 [Embedding 到底是什么？](03_embedding.md) 中深入研究它如何将文本转化为坐标。
+理解了 Transformer 之后，让我们在 [Embedding 到底是什么？](03_embedding_zh.md) 中深入研究它如何将文本转化为坐标。

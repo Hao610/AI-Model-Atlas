@@ -44,4 +44,4 @@ Llama  ──┘             └──► 本地文件系统适配服务
 
 ---
 
-MCP 标准化了模型可以使用的工具，但我们如何构建能够自主规划和执行动作的系统？在 [Agent 为什么不是 Prompt](09_agent_mechanics.md) 中了解更多。
+MCP 标准化了模型可以使用的工具，但我们如何构建能够自主规划和执行动作的系统？在 [Agent 为什么不是 Prompt](09_agent_mechanics_zh.md) 中了解更多。
