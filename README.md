@@ -1,9 +1,10 @@
-# AI Model Atlas 🗺️
+# 🗺️ AI Model Atlas
+
 ## A Learning-Focused RAG Architecture Simulator
 
-> **A learning-focused architecture system for understanding how production-style RAG systems are designed, and why most tutorial-level implementations fail in real-world scenarios.**
+AI Model Atlas is a **learning-focused system design simulator** for understanding how production RAG systems actually work, and why most tutorial-level implementations fail in real-world scenarios.
 
-*This project is **not a production framework or deployment system**. It is an educational simulation of real-world RAG architecture patterns.*
+This project is **not a production framework or deployment system**. It is an educational system for studying real-world AI architecture patterns.
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
@@ -16,115 +17,103 @@
 
 ## 📌 What this project is
 
-AI Model Atlas is a **conceptual + engineering learning system** that breaks down how modern RAG systems actually work under complexity.
+AI Model Atlas breaks down how modern RAG systems behave under real-world complexity.
 
-It demonstrates:
-* How real RAG systems are structured in production
-* Why naive “vector search ➔ LLM” pipelines fail
-* How routing, caching, evaluation, and orchestration fit together
-* What changes when systems move from demo ➔ real-world scale
-
----
-
-## ⚠️ Why this exists (the real gap in tutorials)
-
-Most RAG systems in tutorials look simple — and that’s the problem:
-> User ➔ Embedding Search ➔ LLM ➔ Done
-
-This simplicity is misleading. In real systems, this design breaks quickly:
-* ❌ **Everything collapses into vector search** (no routing logic between tools)
-* ❌ **Every query hits the LLM** (no caching layer)
-* ❌ **No evaluation** or quality feedback loops
-* ❌ **No failure recovery** or retry strategies
-* ❌ **No hybrid retrieval** (BM25 + dense + fusion)
-* ❌ **No system-level orchestration** or control flows
-
-👉 AI Model Atlas exists to **make these hidden system layers visible and understandable**.
+It helps you understand:
+* How production RAG systems are structured
+* Why simple “vector search ➔ LLM” pipelines break
+* Where routing, caching, and orchestration become necessary
+* How system design changes from demo ➔ production scale
 
 ---
 
-## 🧱 Core Architecture (conceptual breakdown)
+## ⚠️ The problem with most RAG tutorials
 
-This is not a chatbot — it is a **RAG system design simulation**:
+Most RAG systems look like this:
+> User ➔ Embedding Search ➔ LLM
 
-### 🧠 Level 1 — Intelligence Layer
-* Query Routing (tool selection logic)
+This is simple, but incomplete. In real-world systems, this design fails because:
+* No routing between tools (everything goes to vector search)
+* No caching layer (every request hits the LLM)
+* No evaluation or feedback loop
+* No failure recovery or retry logic
+* No hybrid retrieval (BM25 + dense + fusion)
+* No system-level orchestration or control flow
 
-### 🔍 Level 2 — Retrieval Layer
-* Hybrid Retrieval (BM25 + Dense + RRF fusion)
-* Graph-based reasoning (GraphRAG concepts)
+👉 This project exists to make these missing layers visible.
 
-### ⚡ Level 3 — Optimization Layer
-* Semantic Cache (fast-path response simulation)
+---
 
-### 🛡️ Level 4 — Reliability Layer
-* Evaluation concepts (LLM-as-a-judge idea)
+## 🧱 System design (conceptual)
+
+This is not a chatbot. It is a **decomposition of a full RAG system architecture**:
+
+### 🧠 Intelligence Layer
+* Query routing (tool selection logic)
+
+### 🔍 Retrieval Layer
+* Hybrid retrieval (BM25 + dense + RRF fusion)
+* Graph-based reasoning concepts (GraphRAG)
+
+### ⚡ Optimization Layer
+* Semantic caching (fast-path execution simulation)
+
+### 🛡️ Reliability Layer
+* Evaluation concepts (LLM-as-a-judge)
 * Execution control (retry / fallback / timeout logic)
 
 ---
 
 ## 🧩 What makes this different
 
-Instead of building another chatbot demo, this project focuses on:
-> 🧠 **Understanding how real AI systems behave under complexity, failure, and scale.**
+Instead of building another demo application, this project focuses on:
+> How real AI systems behave under failure, scale, and system complexity.
 
 It is designed as:
-* A **learning system (36 guided modules)**
-* A **reference architecture for RAG design patterns**
-* A **conceptual simulation of production AI systems**
+* A structured learning system (36 modules)
+* A reference architecture for RAG system design
+* A conceptual simulation of production AI pipelines
 
 ---
 
-## ⚡ Example System Behavior (conceptual flow)
+## ⚡ Example behavior (conceptual)
 
-User Query: `"What is Llama 3 license?"`
-➔ **Routing selected** (Vector + Web tools)
-➔ **Retrieval executed** (hybrid search)
+User: “What is Llama 3 license?”
+➔ **Routing selected** (vector + web tools)
+➔ **Hybrid retrieval executed**
 ➔ **No cache hit** ➔ LLM response generated
 ➔ **Evaluation step triggered**
 
 Repeat query:
 ➔ **Cache hit detected**
 ➔ Retrieval + LLM skipped
-➔ **Instant response simulation** (~0.0001s)
+➔ **Instant response** (~0.0001s simulated)
 
 ---
 
-## 🎯 What you will learn from this project
+## 🎯 What you will learn
 
 * Why naive RAG architectures fail in production
-* Why routing is necessary beyond vector search
-* Why caching is critical for cost and latency
+* Why routing is required beyond vector search
+* Why caching is critical for cost and latency control
 * How hybrid retrieval improves grounding quality
-* Why evaluation layers are needed in real systems
-* How production AI systems are structured conceptually
+* Why evaluation layers are necessary in real systems
+* How production AI systems are structured end-to-end
 
 ---
 
 ## 🚀 Who this is for
 
 * Developers learning RAG system design
-* Engineers moving from demos ➔ real-world architecture thinking
-* AI learners who want system-level understanding
-* Anyone studying agentic / tool-using LLM systems
+* Engineers moving from demos ➔ production thinking
+* AI learners studying system-level architecture
+* Anyone building agent-based or tool-using LLM systems
 
 ---
 
-## 🚀 How to use this project
+## ⭐ Note
 
-This repository is intended for **learning and exploration only**. 
-
-You can:
-* Read the architecture breakdowns
-* Follow the guided learning modules
-* Explore system design concepts step-by-step
-
----
-
-## ⭐ If this helps you understand RAG systems
-Star the repository if you find it useful for learning **how real-world AI systems are structured beyond tutorials**.
-
----
+This project is intended for **learning and system design exploration only**, not production deployment.
 
 ## 🧭 System Architecture Poster
 
