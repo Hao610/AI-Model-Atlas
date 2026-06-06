@@ -14,7 +14,7 @@
 > [!NOTE]
 > **New here?** Start with our [🧭 Getting Started Guide](docs/GETTING_STARTED.md) to choose the best roadmap for your goals!
 
-Welcome to the **AI Model Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, running, and even fine-tuning modern Artificial Intelligence models. Let's play! 🚀
+Welcome to the **AI Model Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, fine-tuning, and ultimately building complex agentic RAG workflows. Let's play! 🚀
 
 ---
 

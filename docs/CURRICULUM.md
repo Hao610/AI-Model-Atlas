@@ -2,7 +2,7 @@
 
 ### The "0 to 200" Roadmap: From Zero to Production-Grade AI Systems
 
-> A structured, phase-based learning path covering 36 modules across 5 stages — from basic AI concepts to frontier agentic architectures.
+> A structured, phase-based learning path covering 36 modules across 4 tracks — from basic AI concepts to cloud-scale model deployment and advanced agentic workflows.
 
 ← Back to [README](../README.md) | [中文课程 (CURRICULUM_zh.md)](CURRICULUM_zh.md)
 
@@ -31,7 +31,7 @@ flowchart TD
 
 > [!NOTE]
 > **💡 Quick Note on the Reading Order:**
-> The 31 modules listed in the table below are physically organized linearly by technical level (Phases 1 to 4). However, to keep your learning experience smooth and cohesive, the `Next Chapter` link at the bottom of each document is linked **non-linearly by cognitive dependency** (e.g., *No-Code Agents* skips *Multimodal AI* and goes straight to *RAG Introduction*).
+> The 36 modules listed in the table below are physically organized linearly by technical level (Phases 1 to 5). However, to keep your learning experience smooth and cohesive, the `Next Chapter` link at the bottom of each document is linked **non-linearly by cognitive dependency** (e.g., *No-Code Agents* skips *Multimodal AI* and goes straight to *RAG Introduction*).
 > 
 > We highly recommend **following the navigation links at the bottom of each page** for a guided, step-by-step experience, or using this curriculum as a **dictionary** to lookup specific topics. You can also expand the section below to view our 4 curated learning tracks:
 
@@ -47,7 +47,7 @@ flowchart TD
   * **Goal**: Code your way from basic Python SDK calls to multi-agent collaborative development, and ultimately conquer vector retrieval math and quantitative evaluation.
 
 * **🔄 Track C: Data Engineering & Fine-Tuning Track (For ML & DevOps Engineers)**
-  * **Flow**: `06 (Hugging Face)` ➔ `10 (Multimodal AI)` ➔ `16 (Cost & Tokens)` ➔ `23 (Data Prep)` ➔ `24 (Why Fine-Tune)` ➔ `25 (LoRA)` ➔ `26 (LLaMA-Factory)` ➔ `27 (Quantization)` ➔ `28 (GPU Selection)` ➔ `31 (Cloud Deployment)`.
+  * **Flow**: `06 (Hugging Face)` ➔ `10 (Multimodal AI)` ➔ `16 (Cost & Tokens)` ➔ `23 (Data Prep)` ➔ `24 (Why Fine-Tune)` ➔ `25 (LoRA)` ➔ `26 (LLaMA-Factory)` ➔ `27 (Quantization)` ➔ `28 (GPU Selection)` ➔ `31 (Cloud Deployment)` ➔ `32-36 (Advanced Agentic Architecture)`.
   * **Goal**: The "heavy industry" production line for the LLM lifecycle—from data cleaning and multimodal asset acquisition to GPU compute evaluation, LoRA fine-tuning, quantization, and deployment.
 
 * **⚡ Track D: High-Concurrency & Extreme Retrieval Architecture (For Backend & Architecture Geeks)**
