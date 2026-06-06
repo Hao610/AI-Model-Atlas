@@ -1,8 +1,8 @@
 # 📚 AI Model Atlas — 学习课程体系
 
-### "从 0 到 100" 全栈 AI 学习路线图
+### “从 0 到 200” 全栈 AI 学习路线图
 
-> 一套系统化、分阶段的学习路径，涵盖 5 大阶段、35 个模块 —— 从 AI 基础概念到前沿的智能体架构体系。
+> 一套系统化、分阶段的学习路径，涵盖 5 大阶段、36 个模块 —— 从 AI 基础概念到前沿的智能体自治架构。
 
 ← 返回 [中文首页](../README_zh.md) | [English Curriculum (CURRICULUM.md)](CURRICULUM.md)
 
@@ -148,6 +148,7 @@ flowchart TD
 
 *课后推荐阅读：*
 * **36. AI Safety & Alignment (AI 安全与对齐)**: AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？
+  * [English Guide](phase5_100_to_200/36_ai_safety.md) | [中文指南](phase5_100_to_200/36_ai_safety_zh.md)
 
 ---
 

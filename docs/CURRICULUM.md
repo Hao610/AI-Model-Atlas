@@ -1,8 +1,8 @@
 # 📚 AI Model Atlas — Learning Curriculum
 
-### The "0 to 100" Roadmap: From Zero to Production-Grade AI Systems
+### The "0 to 200" Roadmap: From Zero to Production-Grade AI Systems
 
-> A structured, phase-based learning path covering 35 modules across 5 stages — from basic AI concepts to frontier agentic architectures.
+> A structured, phase-based learning path covering 36 modules across 5 stages — from basic AI concepts to frontier agentic architectures.
 
 ← Back to [README](../README.md) | [中文课程 (CURRICULUM_zh.md)](CURRICULUM_zh.md)
 
@@ -148,6 +148,7 @@ flowchart TD
 
 *Optional Bonus Reading:*
 * **36. AI Safety & Alignment**: Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems?
+  * [English Guide](phase5_100_to_200/36_ai_safety.md) | [中文指南](phase5_100_to_200/36_ai_safety_zh.md)
 
 ---
 
