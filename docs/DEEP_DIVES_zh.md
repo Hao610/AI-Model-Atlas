@@ -94,6 +94,12 @@ graph TD
 | **15. AI 系统失效模式** | 从评测到崩溃：将检索失效、循环失效、对齐失效和评测过拟合形式化为隐式失效流形。 | [15_failure_modes.md](appendix_deep_dives/15_failure_modes.md) | [15_failure_modes_zh.md](appendix_deep_dives/15_failure_modes_zh.md) |
 | **16. AI 系统统一理论** | 从评测、失效到闭环收束：构建 AI 系统统一的五元组形式化公理体系，探讨双流形结构、评测-失效对偶性与终极收束。 | [16_unified_theory.md](appendix_deep_dives/16_unified_theory.md) | [16_unified_theory_zh.md](appendix_deep_dives/16_unified_theory_zh.md) |
 
+### 第七部分 — LLM 应用工程架构 (Part VII — LLM Application Engineering)
+
+| 章节 | 描述 | English Guide | 中文指南 |
+| :--- | :--- | :--- | :--- |
+| **17. LLM 应用四大基石** | 缓存 (Cache) vs 记忆 (Memory) vs 提示词 (Prompt) vs 结构化输出：厘清 LLM 系统架构的底层概念。 | [17_llm_core_patterns.md](appendix_deep_dives/17_llm_core_patterns.md) | [17_llm_core_patterns_zh.md](appendix_deep_dives/17_llm_core_patterns_zh.md) |
+
 ---
 
 ## 📄 开源协议

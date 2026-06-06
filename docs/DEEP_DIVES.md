@@ -94,6 +94,12 @@ graph TD
 | **15. AI System Failure Modes** | From evaluation to breakdown: formalizing retrieval, loop, alignment, and evaluation failures into a latent failure manifold. | [15_failure_modes.md](appendix_deep_dives/15_failure_modes.md) | [15_failure_modes_zh.md](appendix_deep_dives/15_failure_modes_zh.md) |
 | **16. AI Unified Systems Theory** | From evaluation and failure to closed-loop convergence: constructing the five-tuple axiomatic definition, dual manifold, evaluation-failure duality, and final synthesis. | [16_unified_theory.md](appendix_deep_dives/16_unified_theory.md) | [16_unified_theory_zh.md](appendix_deep_dives/16_unified_theory_zh.md) |
 
+### Part VII — LLM Application Engineering
+
+| Chapter | Description | English Guide | 中文指南 |
+| :--- | :--- | :--- | :--- |
+| **17. LLM App Core Pillars** | Cache vs Memory vs Prompt vs Structured Output: Disambiguating the foundation of LLM systems. | [17_llm_core_patterns.md](appendix_deep_dives/17_llm_core_patterns.md) | [17_llm_core_patterns_zh.md](appendix_deep_dives/17_llm_core_patterns_zh.md) |
+
 ---
 
 ## 📄 License

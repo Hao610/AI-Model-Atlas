@@ -50,4 +50,31 @@ Retrieval adds latency. To keep your app fast:
 
 ---
 
+## 🌟 Advanced: The Enterprise RAG Solution — Hybrid Search
+
+In enterprise RAG systems, relying solely on vector search often isn't enough. We need **Hybrid Search**.
+
+> [!TIP]
+> Think of the two search methods like this:
+> 
+> * **Vector Search (Dense) = "The Vibe-reading Artist" (懂氛围的文艺青年)**
+>   It understands the deep semantic meaning and "vibe" of your query. It knows that "Tomato" and "Pomodoro" are related. However, it is terrible at exact matches. If you search for "iPhone 15 Pro Max error code 404", it might just return documents about phones in general and miss the exact ID.
+>   
+> * **BM25 / Full Text Search (Sparse) = "The Dictionary Grandpa" (死板的查字典老头)**
+>   It doesn't understand context or semantics at all. But it is brilliant at exact keyword matches (like `Ctrl+F`). If you need to find an exact product ID, a serial number, or a specific name, the Dictionary Grandpa will find it instantly.
+
+**Hybrid Search = We want both! (Dual Retrieval)**
+We run both search engines simultaneously and combine their results. But how do we combine a semantic distance score from Vector DB with a keyword frequency score from BM25? They are on completely different scales!
+
+Enter **Reciprocal Rank Fusion (RRF) — "The Smart Vote Counter" (聪明的计票员)**.
+RRF elegantly merges these two completely different scoring systems without needing any machine learning training. It ignores the raw scores and instead looks at the *rankings* of the documents. 
+
+It uses a simple formula for each document:
+`Score = 1 / (k + rank)` 
+*(where `k` is a small constant, usually 60, to prevent the #1 rank from dominating too much).*
+
+By combining the Vibe-reading Artist, the Dictionary Grandpa, and the Smart Vote Counter, your RAG system will successfully retrieve both deep semantic concepts and exact keyword matches!
+
+---
+
 Now that you know how to architect search, let's explore inference optimizations to make the model run faster on your GPU in [Inference Optimization](../phase4_50_to_100/29_inference_optimization.md).
