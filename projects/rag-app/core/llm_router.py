@@ -27,7 +27,7 @@ class LLMRouter:
                 "stream": True
             }
             try:
-                response = requests.post(url, json=payload, stream=True, timeout=8)
+                response = requests.post(url, json=payload, stream=True, timeout=settings.LLM_TIMEOUT)
                 response.raise_for_status()
                 for line in response.iter_lines():
                     if line:
@@ -48,7 +48,7 @@ class LLMRouter:
                         {"role": "user", "content": user_prompt}
                     ],
                     stream=True,
-                    timeout=12
+                    timeout=settings.LLM_TIMEOUT
                 )
                 for chunk in stream:
                     content = chunk.choices[0].delta.content

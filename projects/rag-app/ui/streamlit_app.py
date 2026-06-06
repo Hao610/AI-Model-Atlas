@@ -1,4 +1,7 @@
 import os
+import sys
+# Ensure projects/rag-app directory is in python module path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
 from core.rag_pipeline import RAGPipeline
 from config.settings import settings
@@ -30,9 +33,13 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
+@st.cache_resource
+def get_pipeline():
+    return RAGPipeline()
+
 # Initialize Session State
 if "pipeline" not in st.session_state:
-    st.session_state.pipeline = RAGPipeline()
+    st.session_state.pipeline = get_pipeline()
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "ingested_file" not in st.session_state:
@@ -53,8 +60,8 @@ with st.sidebar:
     )
     if mode != settings.RAG_MODE:
         settings.RAG_MODE = mode
-        # Re-initialize pipeline with updated settings mode
-        st.session_state.pipeline = RAGPipeline()
+        # Re-initialize only the LLM components with updated settings mode
+        st.session_state.pipeline.reload_llm()
         st.success(f"Switched system execution mode to: **{mode.upper()}**")
         
     st.divider()
@@ -84,7 +91,7 @@ with st.sidebar:
         "api_base_url": settings.API_BASE_URL,
     }
     if current_config != previous_config:
-        st.session_state.pipeline = RAGPipeline()
+        st.session_state.pipeline.reload_llm()
         
     st.divider()
     

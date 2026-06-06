@@ -1,4 +1,7 @@
+import os
+import json
 import numpy as np
+from config.settings import settings
 
 def cosine_similarity(v1: list[float], v2: list[float]) -> float:
     a = np.array(v1)
@@ -13,9 +16,27 @@ def cosine_similarity(v1: list[float], v2: list[float]) -> float:
 class SemanticCache:
     def __init__(self, embedding_manager):
         self.embeddings = embedding_manager
-        # In-memory storage list containing dict objects: 
-        # {"query": str, "embedding": list[float], "response": str, "intent_len": int}
+        self.cache_file = settings.CACHE_FILE
         self.store = []
+        self._load_cache()
+
+    def _load_cache(self):
+        """Loads semantic cache from persistent JSON file."""
+        if os.path.exists(self.cache_file):
+            try:
+                with open(self.cache_file, "r", encoding="utf-8") as f:
+                    self.store = json.load(f)
+            except Exception:
+                self.store = []
+
+    def _save_cache(self):
+        """Saves semantic cache to persistent JSON file."""
+        os.makedirs(os.path.dirname(self.cache_file), exist_ok=True)
+        try:
+            with open(self.cache_file, "w", encoding="utf-8") as f:
+                json.dump(self.store, f, ensure_ascii=False, indent=2)
+        except Exception as e:
+            print(f"Failed to save semantic cache: {e}")
 
     def check(self, query: str, threshold: float = 0.9) -> str | None:
         """Finds cached answers by measuring embedding distance similarity."""
@@ -44,12 +65,18 @@ class SemanticCache:
     def put(self, query: str, response: str):
         """Saves a query vector pair to the semantic cache database."""
         query_vector = self.embeddings.embed_query(query)
+        # Ensure embedding is a list of floats for JSON serialization
+        if isinstance(query_vector, np.ndarray):
+            query_vector = query_vector.tolist()
+            
         self.store.append({
             "query": query,
             "embedding": query_vector,
             "response": response,
             "intent_len": len(query)
         })
+        self._save_cache()
 
     def clear(self):
         self.store.clear()
+        self._save_cache()

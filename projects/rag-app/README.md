@@ -16,9 +16,9 @@ flowchart TD
     QueryRewriter --> SemanticCacheCheck{Semantic Cache Hit?}
     
     SemanticCacheCheck -->|Yes| InstantReturn[Return Cached Response]
-    SemanticCacheCheck -->|No| VectorSearch[ChromaDB Vector Retrieval]
+    SemanticCacheCheck -->|No| VectorSearch[Dual Retrieval: Dense + BM25]
     
-    VectorSearch --> Reranker[Relevance Reranker]
+    VectorSearch --> Reranker[Reciprocal Rank Fusion Reranker]
     Reranker --> ExecutionController[Execution Controller]
     
     ExecutionController -->|Retry / Fallback| LLMRouter[LLM Router Engine]
@@ -35,8 +35,9 @@ flowchart TD
 
 * **🧠 Cognitive Query Rewriting**: Standardizes and optimizes conversational queries by removing grammatical noise and syntax prefixes before vector search, improving retrieval accuracy.
 * **🛡️ Execution Control Plane**: Orchestrates all request lifetimes. Handles exponential backoff retries, connection timeouts, and automatic graceful degradation (seamlessly falling back from local Ollama to cloud API if local nodes go offline).
-* **⚡ Semantic Cache Layer**: Prevents redundant model execution. Repeated or semantically matching queries are bypassed and returned instantly with cosine similarity checks and length ratio boundaries.
-* **🔍 Deep Observability Dashboard**: Streamlit interface containing dynamic threshold parameters, pre-vs-post rerank document context diagnostics, and live system latency metrics (TTFT, throughput tokens/sec).
+* **⚡ Persistent Semantic Cache**: Prevents redundant model execution. Repeated or semantically matching queries are bypassed and returned instantly. State is persisted securely to local JSON, surviving system restarts.
+* **🔍 Hybrid Search & RRF Engine**: Combines ChromaDB Dense Vector embeddings with BM25 Sparse keyword matching, fused algorithmically via Reciprocal Rank Fusion for unparalleled context retrieval precision.
+* **📈 Deep Observability Dashboard**: Streamlit interface containing dynamic threshold parameters, live system latency metrics, and transparent pre-vs-post rerank document context diagnostics.
 
 ---
 
@@ -52,16 +53,23 @@ rag-app/
 │   └── settings.py       # Centralized runtime configuration state
 │
 └── core/
+    ├── rag_pipeline.py          # Application glue and logic orchestrator
     ├── execution_controller.py  # Orchestrates retries, timeouts, and API fallbacks
     ├── prompt_templates.py      # Centralized prompts and fallback boundaries
     ├── llm_router.py            # Adapts output streaming for Ollama/Cloud API
     ├── embeddings.py            # Local SentenceTransformers / OpenAI embeddings interface
     ├── chunking.py              # Recursive character paragraph splitter
-    ├── vectorstore.py           # Persistent ChromaDB collection managers
+    ├── vectorstore.py           # Dual Indexing ChromaDB + BM25 persistent manager
+    ├── cache/
+    │   ├── semantic_cache.py    # Persistent semantic similarity cache engine
+    │   └── cache_metrics.py     # Hit ratio and latency analytics
     └── intelligence/
         ├── query_rewriter.py    # Removes prefix noise and conversational grammar
-        └── reranker.py          # Prunes context chunks using similarity metrics
+        └── reranker.py          # Implements Reciprocal Rank Fusion (RRF)
 ```
+
+> [!WARNING]
+> **BM25 Production Scaling Note:** The current Hybrid Search implementation uses an in-memory `BM25Okapi` index that reconstructs itself via full rehydration from ChromaDB upon ingestion. This is perfect for POCs and small-to-medium knowledge bases, but can become an O(N) bottleneck as data scales to thousands of documents. For massive enterprise deployments, consider swapping the BM25 memory backend for an incremental search engine like Elasticsearch or OpenSearch.
 
 ---
 

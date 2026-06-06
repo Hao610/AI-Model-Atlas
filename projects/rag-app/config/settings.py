@@ -24,5 +24,9 @@ class Settings:
     # Vector DB Settings
     DB_DIR = os.getenv("DB_DIR", "./data/chromadb")
     UPLOAD_DIR = os.getenv("UPLOAD_DIR", "./data/uploads")
+    CACHE_FILE = os.getenv("CACHE_FILE", "./data/semantic_cache.json")
+    
+    # Performance Settings
+    LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", 30))
 
 settings = Settings()

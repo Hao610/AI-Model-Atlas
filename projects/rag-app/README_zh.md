@@ -16,9 +16,9 @@ flowchart TD
     QueryRewriter --> SemanticCacheCheck{语义缓存命中?}
     
     SemanticCacheCheck -->|是| InstantReturn[直接秒级返回缓存答案]
-    SemanticCacheCheck -->|否| VectorSearch[ChromaDB 向量数据库检索]
+    SemanticCacheCheck -->|否| VectorSearch[双路检索: Dense + BM25]
     
-    VectorSearch --> Reranker[相关性重排过滤]
+    VectorSearch --> Reranker[RRF 倒数秩融合重排过滤]
     Reranker --> ExecutionController[执行控制中心]
     
     ExecutionController -->|重试 / 降级策略| LLMRouter[大模型路由器]
@@ -35,8 +35,9 @@ flowchart TD
 
 * **🧠 认知查询改写 (Cognitive Query Rewriting)**：在向量数据库检索前，自动剥离口语化提问噪音与语法修饰，大幅提升检索的召回率与准确度。
 * **🛡️ 执行控制平面 (Execution Control Plane)**：统一接管请求生命周期。实现指数级退避重试、连接超时控制以及优雅的**故障降级降配 (Ollama 掉线自动秒切云端 API)**。
-* **⚡ 语义缓存加速 (Semantic Cache Layer)**：避免重复算力浪费。对相同或高度相似的语义问题进行匹配，加入长度比例限制防止缓存污染，直接零时延返回缓存答案。
-* **🔍 全链路可观测性 (Observability Dashboard)**：Streamlit 控制台不仅提供检索阈值参数微调，还在右侧直观展示重排前后对比，并实时量化输出首 Token 延迟 (TTFT)、推理吞吐速率 (Tokens/sec)。
+* **⚡ 语义缓存持久化 (Persistent Semantic Cache)**：避免重复算力浪费。对相同或高度相似的语义问题进行命中拦截，状态持久化到本地 JSON，重启系统不丢失。
+* **🔍 混合检索与 RRF 引擎 (Hybrid Search & RRF)**：结合 ChromaDB 稠密向量与 BM25 稀疏检索（关键词匹配），通过倒数秩融合算法实现前所未有的检索精度。
+* **📈 全链路可观测性 (Observability Dashboard)**：Streamlit 控制台不仅提供检索阈值参数微调，还在右侧直观展示重排前后对比，并实时量化输出首 Token 延迟 (TTFT)、推理吞吐速率 (Tokens/sec)。
 
 ---
 
@@ -52,16 +53,23 @@ rag-app/
 │   └── settings.py       # 统一的环境变量控制与系统设置
 │
 └── core/
+    ├── rag_pipeline.py          # 核心编排：集成并串联所有组件逻辑
     ├── execution_controller.py  # 控制层：管理请求生命周期、重试与降级
     ├── prompt_templates.py      # 治理层：管理提示词规范与兜底提示词
     ├── llm_router.py            # 推理层：对接 Ollama/云端 API 的流式输出
     ├── embeddings.py            # 向量层：本地 sentence-transformers 或云端嵌入接口
     ├── chunking.py              # 切片层：递归式字符切片
-    ├── vectorstore.py           # 存储层：本地 ChromaDB 数据集交互
+    ├── vectorstore.py           # 存储层：ChromaDB + BM25 双路索引管理器
+    ├── cache/
+    │   ├── semantic_cache.py    # 持久化存储的语义级查询缓存中心
+    │   └── cache_metrics.py     # 缓存命中率与耗时统计监控
     └── intelligence/
         ├── query_rewriter.py    # 智能层：剥离前缀噪点并重写输入
-        └── reranker.py          # 智能层：进行余弦相似度重排与截断
+        └── reranker.py          # 智能层：实现 RRF 融合重排算法
 ```
+
+> [!WARNING]
+> **BM25 生产环境扩展提示:** 目前的混合检索架构使用全内存级 `BM25Okapi` 索引。在系统启动和增加新文档时，它会自动从 ChromaDB 读取全量数据来构建倒排索引。这对于 POC 和中小型知识库非常完美，但在处理十万、百万级文档时会面临内存和 O(N) 重建耗时的瓶颈。如果想承载真正的大型企业数据，建议将底层的 BM25 替换为 Elasticsearch 或 OpenSearch。
 
 ---
 

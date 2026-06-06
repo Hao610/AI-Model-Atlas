@@ -24,6 +24,12 @@ class RAGPipeline:
         self.metrics = CacheMetrics()
         self.collection_name = "default_rag"
         
+    def reload_llm(self):
+        """Reloads the LLM router and its dependents without reloading embeddings or vectorstore."""
+        self.router = LLMRouter()
+        self.controller.router = self.router
+        self.rewriter.router = self.router
+        
     def ingest_pdf(self, file_path: str, chunk_size: int = 800, chunk_overlap: int = 100) -> int:
         """Parses a PDF, chunks it recursively, embeds it, and indexes it into ChromaDB."""
         if not os.path.exists(file_path):
@@ -88,21 +94,33 @@ class RAGPipeline:
         optimized_query = self.rewriter.rewrite(query, active=rewrite_active)
         self.controller.log(f"Original Query: '{query}' | Rewritten to: '{optimized_query}'")
         
-        # 3. Retrieve matched contexts
-        matches = self.vectorstore.query(
+        # 3. Hybrid Dual Retrieval
+        hybrid_results = self.vectorstore.hybrid_query(
             collection_name=self.collection_name,
             query_text=optimized_query,
-            n_results=max_results
+            n_results=max_results * 2 # fetch more to give RRF a larger pool
         )
+        dense_matches = hybrid_results["dense_matches"]
+        sparse_matches = hybrid_results["sparse_matches"]
         
-        # 4. Relevance Reranking
+        self.controller.log(f"Vector Search: {len(dense_matches)} docs retrieved.")
+        self.controller.log(f"BM25 Search: {len(sparse_matches)} docs retrieved.")
+        
+        # 4. Reciprocal Rank Fusion (RRF) Reranking
         filtered_matches = self.reranker.rerank(
-            matches, 
-            query=optimized_query, 
+            dense_matches=dense_matches,
+            sparse_matches=sparse_matches,
             active=rerank_active, 
-            distance_threshold=rerank_threshold
+            top_k=max_results
         )
-        self.controller.log(f"Vector search matched {len(matches)} chunks. Rerank filter retained {len(filtered_matches)} chunks.")
+        self.controller.log(f"RRF Fusion: {len(dense_matches)} + {len(sparse_matches)} -> {len(filtered_matches)} docs.")
+        
+        if dense_matches:
+            self.controller.log("Dense Top3: " + ", ".join(d["id"] for d in dense_matches[:3]))
+        if sparse_matches:
+            self.controller.log("Sparse Top3: " + ", ".join(d["id"] for d in sparse_matches[:3]))
+        if filtered_matches:
+            self.controller.log("Fused Top3: " + ", ".join(d["id"] for d in filtered_matches[:3]))
         
         context_str = ""
         sources = []
