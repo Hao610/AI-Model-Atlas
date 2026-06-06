@@ -135,6 +135,7 @@ flowchart TD
 | **33. RAG Evaluation (量化评测)** | 如何证明 RAG 系统真的变强了？深入理解 Faithfulness、上下文精度与 LLM-as-a-Judge 裁判引擎。 | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
 | **34. Vision RAG (视觉增强与解析)** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
 | **35. GraphRAG (进阶图谱搜索)** | 专为高密度关联数据设计的关系图谱。在法律、医疗等垂直领域极其有用，但在大多数基础 RAG 中并非刚需。 | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
+| **36. AI Safety & Alignment (AI 安全与对齐)** | AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？ | [36_ai_safety.md](phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](phase5_100_to_200/36_ai_safety_zh.md) |
 
 ---
 
@@ -145,10 +146,6 @@ flowchart TD
 * **Long Context (超长上下文)**: 百万级 Token。让 AI 一次性读完整本书，甚至代替部分 RAG 搜索。
 * **World Models (世界模型)**: 让 AI 学会模拟、理解真实的物理世界法则。
 * **Robotics (具身智能)**: 给 AI 装上身体，在物理环境里执行任务。
-
-*课后推荐阅读：*
-* **36. AI Safety & Alignment (AI 安全与对齐)**: AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？
-  * [English Guide](phase5_100_to_200/36_ai_safety.md) | [中文指南](phase5_100_to_200/36_ai_safety_zh.md)
 
 ---
 

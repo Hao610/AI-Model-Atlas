@@ -135,6 +135,7 @@ flowchart TD
 | **33. RAG Evaluation** | How do we know a RAG system is actually improving? Faithfulness, Relevancy, Context Precision, and LLM-as-a-Judge. | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
 | **34. Vision RAG & OCR** | Processing complex PDF charts, tables, and raw image inputs. | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
 | **35. GraphRAG (Advanced)** | Knowledge graphs for highly relational data. Useful in domains such as law, medicine, and research. Not required for most RAG systems. | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
+| **36. AI Safety & Alignment** | Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems? | [36_ai_safety.md](phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](phase5_100_to_200/36_ai_safety_zh.md) |
 
 ---
 
@@ -145,10 +146,6 @@ flowchart TD
 * **Long Context**: Million-token context windows. Letting AI read an entire book at once.
 * **World Models**: Letting AI learn to simulate the real physical world.
 * **Robotics**: Giving AI a physical body to interact with the environment.
-
-*Optional Bonus Reading:*
-* **36. AI Safety & Alignment**: Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems?
-  * [English Guide](phase5_100_to_200/36_ai_safety.md) | [中文指南](phase5_100_to_200/36_ai_safety_zh.md)
 
 ---
 
