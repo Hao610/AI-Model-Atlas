@@ -40,19 +40,19 @@ flowchart TD
 
 * **🔄 Track A: Zero-Code / No-Code Application Track (For Beginners & Productivity)**
   * **Flow**: `01 (What is AI)` ➔ `02 (Prompt Art)` ➔ `03 (Licenses)` ➔ `04 (AI Tools)` ➔ `05 (Model Zoo)` ➔ `07 (Glossary)` ➔ `08 (LLM Landscape)` ➔ `09 (No-Code Agents)` ➔ `11 (RAG Intro)` ➔ `12 (Vector DB)` ➔ `13 (AI Workflows)` ➔ `14 (Use Cases)`.
-  * **Goal**: Learn how core concepts connect to visual agents, custom knowledge bases, and automation loops without writing code.
+  * **Goal**: Connect "Core Concepts ➔ Visual Agents ➔ Knowledge Bases ➔ Workflow Architecture" with zero code or math barriers to quickly empower business productivity.
 
 * **🔄 Track B: Full-Stack Developer & RAG Engineering Track (For Software & AI Engineers)**
-  * **Flow**: `14 (Use Cases)` ➔ `15 (API Integration)` ➔ `17 (Local LLM)` ➔ `18 (UI Interfaces)` ➔ `19 (Agent Frameworks)` ➔ `20 (Embeddings)` ➔ `22 (Model Evaluation)` ➔ `24 (Why Fine-Tune)`.
-  * **Goal**: Code your way from simple API scripting to multi-agent frontends and advanced semantic search logic.
+  * **Flow**: `14 (Use Cases)` ➔ `15 (Python API)` ➔ `17 (Local LLM)` ➔ `18 (Web UI)` ➔ `19 (Multi-Agent Frameworks)` ➔ `20 (Vector Embeddings)` ➔ `22 (Model Evaluation)` ➔ `24 (Why Fine-Tune)` ➔ `32 (Tool Routing)` ➔ `33 (RAG Evaluation)`.
+  * **Goal**: Code your way from basic Python SDK calls to multi-agent collaborative development, and ultimately conquer vector retrieval math and quantitative evaluation.
 
-* **🔄 Track C: Data Engineering, Assets & Fine-Tuning Track (For ML & DevOps Engineers)**
-  * **Flow**: `06 (Hugging Face)` ➔ `10 (Multimodal AI)` ➔ `16 (Cost & Tokens)` ➔ `23 (Data Prep)` ➔ `24 (Why Fine-Tune)` ➔ `25 (LoRA)` ➔ `26 (LLaMA-Factory)` ➔ `27 (Quantization)` ➔ `28 (GPU Selection)` ➔ `30 (Safety & Alignment)` ➔ `31 (Cloud Deployment)`.
-  * **Goal**: Focus on the heavy-lifting pipeline of models: data curation, token economics, LoRA fine-tuning, quantization, and cloud serving.
+* **🔄 Track C: Data Engineering & Fine-Tuning Track (For ML & DevOps Engineers)**
+  * **Flow**: `06 (Hugging Face)` ➔ `10 (Multimodal AI)` ➔ `16 (Cost & Tokens)` ➔ `23 (Data Prep)` ➔ `24 (Why Fine-Tune)` ➔ `25 (LoRA)` ➔ `26 (LLaMA-Factory)` ➔ `27 (Quantization)` ➔ `28 (GPU Selection)` ➔ `31 (Cloud Deployment)` ➔ `36 (AI Safety)`.
+  * **Goal**: The "heavy industry" production line for the LLM lifecycle—from data cleaning and multimodal asset acquisition to GPU compute evaluation, LoRA fine-tuning, quantization, and deployment.
 
-* **⚡ Track D: High-Concurrency & Low-Latency Architecture (For Backend & Architecture Geeks)**
-  * **Flow**: `21 (RAG System Design)` ➔ `29 (Inference Optimization)`.
-  * **Goal**: Master performance optimizations: from Reranker latency filters to KV Cache memory saving and high-throughput vLLM orchestration.
+* **⚡ Track D: High-Concurrency & Extreme Retrieval Architecture (For Backend & Architecture Geeks)**
+  * **Flow**: `21 (RAG Deep Design)` ➔ `29 (Inference & Concurrency)` ➔ `34 (Vision RAG & OCR)` ➔ `35 (GraphRAG)`.
+  * **Goal**: Focus on LLM high-concurrency and retrieval performance optimization—conquer the geek route from Rerank latency filters to KV Cache/vLLM memory control, vision parsing, and graph networks.
 </details>
 
 ---
