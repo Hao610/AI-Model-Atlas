@@ -1,10 +1,10 @@
-# 🧠 混合动力认知 RAG 系统 (含执行控制器与语义缓存)
+# 🧠 智能体架构 Agentic RAG 系统 (含工具路由与量化评测)
 
-> **工业级、混合双模 RAG 参考架构。提供极致的故障自愈容灾、认知级检索增强以及语义缓存响应提速。**
+> **工业级、混合双模 Agentic RAG 参考架构。提供极具确定性的工具路由编排、轻量级原生量化评测体系，以及极致的故障自愈容灾。**
 
 [[English] (README.md)](README.md) | [中文]
 
-本项目实现了一个完整的 **认知型 RAG 系统**，旨在演示如何将一个简单的 AI 原型应用演进为健壮、具备生产韧性的交付级软件。系统提供双模推理后端，支持在本地离线模型 (Ollama) 与公有云 API (OpenAI/DeepSeek) 之间无缝进行热切换。
+本项目实现了一个完整的 **Agentic RAG 系统**，旨在演示如何将一个简单的 AI 原型应用演进为健壮、具备生产韧性的交付级智能体软件。系统提供意图路由引擎（支持计算器、联网等插件分发）、轻量级无黑盒评测框架，以及支持在本地离线模型 (Ollama) 与公有云 API (OpenAI/DeepSeek) 之间无缝热切换的双模推理后端。
 
 ---
 
@@ -12,7 +12,11 @@
 
 ```mermaid
 flowchart TD
-    UserQuery[用户问题] --> QueryRewriter[查询改写器]
+    UserQuery[用户问题] --> ToolRouter[Tool Routing 路由层]
+    ToolRouter -->|数学计算| CalculatorTool[安全沙盒计算器]
+    ToolRouter -->|最新资讯| WebTool[模拟联网搜索插件]
+    ToolRouter -->|知识问答| QueryRewriter[查询改写器]
+    
     QueryRewriter --> SemanticCacheCheck{语义缓存命中?}
     
     SemanticCacheCheck -->|是| InstantReturn[直接秒级返回缓存答案]
@@ -33,6 +37,8 @@ flowchart TD
 
 ## ⚡ 系统亮点
 
+* **🚦 检索编排与路由层 (Retrieval Orchestration Layer)**：基于确定性正则的意图路由器。在调用昂贵的大模型推理前，先对问题进行意图分发，可将请求路由至“计算器”、“联网搜索”或传统的“混合向量检索”分支。
+* **📊 轻量级量化评测体系 (Lightweight Evaluation Framework)**：不依赖黑盒第三方库，纯原生手工实现的 LLM-as-a-judge 裁判引擎。实时对系统生成的每一条数据进行路由准确率 (Routing Accuracy)、忠实度 (Faithfulness)、上下文精确度 (Context Precision) 与扎实度 (Groundedness) 评分。
 * **🧠 认知查询改写 (Cognitive Query Rewriting)**：在向量数据库检索前，自动剥离口语化提问噪音与语法修饰，大幅提升检索的召回率与准确度。
 * **🛡️ 执行控制平面 (Execution Control Plane)**：统一接管请求生命周期。实现指数级退避重试、连接超时控制以及优雅的**故障降级降配 (Ollama 掉线自动秒切云端 API)**。
 * **⚡ 语义缓存持久化 (Persistent Semantic Cache)**：避免重复算力浪费。对相同或高度相似的语义问题进行命中拦截，状态持久化到本地 JSON，重启系统不丢失。
@@ -63,6 +69,14 @@ rag-app/
     ├── cache/
     │   ├── semantic_cache.py    # 持久化存储的语义级查询缓存中心
     │   └── cache_metrics.py     # 缓存命中率与耗时统计监控
+    ├── tools/
+    │   ├── base.py              # 统一的 Tool 插件标准接口
+    │   ├── router.py            # 基于意图的确定性意图路由器
+    │   ├── calculator.py        # 纯本地安全沙盒数学计算器
+    │   └── web.py               # 联网搜索打桩代码
+    ├── evaluation/
+    │   ├── evaluator.py         # 跑分套件的生命周期执行引擎
+    │   └── metrics.py           # 四大原生大模型裁判指标 (Faithfulness 等)
     └── intelligence/
         ├── query_rewriter.py    # 智能层：剥离前缀噪点并重写输入
         └── reranker.py          # 智能层：实现 RRF 融合重排算法
