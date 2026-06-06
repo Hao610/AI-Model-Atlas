@@ -26,5 +26,21 @@
     "expected_route": "web",
     "reference_answer": "",
     "tags": ["web"]
+  },
+  {
+    "id": "table_001",
+    "query": "What was the revenue in 2024?",
+    "expected_route": "vector",
+    "expected_element_type": "table",
+    "reference_answer": "150M",
+    "tags": ["table"]
+  },
+  {
+    "id": "table_002",
+    "query": "Which year had the highest revenue?",
+    "expected_route": "vector",
+    "expected_element_type": "table",
+    "reference_answer": "",
+    "tags": ["table"]
   }
 ]

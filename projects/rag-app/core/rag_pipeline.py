@@ -1,8 +1,8 @@
 import os
 import time
-from pypdf import PdfReader
 from core.embeddings import EmbeddingsManager
-from core.chunking import recursive_character_chunking
+from core.parsing.pdf_parser import PDFParser
+from core.chunking.element_chunker import ElementChunker
 from core.vectorstore import VectorStoreManager
 from core.llm_router import LLMRouter
 from core.execution_controller import ExecutionController
@@ -38,36 +38,30 @@ class RAGPipeline:
         self.rewriter.router = self.router
         
     def ingest_pdf(self, file_path: str, chunk_size: int = 800, chunk_overlap: int = 100) -> int:
-        """Parses a PDF, chunks it recursively, embeds it, and indexes it into ChromaDB."""
+        """Parses a PDF structurally, chunks elements, embeds it, and indexes it into ChromaDB."""
         if not os.path.exists(file_path):
             raise FileNotFoundError(f"File not found: {file_path}")
             
-        reader = PdfReader(file_path)
-        full_text = ""
-        for i, page in enumerate(reader.pages):
-            text = page.extract_text()
-            if text:
-                full_text += f"\n--- PAGE {i+1} ---\n" + text
-                
-        # Split text into chunks
-        chunks = recursive_character_chunking(
-            text=full_text,
-            chunk_size=chunk_size,
-            chunk_overlap=chunk_overlap
-        )
+        parser = PDFParser(self.router)
+        elements = parser.parse(file_path)
+        
+        chunker = ElementChunker(chunk_size=chunk_size, chunk_overlap=chunk_overlap)
+        chunks = chunker.chunk(elements)
         
         # Clear vectorstore cache for this document
         self.vectorstore.reset_collection(self.collection_name)
         
         # Ingest into vector store
         file_name = os.path.basename(file_path)
-        metadatas = [{"source": file_name, "chunk_index": idx} for idx, _ in enumerate(chunks)]
-        ids = [f"{file_name}_chunk_{idx}" for idx, _ in enumerate(chunks)]
         
         if chunks:
+            texts = [c["content"] for c in chunks]
+            metadatas = [c["metadata"] for c in chunks]
+            ids = [f"{file_name}_{c['metadata']['element_id']}_chunk_{c['metadata']['chunk_index']}" for c in chunks]
+            
             self.vectorstore.add_documents(
                 collection_name=self.collection_name,
-                texts=chunks,
+                texts=texts,
                 metadatas=metadatas,
                 ids=ids
             )

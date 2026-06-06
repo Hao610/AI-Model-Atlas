@@ -28,5 +28,8 @@ class Settings:
     
     # Performance Settings
     LLM_TIMEOUT = int(os.getenv("LLM_TIMEOUT", 30))
+    
+    # Vision RAG Settings
+    ENABLE_IMAGE_CAPTIONING = os.getenv("ENABLE_IMAGE_CAPTIONING", "False").lower() == "true"
 
 settings = Settings()

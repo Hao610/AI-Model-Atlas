@@ -9,3 +9,5 @@ requests
 numpy
 rank_bm25==0.2.2
 jieba==0.42.1
+pdfplumber
+PyMuPDF
