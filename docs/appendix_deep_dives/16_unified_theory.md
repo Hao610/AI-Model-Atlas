@@ -92,4 +92,4 @@ $$\text{AI} = \text{Projected Capability} - \text{Hidden Failure}$$
 
 ---
 
-Congratulations! You have completed the entire Deep Dives curriculum. Go back to the [Deep Dives Directory](../DEEP_DIVES.md) or explore the [Main Curriculum](../CURRICULUM.md).
+← [15. AI System Failure Modes](15_failure_modes.md) | [17. LLM App Core Pillars](17_llm_core_patterns.md) →

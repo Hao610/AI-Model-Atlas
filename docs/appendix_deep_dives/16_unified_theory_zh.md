@@ -92,4 +92,4 @@ $$\text{AI} = \text{投影能力 (Projected Capability)} - \text{隐式失效 (H
 
 ---
 
-恭喜！你已完成了全部深潜专题的学习。返回 [深潜专题目录](../DEEP_DIVES_zh.md) 或探索 [主课程体系](../CURRICULUM.md)。
+← [15. AI 系统失效模式](15_failure_modes_zh.md) | [17. LLM 应用四大基石](17_llm_core_patterns_zh.md) →

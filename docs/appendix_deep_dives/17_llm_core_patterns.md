@@ -126,3 +126,7 @@ sequenceDiagram
 - Use **Memory** to give the LLM a sense of time and history.
 - Use **Structured Output** to make the LLM's brain talk to your application's code.
 - Use **Cache** to bypass the LLM entirely when it's about to repeat itself.
+
+---
+
+Congratulations! You have completed the entire Deep Dives curriculum. Go back to the [Deep Dives Directory](../DEEP_DIVES.md) or explore the [Main Curriculum](../CURRICULUM.md).
