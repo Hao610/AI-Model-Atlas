@@ -31,15 +31,20 @@ flowchart LR
 
 ---
 
-## 🚀 Key Features
+## 🚀 Key Features (with Code References)
 
-- **🧠 Cognitive RAG Architecture**: Complete pipeline integration of query understanding and retrieval optimization.
-- **⚡ Semantic Cache**: Lightweight vector embedding dictionary checks for extreme latency reduction.
+- **🧠 Cognitive RAG Architecture**: Complete pipeline integration orchestrating the application flow. 
+  - *Source:* [`rag_pipeline.py`](../projects/rag-app/core/rag_pipeline.py)
+- **⚡ Persistent Semantic Cache**: Lightweight vector embedding dictionary checks for extreme latency reduction. State is persisted in JSON.
+  - *Source:* [`cache/semantic_cache.py`](../projects/rag-app/core/cache/semantic_cache.py)
 - **🔄 Query Rewriting**: Dynamic regex and prompt filters to normalize user intents before retrieval.
-- **🎯 Relevance Reranking**: Distance margin filters to optimize context text blocks before inference.
+  - *Source:* [`intelligence/query_rewriter.py`](../projects/rag-app/core/intelligence/query_rewriter.py)
+- **🎯 Hybrid Retrieval & RRF Reranking**: Combines Dense (ChromaDB) and Sparse (BM25) search, then fuses scores via Reciprocal Rank Fusion.
+  - *Source:* [`intelligence/reranker.py`](../projects/rag-app/core/intelligence/reranker.py) | [`vectorstore.py`](../projects/rag-app/core/vectorstore.py)
 - **🛡️ Execution Controller**: Orchestrated request center with fallback routing, exponential backoffs, and timeouts.
+  - *Source:* [`execution_controller.py`](../projects/rag-app/core/execution_controller.py)
 - **🌐 Hybrid LLM Core**: Dynamic routing between local Ollama installations and commercial OpenAI/DeepSeek API endpoints.
-- **📊 Obsverability Dashboard**: Streamlit frontends measuring time-to-first-token (TTFT) and throughput tokens/sec speeds.
+  - *Source:* [`llm_router.py`](../projects/rag-app/core/llm_router.py)
 
 ---
 
@@ -70,7 +75,7 @@ The system is designed to gracefully degrade under backend failure conditions to
 
 ### 🧭 Logic (How choices are made)
 
-The workflow logic operates on a strict request control state machine:
+The workflow logic operates on a strict request control state machine. You can trace this logic flow directly inside [`rag_pipeline.py`](../projects/rag-app/core/rag_pipeline.py).
 
 ```mermaid
 stateDiagram-v2

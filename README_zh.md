@@ -131,7 +131,7 @@ streamlit run app.py
 | 🚀 **立刻运行系统** | ↑ [快速开始](#-快速开始-运行路径选择器) |
 | 🧠 **理解系统架构** | 📐 [ARCHITECTURE_zh.md](docs/ARCHITECTURE_zh.md) — 性能指标、容灾自愈、状态机 |
 | 📚 **从零学习 AI** | 📚 [CURRICULUM_zh.md](docs/CURRICULUM_zh.md) — 31 模块 "从 0 到 100" 学习路线图 |
-| 🧬 **深潜算法原理** | 🧬 [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 13 篇 AI 底层算法与大模型技术纪录片 |
+| 🧬 **深潜算法原理** | 🧬 [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 17 篇 AI 底层算法与大模型技术纪录片 |
 
 ---
 

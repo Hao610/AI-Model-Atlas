@@ -1,4 +1,4 @@
-# 📐 AI Model Atlas — 系统架构文档
+# 📐 AI-Model-Atlas — 系统架构文档
 
 > 认知级 RAG 系统的工程深度剖析：性能指标、容灾自愈与执行控制。
 
@@ -6,20 +6,20 @@
 
 ---
 
-## 🧭 系统架构图谱
+## 🧭 系统数据流向与架构设计
 
 ```mermaid
 flowchart LR
-    Query([用户提问]) --> Pre[1. 意图改写与预处理]
+    Query([用户问题]) --> Pre[1. 查询改写与预处理]
     Pre --> Cache{2. 语义缓存拦截?}
     
-    Cache -->|命中| CacheHit[毫秒级缓存响应 0.00s]
-    Cache -->|未命中| RAG[3. 向量检索与重排]
+    Cache -->|命中| CacheHit[极速返回 0.00s]
+    Cache -->|未命中| RAG[3. 混合向量检索与重排]
     
-    RAG --> Controller[4. 请求执行控制面]
-    Controller --> LLM[5. 混合大模型路由]
+    RAG --> Controller[4. 执行控制中心]
+    Controller --> LLM[5. 双模 LLM 路由]
     
-    CacheHit --> Output([输出回答])
+    CacheHit --> Output([最终输出])
     LLM --> Output
 
     classDef default fill:#111827,stroke:#374151,stroke-width:1px,color:#f9fafb;
@@ -31,74 +31,79 @@ flowchart LR
 
 ---
 
-## 🚀 本项目提供什么 (Key Features)
+## 🚀 核心架构与源码映射 (Code References)
 
-- **🧠 认知级 RAG 架构**：从查询意图理解到检索相关性优化的完整生产级闭环。
-- **⚡ 语义缓存加速**：通过向量相似度匹配与长度比例控制拦截重复请求，实现毫秒级超快响应。
-- **🔄 查询意图改写**：内置智能正则和提示词过滤器，去除口语噪音，精准提取检索意图。
-- **🎯 检索相关性重排**：支持设定余弦距离阈值过滤无效噪声片段，保证大模型上下文的高可信度。
-- **🛡️ 强大的请求控制面**：统一接管请求生命周期，支持指数级退避重试、连接超时控制与故障降级（本地 Ollama 掉线自动切至云端 API 兜底）。
-- **🌐 混合大模型推理后端**：支持在本地 Ollama (Llama 3/DeepSeek) 与云端 API 之间进行热切换。
-- **📊 可观测性能看板**：Streamlit 终端实时量化首 Token 延迟 (TTFT) 与吞吐速率 (Tokens/秒)。
+- **🧠 认知级 RAG 主干**: 统一串联组件，调度系统的整体数据流转链路。
+  - *源码路径:* [`rag_pipeline.py`](../projects/rag-app/core/rag_pipeline.py)
+- **⚡ 持久化语义缓存**: 内存级向量比对机制，通过本地 JSON 持久化，实现 0 时延拦截高频相似问题。
+  - *源码路径:* [`cache/semantic_cache.py`](../projects/rag-app/core/cache/semantic_cache.py)
+- **🔄 智能查询改写**: 动态 Prompt 过滤器，在检索前剥离用户的口语化噪音。
+  - *源码路径:* [`intelligence/query_rewriter.py`](../projects/rag-app/core/intelligence/query_rewriter.py)
+- **🎯 混合检索与 RRF 重排**: 融合 ChromaDB 稠密向量与 BM25 稀疏检索，并通过倒数秩融合(RRF)进行双重打分排序。
+  - *源码路径:* [`intelligence/reranker.py`](../projects/rag-app/core/intelligence/reranker.py) | [`vectorstore.py`](../projects/rag-app/core/vectorstore.py)
+- **🛡️ 执行控制平面**: 统一接管请求生命周期，处理超时、异常、指数退避重试。
+  - *源码路径:* [`execution_controller.py`](../projects/rag-app/core/execution_controller.py)
+- **🌐 双模 LLM 推理层**: 动态解耦 Ollama 本地模型与商业云端 API (如 OpenAI/DeepSeek)。
+  - *源码路径:* [`llm_router.py`](../projects/rag-app/core/llm_router.py)
 
 ---
 
 ## 🧠 系统运行模型 (System Runtime Model)
 
-### ⚡ 极速体验 (用户直观感受)
+### ⚡ 速度与性能指标
 
-*免责声明：以下性能指标均在本地开发测试环境（单卡 GPU / CPU 兜底模式）下测量得出，生产环境高负载下可能会有所偏差。*
+*注：以下基准测试在单卡消费级 GPU/CPU 降级环境中进行，生产环境中并发性能可能会有所不同。*
 
-| 配置模式 | 语义缓存 | 相似度重排 | 推理后端 | 响应时延 (均值) | 首字延迟 (TTFT) |
+| 配置 | 缓存 | 重排 | 后端引擎 | 总体延迟 (avg) | 首字输出延迟 (TTFT) |
 | :--- | :---: | :---: | :--- | :--- | :--- |
-| **本地离线模型** | ❌ | ❌ | Ollama (Llama 3) | ~2.8s | 1.4s |
-| **本地离线模型** | ✅ | ❌ | Ollama (Llama 3) | **~0.2s** | **0.05s** (缓存命中) |
-| **混合动力模式** | ✅ | ✅ | OpenAI API | ~0.8s | 0.3s |
-| **混合动力模式** | ❌ | ✅ | OpenAI API | ~2.1s | 0.9s |
+| **纯本地模式** | ❌ | ❌ | Ollama (Llama 3) | ~2.8s | 1.4s |
+| **纯本地模式** | ✅ | ❌ | Ollama (Llama 3) | **~0.2s** | **0.05s** (缓存命中) |
+| **云端混合模式** | ✅ | ✅ | OpenAI API | ~0.8s | 0.3s |
+| **云端混合模式** | ❌ | ✅ | OpenAI API | ~2.1s | 0.9s |
 
-### 🛡️ 稳如磐石 (异常与故障恢复)
+### 🛡️ 容灾与自愈机制 (当系统崩溃时)
 
-系统设计上具备完善的故障降配与容灾自愈能力，以确保服务高可用：
+为了保证工业级的可用性，系统采用了**优雅降级 (Graceful Degradation)** 的防御设计：
 
-#### 场景模拟：本地运行的 Ollama 离线掉线
-1. **ExecutionController (执行控制中心)** 检测到本地连接超时或网络握手异常。
-2. **指数级退避重试 (Exponential Backoff)** 机制被激活（自动延迟梯度：200ms -> 500ms -> 1s）。
-3. **优雅降级路由 (Degraded Fallback)** 触发：无需用户干预，系统自动将提问流量重定向切换至配置的云端 API（OpenAI/DeepSeek）。
-4. **降级状态透明化**：控制中心向 Streamlit 终端实时输出异常告警日志与状态转移轨迹。
+#### 场景演练：当本地 Ollama 节点宕机断电时
+1. **执行控制中心 (ExecutionController)** 感知到 TCP 握手失败或连接超时。
+2. **指数退避重试** 被激活 (阻断延时自动攀升: 200ms -> 500ms -> 1s)。
+3. **故障降级路由** 生效：强制阻断本地请求，自动将用户提示词平滑重定向至备用云端 API (OpenAI/DeepSeek)。
+4. **前端可观测性**：Streamlit UI 依然保持可用，同时日志控制台会高亮打印状态迁移告警。
 
-*最终效果：系统在此异常场景下依然保持正常响应与回答，避免客户端 unhandled 崩溃死锁。*
+*结果：用户体验零中断，完全感知不到底层服务器已经挂掉。*
 
-### 🧭 智能决策 (控制面决策路径)
+### 🧭 状态机流转逻辑
 
-底层流水线的每一次请求调用均在严密的控制状态机管理下运行：
+整个生命周期的核心流转逻辑是一个严格的状态机。你可以在 [`rag_pipeline.py`](../projects/rag-app/core/rag_pipeline.py) 中对照查阅具体的执行逻辑：
 
 ```mermaid
 stateDiagram-v2
-    [*] --> 接收查询
-    接收查询 --> 查询意图改写
-    查询意图改写 --> 语义缓存校验
+    [*] --> ReceiveQuery
+    ReceiveQuery --> QueryRewrite
+    QueryRewrite --> CacheCheck
 
-    语义缓存校验 --> 缓存命中: 匹配成功
-    语义缓存校验 --> 向量库检索: 缓存未命中
+    CacheCheck --> CacheHit: 匹配成功
+    CacheCheck --> VectorSearch: 匹配失败 (触发双路检索)
 
-    向量库检索 --> 相似度重排
-    相似度重排 --> 执行控制中心
+    VectorSearch --> Rerank
+    Rerank --> ExecutionController
 
-    执行控制中心 --> 本地Ollama
-    执行控制中心 --> 云端API
+    ExecutionController --> Ollama
+    ExecutionController --> CloudAPI
 
-    本地Ollama --> 执行成功
-    本地Ollama --> 执行失败
+    Ollama --> Success
+    Ollama --> Fail
 
-    执行失败 --> 重试与退避
-    重试与退避 --> 云端API
+    Fail --> RetryBackoff
+    RetryBackoff --> CloudAPI
 
-    云端API --> 执行成功
-    执行成功 --> [*]
+    CloudAPI --> Success
+    Success --> [*]
 ```
 
 ---
 
 ## 📄 开源协议
 
-本文档为 [AI Model Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE) 协议。
+本文档为 [AI-Model-Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE_zh) 协议。
