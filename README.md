@@ -1,8 +1,7 @@
 # AI Model Atlas 🗺️
+## From Toy RAG to Production-Grade AI Systems
 
-### From Zero to Production-Grade RAG Systems — Learn, Build, Deploy, and Optimize Real AI Applications
-
-> **A production-ready Agentic RAG system with Tool Routing, Evaluation, Vision, Graph Knowledge, Semantic Cache, Query Rewriting, and Execution Control.**
+A production-style **RAG architecture playground** that demonstrates what actually breaks when moving from simple embedding-based tutorials to real-world AI systems.
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
@@ -11,10 +10,98 @@
 [![Run Locally](https://img.shields.io/badge/▶_Local_Sandbox_App-10b981?style=for-the-badge&logo=play)](#route-a-local-sandbox-interactive-ui-recommended)
 [![Colab Playground](https://img.shields.io/badge/▶_Colab_Playground_(Optional)-orange?style=for-the-badge&logo=googlecolab)](https://colab.research.google.com/github/Hao610/AI-Model-Atlas/blob/main/projects/rag-app/quickstart.ipynb)
 
-> [!NOTE]
-> **New here?** Start with our [🧭 Getting Started Guide](docs/GETTING_STARTED.md) to choose the best roadmap for your goals!
+Most RAG demos stop at “vector search + LLM”. **AI Model Atlas goes further — into production failure points: routing, caching, evaluation, orchestration, and recovery.**
 
-Welcome to the **AI Model Atlas**! This repository is a comprehensive, beginner-friendly "dictionary-style" guide designed to take anyone from zero technical background to understanding, calling, fine-tuning, and ultimately building complex agentic RAG workflows. Let's play! 🚀
+---
+
+## ⚠️ Why this exists
+
+Most RAG tutorials look like this:
+> User → Embedding Search → LLM → Done
+
+But real systems break in places tutorials never show:
+* ❌ **No routing between tools** (everything goes to vector search)
+* ❌ **No caching layer** (every query is expensive and slow)
+* ❌ **No evaluation** or quality feedback loop
+* ❌ **No failure recovery** or retry logic
+* ❌ **No hybrid retrieval** strategy (e.g. dense + sparse fusion)
+* ❌ **No orchestration** or state control between components
+
+**This project is built to expose and fix those gaps.**
+
+---
+
+## 🧱 What this system actually is
+
+A modular RAG execution architecture with real production-style components:
+* 🎯 **Query Routing Engine** (Calculator / Web / Vector / Graph)
+* ⚡ **Semantic Cache Layer** (instant hit bypassing LLM + retrieval)
+* 🧠 **GraphRAG Knowledge Layer** (multi-hop reasoning over structured relations)
+* 🔍 **Hybrid Retrieval System** (BM25 + Dense + RRF reranking)
+* 🧪 **Evaluation Engine** (LLM-as-a-judge for quality + faithfulness)
+* 🛠️ **Execution Controller** (timeouts, fallback, retry policies)
+* 📦 **Stateful Pipeline Design** (deterministic execution flow)
+
+---
+
+## 🧩 What makes this different
+
+Instead of building a simple "chatbot demo", this project focuses on:
+> 🧠 How real AI systems behave under complexity, failure, and scale.
+
+It is designed as:
+* A **learning system** (36 guided modules from 0 to 200)
+* A **reference architecture**
+* A **production simulation environment for RAG systems**
+
+---
+
+## ⚡ Quick Demo Behavior
+
+```
+[Query]  "What is Llama 3 license?"
+
+[Router] → Vector + Web tools selected
+[Cache]  → MISS ❌
+[Search] → Hybrid retrieval + rerank
+[LLM]    → Response generated
+[Eval]   → Faithfulness scored
+```
+
+Then:
+
+```
+Repeat Query
+
+[Cache] → HIT ✅
+[LLM]   → Skipped
+Latency → ~0.0001s
+```
+
+---
+
+## 🎯 What you will learn from this repo
+
+* Why naive RAG fails in production
+* How routing improves reliability
+* Why caching is critical for cost control
+* How hybrid retrieval improves grounding
+* How evaluation prevents silent failure
+* How real AI systems should be structured
+
+---
+
+## 🚀 Who this is for
+
+* Developers building RAG applications
+* Engineers moving from demos ➔ production systems
+* AI learners who want system-level understanding
+* Anyone building agentic or tool-using LLM systems
+
+---
+
+## ⭐ If this helps you understand real RAG systems
+Star the repo — and use it as a reference architecture for building production AI systems.
 
 ---
 
