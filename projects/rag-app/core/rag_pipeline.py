@@ -91,6 +91,7 @@ class RAGPipeline:
             "confidence": route_decision.confidence,
             "reason": route_decision.reason,
             "retrieved_docs": [],
+            "context": "",
             "answer": "",
             "latency": 0.0
         }
@@ -178,6 +179,7 @@ class RAGPipeline:
             sources.append(match)
             
         trace["retrieved_docs"] = [m["id"] for m in sources]
+        trace["context"] = context_str
             
         # Dispatch execution and return control flows
         stream = self.controller.execute(

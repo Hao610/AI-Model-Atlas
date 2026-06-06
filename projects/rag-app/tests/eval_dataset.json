@@ -1,0 +1,30 @@
+[
+  {
+    "id": "retrieval_001",
+    "query": "What is RRF?",
+    "expected_route": "vector",
+    "reference_answer": "Reciprocal Rank Fusion (RRF) is a retrieval fusion technique that combines search scores from multiple systems (like BM25 and dense vectors) by ranking them based on the inverse of their rank position.",
+    "tags": ["retrieval"]
+  },
+  {
+    "id": "retrieval_002",
+    "query": "How do you mitigate LLM hallucination?",
+    "expected_route": "vector",
+    "reference_answer": "LLM hallucination can be mitigated using techniques like RAG (Retrieval-Augmented Generation) to ground the model in factual context, adjusting the temperature to 0 for factual queries, and using prompt engineering instructions like 'If you don't know the answer, say I don't know'.",
+    "tags": ["retrieval"]
+  },
+  {
+    "id": "math_001",
+    "query": "calculate (15000 * 1.08)^5",
+    "expected_route": "calculator",
+    "reference_answer": "22039.921152000007",
+    "tags": ["math"]
+  },
+  {
+    "id": "web_001",
+    "query": "What is the latest NVIDIA stock price today?",
+    "expected_route": "web",
+    "reference_answer": "",
+    "tags": ["web"]
+  }
+]

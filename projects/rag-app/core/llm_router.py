@@ -56,3 +56,38 @@ class LLMRouter:
                         yield content
             except Exception as e:
                 raise ConnectionError(f"Cloud LLM API connection error: {str(e)}")
+
+    def generate(self, system_prompt: str, user_prompt: str) -> str:
+        """Generates a complete synchronous response. Useful for evaluation grading."""
+        if self.mode == "ollama":
+            url = f"{settings.OLLAMA_HOST}/api/chat"
+            payload = {
+                "model": settings.OLLAMA_MODEL,
+                "messages": [
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": user_prompt}
+                ],
+                "stream": False
+            }
+            try:
+                response = requests.post(url, json=payload, timeout=settings.LLM_TIMEOUT * 2)
+                response.raise_for_status()
+                return response.json().get("message", {}).get("content", "")
+            except Exception as e:
+                raise ConnectionError(f"Ollama connection error: {str(e)}")
+        else:
+            if not settings.API_KEY:
+                raise ValueError("API Key is missing from settings configuration.")
+            try:
+                response = self.client.chat.completions.create(
+                    model=settings.API_MODEL,
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    stream=False,
+                    timeout=settings.LLM_TIMEOUT * 2
+                )
+                return response.choices[0].message.content
+            except Exception as e:
+                raise ConnectionError(f"Cloud LLM API connection error: {str(e)}")
