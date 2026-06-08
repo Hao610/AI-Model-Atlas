@@ -5,9 +5,9 @@
 > 📖 **Bilingual docs (EN/ZH)** · 36 curriculum modules · 17 deep-dive chapters · Runnable RAG sandbox  
 > 🎯 A **learning-focused architecture simulator** — not a production framework, not a live model catalog.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey)](LICENSE-docs)
-[![Bilingual](https://img.shields.io/badge/lang-EN%20%7C%20ZH-green)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
+[![CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey)](LICENSE)
+[![Bilingual](https://img.shields.io/badge/lang-ZH-green)](README_zh.md)
 
 ---
 
@@ -79,8 +79,8 @@ graph LR
 
 ## 📄 License & Contributing
 
-- Code: [MIT](LICENSE)
-- Documentation: [CC BY 4.0](LICENSE-docs)
+- Code: [MIT](LICENSE-CODE)
+- Documentation: [CC BY 4.0](LICENSE)
 
 If you find this project helpful, please consider giving it a ⭐ star — it helps more people discover the roadmap.
 

@@ -5,9 +5,9 @@
 > 📖 **中英双语文档** · 36 个课程模块 · 17 章深潜专题 · 可运行的 RAG 沙盒  
 > 🎯 一个**面向教学的架构模拟器**——不是生产框架，也不是实时型号百科。
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![CC BY 4.0](https://img.shields.io/badge/文档-CC%20BY%204.0-lightgrey)](LICENSE-docs)
-[![Bilingual](https://img.shields.io/badge/lang-EN%20%7C%20ZH-green)](#)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
+[![CC BY 4.0](https://img.shields.io/badge/%E6%96%8B%E6%A1%A3-CC%20BY%204.0-lightgrey)](LICENSE)
+[![Bilingual](https://img.shields.io/badge/lang-EN-green)](README.md)
 
 ---
 
@@ -79,7 +79,7 @@ graph LR
 
 ## 📄 许可与贡献
 
-- 代码：[MIT](LICENSE)
-- 文档：[CC BY 4.0](LICENSE-docs)
+- 代码：[MIT](LICENSE-CODE)
+- 文档：[CC BY 4.0](LICENSE)
 
 如果这个项目对你有帮助，欢迎点一个 ⭐ star —— 让更多学习者发现这张学习地图。
