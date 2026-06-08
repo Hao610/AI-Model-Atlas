@@ -44,7 +44,7 @@
 ## 🚀 Quick Start
 
 ### Route A: Read the curriculum
-→ [docs/CURRICULUM.md](docs/CURRICULUM.md)
+→ [CURRICULUM.md](docs/CURRICULUM.md)
 
 ### Route B: Run the sandbox
 ```bash
@@ -54,7 +54,7 @@ streamlit run app.py
 ```
 
 ### Route C: Dive deep
-→ [docs/DEEP_DIVES.md](docs/DEEP_DIVES.md)
+→ [DEEP_DIVES.md](docs/DEEP_DIVES.md)
 
 ---
 

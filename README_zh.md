@@ -44,7 +44,7 @@
 ## 🚀 快速开始
 
 ### 路线 A：阅读课程
-→ [docs/CURRICULUM.md](docs/CURRICULUM.md)
+→ [CURRICULUM.md](docs/CURRICULUM.md)
 
 ### 路线 B：运行沙盒
 ```bash
@@ -54,7 +54,7 @@ streamlit run app.py
 ```
 
 ### 路线 C：深入专题
-→ [docs/DEEP_DIVES.md](docs/DEEP_DIVES.md)
+→ [DEEP_DIVES.md](docs/DEEP_DIVES.md)
 
 ---
 
