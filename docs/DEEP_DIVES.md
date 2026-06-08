@@ -2,7 +2,7 @@
 
 ### Tracing the mathematical and architectural evolution of AI: from classical machine learning to reasoning models.
 
-> A 14-chapter epic technical documentary deep-diving into the core algorithms, RAG internals, agent mechanics, MoE, reasoning, and alignment.
+> A 17-chapter epic technical documentary deep-diving into the core algorithms, RAG internals, agent mechanics, MoE, reasoning, and alignment.
 
 ← Back to [README](../README.md) | [中文版 (DEEP_DIVES_zh.md)](DEEP_DIVES_zh.md)
 

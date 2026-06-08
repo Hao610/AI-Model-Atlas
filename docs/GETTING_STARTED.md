@@ -14,7 +14,7 @@ To make the most of your time here, please select the path below that best match
 
 ### 1. I am a student or self-learner looking for a step-by-step roadmap
 > **Recommended Starting Point**: [Learning Curriculum (CURRICULUM.md)](CURRICULUM.md)
-* **What it is**: A structured, 4-phase roadmap spanning 31 modular chapters. It guides you from "zero AI knowledge" all the way to cloud-scale fine-tuning and deployment.
+* **What it is**: A structured, 4-phase roadmap spanning 36 modular chapters. It guides you from "zero AI knowledge" all the way to cloud-scale fine-tuning and deployment.
 * **Best for**: Setting up structured study plans, learning prompt engineering, Dify worklfows, and Python API integrations sequentially.
 
 ### 2. I am a software developer or architect building production-grade systems
@@ -24,7 +24,7 @@ To make the most of your time here, please select the path below that best match
 
 ### 3. I am a researcher or tech enthusiast looking for deep technical principles
 > **Recommended Starting Point**: [Deep Dives (DEEP_DIVES.md)](DEEP_DIVES.md)
-* **What it is**: A 14-chapter technical documentary tracing the evolution of AI algorithms—from early statistics and feature engineering to Transformers, HNSW Vector search, RAG logic, Agents, MoE routing, and RL-based Reasoning models.
+* **What it is**: A 17-chapter technical documentary tracing the evolution of AI algorithms—from early statistics and feature engineering to Transformers, HNSW Vector search, RAG logic, Agents, MoE routing, and RL-based Reasoning models.
 * **Best for**: Getting visual, intuitive explanations of the underlying math and engineering trade-offs (e.g., Chunking size, Reranking, Inference Scaling Laws).
 
 ### 4. I just want to clone the repository and run the code right now
@@ -40,7 +40,7 @@ To make the most of your time here, please select the path below that best match
 | :--- | :--- | :--- | :--- |
 | [README.md](../README.md) | Project Overview & Quick Start | Intermediate | System Runtime Poster |
 | [GETTING_STARTED.md](GETTING_STARTED.md) | Entry point & Navigation | Beginner | Target Audience Map |
-| [CURRICULUM.md](CURRICULUM.md) | 31-Module structured roadmap | Beginner to Advanced | Learning Path flow diagram |
+| [CURRICULUM.md](CURRICULUM.md) | 36-Module structured roadmap | Beginner to Advanced | Learning Path flow diagram |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System design & Benchmarks | Advanced | State Flowchart & Benchmarks |
 | [DEEP_DIVES.md](DEEP_DIVES.md) | Deep algorithm principles | Advanced | AI Algorithm Evolution Map |
 
