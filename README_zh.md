@@ -24,11 +24,11 @@
 
 | 我想… | 去这里 |
 | :--- | :--- |
-| 📚 **系统学习**（从零开始） | [CURRICULUM.md](docs/CURRICULUM.md) — 36 模块，Phase 1→5 |
-| 🧬 **理解原理与内部机制** | [DEEP_DIVES.md](docs/DEEP_DIVES.md) — 17 章 |
-| 📐 **查看系统架构** | [ARCHITECTURE.md](docs/ARCHITECTURE.md) |
+| 📚 **系统学习**（从零开始） | [CURRICULUM_zh.md](docs/CURRICULUM_zh.md) — 36 模块，Phase 1→5 |
+| 🧬 **理解原理与内部机制** | [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 17 章 |
+| 📐 **查看系统架构** | [ARCHITECTURE_zh.md](docs/ARCHITECTURE_zh.md) |
 | ▶️ **5 分钟跑起来** | [快速开始 ↓](#-快速开始) |
-| 🗺️ **选择一条学习路径** | [入门指南](docs/GETTING_STARTED.md) |
+| 🗺️ **选择一条学习路径** | [入门指南](docs/GETTING_STARTED_zh.md) |
 
 ---
 
@@ -36,8 +36,8 @@
 
 | 内容 | 数量 | 说明 |
 | :--- | :---: | :--- |
-| [课程](docs/CURRICULUM.md) | **36 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
-| [深潜专题](docs/DEEP_DIVES.md) | **17 章** | Transformer, MoE, 推理模型, 对齐, 评测… |
+| [课程](docs/CURRICULUM_zh.md) | **36 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
+| [深潜专题](docs/DEEP_DIVES_zh.md) | **17 章** | Transformer, MoE, 推理模型, 对齐, 评测… |
 | [RAG 沙盒](projects/rag-app/) | 1 个应用 | Streamlit 演示：缓存、重排、路由、GraphRAG |
 | 语言 | 中 + 英 | 手写双语对照，非机器翻译 |
 
@@ -46,7 +46,7 @@
 ## 🚀 快速开始
 
 ### 路线 A：阅读课程
-→ [CURRICULUM.md](docs/CURRICULUM.md)
+→ [CURRICULUM_zh.md](docs/CURRICULUM_zh.md)
 
 ### 路线 B：运行沙盒
 ```bash
@@ -56,7 +56,7 @@ streamlit run app.py
 ```
 
 ### 路线 C：深入专题
-→ [DEEP_DIVES.md](docs/DEEP_DIVES.md)
+→ [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md)
 
 ---
 

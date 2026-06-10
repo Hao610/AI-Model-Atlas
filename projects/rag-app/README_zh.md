@@ -113,7 +113,7 @@ ollama pull llama3
 # 3. 启动应用
 python app.py
 ```
-更详尽的测试流程，请阅读 **[START_HERE.md](START_HERE.md)**。
+更详尽的测试流程，请阅读 **[START_HERE_zh.md](START_HERE_zh.md)**。
 
 ---
 
