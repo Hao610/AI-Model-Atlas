@@ -2,7 +2,7 @@
 
 [English] | [中文 (14_use_cases_zh.md)](14_use_cases_zh.md)
 
-Let's look at how the **Agent + RAG + LLM** workflow is applied to solve real business problems. Below are six core templates of the most common AI projects in the industry.
+Let's look at how the **Agent + RAG + LLM** workflow is applied to solve real business problems. Below are five core templates of the most common AI projects in the industry.
 
 ---
 

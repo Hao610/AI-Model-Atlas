@@ -1,5 +1,7 @@
 ← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (16_unified_theory_zh.md)](16_unified_theory_zh.md)
 
+> 📌 NOTE: The theoretical frameworks presented in this chapter (e.g., AIMT, Failure Manifolds, AI-UST) are the author's proprietary engineering generalizations and are not standard academic consensus. Read critically.
+
 ---
 
 # 16. AI Unified Systems Theory: From Evaluation and Failure to Closed-Loop Convergence

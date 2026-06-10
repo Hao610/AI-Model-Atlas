@@ -1,5 +1,7 @@
 ← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (14_ai_evaluation_zh.md)](14_ai_evaluation_zh.md)
 
+> 📌 NOTE: The theoretical frameworks presented in this chapter (e.g., AIMT, Failure Manifolds, AI-UST) are the author's proprietary engineering generalizations and are not standard academic consensus. Read critically.
+
 ---
 
 # 14. AI Systems Evaluation Theory: How Do We Measure Intelligence?

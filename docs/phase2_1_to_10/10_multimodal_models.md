@@ -1,5 +1,7 @@
 # Multimodal AI: Beyond Text 🎨🔊
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (10_multimodal_models_zh.md)](10_multimodal_models_zh.md)
 
 Large Language Models (LLMs) process text. But humans interact with the world through vision, sound, and movement. **Multimodal AI** refers to models that can understand or generate multiple types of data (media) simultaneously.

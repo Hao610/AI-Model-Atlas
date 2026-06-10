@@ -1,5 +1,7 @@
 # 计费与 Token 经济学 💳
 
+> 📅 本章最后更新：2026-06。AI 生态迭代极快，请以各厂商官网最新信息为准。
+
 [[English] (16_cost_and_tokens.md)](16_cost_and_tokens.md) | [中文]
 
 在开发一个 AI 应用时，很多新手或企业管理者最常问的问题就是：*“这玩意儿到底要花我多少钱？”* 不同于传统云服务按照服务器开机时间计费，商业大模型 API 主要是按照 **Token (字词碎片) 的消耗量** 来收费的。
@@ -23,12 +25,14 @@
 
 为了让你对价格有一个直观的概念，以下是目前市场上主流大模型 API 的单价对比（以每 100 万 Token 消耗的美元/人民币计费）：
 
-| 模型名称 | 输入单价 (每 1M tokens) | 输出单价 (每 1M tokens) | 性价比区间 |
+| Model (2026.06 Snapshot) | Input Price (per 1M tokens) | Output Price (per 1M tokens) | Context & Features |
 | :--- | :--- | :--- | :--- |
-| **GPT-4o** | \$2.50 (约 18元) | \$10.00 (约 72元) | 🟥 昂贵贵族 |
-| **Claude 3.5 Sonnet** | \$3.00 (约 21元) | \$15.00 (约 108元) | 🟥 昂贵贵族 |
-| **GPT-4o-mini** | \$0.15 (约 1.1元) | \$0.60 (约 4.3元) | 🟨 亲民平价 |
-| **DeepSeek V3 / R1** | \$0.14 (约 1.0元) | \$0.28 (约 2.0元) | 🟩 极致白菜价 |
+| **GPT-5** (Standard Flagship) | $2.50 | $15.00 | Supports 1.05M context, 90% discount on cache hits |
+| **GPT-5.5** (Frontier) | $5.00 | $30.00 | Specialized in high-value Research and Coding |
+| **Claude 4.5 Sonnet** | $3.00 | $15.00 | Anthropic Flagship, standard pricing |
+| **Gemini 2.5 Pro** | $1.25 | $5.00 | Google 2.5 generation, Vertex AI multimodal pricing |
+| **DeepSeek V4-Flash** | $0.14 | $0.28 | Automatically integrates former R1/V3 routing |
+| **DeepSeek V4-Pro** | $0.435 (Promo) / $1.74 | $0.87 (Promo) / $3.48 | 1.6T parameters, current massive discount |
 
 ### 🧮 算力账本：实战算账案例
 假设你搭建了一个 RAG 企业智能客服机器人，每天需要自动回复 **1000 个** 客户提问：

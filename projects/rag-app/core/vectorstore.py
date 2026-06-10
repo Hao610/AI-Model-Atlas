@@ -31,6 +31,9 @@ class VectorStoreManager:
         self.bm25_corpus = []
         self.bm25_doc_map = []
         
+        # Parent-Child Document Store
+        self.doc_store = {}
+        
         # Restore BM25 from ChromaDB on startup
         self._rebuild_bm25(self.default_collection_name)
         
@@ -67,6 +70,10 @@ class VectorStoreManager:
                 "content": doc_text,
                 "metadata": metadata
             })
+            self.doc_store[doc_id] = {
+                "content": doc_text,
+                "metadata": metadata
+            }
             
         self.bm25_corpus = tokenized_corpus
         self.bm25_doc_map = doc_map
@@ -74,6 +81,28 @@ class VectorStoreManager:
         
     def add_documents(self, collection_name: str, texts: list[str], metadatas: list[dict], ids: list[str]):
         collection = self.get_or_create_collection(collection_name)
+        
+        # Populate parent_id for child documents and save to self.doc_store
+        for doc_id, meta, text in zip(ids, metadatas, texts):
+            is_child = meta.get("is_child", False)
+            is_child_bool = str(is_child).lower() == "true" if is_child is not None else False
+            parent_chunk_index = meta.get("parent_chunk_index", -1)
+            
+            if is_child_bool and parent_chunk_index != -1:
+                if "_chunk_" in doc_id:
+                    prefix = doc_id.rsplit("_chunk_", 1)[0]
+                    parent_id = f"{prefix}_chunk_{parent_chunk_index}"
+                    meta["parent_id"] = parent_id
+                else:
+                    meta["parent_id"] = ""
+            else:
+                meta["parent_id"] = ""
+                
+            self.doc_store[doc_id] = {
+                "content": text,
+                "metadata": meta
+            }
+            
         collection.add(
             documents=texts,
             metadatas=metadatas,
@@ -128,9 +157,37 @@ class VectorStoreManager:
                     "score": float(score) # frequency metric
                 })
                 
+        # --- Resolve Child Chunks to Parent Chunks ---
+        def resolve_parents(matches):
+            resolved = []
+            seen = set()
+            for m in matches:
+                meta = m["metadata"]
+                is_child = meta.get("is_child", False)
+                is_child_bool = str(is_child).lower() == "true" if is_child is not None else False
+                parent_id = meta.get("parent_id")
+                
+                if is_child_bool and parent_id:
+                    if parent_id not in seen:
+                        parent_chunk = self.doc_store.get(parent_id)
+                        if parent_chunk:
+                            resolved.append({
+                                "id": parent_id,
+                                "content": parent_chunk["content"],
+                                "metadata": parent_chunk["metadata"],
+                                "score": m["score"]
+                            })
+                            seen.add(parent_id)
+                else:
+                    doc_id = m["id"]
+                    if doc_id not in seen:
+                        resolved.append(m)
+                        seen.add(doc_id)
+            return resolved
+
         return {
-            "dense_matches": dense_matches,
-            "sparse_matches": sparse_matches
+            "dense_matches": resolve_parents(dense_matches),
+            "sparse_matches": resolve_parents(sparse_matches)
         }
 
     def reset_collection(self, collection_name: str):

@@ -1,5 +1,7 @@
 # Cloud Deployment 🚀
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (31_deployment_zh.md)](31_deployment_zh.md)
 
 Once you have fine-tuned your model and verified its quality, the final step is to host it in the cloud. This allows other applications, websites, and clients to send questions to it over the internet.

@@ -1,5 +1,7 @@
 # 🗺️ AI Model Atlas
 
+👉 [Read This First: Why AI-Model-Atlas Exists?](INTRO.md)
+
 ## Open-Source AI Learning Map — From Zero to RAG, Agents & Fine-Tuning
 
 > 📖 **Bilingual docs (EN/ZH)** · 36 curriculum modules · 17 deep-dive chapters · Runnable RAG sandbox  

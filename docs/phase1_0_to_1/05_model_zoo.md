@@ -1,5 +1,7 @@
 # Model Zoo Overview 🦁
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (05_model_zoo_zh.md)](05_model_zoo_zh.md)
 
 In the AI community, a collection of pre-trained models is affectionately called a **"Model Zoo"**. With dozens of companies building models, it can be overwhelming to track them.

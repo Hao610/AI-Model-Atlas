@@ -1,5 +1,7 @@
 # 🗺️ AI Model Atlas
 
+👉 [阅读必看：为什么需要 AI-Model-Atlas？](INTRO_zh.md)
+
 ## 开源 AI 学习地图 — 从零到 RAG、智能体与微调
 
 > 📖 **中英双语文档** · 36 个课程模块 · 17 章深潜专题 · 可运行的 RAG 沙盒  

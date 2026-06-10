@@ -1,5 +1,7 @@
 # Agent Frameworks: Building Teams of AI 👥
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (19_agent_frameworks_zh.md)](19_agent_frameworks_zh.md)
 
 What happens when a single AI prompt isn't enough to solve a complex business problem? The answer is **Multi-Agent Collaboration**.

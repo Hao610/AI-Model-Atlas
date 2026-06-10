@@ -1,5 +1,7 @@
 # GPU Selection Guide 🖥️
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (28_gpu_selection_zh.md)](28_gpu_selection_zh.md)
 
 When running, serving, or fine-tuning local models, the most critical piece of hardware is the **GPU (Graphics Processing Unit)**. Specifically, we care about **VRAM (Video RAM)**, which is the physical memory inside the GPU that holds the model.

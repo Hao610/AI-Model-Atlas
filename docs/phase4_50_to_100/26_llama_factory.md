@@ -1,5 +1,7 @@
 # LLaMA-Factory Training Guide 🛠️
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (26_llama_factory_zh.md)](26_llama_factory_zh.md)
 
 Writing PyTorch training loops, loss functions, and hardware tokenization from scratch is highly complex. 

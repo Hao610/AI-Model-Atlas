@@ -1,5 +1,7 @@
 ← Back to [Deep Dives Directory](../DEEP_DIVES.md) | [English] | [中文 (15_failure_modes_zh.md)](15_failure_modes_zh.md)
 
+> 📌 NOTE: The theoretical frameworks presented in this chapter (e.g., AIMT, Failure Manifolds, AI-UST) are the author's proprietary engineering generalizations and are not standard academic consensus. Read critically.
+
 ---
 
 # 15. AI System Failure Modes: Why Intelligent Systems Fail
@@ -123,7 +125,7 @@ Let $\mathcal{P}_{\text{test}}(\mathcal{O}_i)$ be the distribution of benchmark 
 $$\mathcal{P}_{\text{train}}(\mathcal{O}_i) \approx \mathcal{P}_{\text{test}}(\mathcal{O}_i) \quad \text{but} \quad \mathcal{P}_{\text{real}} \neq \mathcal{P}_{\text{test}}$$
 
 This collapse leads to:
-* **跑分虚假收敛 (Spurious Convergence)**: The model achieves $95\%$ on public leaderboards (MMLU, GPQA) due to training set contamination (memorizing the test), but collapses to near-zero utility in production tasks under distribution shifts.
+* **benchmark hacking (Spurious Convergence)**: The model achieves $95\%$ on public leaderboards (MMLU, GPQA) due to training set contamination (memorizing the test), but collapses to near-zero utility in production tasks under distribution shifts.
 
 ---
 

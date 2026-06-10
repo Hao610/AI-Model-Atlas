@@ -1,5 +1,7 @@
 # AI Tools Guide 🛠️
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (04_ai_tools_zh.md)](04_ai_tools_zh.md)
 
 Before diving into APIs and code, you should understand the existing landscape of user-ready tools. This guide categorizes the most popular AI tools you can use on your browser or desktop right now.

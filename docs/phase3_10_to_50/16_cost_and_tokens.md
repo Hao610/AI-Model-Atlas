@@ -1,5 +1,7 @@
 # Tokenomics & Cost Estimation 💳
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (16_cost_and_tokens_zh.md)](16_cost_and_tokens_zh.md)
 
 When building an AI application, developers often ask: *"How much will this cost me?"* Unlike traditional cloud services where you pay for servers by the hour, commercial AI models charge you by the **Token** count.
@@ -23,12 +25,14 @@ Commercial APIs (like OpenAI or DeepSeek) split your costs into two columns:
 
 To give you a real sense of pricing, here is a comparison of typical market rates (approximate USD rates per 1,000,000 tokens):
 
-| Model | Input Cost (per 1M) | Output Cost (per 1M) | Relative Price Level |
+| Model (2026.06 Snapshot) | Input Price (per 1M tokens) | Output Price (per 1M tokens) | Context & Features |
 | :--- | :--- | :--- | :--- |
-| **GPT-4o** | \$2.50 | \$10.00 | 🟥 Premium |
-| **Claude 3.5 Sonnet** | \$3.00 | \$15.00 | 🟥 Premium |
-| **GPT-4o-mini** | \$0.150 | \$0.600 | 🟨 Budget Friendly |
-| **DeepSeek V3 / R1** | \$0.14 | \$0.28 | 🟩 Ultra Cheap |
+| **GPT-5** (Standard Flagship) | $2.50 | $15.00 | Supports 1.05M context, 90% discount on cache hits |
+| **GPT-5.5** (Frontier) | $5.00 | $30.00 | Specialized in high-value Research and Coding |
+| **Claude 4.5 Sonnet** | $3.00 | $15.00 | Anthropic Flagship, standard pricing |
+| **Gemini 2.5 Pro** | $1.25 | $5.00 | Google 2.5 generation, Vertex AI multimodal pricing |
+| **DeepSeek V4-Flash** | $0.14 | $0.28 | Automatically integrates former R1/V3 routing |
+| **DeepSeek V4-Pro** | $0.435 (Promo) / $1.74 | $0.87 (Promo) / $3.48 | 1.6T parameters, current massive discount |
 
 ### 🧮 Practical Example: The Math
 Imagine you run a RAG Customer Support Bot that answers 1,000 tickets a day.

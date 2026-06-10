@@ -76,5 +76,49 @@ It uses a simple formula for each document:
 By combining the Vibe-reading Artist, the Dictionary Grandpa, and the Smart Vote Counter, your RAG system will successfully retrieve both deep semantic concepts and exact keyword matches!
 
 ---
+## 🚀 Beyond Naive RAG: Advanced Architectures
+When standard "Vector Search + LLM" fails in production, engineers turn to advanced RAG variants:
+### 1. Dynamic Reasoning
+* **Corrective RAG (CRAG)**: If local retrieval yields poor data, a "grader" LLM triggers a Web Search fallback.
+* **Self-RAG**: The LLM iterates and reflects on its answer until it perfectly matches the retrieved text.
+### 2. Multi-Format & Multimodal
+* **Table-Aware RAG**: Parses tables into strict Markdown to preserve grid integrity before indexing. **[✅ AI-Model-Atlas Implements This!]**
+* **Vision RAG**: Extracts raw images/diagrams from PDFs and uses Multimodal LLMs (like GPT-4o) during retrieval.
+### 3. Structural Reorganization
+* **Parent-Child Chunking**: The document is split into tiny sentences (Child) for hyper-accurate searching, but returns the entire surrounding paragraph (Parent) to the LLM to preserve context.
+---
+## 🔮 The Frontier: Predictive Prefetching (LLM Wiki)
+Traditional semantic caching is reactive. **Predictive prefetching** anticipates the user's next step.
+### ⚙️ How it works
+```mermaid
+sequenceDiagram
+    participant User
+    participant TopicRouter as Topic Router
+    participant RAG as Main RAG Pipeline
+    participant AsyncWorker as Async Background Worker
+    participant Cache as Semantic Cache
+
+    User->>TopicRouter: Asks: "What is IPv4?"
+    TopicRouter-->>AsyncWorker: Detects Topic: [Networking]
+    TopicRouter->>RAG: Pass original query
+    RAG->>User: Responds: "IPv4 is a protocol..."
+    
+    note over AsyncWorker,Cache: Background Process (Zero User Delay)
+    AsyncWorker->>Cache: Generate & Inject 10 Wikis (TCP, UDP, Subnet)
+    
+    User->>Cache: Follow-up: "What about TCP?"
+    Cache-->>User: Instant Cache Hit! (0.0001s Latency)
+
+```
+
+1. **Topic Extraction**: User asks about "IPv4", system recognizes `[Computer Networking]`.
+2. **Background Async Generation**: A background thread generates 10 related mini-articles (e.g., TCP, UDP).
+3. **Cache Injection**: Articles are preloaded into the Semantic Cache.
+4. **Zero-Latency Follow-up**: User asks "What about TCP?", system hits cache in 0.0001s with zero token cost.
+
+> **Analogy**: A traditional cache is a waiter pouring water after you ask. Predictive prefetching is a waiter who sees you order fried chicken and silently pre-pours a cola because they know you'll want it next.
+
+---
 
 Now that you know how to architect search, let's explore inference optimizations to make the model run faster on your GPU in [Inference Optimization](../phase4_50_to_100/29_inference_optimization.md).
+

@@ -1,5 +1,7 @@
 # LLaMA-Factory 训练指南 🛠️
 
+> 📅 本章最后更新：2026-06。AI 生态迭代极快，请以各厂商官网最新信息为准。
+
 [[English] (26_llama_factory.md)](26_llama_factory.md) | [中文]
 
 手写 PyTorch 训练循环、处理硬件分布式通信、配置 Tokenizer 切词算法对于零基础开发者来说非常困难。

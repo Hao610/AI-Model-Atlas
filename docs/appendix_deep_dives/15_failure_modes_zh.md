@@ -1,5 +1,7 @@
 ← 返回 [深潜专题目录](../DEEP_DIVES_zh.md) | [[English] (15_failure_modes.md)](15_failure_modes.md) | [中文]
 
+> 📌 注意：本章中提出的理论框架（例如 AIMT、Failure Manifolds、AI-UST）是作者特有的工程化归类与总结，并非学术界标准共识。请带着批判性思维阅读。
+
 ---
 
 # 15. AI 系统失效模式理论：从评测到崩溃

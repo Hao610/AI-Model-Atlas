@@ -1,5 +1,7 @@
 # API Integration Guide 🔑
 
+> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+
 [English] | [中文 (15_api_guide_zh.md)](15_api_guide_zh.md)
 
 An **API (Application Programming Interface)** is a bridge that lets your software talk directly to an LLM provider. Instead of using a web chat interface, your code sends a structured request and gets back a structured response.

@@ -38,7 +38,7 @@ This guide acts as your syllabus. Depending on your background and goals, choose
 ### 3. The Full-Stack AI Engineer Path (Code & Train)
 * **Who it is for**: Software engineers and data scientists looking to write custom code, connect APIs, build UI prototypes, fine-tune models on custom datasets, and serve them to users.
 * **Your Modules**:
-  * **Complete Path (Modules 1 to 32)**: Read everything sequentially. Pay close attention to API integration, vector embeddings math, model evaluations, LoRA adapter fine-tuning, and cloud GPU serving.
+  * **Complete Path (Modules 1 to 36)**: Read everything sequentially. Pay close attention to API integration, vector embeddings math, model evaluations, LoRA adapter fine-tuning, and cloud GPU serving.
 
 ---
 

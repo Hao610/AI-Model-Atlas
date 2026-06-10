@@ -1,5 +1,6 @@
 import os
 import time
+import json
 from core.embeddings import EmbeddingsManager
 from core.parsing.pdf_parser import PDFParser
 from core.chunking.element_chunker import ElementChunker
@@ -73,6 +74,27 @@ class RAGPipeline:
             )
             
         return len(chunks)
+        
+    def _grade_retrieval(self, query: str, context: str) -> bool:
+        system_prompt = "You are a strict relevance grader."
+        user_prompt = f"""
+        Does the following Context contain sufficient information to answer the Query?
+        Respond ONLY with a JSON object: {{"relevant": true}} or {{"relevant": false}}
+        
+        Query: {query}
+        Context: {context}
+        """
+        try:
+            response = self.router.generate(system_prompt, user_prompt)
+            if "```json" in response:
+                response = response.split("```json")[1].split("```")[0].strip()
+            elif "```" in response:
+                response = response.split("```")[1].split("```")[0].strip()
+            result = json.loads(response.strip())
+            return result.get("relevant", True)
+        except Exception as e:
+            print(f"[CRAG] Grader error, proceeding with default: {e}")
+            return True
         
     def execute_query(self, query: str, system_prompt: str = None, max_results: int = 4, 
                       rewrite_active: bool = True, rerank_active: bool = True, rerank_threshold: float = 1.5,
@@ -187,6 +209,17 @@ class RAGPipeline:
                 context_str = f"--- GRAPH KNOWLEDGE ---\n{graph_context}\n\n--- VECTOR KNOWLEDGE ---\n{context_str}"
             else:
                 self.controller.log("No graph nodes matched query entities.")
+            
+        # CRAG: Evaluate retrieval quality of local context
+        self.controller.log("[CRAG] Evaluating retrieval quality...")
+        is_relevant = self._grade_retrieval(query, context_str)
+        
+        if not is_relevant:
+            self.controller.log("[CRAG] Local context insufficient. Triggering Web Search Fallback...")
+            web_results = self.web_search.run(query)
+            context_str += f"\n\n[Web Search Supplement]:\n{web_results}"
+        else:
+            self.controller.log("[CRAG] Local context is relevant.")
             
         trace["retrieved_docs"] = [m["id"] for m in sources]
         trace["context"] = context_str

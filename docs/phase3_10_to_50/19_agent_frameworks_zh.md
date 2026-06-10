@@ -1,5 +1,7 @@
 # 智能体开发框架 👥
 
+> 📅 本章最后更新：2026-06。AI 生态迭代极快，请以各厂商官网最新信息为准。
+
 [[English] (19_agent_frameworks.md)](19_agent_frameworks.md) | [中文]
 
 当单一的 AI 提示词（Prompt）无法解决复杂的商业问题时，我们会引入**多智能体协同（Multi-Agent Collaboration）**。
