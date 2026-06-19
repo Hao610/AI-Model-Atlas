@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a51e8bb3-b2f3-4595-aee4-2272e2323086" alt="AI Model Atlas Logo" width="200">
+</p>
+
 # 📚 AI Model Atlas — 学习课程体系
 
 ### “从 0 到 200” 全栈 AI 学习路线图

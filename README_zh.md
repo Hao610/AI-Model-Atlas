@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a51e8bb3-b2f3-4595-aee4-2272e2323086" alt="AI Model Atlas Logo" width="400">
+</p>
+
 # 🗺️ AI Model Atlas
 
 👉 [阅读必看：为什么需要 AI-Model-Atlas？](INTRO_zh.md)
