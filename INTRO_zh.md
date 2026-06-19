@@ -1,4 +1,11 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a51e8bb3-b2f3-4595-aee4-2272e2323086" alt="AI Model Atlas Logo" width="100">
+</p>
+
 # ⚠️ 如果你做过 AI 项目，大概率遇到过这些问题：
+
+← 返回 [中文首页](README_zh.md) | [English Version (INTRO.md)](INTRO.md)
+
 
 你可能写过这些东西：一个 ChatPDF Demo、一个本地向量搜索、或者一个基于 LangChain 的小玩具。看起来都能跑。但当你想把它放进真实业务时，现实是：
 * 答案经常胡言乱语，但你不知道怎么纠错

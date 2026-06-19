@@ -1,4 +1,11 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a51e8bb3-b2f3-4595-aee4-2272e2323086" alt="AI Model Atlas Logo" width="100">
+</p>
+
 # ⚠️ If you've built an AI app, you've probably hit these walls:
+
+← Back to [README](README.md) | [中文版本 (INTRO_zh.md)](INTRO_zh.md)
+
 
 You’ve likely built a ChatPDF demo, tested a vector search script, or played with a LangChain app. They work great locally. But the moment you push them to production:
 * The LLM hallucinates, and you have no way to auto-correct it.
