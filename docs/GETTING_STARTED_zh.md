@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a51e8bb3-b2f3-4595-aee4-2272e2323086" alt="AI Model Atlas Logo" width="100">
+</p>
+
 # 🧭 AI Model Atlas 快速入门指南
 
 ← 返回 [中文首页](../README_zh.md) | [English Version (GETTING_STARTED.md)](GETTING_STARTED.md)
@@ -39,7 +43,6 @@
 | 文档 | 核心聚焦 | 技术深度 | 核心图示 |
 | :--- | :--- | :--- | :--- |
 | [README_zh.md](../README_zh.md) | 项目概览与快速启动 | 中等 | 系统运行架构图 |
-| [GETTING_STARTED_zh.md](GETTING_STARTED_zh.md) | 仓库入口与导航选择 | 初级 | 目标受众分布图 |
 | [CURRICULUM_zh.md](CURRICULUM_zh.md) | 36 模块学习路线图 | 初级至高级 | 学习路线拓扑图 |
 | [ARCHITECTURE_zh.md](ARCHITECTURE_zh.md) | 系统设计与性能指标 | 高级 | 系统状态机与延迟指标 |
 | [DEEP_DIVES_zh.md](DEEP_DIVES_zh.md) | 底层算法与技术原理 | 高级 | AI 底层算法演进地图 |

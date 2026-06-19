@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/a51e8bb3-b2f3-4595-aee4-2272e2323086" alt="AI Model Atlas Logo" width="100">
+</p>
+
 # 🧭 Getting Started with AI Model Atlas
 
 ← Back to [README](../README.md) | [中文版 (GETTING_STARTED_zh.md)](GETTING_STARTED_zh.md)
@@ -39,7 +43,6 @@ To make the most of your time here, please select the path below that best match
 | Document | Primary Focus | Technical Level | Key Visuals |
 | :--- | :--- | :--- | :--- |
 | [README.md](../README.md) | Project Overview & Quick Start | Intermediate | System Runtime Poster |
-| [GETTING_STARTED.md](GETTING_STARTED.md) | Entry point & Navigation | Beginner | Target Audience Map |
 | [CURRICULUM.md](CURRICULUM.md) | 36-Module structured roadmap | Beginner to Advanced | Learning Path flow diagram |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System design & Benchmarks | Advanced | State Flowchart & Benchmarks |
 | [DEEP_DIVES.md](DEEP_DIVES.md) | Deep algorithm principles | Advanced | AI Algorithm Evolution Map |
