@@ -42,7 +42,7 @@
 | :--- | :---: | :--- |
 | [课程](docs/CURRICULUM_zh.md) | **36 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
 | [深潜专题](docs/DEEP_DIVES_zh.md) | **17 章** | Transformer, MoE, 推理模型, 对齐, 评测… |
-| [RAG 沙盒](projects/rag-app/) | 1 个应用 | Streamlit 演示：缓存、重排、路由、GraphRAG |
+| [RAG 沙盒](projects/rag-app/README_zh.md) | 1 个应用 | Streamlit 演示：缓存、重排、路由、GraphRAG |
 | 语言 | 中 + 英 | 手写双语对照，非机器翻译 |
 
 ---

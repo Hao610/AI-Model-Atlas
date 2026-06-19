@@ -42,7 +42,7 @@
 | :--- | :---: | :--- |
 | [Curriculum](docs/CURRICULUM.md) | **36 modules** | Prompt → RAG → API → Fine-tune → Deploy → Agent |
 | [Deep Dives](docs/DEEP_DIVES.md) | **17 chapters** | Transformer, MoE, Reasoning, Alignment, Evaluation… |
-| [RAG Sandbox](projects/rag-app/) | 1 app | Streamlit demo: cache, rerank, routing, GraphRAG |
+| [RAG Sandbox](projects/rag-app/README.md) | 1 app | Streamlit demo: cache, rerank, routing, GraphRAG |
 | Languages | EN + ZH | Hand-written bilingual docs (not machine-translated) |
 
 ---
