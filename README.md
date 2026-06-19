@@ -87,3 +87,10 @@ graph LR
 If you find this project helpful, please consider giving it a ⭐ star — it helps more people discover the roadmap.
 
 ---
+
+## ✍️ Author & Maintainer
+
+Developed and maintained by **[Loi Chiang Hao](https://github.com/hao610)** (hao610).  
+Focusing on the intersection of Cybersecurity, AI Systems, Cloud Infrastructure, and DevSecOps.
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/loi-chiang-hao) [![Portfolio](https://img.shields.io/badge/Portfolio-0A0A0A?style=for-the-badge&logo=opsgenie&logoColor=white)](https://loichianghao.vercel.app/)

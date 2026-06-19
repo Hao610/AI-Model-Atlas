@@ -85,3 +85,13 @@ graph LR
 - 文档：[CC BY 4.0](LICENSE)
 
 如果这个项目对你有帮助，欢迎点一个 ⭐ star —— 让更多学习者发现这张学习地图。
+
+---
+
+## ✍️ 作者与维护者 (Author & Maintainer)
+
+由 **[Loi Chiang Hao](https://github.com/hao610)** (hao610) 开发与维护。  
+核心专注于**网络安全 (Cybersecurity)**、**人工智能系统 (AI Systems)**、**云基础设施 (Cloud Infrastructure)** 以及 **DevSecOps** 的交叉技术领域。
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/loi-chiang-hao) [![Portfolio](https://img.shields.io/badge/Portfolio-0A0A0A?style=for-the-badge&logo=opsgenie&logoColor=white)](https://loichianghao.vercel.app/)
+
