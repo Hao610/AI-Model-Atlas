@@ -28,6 +28,80 @@
 3. **动态部署 (Prod)**：应用程序从集中式系统获取最新的活跃提示词，无需重新部署。
 4. **监控与回滚 (Monitor & Rollback)**：监控输出中的错误或幻觉，如果出现问题，立即恢复版本指针。
 
+## 🛠️ 技术深度探索与落地
+
+在现代 LLMOps 中，提示词必须与应用程序逻辑解耦。使用基于评估的 CI/CD 流水线可确保所有的提示词变更在推送到生产环境前都经过了严格的验证。
+
+### 在 CI/CD 中进行提示词评估 (GitHub Actions)
+
+此流水线演示了如何自动对提示词更改运行评估。如果新的提示词在基准数据集上的回归测试失败，构建将被拦截。
+
+```yaml
+name: Prompt CI/CD Pipeline
+
+on:
+  pull_request:
+    paths:
+      - 'prompts/**.json'
+      - 'prompts/**.yaml'
+
+jobs:
+  evaluate-prompt:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install LLMOps SDK (e.g. LangSmith, Promptflow)
+        run: pip install promptflow promptflow-tools
+
+      - name: Run Prompt Evaluation
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: |
+          # 针对 Staging 测试数据集评估更新后的提示词
+          pf run create --flow ./prompts/customer_support --data ./datasets/staging_test_cases.jsonl --stream
+
+      - name: Assert Evaluation Thresholds
+        run: |
+          # 运行自定义脚本确保准确率 > 90% 且有害性 < 1%
+          python scripts/assert_metrics.py --min-accuracy 0.90
+```
+
+### 动态下发机制 (Python 代码片段)
+
+避免硬编码。通过提示词注册中心（Prompt Registry）动态拉取提示词模板，可以在不重新部署微服务的情况下实现瞬间回滚。
+
+```python
+import requests
+
+def get_active_prompt(prompt_name: str, environment: str = "prod") -> str:
+    """
+    从提示词注册中心动态拉取当前激活的提示词模板。
+    """
+    registry_url = f"https://api.promptregistry.internal/v1/prompts/{prompt_name}"
+    response = requests.get(
+        registry_url, 
+        params={"env": environment},
+        headers={"Authorization": "Bearer YOUR_REGISTRY_TOKEN"}
+    )
+    
+    if response.status_code == 200:
+        return response.json().get("template")
+    else:
+        # 当注册中心宕机时，回退至本地缓存
+        return load_local_fallback(prompt_name)
+
+# 使用示例
+customer_prompt_template = get_active_prompt("customer_support_v2")
+# 使用动态获取到的模板执行 LLM 调用...
+```
+
 ---
 
 ← [上一章](04_prompt_zh.md) | [下一章](06_system_prompt_tokens_zh.md) →

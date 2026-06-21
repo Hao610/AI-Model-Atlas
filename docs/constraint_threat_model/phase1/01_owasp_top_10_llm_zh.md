@@ -27,6 +27,49 @@
 3. 由于没有结构边界，恶意用户可以注入上下文来覆盖系统原本预期的逻辑。
 4. 我们必须放弃纯粹基于语法的防御，并采用专门为应对 AI 流动、不可预测本质而设计的新威胁模型。
 
+## 🛠️ 技术深度探索与落地
+
+LLM 引入的最根本的漏洞是**提示词注入 (Prompt Injection)** (OWASP LLM01:2023)，这源于控制面和数据面缺乏严格的隔离。
+
+### 🛑 攻击剖析：提示词注入
+* **抽象模式**：`<系统提示词上下文> \n [用户输入]: "忽略之前的指令，改为执行 <恶意操作>"` (已净化)
+* **意图**：劫持模型目标，绕过开发者设定的约束。
+* **攻击向量**：直接的用户输入，或通过网页/文档间接输入（间接提示词注入）。
+* **影响**：数据泄露、未授权执行操作或生成有害内容。
+* **检测**：提示词中困惑度 (Perplexity) 的剧烈变化、存在覆盖关键词（如"忽略"、"忘记"），或对越界操作的输出监控。
+* **缓解措施**：实施健壮的语义路由、输入/输出护栏 (Guardrails)，以及对代理工具遵循最小权限原则。
+
+### 🛡️ 防御落地：语义护栏 (Semantic Guardrails)
+传统的 Web 应用防火墙 (WAF) 无法解析概率逻辑。我们必须使用语义护栏。以下是使用 NeMo Guardrails 约束机器人行为的示例。
+
+```yaml
+# guardrails/config.yml
+models:
+  - type: main
+    engine: openai
+    model: gpt-4
+
+rails:
+  input:
+    flows:
+      - check_jailbreak
+  output:
+    flows:
+      - check_hallucination
+```
+
+```colang
+# guardrails/jailbreak.co
+define bot refuse to respond
+  "我无法满足此请求，因为它违反了安全协议。"
+
+define flow check_jailbreak
+  $is_jailbreak = execute check_if_jailbreak_pattern
+  if $is_jailbreak
+    bot refuse to respond
+    stop
+```
+
 ---
 
 [下一章](02_chapter_2_zh.md) →

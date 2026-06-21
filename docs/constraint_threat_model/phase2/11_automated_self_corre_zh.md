@@ -28,6 +28,51 @@
 4. **解决 (Resolution):** LLM 纠正语法并返回有效的 JSON 对象，允许整个流程正常继续。
 5. **优雅降级 (Graceful Degradation):** 如果模型在多次重试后仍然失败，系统将回退到较小的本地模型或使用缓存的响应，而不是彻底崩溃。
 
+## 🛠️ 技术深度探索与落地
+
+**防御模式：强大的验证与自我纠错循环 (Robust Validation & Self-Correction Loop)**
+
+自我纠错机制通过捕获解析异常或验证失败（例如，使用 Pydantic），将具体的错误信息或堆栈跟踪作为提示词重新发送给模型，从而避免数据管道中断。
+
+**落地示例 (Python 通用接口实现)：**
+
+```python
+import json
+import logging
+
+def robust_json_generator(initial_prompt: str, max_retries: int = 3) -> dict:
+    current_prompt = initial_prompt
+    
+    for attempt in range(max_retries):
+        # 1. 执行 LLM 生成
+        raw_output = llm_client.generate(current_prompt)
+        
+        try:
+            # 2. 严格的验证检查
+            parsed_data = json.loads(raw_output)
+            # 可选: 此处可添加严格的 Schema 验证（例如 Pydantic）
+            return parsed_data
+            
+        except json.JSONDecodeError as e:
+            logging.warning(f"第 {attempt + 1} 次验证失败: {e}")
+            
+            # 3. 构建自我纠错反馈循环
+            current_prompt = (
+                f"你之前的输出未通过验证。\n"
+                f"错误详情: {str(e)}\n"
+                f"格式错误的输出: {raw_output}\n"
+                f"规则: 请修复格式错误，并且只返回有效的 JSON 格式。"
+            )
+            
+    # 4. 优雅降级：重试耗尽后的安全回退
+    logging.error("自我纠错次数耗尽，触发安全回退机制。")
+    return _safe_fallback_handler()
+
+def _safe_fallback_handler() -> dict:
+    # 返回一个经过净化的默认数据结构，防止上游服务崩溃
+    return {"status": "degraded", "data": None}
+```
+
 ---
 
 ← [上一章](10_pydantic_json_zh.md) | [下一章](12_temperature_top_p_zh.md) →

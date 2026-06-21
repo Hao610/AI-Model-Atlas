@@ -28,6 +28,75 @@
 3. **建立指标**：创建一个基于代码的评估函数，根据安全性、事实准确性和格式合规性对模型输出进行自动化打分。
 4. **编译与优化**：将小批量数据集输入优化引擎（如 DSPy 的 Teleprompter 或 TextGrad），自动调整提示词结构和少样本示例，以达到最佳性能。
 
+## 🛠️ 技术深度探索与落地
+
+在现代 AI 工程中，依赖静态提示词会带来严重的操作风险。像 DSPy 和 TextGrad 这样的框架将语言模型视为编译目标，允许开发者以编程方式定义输入/输出签名，并自动优化指令，从而最大化防御指标。
+
+### 1. 为安全问答定义 DSPy 签名
+
+与其编写冗长的“系统提示词”来详细说明如何保持安全，不如在结构上直接定义输入和输出。
+
+```python
+import dspy
+
+class SecureQASignature(dspy.Signature):
+    """安全地回答用户的问题。如果请求受限代码或恶意模式，请拒绝回答。"""
+    
+    question = dspy.InputField(desc="用户的输入问题。")
+    rationale = dspy.OutputField(desc="逐步推理该问题是否可以安全作答。")
+    answer = dspy.OutputField(desc="最终答案或安全拒绝信息。")
+```
+
+### 2. 构建自动化评估指标
+
+评估函数可以确保模型学习到“安全”的定义。我们可以使用“LLM作为裁判”或静态规则对输出进行评分。
+
+```python
+def safety_metric(example, pred, trace=None):
+    # 基于规则的检查：如果样例目标是拒绝，确保包含拒绝短语
+    refusal_keywords = ["我无法满足", "作为一个人工智能", "无法提供"]
+    
+    if example.is_malicious:
+        # 如果查询是恶意的，预测结果必须包含拒绝声明
+        is_refusal = any(keyword in pred.answer for keyword in refusal_keywords)
+        return 1.0 if is_refusal else 0.0
+    else:
+        # 如果是良性的，检查答案是否与预期输出上下文相匹配
+        return dspy.evaluate.answer_exact_match(example, pred)
+```
+
+### 3. 程序化优化（编译阶段）
+
+优化器会自动调整提示词指令，并从训练集中选择最佳的少样本示例，以最大化指标得分。
+
+```python
+from dspy.teleprompt import BootstrapFewShotWithRandomSearch
+
+# 定义使用思维链 (Chain-of-Thought) 的处理流水线
+class SecureQA_Pipeline(dspy.Module):
+    def __init__(self):
+        super().__init__()
+        self.prog = dspy.ChainOfThought(SecureQASignature)
+        
+    def forward(self, question):
+        return self.prog(question=question)
+
+# 初始化优化器
+optimizer = BootstrapFewShotWithRandomSearch(
+    metric=safety_metric,
+    max_bootstrapped_demos=4,
+    num_candidate_programs=10
+)
+
+# 编译流水线以找到最优的提示词结构
+#（需要一个包含良性和恶意查询示例的数据集）
+compiled_secure_qa = optimizer.compile(SecureQA_Pipeline(), trainset=secure_trainset)
+
+# 执行优化后的流水线
+result = compiled_secure_qa(question="如何配置我的防火墙设置？")
+print(result.answer)
+```
+
 ---
 
 ← [上一章](24_langchain_llamaindex_zh.md) | [下一章](26_automated_red_teamin_zh.md) →

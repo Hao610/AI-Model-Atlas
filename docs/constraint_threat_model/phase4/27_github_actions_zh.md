@@ -26,25 +26,99 @@
 3. **对抗性测试：** 运行尝试越狱本地测试模型的自动化测试套件。
 4. **可审计性：** 为每次构建生成安全日志，证明安全防护已通过检查。
 
+## 🛠️ 技术深度探索与落地
+
+为了构建有效的AI安全网关，您需要在CI流水线中建立多层自动化防御机制。我们将验证静态提示词（提示词Linting），并通过合成对抗评估来动态测试应用程序。
+
+### GitHub Actions：AI DevSecOps流水线
+
+以下工作流演示了如何将静态分析和动态对抗性测试（通过Promptfoo或pytest）集成到您的CI/CD流程中。
+
 ```yaml
-name: AI Security Gateway
+name: AI DevSecOps Gateway
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "develop" ]
+    paths:
+      - 'app/prompts/**'
+      - 'app/llm_config.json'
 
 jobs:
-  security-check:
+  llm-security-audit:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v4
 
-      - name: Run Prompt Injection Scanner
-        run: python -m security_tools.prompt_scanner ./app/prompts/
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-      - name: Adversarial Automated Testing
-        run: pytest tests/adversarial/
+      - name: Install AI Security Dependencies
+        run: |
+          pip install detect-secrets pytest giskard promptfoo
+
+      - name: 🛡️ 第1步 - 静态提示词分析
+        # 检查硬编码的API密钥或范围过大的危险系统提示词
+        run: |
+          detect-secrets scan ./app/prompts/ > secrets_report.json
+          python scripts/lint_prompts.py ./app/prompts/
+
+      - name: 🧪 第2步 - 动态对抗性测试（本地预发布）
+        # 使用预定义的已脱敏Payload评估LLM端点
+        # 例如，Pattern: "Ignore previous instructions..." (sanitized)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          STAGING_ENDPOINT: "http://localhost:8000/v1/chat"
+        run: |
+          # 示例：使用 promptfoo 进行评估
+          promptfoo eval -c tests/adversarial/promptfoo.yaml --output eval_results.json
+          
+      - name: 🚦 第3步 - 关卡策略强制执行
+        # 如果通过率低于95%的阈值，则构建失败
+        run: |
+          python scripts/enforce_threshold.py eval_results.json --min-pass-rate 0.95
+```
+
+### 评估脚本代码片段 (`enforce_threshold.py`)
+
+一个简单的脚本，用于解析评估输出并在检测到安全退化时阻止代码合并。
+
+```python
+import json
+import sys
+import argparse
+
+def enforce_security_threshold(results_file, min_pass_rate):
+    with open(results_file, 'r') as f:
+        data = json.load(f)
+        
+    total_tests = data.get('results', {}).get('stats', {}).get('total', 0)
+    passed_tests = data.get('results', {}).get('stats', {}).get('successes', 0)
+    
+    if total_tests == 0:
+        print("❌ 未执行任何对抗性测试。构建失败。")
+        sys.exit(1)
+        
+    pass_rate = passed_tests / total_tests
+    print(f"📊 LLM 安全通过率: {pass_rate*100:.2f}%")
+    
+    if pass_rate < min_pass_rate:
+        print(f"❌ 安全阈值未达标。要求: {min_pass_rate*100}%，实际: {pass_rate*100:.2f}%")
+        print("⚠️ 检测到潜在的提示词注入漏洞。请检查评估日志。")
+        sys.exit(1)
+        
+    print("✅ 所有 LLM 安全检查均已通过。")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument('results', help='评估结果JSON文件的路径')
+    parser.add_argument('--min-pass-rate', type=float, default=0.95)
+    args = parser.parse_args()
+    
+    enforce_security_threshold(args.results, args.min_pass_rate)
 ```
 
 ---

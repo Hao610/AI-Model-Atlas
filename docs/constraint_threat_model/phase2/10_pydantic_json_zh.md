@@ -37,6 +37,59 @@ class UserProfile(BaseModel):
     tags: list[str] = Field(description="与用户相关的兴趣或标签列表")
 ```
 
+## 🛠️ 技术深度探索与落地
+
+在现代 LLM 应用中，仅仅提示模型“输出 JSON”是远远不够的。高级实现方案通常会结合**结构化输出 (Structured Outputs)**（如 OpenAI 的 `response_format` 或 Instructor 库）与 Pydantic，以显著提升模式一致性。
+
+### 1. 结合 Instructor 库 (防御代码片段)
+使用 `instructor` 库对 LLM 客户端进行功能增强，强制执行 Pydantic 验证并在验证失败时自动处理重试逻辑。
+
+```python
+import instructor
+from openai import OpenAI
+from pydantic import BaseModel, Field
+
+# 增强 OpenAI 客户端
+client = instructor.from_openai(OpenAI())
+
+class SecurityReport(BaseModel):
+    threat_level: str = Field(pattern=r"^(Low|Medium|High|Critical)$")
+    vulnerabilities_found: int = Field(ge=0)
+    action_items: list[str] = Field(max_length=5)
+
+# 如果 LLM 输出违反 Pydantic 模式，客户端将自动重试
+report = client.chat.completions.create(
+    model="gpt-4o",
+    response_model=SecurityReport,
+    max_retries=3, # 验证失败时自动重试
+    messages=[
+        {"role": "user", "content": "分析以下日志以查找威胁：[LOG_DATA]"}
+    ]
+)
+print(report.model_dump_json(indent=2))
+```
+
+### 2. Guardrails 配置 (NeMo YAML)
+您还可以在代理或护栏层强制执行 JSON 模式约束，在不合规的载荷到达应用核心逻辑之前将其丢弃或标记。
+
+```yaml
+models:
+  - type: main
+    engine: openai
+    model: gpt-4
+    
+rails:
+  output:
+    flows:
+      - check output schema
+
+prompts:
+  - task: generate_json
+    content: |
+      生成完全符合以下 JSON 模式的响应：
+      {{ expected_schema }}
+```
+
 ---
 
 ← [上一章](09_role_alignment_agent_zh.md) | [下一章](11_automated_self_corre_zh.md) →

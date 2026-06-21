@@ -42,6 +42,52 @@ def run_automated_probe(target_ai, evaluator_ai, objective):
         current_prompts = mutate_prompts(current_prompts, scores)
 ```
 
+## 🛠️ 技术深度探索与落地
+
+自动化红队测试流水线将对抗性测试直接映射到 CI/CD 或 MLOps 工作流中。通过将大语言模型（LLM）视为黑盒，并使用搜索算法（如贪婪坐标梯度算法或遗传算法），我们可以编程自动生成测试向量以绕过安全防护栏。
+
+**抽象攻击模式 (Abstracted Pattern):**
+* **模式**: `遗传变异循环 + 辅助LLM裁判进行奖励评分` (已脱敏)
+* **意图**: 系统性地发现能绕过安全过滤器的边缘提示词。
+* **向量**: 高频率的程序化 API 调用以及迭代式提示词变异。
+* **影响**: 快速暴露安全过滤器的漏洞；可能耗尽 API 配额。
+* **检测**: 单个IP的请求频率异常高，语义结构重复但存在细微变异，短时间内出现高失败率或高拒绝率。
+* **缓解**: 在 API 网关层实施速率限制、验证码拦截、语义缓存以及强健的异常检测。
+
+**运维/CI 落地 (评估流水线):**
+为了将自动化红队测试集成到持续评估流水线中，通常使用诸如 Promptfoo 或 Giskard 等 Python 框架，并通过 GitHub Actions 进行编排。
+
+```yaml
+# .github/workflows/llm_red_team.yml
+name: LLM Automated Red Teaming
+on:
+  push:
+    branches: [ main ]
+jobs:
+  fuzz_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install Dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Run Adversarial Fuzzer
+        env:
+          TARGET_LLM_API_KEY: ${{ secrets.TARGET_LLM_API_KEY }}
+          JUDGE_LLM_API_KEY: ${{ secrets.JUDGE_LLM_API_KEY }}
+        run: |
+          # 运行 Python 脚本对模型进行模糊测试，以验证安全约束
+          python scripts/auto_jailbreak_eval.py --target-model my-llm-v2 --iterations 100
+      - name: Upload Vulnerability Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: red-team-report
+          path: results/vulnerability_report.json
+```
+
 ---
 
 ← [上一章](14_base64_zh.md) | [下一章](16_indirect_injection_p_zh.md) →

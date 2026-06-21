@@ -42,6 +42,52 @@ def run_automated_probe(target_ai, evaluator_ai, objective):
         current_prompts = mutate_prompts(current_prompts, scores)
 ```
 
+## 🛠️ Technical Deep Dive & Implementation
+
+Automated red teaming pipelines map adversarial testing directly into CI/CD or MLOps workflows. By treating the LLM as a black box and using search algorithms (like greedy coordinate gradient or genetic algorithms), scripts systematically generate test vectors to bypass guardrails.
+
+**Abstracted Pattern:**
+* **Pattern**: `Genetic mutation loop + secondary LLM judge for reward scoring` (sanitized)
+* **Intent**: Systematically discover edge-case prompts that bypass safety filters.
+* **Vector**: High-volume programmatic API calls with iterative prompt mutations.
+* **Impact**: Rapid exposure of safety filter vulnerabilities; potential exhaustion of API quotas.
+* **Detection**: High velocity of queries from single IPs, repetitive but slightly mutating semantic structures, high failure/refusal rates over short windows.
+* **Mitigation**: Implement rate limiting, CAPTCHAs, semantic caching, and robust anomaly detection on the API gateway.
+
+**Ops/CI Implementation (Evaluation Pipeline):**
+To integrate automated red teaming into a continuous evaluation pipeline, you can use Python frameworks like Promptfoo or Giskard, often orchestrated via GitHub Actions.
+
+```yaml
+# .github/workflows/llm_red_team.yml
+name: LLM Automated Red Teaming
+on:
+  push:
+    branches: [ main ]
+jobs:
+  fuzz_testing:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: Install Dependencies
+        run: pip install -r requirements-dev.txt
+      - name: Run Adversarial Fuzzer
+        env:
+          TARGET_LLM_API_KEY: ${{ secrets.TARGET_LLM_API_KEY }}
+          JUDGE_LLM_API_KEY: ${{ secrets.JUDGE_LLM_API_KEY }}
+        run: |
+          # Executes a Python script to fuzz the model against known safety constraints
+          python scripts/auto_jailbreak_eval.py --target-model my-llm-v2 --iterations 100
+      - name: Upload Vulnerability Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: red-team-report
+          path: results/vulnerability_report.json
+```
+
 ---
 
 ← [Prev Chapter](14_base64.md) | [Next Chapter](16_indirect_injection_p.md) →

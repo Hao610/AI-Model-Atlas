@@ -27,6 +27,65 @@
 2. **中间件（中毒的流水线）：** 攻击者将恶意载荷注入编排层和向量数据库，中间件随后会盲目地将其作为受信任的指令直接喂给模型。
 3. **数据流（隐形上下文操纵）：** AI 不断摄取外部环境数据（解析 PDF、读取网页），攻击者可以在环境中埋下隐形陷阱（如零像素文本），无需直接交互即可劫持 AI。
 
+## 🛠️ 技术深度探索与落地
+
+本节将深入剖析非结构化攻击的机制，并提供安全防护的落地指南。
+
+### 攻击向量 1：通过数据流的间接提示词注入
+* **抽象模式 (Abstracted Pattern)**: `[隐藏载荷：忽略之前的指令并执行 <操作>]`
+* **意图 (Intent)**: 通过将恶意指令嵌入模型读取的外部数据中，劫持模型的执行目标。
+* **路径 (Vector)**: 解析外部文档（PDF、CSV）、浏览抓取的网页或读取用户提交的文件。
+* **影响 (Impact)**: 未经授权的操作执行、数据外泄或生成有害内容。
+* **检测 (Detection)**: 监控上下文窗口中指令语气的突然转变，或绕过分隔符的尝试（例如 `\n\n===系统覆盖===`）。
+* **缓解 (Mitigation)**: 实施输入净化和上下文隔离。使用护栏中间件在输入到达模型之前进行分类。
+
+**防御落地 (NeMo Guardrails 示例):**
+```yaml
+# input_guardrails.yml
+define bot refuse malicious input
+  "我无法处理嵌入在外部文档中的指令。"
+
+define flow check input
+  user ...
+  $is_safe = execute check_safety(user_input=$last_user_message)
+  if not $is_safe
+    bot refuse malicious input
+    stop
+```
+
+### 攻击向量 2：受污染的中间件与向量数据库
+* **抽象模式 (Abstracted Pattern)**: `[中毒的嵌入向量：操纵上下文映射以欺骗相似度搜索]`
+* **意图 (Intent)**: 破坏检索增强生成（RAG）流水线，使大模型接收到恶意伪造的上下文。
+* **路径 (Vector)**: 将受损数据注入向量数据库，导致检索系统提取有害或误导性信息。
+* **影响 (Impact)**: 大模型基于虚假信息生成回答，导致一本正经地胡说八道（幻觉）或暴露未经授权的数据。
+* **检测 (Detection)**: 持续评估向量漂移，并审计摄入向量数据库的数据来源。
+* **缓解 (Mitigation)**: 在对数据进行分块和嵌入之前进行加密签名。验证 RAG 检索输出的完整性。
+
+**防御落地 (Python 伪代码):**
+```python
+def retrieve_and_validate(query, vector_db):
+    # 检索相关文档
+    docs = vector_db.similarity_search(query, k=3)
+    
+    validated_docs = []
+    for doc in docs:
+        # 验证分块的数字签名
+        if verify_signature(doc.content, doc.metadata.signature):
+            validated_docs.append(doc.content)
+        else:
+            log_security_event("在 RAG 流水线中检测到不可信的文档分块。")
+            
+    return validated_docs
+```
+
+### 攻击向量 3：模型权重劫持
+* **抽象模式 (Abstracted Pattern)**: `[篡改的权重：专门针对 <触发词> 操纵的张量层]`
+* **意图 (Intent)**: 嵌入一个潜伏的后门，仅在存在特定触发词时彻底改变模型的行为。
+* **路径 (Vector)**: 供应链攻击，攻击者在公共仓库发布受污染的基础模型或恶意的 LoRA 适配器。
+* **影响 (Impact)**: 触发时完全攻陷模型输出，绕过所有提示词级别的安全过滤。
+* **检测 (Detection)**: 与受信任来源进行 SHA-256 哈希值比对。使用权重扫描工具检测异常的张量分布。
+* **缓解 (Mitigation)**: 严格执行模型来源溯源。仅加载经过验证的 safetensors 文件，阻止模型文件中任意代码的执行（例如不可信的 Pickle 文件）。
+
 ---
 
 ← [上一章](01_owasp_top_10_llm_zh.md) | [下一章](03_zero_trust_zh.md) →
