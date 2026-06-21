@@ -1,0 +1,33 @@
+← Back to [Constraint & Threat Model](../../CONSTRAINT_THREAT_MODEL.md) | [中文版 (11_automated_self_corre_zh.md)](11_automated_self_corre_zh.md)
+
+---
+
+# 🧰 Chapter 11: Self-Correction Mechanisms
+
+Stop letting AI hallucinations crash your pipeline. Self-correction and graceful degradation act as an automated safety net to keep your systems running smoothly without human intervention.
+
+## ✍️ The Editor and Writer Analogy
+
+* **The Analogy**: Treat the AI model as a **writer** and your application code as an **editor**.
+* **How it works**: When the writer submits a draft with errors, the editor doesn't just throw it away or crash. Instead, the editor hands it back with specific feedback so the writer can fix their mistakes.
+* **Key Concept**: Implement a validation loop that intercepts failures and prompts the AI to self-correct before the end-user ever sees an error.
+
+## 📊 Quick Comparison
+
+| Concept | Traditional | LLM Era | Impact |
+| --- | --- | --- | --- |
+| **Error Handling** | Hard-coded `try/catch` and immediate system failure. | Iterative feedback loops where models fix their own outputs. | **Reduced Downtime**. Recovers dynamically from malformed outputs. |
+| **Validation** | Regex and strict typing rules. | Schema validation combined with auto-prompting corrections. | **Resilience**. Saves pipelines from broken JSON structures. |
+| **System Failure** | Entire app goes offline or throws a 500 status. | Graceful degradation to cached or simpler heuristic models. | **Uptime**. The user gets a degraded but functional experience. |
+
+## 🧠 Core Concept
+
+1. **Generation:** The LLM generates a response intended to be JSON but forgets a closing bracket.
+2. **Validation:** Your application's JSON parser catches the malformed output and throws a `SyntaxError`.
+3. **Correction Loop:** The system intercepts the crash, appends the parser's error message, and sends it back to the LLM with a prompt: *"The previous JSON was invalid. Here is the error. Please fix the JSON."*
+4. **Resolution:** The LLM corrects the syntax and returns a valid JSON object, allowing the pipeline to proceed normally.
+5. **Graceful Degradation:** If the model fails repeatedly after multiple loops, the system falls back to a smaller local model or cached data instead of a hard crash.
+
+---
+
+← [Prev Chapter](10_pydantic_json.md) | [Next Chapter](12_temperature_top_p.md) →

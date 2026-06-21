@@ -1,0 +1,17 @@
+mappings:
+  - threat_id: prompt_injection
+    benchmark_dataset: "data/benchmarks/security/prompt_injection_v1.json"
+    primary_control: SecurityMiddleware
+    secondary_control: ContextGuard
+  - threat_id: rag_poisoning
+    benchmark_dataset: "data/benchmarks/security/rag_poisoning_v1.json"
+    primary_control: ContextGuard
+  - threat_id: retrieval_collapse
+    benchmark_dataset: "data/benchmarks/reliability/retrieval_collapse_v1.json"
+    primary_control: ContextGuard
+  - threat_id: model_unavailable
+    benchmark_dataset: "data/benchmarks/reliability/model_outage_sim.json"
+    primary_control: FailoverRouter
+  - threat_id: cascading_failure
+    benchmark_dataset: "data/benchmarks/resilience/cascading_failure_sim.json"
+    primary_control: CircuitBreaker

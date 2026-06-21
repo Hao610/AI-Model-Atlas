@@ -1,0 +1,39 @@
+threats:
+  adversarial:
+    - id: prompt_leak
+      target: prompt
+      description: "Attempts to extract the system_prompt or internal tool schemas via social engineering or edge-case manipulation."
+    - id: prompt_injection
+      target: prompt
+      description: "Direct manipulation of the user input to override the system_prompt and hijack the LLM's goal."
+    - id: indirect_injection
+      target: context
+      description: "Injecting malicious instructions via retrieved context."
+    - id: rag_poisoning
+      target: context
+      description: "Compromising the vector database to return biased, harmful, or maliciously crafted context to the LLM."
+    - id: data_exfiltration
+      target: [context, memory]
+      description: "Forcing the LLM to output sensitive information to an external attacker."
+    - id: tool_hijacking
+      target: tool
+      description: "Tricking the agent into executing unauthorized tool commands."
+  operational:
+    - id: retrieval_collapse
+      target: context
+      description: "The RAG pipeline fails to find valid content (returning empty, contradictory, or garbage context)."
+    - id: context_truncation
+      target: context
+      description: "The accumulated prompt length exceeds the model's maximum window size and is forcefully truncated."
+    - id: model_unavailable
+      target: model
+      description: "The upstream LLM API endpoint or local inference node goes down, times out, or becomes unreachable."
+    - id: queue_saturation
+      target: workflow
+      description: "A sudden burst of traffic overwhelms the asynchronous processing queue."
+    - id: cascading_failure
+      target: workflow
+      description: "A single component's failure hogs thread pools, dragging down the entire execution chain."
+    - id: agent_deadlock
+      target: workflow
+      description: "In multi-agent environments, agents get stuck waiting on each other indefinitely."

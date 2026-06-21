@@ -6,10 +6,10 @@
 
 👉 [阅读必看：为什么需要 AI-Model-Atlas？](INTRO_zh.md)
 
-## 开源 AI 学习地图 — 从零到 RAG、智能体与微调
+## AI DevSecOps 与安全工程参考架构 (AI DevSecOps & Security Engineering Reference Architecture)
 
-> 📖 **中英双语文档** · 36 个课程模块 · 17 章深潜专题 · 可运行的 RAG 沙盒  
-> 🎯 一个**面向教学的架构模拟器**——不是生产框架，也不是实时型号百科。
+> 📖 **中英双语文档** · 安全能力地图 · 威胁模型 · CI/CD 流水线
+> 🎯 从一个学习地图演进为**生产级 AI 安全工程参考架构**。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
 [![CC BY 4.0](https://img.shields.io/badge/%E6%96%8B%E6%A1%A3-CC%20BY%204.0-lightgrey)](LICENSE)
@@ -30,8 +30,9 @@
 | :--- | :--- |
 | 📚 **系统学习**（从零开始） | [CURRICULUM_zh.md](docs/CURRICULUM_zh.md) — 36 模块，Phase 1→5 |
 | 🧬 **理解原理与内部机制** | [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 17 章 |
+| 🛡️ **查看全新 DevSecOps 安全蓝图** | [CONSTRAINT_THREAT_MODEL_zh.md](docs/CONSTRAINT_THREAT_MODEL_zh.md) — 36 章，DevSecOps 安全蓝图 |
 | 📐 **查看系统架构** | [ARCHITECTURE_zh.md](docs/ARCHITECTURE_zh.md) |
-| ▶️ **5 分钟跑起来** | [快速开始 ↓](#-快速开始) |
+| ▶️ **5 分钟跑起来** | [快速开始 ↓](#-快速开始-quick-start) |
 | 🗺️ **选择一条学习路径** | [入门指南](docs/GETTING_STARTED_zh.md) |
 
 ---
@@ -42,7 +43,8 @@
 | :--- | :---: | :--- |
 | [课程](docs/CURRICULUM_zh.md) | **36 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
 | [深潜专题](docs/DEEP_DIVES_zh.md) | **17 章** | Transformer, MoE, 推理模型, 对齐, 评测… |
-| [RAG 沙盒](projects/rag-app/README_zh.md) | 1 个应用 | Streamlit 演示：缓存、重排、路由、GraphRAG |
+| [DevSecOps 蓝图](docs/CONSTRAINT_THREAT_MODEL_zh.md) | **36 章** | 提示词注入，间接投毒，Agent 安全，可观测性 |
+| [RAG 沙盒](projects/rag-app/README_zh.md) | 1 个应用 | Streamlit 演示：缓存、重排、路由、安全、监控 |
 | 语言 | 中 + 英 | 手写双语对照，非机器翻译 |
 
 ---
@@ -52,15 +54,18 @@
 ### 路线 A：阅读课程
 → [CURRICULUM_zh.md](docs/CURRICULUM_zh.md)
 
-### 路线 B：运行沙盒
+### 路线 B：深入专题
+→ [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md)
+
+### 路线 C：探索 DevSecOps 安全蓝图
+→ [CONSTRAINT_THREAT_MODEL_zh.md](docs/CONSTRAINT_THREAT_MODEL_zh.md)
+
+### 路线 D：运行沙盒
 ```bash
 cd projects/rag-app
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-### 路线 C：深入专题
-→ [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md)
 
 ---
 

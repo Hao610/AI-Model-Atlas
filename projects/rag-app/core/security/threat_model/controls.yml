@@ -1,0 +1,21 @@
+controls:
+  - id: SecurityMiddleware
+    type: gateway
+    mitigates: [prompt_leak, prompt_injection, tool_hijacking]
+    description: "The primary API gateway interface intercepting all inbound and outbound LLM traffic."
+  - id: ContextGuard
+    type: pipeline
+    mitigates: [prompt_injection, indirect_injection, rag_poisoning, context_truncation]
+    description: "Sanitizes, truncates, and validates context before it enters the prompt window."
+  - id: RuntimeJudge
+    type: evaluation
+    mitigates: [data_exfiltration]
+    description: "The Evaluation Engine assessing inputs/outputs against safety and reliability metrics."
+  - id: FailoverRouter
+    type: routing
+    mitigates: [model_unavailable]
+    description: "Dynamically routes traffic to fallback models or local endpoints when the primary model goes down."
+  - id: CircuitBreaker
+    type: resilience
+    mitigates: [cascading_failure, queue_saturation, agent_deadlock]
+    description: "Rapidly fails requests and sheds load when downstream dependencies become unresponsive."

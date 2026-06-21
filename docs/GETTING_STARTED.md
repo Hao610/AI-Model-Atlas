@@ -36,9 +36,14 @@ To make the most of your time here, please select the path below that best match
 * **What it is**: A direct installation guide to launch the interactive runtime console, configure local models via Ollama, and test the RAG workspace.
 * **Best for**: Hands-on developers looking to run a sandbox environment in under 5 minutes.
 
+### 5. I am a security engineer or DevSecOps architect focusing on AI security
+> **Recommended Starting Point**: [Constraint & Threat Model (CONSTRAINT_THREAT_MODEL.md)](CONSTRAINT_THREAT_MODEL.md)
+* **What it is**: A 36-chapter blueprint detailing how to map traditional AppSec to the LLM era. It covers prompt injections, data exfiltration, context tampering, and how to build zero-trust architectural boundaries.
+* **Best for**: Security researchers, DevSecOps teams, and enterprise architects building robust, resilient, and safe LLM applications.
+
 ---
 
-## 🔄 Quick Overview of the 4 Pillars
+## 🔄 Quick Overview of the 5 Pillars
 
 | Document | Primary Focus | Technical Level | Key Visuals |
 | :--- | :--- | :--- | :--- |
@@ -46,6 +51,7 @@ To make the most of your time here, please select the path below that best match
 | [CURRICULUM.md](CURRICULUM.md) | 36-Module structured roadmap | Beginner to Advanced | Learning Path flow diagram |
 | [ARCHITECTURE.md](ARCHITECTURE.md) | System design & Benchmarks | Advanced | State Flowchart & Benchmarks |
 | [DEEP_DIVES.md](DEEP_DIVES.md) | Deep algorithm principles | Advanced | AI Algorithm Evolution Map |
+| [CONSTRAINT_THREAT_MODEL.md](CONSTRAINT_THREAT_MODEL.md) | DevSecOps & Security patterns | Advanced | Capability Map & Threat Models |
 
 ---
 

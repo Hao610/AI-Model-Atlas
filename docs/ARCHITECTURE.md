@@ -46,6 +46,9 @@ flowchart LR
 
 - **🧠 Cognitive RAG Architecture**: Complete pipeline integration orchestrating the application flow. 
   - *Source:* [`rag_pipeline.py`](../projects/rag-app/core/rag_pipeline.py)
+- **🛡️ Zero-Trust Boundaries**: Strict security enforcement between user inputs, retrieved context, and the execution engine.
+- **🛡️ SafetyJudge & ContextGuard**: Real-time evaluation engines to intercept prompt injection, RAG poisoning, and malicious outputs.
+- **⚙️ Automated CI/CD Pipeline**: Continuous security validation and DevSecOps workflows integrated directly into the deployment process.
 - **⚡ Persistent Semantic Cache**: Lightweight vector embedding dictionary checks for extreme latency reduction. State is persisted in JSON.
   - *Source:* [`cache/semantic_cache.py`](../projects/rag-app/core/cache/semantic_cache.py)
 - **🔄 Query Rewriting**: Dynamic regex and prompt filters to normalize user intents before retrieval.

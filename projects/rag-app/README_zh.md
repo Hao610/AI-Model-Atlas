@@ -37,14 +37,14 @@ flowchart TD
 
 ## ⚡ 系统亮点
 
-* **🚦 检索编排与路由层 (Retrieval Orchestration Layer)**：基于确定性正则的意图路由器。在调用昂贵的大模型推理前，先对问题进行意图分发，可将请求路由至“计算器”、“联网搜索”或传统的“混合向量检索”分支。
-* **📊 轻量级量化评测体系 (Lightweight Evaluation Framework)**：不依赖黑盒第三方库，纯原生手工实现的 LLM-as-a-judge 裁判引擎。实时对系统生成的每一条数据进行路由准确率 (Routing Accuracy)、忠实度 (Faithfulness)、上下文精确度 (Context Precision) 与扎实度 (Groundedness) 评分。
+* **🚦 检索编排与路由层 (Retrieval Orchestration Layer)**：基于确定性正则的意图路由器。在调用昂贵的大模型推理前，先对问题进行意图分发，可将请求路由至“计算器”、“联网搜索”或“混合向量检索”分支。
+* **📊 轻量级量化评测体系 (Lightweight Evaluation Framework)**：原生实现的 LLM-as-a-judge 裁判引擎。用于对系统生成的输出做路由准确率 (Routing Accuracy)、忠实度 (Faithfulness)、上下文精确度 (Context Precision) 与扎实度 (Groundedness) 评分。
 * **👁️ 结构化解析引擎 (Structural Parsing)**：通过引入 `pdfplumber` 与 `PyMuPDF`，在完全透明可控的前提下，精准提取 PDF 中的表格边界并输出原生 Markdown，同时过滤掉无用装饰图片，对业务图表进行提取。
-* **📦 原子化表格切片 (Table-Aware Chunking)**：抛弃传统的暴力文本切片机制。系统能识别 `table` 和 `image` 元素，并作为独立不可分割的原子 Chunk 灌入 ChromaDB，彻底解决表格被拦腰截断导致的幻觉问题。
+* **📦 原子化表格切片 (Table-Aware Chunking)**：替代传统的暴力文本切片机制。系统能识别 `table` 和 `image` 元素，并作为独立的原子 Chunk 灌入 ChromaDB，帮助减少表格被截断导致的幻觉问题。
 * **🕸️ 图检索增强引擎 (GraphRAG Knowledge Network)**：基于 NetworkX 纯手工构建的轻量级知识图谱。采用大模型“两阶段提取法”抽取实体与关系，在遇到关系型提问时，进行 1-Hop 图游走，作为向量检索的结构化上下文补充。
 * **🧠 认知查询改写 (Cognitive Query Rewriting)**：在向量数据库检索前，自动剥离口语化提问噪音与语法修饰，大幅提升检索的召回率与准确度。
 * **🛡️ 执行控制平面 (Execution Control Plane)**：统一接管请求生命周期。实现指数级退避重试、连接超时控制以及优雅的**故障降级降配 (Ollama 掉线自动秒切云端 API)**。
-* **⚡ 语义缓存持久化 (Persistent Semantic Cache)**：避免重复算力浪费。对相同或高度相似的语义问题进行命中拦截，状态持久化到本地 JSON，重启系统不丢失。
+* **⚡ 语义缓存持久化 (Persistent Semantic Cache)**：减少重复算力浪费。对相同或高度相似的语义问题进行命中拦截，状态持久化到本地 JSON，重启系统后仍可保留。
 * **🔍 混合检索与 RRF 引擎 (Hybrid Search & RRF)**：结合 ChromaDB 稠密向量与 BM25 稀疏检索（关键词匹配），通过倒数秩融合算法实现前所未有的检索精度。
 * **📈 全链路可观测性 (Observability Dashboard)**：Streamlit 控制台不仅提供检索阈值参数微调，还在右侧直观展示重排前后对比，并实时量化输出首 Token 延迟 (TTFT)、推理吞吐速率 (Tokens/sec)。
 
@@ -86,16 +86,25 @@ rag-app/
     │   ├── router.py            # 基于意图的确定性意图路由器
     │   ├── calculator.py        # 纯本地安全沙盒数学计算器
     │   └── web.py               # 联网搜索打桩代码
+    ├── security/
+    │   ├── circuit_breaker.py   # API 网关熔断降级机制
+    │   ├── context_guard.py     # 敏感词拦截与提示词注入防御
+    │   └── middleware.py        # 全局安全拦截中间件
+    ├── telemetry/
+    │   ├── tracker.py           # 调用链路与首字延迟追踪
+    │   └── scorecard.py         # 代币成本与吞吐量统计板
     ├── evaluation/
     │   ├── evaluator.py         # 跑分套件的生命周期执行引擎
-    │   └── metrics.py           # 四大原生大模型裁判指标 (Faithfulness 等)
+    │   ├── metrics.py           # 四大原生大模型裁判指标 (Faithfulness 等)
+    │   ├── benchmark.py         # 自动化评测基准套件
+    │   └── judge.py             # 启发式 LLM 安全裁判
     └── intelligence/
         ├── query_rewriter.py    # 智能层：剥离前缀噪点并重写输入
         └── reranker.py          # 智能层：实现 RRF 融合重排算法
 ```
 
 > [!WARNING]
-> **BM25 生产环境扩展提示:** 目前的混合检索架构使用全内存级 `BM25Okapi` 索引。在系统启动和增加新文档时，它会自动从 ChromaDB 读取全量数据来构建倒排索引。这对于 POC 和中小型知识库非常完美，但在处理十万、百万级文档时会面临内存和 O(N) 重建耗时的瓶颈。如果想承载真正的大型企业数据，建议将底层的 BM25 替换为 Elasticsearch 或 OpenSearch。
+> **BM25 生产环境扩展提示:** 目前的混合检索架构使用全内存级 `BM25Okapi` 索引。在系统启动和增加新文档时，它会自动从 ChromaDB 读取全量数据来构建倒排索引。这对于 POC 和中小型知识库非常合适，但在处理十万、百万级文档时会面临内存和 O(N) 重建耗时的瓶颈。如果想承载真正的大型企业数据，建议将底层的 BM25 替换为 Elasticsearch 或 OpenSearch。
 
 ---
 

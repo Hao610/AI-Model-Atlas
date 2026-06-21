@@ -10,6 +10,18 @@
 
 ---
 
+## 🚀 本项目提供什么 (Key Features)
+
+*   **零信任安全边界 (Zero-Trust Boundaries)**: 集成 `SecurityMiddleware` 和 `ContextGuard` 进行全局流量拦截与净化。
+*   **多维运行时评估 (RuntimeJudge)**: 实时对大模型交互进行安全性、可靠性与韧性打分。
+*   **自动化 DevSecOps 流水线**: 开箱即用的 CI/CD，实现持续的威胁建模与对抗性基准测试。
+*   **解耦式 Prompt 管理 (PromptOps)**: 告别代码里硬编码长文本，实现提示词与业务逻辑完全分离。
+*   **意图路由 (Agentic Routing)**: 基于零样本推理，让 LLM 自动决定该调用哪个工具或知识库。
+*   **语义缓存 (Semantic Cache)**: 亚毫秒级的向量缓存拦截，为你省下 90% 的 API 账单。
+*   **多 Agent 协同 (Multi-Agent)**: 相互独立的智能体共享上下文，协同完成复杂任务。
+
+---
+
 ## 🧭 系统数据流向与架构设计
 
 ```mermaid
@@ -46,6 +58,9 @@ flowchart LR
 
 - **🧠 认知级 RAG 主干**: 统一串联组件，调度系统的整体数据流转链路。
   - *源码路径:* [`rag_pipeline.py`](../projects/rag-app/core/rag_pipeline.py)
+- **🛡️ 零信任边界 (Zero-Trust Boundaries)**: 在用户输入、检索到的上下文和执行引擎之间执行严格的安全控制。
+- **🛡️ 安全裁判与上下文守卫 (SafetyJudge & ContextGuard)**: 实时评估引擎，拦截提示词注入、RAG 投毒和恶意输出。
+- **⚙️ 自动化 CI/CD 流水线 (Automated CI/CD Pipeline)**: 持续安全验证和 DevSecOps 工作流直接集成到部署过程中。
 - **⚡ 持久化语义缓存**: 内存级向量比对机制，通过本地 JSON 持久化，实现 0 时延拦截高频相似问题。
   - *源码路径:* [`cache/semantic_cache.py`](../projects/rag-app/core/cache/semantic_cache.py)
 - **🔄 智能查询改写**: 动态 Prompt 过滤器，在检索前剥离用户的口语化噪音。

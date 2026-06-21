@@ -4,7 +4,7 @@
 
 [English] | [中文 (README_zh.md)](README_zh.md)
 
-This project showcases a complete **Agentic RAG System** demonstrating how to transition an AI application from a simple proof-of-concept into a resilient, production-ready system. It features a Tool Routing layer for deterministic multi-tool dispatch, a native LLM-as-a-judge evaluation framework, and a dual-inference backend allowing seamless runtime switching between local models (Ollama) and cloud APIs (OpenAI/DeepSeek).
+This project showcases a complete **Agentic RAG System** demonstrating how to transition an AI application from a simple proof-of-concept into a more resilient, production-ready system. It features a Tool Routing layer for deterministic multi-tool dispatch, a native LLM-as-a-judge evaluation framework, and a dual-inference backend that supports runtime switching between local models (Ollama) and cloud APIs (OpenAI/DeepSeek).
 
 ---
 
@@ -40,11 +40,11 @@ flowchart TD
 * **🚦 Retrieval Orchestration Layer**: A deterministic regex-based router that intercepts queries and dispatches them to specialized tools (Calculator, Web Search, or Vector DB) before engaging the heavy LLM pipeline.
 * **📊 Lightweight Evaluation Framework**: A native LLM-as-a-judge engine designed to evaluate system performance across metrics like Routing Accuracy, Faithfulness, Answer Relevancy, Context Precision, and Groundedness.
 * **👁️ Vision RAG & Structural Parsing**: Transparent, multi-engine extraction (`pdfplumber` + `PyMuPDF`) that gracefully extracts explicit table boundaries and natively filters structural images.
-* **📦 Table-Aware Chunking**: Abandons naive text splitters for tables, dynamically preserving full Markdown tables as atomic vector blocks to guarantee tabular integrity during LLM retrieval.
+* **📦 Table-Aware Chunking**: Replaces naive text splitters for tables, dynamically preserving full Markdown tables as atomic vector blocks to help maintain tabular integrity during LLM retrieval.
 * **🕸️ GraphRAG Knowledge Network**: A native, lightweight Knowledge Graph extractor using NetworkX. It performs two-stage relation extraction and performs 1-hop traversals to augment vector results with explicit relationship evidence.
 * **🧠 Cognitive Query Rewriting**: Standardizes and optimizes conversational queries by removing grammatical noise and syntax prefixes before vector search, improving retrieval accuracy.
 * **🛡️ Execution Control Plane**: Orchestrates all request lifetimes. Handles exponential backoff retries, connection timeouts, and automatic graceful degradation (seamlessly falling back from local Ollama to cloud API if local nodes go offline).
-* **⚡ Persistent Semantic Cache**: Prevents redundant model execution. Repeated or semantically matching queries are bypassed and returned instantly. State is persisted securely to local JSON, surviving system restarts.
+* **⚡ Persistent Semantic Cache**: Reduces redundant model execution. Repeated or semantically matching queries are bypassed and returned quickly. State is persisted to local JSON, surviving system restarts.
 * **🔍 Hybrid Search & RRF Engine**: Combines ChromaDB Dense Vector embeddings with BM25 Sparse keyword matching, fused algorithmically via Reciprocal Rank Fusion for unparalleled context retrieval precision.
 * **📈 Deep Observability Dashboard**: Streamlit interface containing dynamic threshold parameters, live system latency metrics, and transparent pre-vs-post rerank document context diagnostics.
 
@@ -86,16 +86,25 @@ rag-app/
     │   ├── router.py            # Deterministic Tool Router
     │   ├── calculator.py        # Safe math sandbox evaluator
     │   └── web.py               # Simulated Web Search plugin
+    ├── security/
+    │   ├── circuit_breaker.py   # API gateway failover and circuit breaker
+    │   ├── context_guard.py     # Prompt injection checks and PII redaction
+    │   └── middleware.py        # Global request interception middleware
+    ├── telemetry/
+    │   ├── tracker.py           # Distributed tracing and latency tracking
+    │   └── scorecard.py         # Cost and performance aggregations
     ├── evaluation/
     │   ├── evaluator.py         # Benchmark suite execution engine
-    │   └── metrics.py           # Native LLM-as-a-judge metrics
+    │   ├── metrics.py           # Native LLM-as-a-judge metrics
+    │   ├── benchmark.py         # Automated evaluation suites
+    │   └── judge.py             # Heuristic LLM safety judge
     └── intelligence/
         ├── query_rewriter.py    # Removes prefix noise and conversational grammar
         └── reranker.py          # Implements Reciprocal Rank Fusion (RRF)
 ```
 
 > [!WARNING]
-> **BM25 Production Scaling Note:** The current Hybrid Search implementation uses an in-memory `BM25Okapi` index that reconstructs itself via full rehydration from ChromaDB upon ingestion. This is perfect for POCs and small-to-medium knowledge bases, but can become an O(N) bottleneck as data scales to thousands of documents. For massive enterprise deployments, consider swapping the BM25 memory backend for an incremental search engine like Elasticsearch or OpenSearch.
+> **BM25 Production Scaling Note:** The current Hybrid Search implementation uses an in-memory `BM25Okapi` index that reconstructs itself via full rehydration from ChromaDB upon ingestion. This is well suited for POCs and small-to-medium knowledge bases, but can become an O(N) bottleneck as data scales to thousands of documents. For massive enterprise deployments, consider swapping the BM25 memory backend for an incremental search engine like Elasticsearch or OpenSearch.
 
 ---
 

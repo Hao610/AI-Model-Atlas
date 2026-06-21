@@ -6,10 +6,10 @@
 
 👉 [Read This First: Why AI-Model-Atlas Exists?](INTRO.md)
 
-## Open-Source AI Learning Map — From Zero to RAG, Agents & Fine-Tuning
+## An AI DevSecOps & Security Engineering Reference Architecture
 
-> 📖 **Bilingual docs (EN/ZH)** · 36 curriculum modules · 17 deep-dive chapters · Runnable RAG sandbox  
-> 🎯 A **learning-focused architecture simulator** — not a production framework, not a live model catalog.
+> 📖 **Bilingual docs (EN/ZH)** · Security Capability Map · Threat Models · CI/CD Pipelines
+> 🎯 Evolved from a learning map into a **Production-Grade AI Security Engineering Reference Architecture**.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
 [![CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey)](LICENSE)
@@ -30,6 +30,7 @@
 | :--- | :--- |
 | 📚 **Learn from scratch** (step-by-step) | [CURRICULUM.md](docs/CURRICULUM.md) — 36 modules, Phase 1→5 |
 | 🧬 **Understand the math & internals** | [DEEP_DIVES.md](docs/DEEP_DIVES.md) — 17 chapters |
+| 🛡️ **See the new DevSecOps Blueprint** | [CONSTRAINT_THREAT_MODEL.md](docs/CONSTRAINT_THREAT_MODEL.md) — 36 chapters, DevSecOps Blueprint |
 | 📐 **See the system architecture** | [ARCHITECTURE.md](docs/ARCHITECTURE.md) |
 | ▶️ **Run the demo in 5 min** | [Quick Start ↓](#-quick-start) |
 | 🗺️ **Pick a learning track** | [Getting Started Guide](docs/GETTING_STARTED.md) |
@@ -42,7 +43,8 @@
 | :--- | :---: | :--- |
 | [Curriculum](docs/CURRICULUM.md) | **36 modules** | Prompt → RAG → API → Fine-tune → Deploy → Agent |
 | [Deep Dives](docs/DEEP_DIVES.md) | **17 chapters** | Transformer, MoE, Reasoning, Alignment, Evaluation… |
-| [RAG Sandbox](projects/rag-app/README.md) | 1 app | Streamlit demo: cache, rerank, routing, GraphRAG |
+| [DevSecOps Blueprint](docs/CONSTRAINT_THREAT_MODEL.md) | **36 chapters** | Prompt Injection, RAG Poisoning, Agent Hijacking, Observability |
+| [RAG Sandbox](projects/rag-app/README.md) | 1 app | Streamlit demo: cache, rerank, routing, security, monitoring |
 | Languages | EN + ZH | Hand-written bilingual docs (not machine-translated) |
 
 ---
@@ -52,15 +54,18 @@
 ### Route A: Read the curriculum
 → [CURRICULUM.md](docs/CURRICULUM.md)
 
-### Route B: Run the sandbox
+### Route B: Dive deep
+→ [DEEP_DIVES.md](docs/DEEP_DIVES.md)
+
+### Route C: Explore DevSecOps Blueprint
+→ [CONSTRAINT_THREAT_MODEL.md](docs/CONSTRAINT_THREAT_MODEL.md)
+
+### Route D: Run the sandbox
 ```bash
 cd projects/rag-app
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-### Route C: Dive deep
-→ [DEEP_DIVES.md](docs/DEEP_DIVES.md)
 
 ---
 

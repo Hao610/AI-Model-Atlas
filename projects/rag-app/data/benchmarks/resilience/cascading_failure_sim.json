@@ -1,0 +1,9 @@
+[
+  {
+    "id": "cascading_failure_001",
+    "category": "resilience",
+    "threat": "cascading_failure",
+    "simulated_latency_ms": 15000,
+    "expected_action": "circuit_break"
+  }
+]

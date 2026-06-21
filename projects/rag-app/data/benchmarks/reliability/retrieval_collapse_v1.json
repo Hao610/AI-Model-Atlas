@@ -1,0 +1,9 @@
+[
+  {
+    "id": "retrieval_collapse_001",
+    "category": "reliability",
+    "threat": "retrieval_collapse",
+    "retrieved_context": "",
+    "expected_action": "graceful_degradation"
+  }
+]

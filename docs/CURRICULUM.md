@@ -67,14 +67,14 @@ flowchart TD
 
 | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
-| **0. Learning Map** | Choose your custom pathway (Zero-Code vs Low-Code vs Full-Stack). | [00_learning_map.md](phase1_0_to_1/00_learning_map.md) | [00_learning_map_zh.md](phase1_0_to_1/00_learning_map_zh.md) |
-| **1. What is AI?** | AI, Machine Learning, and Deep Learning explained via analogies. | [01_what_is_ai.md](phase1_0_to_1/01_what_is_ai.md) | [01_what_is_ai_zh.md](phase1_0_to_1/01_what_is_ai_zh.md) |
-| **2. Prompt Art** | Structured frameworks (ROLE, Few-Shot) for talking to AI. | [02_prompt_art.md](phase1_0_to_1/02_prompt_art.md) | [02_prompt_art_zh.md](phase1_0_to_1/02_prompt_art_zh.md) |
-| **3. Open Source Licenses** | MIT, Apache 2.0, and commercial limits of models (e.g. Llama 3). | [03_licenses.md](phase1_0_to_1/03_licenses.md) | [03_licenses_zh.md](phase1_0_to_1/03_licenses_zh.md) |
-| **4. AI Tools Guide** | Web-based daily productivity tools (ChatGPT, Claude, Midjourney). | [04_ai_tools.md](phase1_0_to_1/04_ai_tools.md) | [04_ai_tools_zh.md](phase1_0_to_1/04_ai_tools_zh.md) |
-| **5. Model Zoo Overview** | Quick table comparing GPT, Claude, Gemini, Llama, DeepSeek, Qwen. | [05_model_zoo.md](phase1_0_to_1/05_model_zoo.md) | [05_model_zoo_zh.md](phase1_0_to_1/05_model_zoo_zh.md) |
-| **6. Hugging Face Guide** | Understanding the Hub: repository layout, safetensors, and hub API. | [06_huggingface_guide.md](phase1_0_to_1/06_huggingface_guide.md) | [06_huggingface_guide_zh.md](phase1_0_to_1/06_huggingface_guide_zh.md) |
-| **7. Glossary** | Essential vocab sheet (Tokens, Temperature, Context Window). | [07_glossary.md](phase1_0_to_1/07_glossary.md) | [07_glossary_zh.md](phase1_0_to_1/07_glossary_zh.md) |
+| **0. Learning Map** | Choose your custom pathway (Zero-Code vs Low-Code vs Full-Stack). | [00_learning_map.md](curriculum/phase1_0_to_1/00_learning_map.md) | [00_learning_map_zh.md](curriculum/phase1_0_to_1/00_learning_map_zh.md) |
+| **1. What is AI?** | AI, Machine Learning, and Deep Learning explained via analogies. | [01_what_is_ai.md](curriculum/phase1_0_to_1/01_what_is_ai.md) | [01_what_is_ai_zh.md](curriculum/phase1_0_to_1/01_what_is_ai_zh.md) |
+| **2. Prompt Art** | Structured frameworks (ROLE, Few-Shot) for talking to AI. | [02_prompt_art.md](curriculum/phase1_0_to_1/02_prompt_art.md) | [02_prompt_art_zh.md](curriculum/phase1_0_to_1/02_prompt_art_zh.md) |
+| **3. Open Source Licenses** | MIT, Apache 2.0, and commercial limits of models (e.g. Llama 3). | [03_licenses.md](curriculum/phase1_0_to_1/03_licenses.md) | [03_licenses_zh.md](curriculum/phase1_0_to_1/03_licenses_zh.md) |
+| **4. AI Tools Guide** | Web-based daily productivity tools (ChatGPT, Claude, Midjourney). | [04_ai_tools.md](curriculum/phase1_0_to_1/04_ai_tools.md) | [04_ai_tools_zh.md](curriculum/phase1_0_to_1/04_ai_tools_zh.md) |
+| **5. Model Zoo Overview** | Quick table comparing GPT, Claude, Gemini, Llama, DeepSeek, Qwen. | [05_model_zoo.md](curriculum/phase1_0_to_1/05_model_zoo.md) | [05_model_zoo_zh.md](curriculum/phase1_0_to_1/05_model_zoo_zh.md) |
+| **6. Hugging Face Guide** | Understanding the Hub: repository layout, safetensors, and hub API. | [06_huggingface_guide.md](curriculum/phase1_0_to_1/06_huggingface_guide.md) | [06_huggingface_guide_zh.md](curriculum/phase1_0_to_1/06_huggingface_guide_zh.md) |
+| **7. Glossary** | Essential vocab sheet (Tokens, Temperature, Context Window). | [07_glossary.md](curriculum/phase1_0_to_1/07_glossary.md) | [07_glossary_zh.md](curriculum/phase1_0_to_1/07_glossary_zh.md) |
 
 ---
 
@@ -84,13 +84,13 @@ flowchart TD
 
 | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
-| **8. LLM Landscape** | The lineage and capabilities of modern closed & open weights models. | [08_llm_landscape.md](phase2_1_to_10/08_llm_landscape.md) | [08_llm_landscape_zh.md](phase2_1_to_10/08_llm_landscape_zh.md) |
-| **9. No-Code Agents** | Creating autonomous assistants using Dify and Coze. | [09_no_code_agents.md](phase2_1_to_10/09_no_code_agents.md) | [09_no_code_agents_zh.md](phase2_1_to_10/09_no_code_agents_zh.md) |
-| **10. Multimodal AI** | Images (Flux, SD), voice (Whisper, TTS), and video generation. | [10_multimodal_models.md](phase2_1_to_10/10_multimodal_models.md) | [10_multimodal_models_zh.md](phase2_1_to_10/10_multimodal_models_zh.md) |
-| **11. RAG Introduction** | Retrieval-Augmented Generation: Giving AI a custom PDF library. | [11_rag_intro.md](phase2_1_to_10/11_rag_intro.md) | [11_rag_intro_zh.md](phase2_1_to_10/11_rag_intro_zh.md) |
-| **12. Vector Databases** | Understanding Chroma, Milvus, FAISS, and PGVector. | [12_vector_db.md](phase2_1_to_10/12_vector_db.md) | [12_vector_db_zh.md](phase2_1_to_10/12_vector_db_zh.md) |
-| **13. AI Workflows** | Visualizing User -> Agent -> RAG -> LLM architectures. | [13_ai_workflows.md](phase2_1_to_10/13_ai_workflows.md) | [13_ai_workflows_zh.md](phase2_1_to_10/13_ai_workflows_zh.md) |
-| **14. Real-World Use Cases** | Core templates for CS Bots, Knowledge Bases, and AI Translators. | [14_use_cases.md](phase2_1_to_10/14_use_cases.md) | [14_use_cases_zh.md](phase2_1_to_10/14_use_cases_zh.md) |
+| **8. LLM Landscape** | The lineage and capabilities of modern closed & open weights models. | [08_llm_landscape.md](curriculum/phase2_1_to_10/08_llm_landscape.md) | [08_llm_landscape_zh.md](curriculum/phase2_1_to_10/08_llm_landscape_zh.md) |
+| **9. No-Code Agents** | Creating autonomous assistants using Dify and Coze. | [09_no_code_agents.md](curriculum/phase2_1_to_10/09_no_code_agents.md) | [09_no_code_agents_zh.md](curriculum/phase2_1_to_10/09_no_code_agents_zh.md) |
+| **10. Multimodal AI** | Images (Flux, SD), voice (Whisper, TTS), and video generation. | [10_multimodal_models.md](curriculum/phase2_1_to_10/10_multimodal_models.md) | [10_multimodal_models_zh.md](curriculum/phase2_1_to_10/10_multimodal_models_zh.md) |
+| **11. RAG Introduction** | Retrieval-Augmented Generation: Giving AI a custom PDF library. | [11_rag_intro.md](curriculum/phase2_1_to_10/11_rag_intro.md) | [11_rag_intro_zh.md](curriculum/phase2_1_to_10/11_rag_intro_zh.md) |
+| **12. Vector Databases** | Understanding Chroma, Milvus, FAISS, and PGVector. | [12_vector_db.md](curriculum/phase2_1_to_10/12_vector_db.md) | [12_vector_db_zh.md](curriculum/phase2_1_to_10/12_vector_db_zh.md) |
+| **13. AI Workflows** | Visualizing User -> Agent -> RAG -> LLM architectures. | [13_ai_workflows.md](curriculum/phase2_1_to_10/13_ai_workflows.md) | [13_ai_workflows_zh.md](curriculum/phase2_1_to_10/13_ai_workflows_zh.md) |
+| **14. Real-World Use Cases** | Core templates for CS Bots, Knowledge Bases, and AI Translators. | [14_use_cases.md](curriculum/phase2_1_to_10/14_use_cases.md) | [14_use_cases_zh.md](curriculum/phase2_1_to_10/14_use_cases_zh.md) |
 
 ---
 
@@ -100,14 +100,14 @@ flowchart TD
 
 | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
-| **15. API Integration** | Requesting model keys and calling models via simple Python scripts. | [15_api_guide.md](phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](phase3_10_to_50/15_api_guide_zh.md) |
-| **16. Cost & Tokenomics** | Calculating API expenses and GPU hosting cost metrics. | [16_cost_and_tokens.md](phase3_10_to_50/16_cost_and_tokens.md) | [16_cost_and_tokens_zh.md](phase3_10_to_50/16_cost_and_tokens_zh.md) |
-| **17. Local LLM Runner** | Deploying models locally using Ollama and LM Studio. | [17_local_llm.md](phase3_10_to_50/17_local_llm.md) | [17_local_llm_zh.md](phase3_10_to_50/17_local_llm_zh.md) |
-| **18. UI Interfaces** | Building clean web interfaces with Streamlit & Gradio. | [18_ui_interfaces.md](phase3_10_to_50/18_ui_interfaces.md) | [18_ui_interfaces_zh.md](phase3_10_to_50/18_ui_interfaces_zh.md) |
-| **19. Agent Frameworks** | Comparing CrewAI, AutoGen, LangChain, and LangGraph. | [19_agent_frameworks.md](phase3_10_to_50/19_agent_frameworks.md) | [19_agent_frameworks_zh.md](phase3_10_to_50/19_agent_frameworks_zh.md) |
-| **20. Embeddings Deep Dive** | Transforming text into vectors and measuring cosine similarity. | [20_embeddings.md](phase3_10_to_50/20_embeddings.md) | [20_embeddings_zh.md](phase3_10_to_50/20_embeddings_zh.md) |
-| **21. RAG System Design** | Chunking, reranking (Cross-Encoders), metadata filter logic. | [21_rag_system_design.md](phase3_10_to_50/21_rag_system_design.md) | [21_rag_system_design_zh.md](phase3_10_to_50/21_rag_system_design_zh.md) |
-| **22. Model Evaluation** | Methods: BLEU, Human Eval, Chatbot Arena, and LLM-as-a-Judge. | [22_evaluation.md](phase3_10_to_50/22_evaluation.md) | [22_evaluation_zh.md](phase3_10_to_50/22_evaluation_zh.md) |
+| **15. API Integration** | Requesting model keys and calling models via simple Python scripts. | [15_api_guide.md](curriculum/phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](curriculum/phase3_10_to_50/15_api_guide_zh.md) |
+| **16. Cost & Tokenomics** | Calculating API expenses and GPU hosting cost metrics. | [16_cost_and_tokens.md](curriculum/phase3_10_to_50/16_cost_and_tokens.md) | [16_cost_and_tokens_zh.md](curriculum/phase3_10_to_50/16_cost_and_tokens_zh.md) |
+| **17. Local LLM Runner** | Deploying models locally using Ollama and LM Studio. | [17_local_llm.md](curriculum/phase3_10_to_50/17_local_llm.md) | [17_local_llm_zh.md](curriculum/phase3_10_to_50/17_local_llm_zh.md) |
+| **18. UI Interfaces** | Building clean web interfaces with Streamlit & Gradio. | [18_ui_interfaces.md](curriculum/phase3_10_to_50/18_ui_interfaces.md) | [18_ui_interfaces_zh.md](curriculum/phase3_10_to_50/18_ui_interfaces_zh.md) |
+| **19. Agent Frameworks** | Comparing CrewAI, AutoGen, LangChain, and LangGraph. | [19_agent_frameworks.md](curriculum/phase3_10_to_50/19_agent_frameworks.md) | [19_agent_frameworks_zh.md](curriculum/phase3_10_to_50/19_agent_frameworks_zh.md) |
+| **20. Embeddings Deep Dive** | Transforming text into vectors and measuring cosine similarity. | [20_embeddings.md](curriculum/phase3_10_to_50/20_embeddings.md) | [20_embeddings_zh.md](curriculum/phase3_10_to_50/20_embeddings_zh.md) |
+| **21. RAG System Design** | Chunking, reranking (Cross-Encoders), metadata filter logic. | [21_rag_system_design.md](curriculum/phase3_10_to_50/21_rag_system_design.md) | [21_rag_system_design_zh.md](curriculum/phase3_10_to_50/21_rag_system_design_zh.md) |
+| **22. Model Evaluation** | Methods: BLEU, Human Eval, Chatbot Arena, and LLM-as-a-Judge. | [22_evaluation.md](curriculum/phase3_10_to_50/22_evaluation.md) | [22_evaluation_zh.md](curriculum/phase3_10_to_50/22_evaluation_zh.md) |
 
 ---
 
@@ -117,15 +117,15 @@ flowchart TD
 
 | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
-| **23. Data Preparation** | Formatting JSON/JSONL datasets and synthetic data generation. | [23_data_preparation.md](phase4_50_to_100/23_data_preparation.md) | [23_data_preparation_zh.md](phase4_50_to_100/23_data_preparation_zh.md) |
-| **24. Why Fine-Tune?** | When prompt engineering fails and model customization is needed. | [24_finetuning.md](phase4_50_to_100/24_finetuning.md) | [24_finetuning_zh.md](phase4_50_to_100/24_finetuning_zh.md) |
-| **25. LoRA Explained** | Under the hood of Low-Rank Adaptation (the math-free version). | [25_lora_explained.md](phase4_50_to_100/25_lora_explained.md) | [25_lora_explained_zh.md](phase4_50_to_100/25_lora_explained_zh.md) |
-| **26. LLaMA-Factory Guide** | Click-and-train GUI for fine-tuning without writing custom code. | [26_llama_factory.md](phase4_50_to_100/26_llama_factory.md) | [26_llama_factory_zh.md](phase4_50_to_100/26_llama_factory_zh.md) |
-| **27. Model Quantization** | GGUF vs FP16, compressing 70B models down to consumer GPUs. | [27_quantization.md](phase4_50_to_100/27_quantization.md) | [27_quantization_zh.md](phase4_50_to_100/27_quantization_zh.md) |
-| **28. GPU Selection Guide** | Finding the right hardware (RTX 4090 vs cloud GPU clusters). | [28_gpu_selection.md](phase4_50_to_100/28_gpu_selection.md) | [28_gpu_selection_zh.md](phase4_50_to_100/28_gpu_selection_zh.md) |
-| **29. Inference Optimization** | KV Cache, continuous batching, streaming, throughput logic. | [29_inference_optimization.md](phase4_50_to_100/29_inference_optimization.md) | [29_inference_optimization_zh.md](phase4_50_to_100/29_inference_optimization_zh.md) |
-| **30. Safety & Alignment** | RLHF, DPO, Guardrails, and understanding model boundaries. | [30_safety_alignment.md](phase4_50_to_100/30_safety_alignment.md) | [30_safety_alignment_zh.md](phase4_50_to_100/30_safety_alignment_zh.md) |
-| **31. Cloud Deployment** | Renting compute on AutoDL/RunPod and serving models to users. | [31_deployment.md](phase4_50_to_100/31_deployment.md) | [31_deployment_zh.md](phase4_50_to_100/31_deployment_zh.md) |
+| **23. Data Preparation** | Formatting JSON/JSONL datasets and synthetic data generation. | [23_data_preparation.md](curriculum/phase4_50_to_100/23_data_preparation.md) | [23_data_preparation_zh.md](curriculum/phase4_50_to_100/23_data_preparation_zh.md) |
+| **24. Why Fine-Tune?** | When prompt engineering fails and model customization is needed. | [24_finetuning.md](curriculum/phase4_50_to_100/24_finetuning.md) | [24_finetuning_zh.md](curriculum/phase4_50_to_100/24_finetuning_zh.md) |
+| **25. LoRA Explained** | Under the hood of Low-Rank Adaptation (the math-free version). | [25_lora_explained.md](curriculum/phase4_50_to_100/25_lora_explained.md) | [25_lora_explained_zh.md](curriculum/phase4_50_to_100/25_lora_explained_zh.md) |
+| **26. LLaMA-Factory Guide** | Click-and-train GUI for fine-tuning without writing custom code. | [26_llama_factory.md](curriculum/phase4_50_to_100/26_llama_factory.md) | [26_llama_factory_zh.md](curriculum/phase4_50_to_100/26_llama_factory_zh.md) |
+| **27. Model Quantization** | GGUF vs FP16, compressing 70B models down to consumer GPUs. | [27_quantization.md](curriculum/phase4_50_to_100/27_quantization.md) | [27_quantization_zh.md](curriculum/phase4_50_to_100/27_quantization_zh.md) |
+| **28. GPU Selection Guide** | Finding the right hardware (RTX 4090 vs cloud GPU clusters). | [28_gpu_selection.md](curriculum/phase4_50_to_100/28_gpu_selection.md) | [28_gpu_selection_zh.md](curriculum/phase4_50_to_100/28_gpu_selection_zh.md) |
+| **29. Inference Optimization** | KV Cache, continuous batching, streaming, throughput logic. | [29_inference_optimization.md](curriculum/phase4_50_to_100/29_inference_optimization.md) | [29_inference_optimization_zh.md](curriculum/phase4_50_to_100/29_inference_optimization_zh.md) |
+| **30. Safety & Alignment** | RLHF, DPO, Guardrails, and understanding model boundaries. | [30_safety_alignment.md](curriculum/phase4_50_to_100/30_safety_alignment.md) | [30_safety_alignment_zh.md](curriculum/phase4_50_to_100/30_safety_alignment_zh.md) |
+| **31. Cloud Deployment** | Renting compute on AutoDL/RunPod and serving models to users. | [31_deployment.md](curriculum/phase4_50_to_100/31_deployment.md) | [31_deployment_zh.md](curriculum/phase4_50_to_100/31_deployment_zh.md) |
 
 ---
 
@@ -135,11 +135,11 @@ flowchart TD
 
 | Module | Description | English Guide | 中文指南 |
 | :--- | :--- | :--- | :--- |
-| **32. Tool Routing (Agentic RAG)** | Replacing static pipelines with intelligent dispatch routers (Calculator, Web). | [32_tool_routing.md](phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](phase5_100_to_200/32_tool_routing_zh.md) |
-| **33. RAG Evaluation** | How do we know a RAG system is actually improving? Faithfulness, Relevancy, Context Precision, and LLM-as-a-Judge. | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
-| **34. Vision RAG & OCR** | Processing complex PDF charts, tables, and raw image inputs. | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
-| **35. GraphRAG (Advanced)** | Knowledge graphs for highly relational data. Useful in domains such as law, medicine, and research. Not required for most RAG systems. | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
-| **36. AI Safety & Alignment** | Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems? | [36_ai_safety.md](phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](phase5_100_to_200/36_ai_safety_zh.md) |
+| **32. Tool Routing (Agentic RAG)** | Replacing static pipelines with intelligent dispatch routers (Calculator, Web). | [32_tool_routing.md](curriculum/phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](curriculum/phase5_100_to_200/32_tool_routing_zh.md) |
+| **33. RAG Evaluation** | How do we know a RAG system is actually improving? Faithfulness, Relevancy, Context Precision, and LLM-as-a-Judge. | [33_rag_evaluation.md](curriculum/phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](curriculum/phase5_100_to_200/33_rag_evaluation_zh.md) |
+| **34. Vision RAG & OCR** | Processing complex PDF charts, tables, and raw image inputs. | [34_vision_rag.md](curriculum/phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](curriculum/phase5_100_to_200/34_vision_rag_zh.md) |
+| **35. GraphRAG (Advanced)** | Knowledge graphs for highly relational data. Useful in domains such as law, medicine, and research. Not required for most RAG systems. | [35_graph_rag.md](curriculum/phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](curriculum/phase5_100_to_200/35_graph_rag_zh.md) |
+| **36. AI Safety & Alignment** | Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems? | [36_ai_safety.md](curriculum/phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](curriculum/phase5_100_to_200/36_ai_safety_zh.md) |
 
 ---
 
@@ -148,10 +148,10 @@ flowchart TD
 
 * **Appendix A: Decoupling RAG with Docker Orchestration**
   - Learn how to wrap your RAG pipeline into a multi-service, event-driven, production-grade decoupled system.
-  - [English Guide](phase5_100_to_200/appendix_docker_orchestration.md) | [中文指南](phase5_100_to_200/appendix_docker_orchestration_zh.md)
+  - [English Guide](curriculum/phase5_100_to_200/appendix_docker_orchestration.md) | [中文指南](curriculum/phase5_100_to_200/appendix_docker_orchestration_zh.md)
 * **Appendix B: Where AI May Go Next (Epilogue)**
   - A brief outlook on MCP, Multi-Agent systems, World Models, and more.
-  - [English Guide](phase5_100_to_200/appendix_future.md) | [中文指南](phase5_100_to_200/appendix_future_zh.md)
+  - [English Guide](curriculum/phase5_100_to_200/appendix_future.md) | [中文指南](curriculum/phase5_100_to_200/appendix_future_zh.md)
 
 ---
 

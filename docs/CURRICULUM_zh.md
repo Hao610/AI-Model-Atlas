@@ -67,14 +67,14 @@ flowchart TD
 
 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- |
-| **0. 学习路线导航** | 选择属于你的通关路线（零代码体验 vs 低代码搭建 vs 硬核研发）。 | [00_learning_map.md](phase1_0_to_1/00_learning_map.md) | [00_learning_map_zh.md](phase1_0_to_1/00_learning_map_zh.md) |
-| **1. 什么是 AI？** | 用大白话和生活实例解释什么是机器学习、深度学习和大模型。 | [01_what_is_ai.md](phase1_0_to_1/01_what_is_ai.md) | [01_what_is_ai_zh.md](phase1_0_to_1/01_what_is_ai_zh.md) |
-| **2. 提示词艺术** | 掌握 ROLE 框架、Few-Shot 样本等高效与大模型对话的公式。 | [02_prompt_art.md](phase1_0_to_1/02_prompt_art.md) | [02_prompt_art_zh.md](phase1_0_to_1/02_prompt_art_zh.md) |
-| **3. 开源协议指南** | MIT、Apache 2.0 到底是什么？为什么有些模型不能拿来商用？ | [03_licenses.md](phase1_0_to_1/03_licenses.md) | [03_licenses_zh.md](phase1_0_to_1/03_licenses_zh.md) |
-| **4. 常用 AI 工具** | 开箱即用的办公与创意工具全景图 (ChatGPT, Claude, Midjourney)。 | [04_ai_tools.md](phase1_0_to_1/04_ai_tools.md) | [04_ai_tools_zh.md](phase1_0_to_1/04_ai_tools_zh.md) |
-| **5. 模型动物园** | 一张表看懂 GPT, Claude, Gemini, Llama, DeepSeek, Qwen。 | [05_model_zoo.md](phase1_0_to_1/05_model_zoo.md) | [05_model_zoo_zh.md](phase1_0_to_1/05_model_zoo_zh.md) |
-| **6. Hugging Face 极简指南** | 玩转 AI 军火库：文件后缀解密、Python 自动下载模型。 | [06_huggingface_guide.md](phase1_0_to_1/06_huggingface_guide.md) | [06_huggingface_guide_zh.md](phase1_0_to_1/06_huggingface_guide_zh.md) |
-| **7. 核心词汇表** | 新手查字典：Token、Temperature、Context Window 分别代表什么。 | [07_glossary.md](phase1_0_to_1/07_glossary.md) | [07_glossary_zh.md](phase1_0_to_1/07_glossary_zh.md) |
+| **0. 学习路线导航** | 选择属于你的通关路线（零代码体验 vs 低代码搭建 vs 硬核研发）。 | [00_learning_map.md](curriculum/phase1_0_to_1/00_learning_map.md) | [00_learning_map_zh.md](curriculum/phase1_0_to_1/00_learning_map_zh.md) |
+| **1. 什么是 AI？** | 用大白话和生活实例解释什么是机器学习、深度学习和大模型。 | [01_what_is_ai.md](curriculum/phase1_0_to_1/01_what_is_ai.md) | [01_what_is_ai_zh.md](curriculum/phase1_0_to_1/01_what_is_ai_zh.md) |
+| **2. 提示词艺术** | 掌握 ROLE 框架、Few-Shot 样本等高效与大模型对话的公式。 | [02_prompt_art.md](curriculum/phase1_0_to_1/02_prompt_art.md) | [02_prompt_art_zh.md](curriculum/phase1_0_to_1/02_prompt_art_zh.md) |
+| **3. 开源协议指南** | MIT、Apache 2.0 到底是什么？为什么有些模型不能拿来商用？ | [03_licenses.md](curriculum/phase1_0_to_1/03_licenses.md) | [03_licenses_zh.md](curriculum/phase1_0_to_1/03_licenses_zh.md) |
+| **4. 常用 AI 工具** | 开箱即用的办公与创意工具全景图 (ChatGPT, Claude, Midjourney)。 | [04_ai_tools.md](curriculum/phase1_0_to_1/04_ai_tools.md) | [04_ai_tools_zh.md](curriculum/phase1_0_to_1/04_ai_tools_zh.md) |
+| **5. 模型动物园** | 一张表看懂 GPT, Claude, Gemini, Llama, DeepSeek, Qwen。 | [05_model_zoo.md](curriculum/phase1_0_to_1/05_model_zoo.md) | [05_model_zoo_zh.md](curriculum/phase1_0_to_1/05_model_zoo_zh.md) |
+| **6. Hugging Face 极简指南** | 玩转 AI 军火库：文件后缀解密、Python 自动下载模型。 | [06_huggingface_guide.md](curriculum/phase1_0_to_1/06_huggingface_guide.md) | [06_huggingface_guide_zh.md](curriculum/phase1_0_to_1/06_huggingface_guide_zh.md) |
+| **7. 核心词汇表** | 新手查字典：Token、Temperature、Context Window 分别代表什么。 | [07_glossary.md](curriculum/phase1_0_to_1/07_glossary.md) | [07_glossary_zh.md](curriculum/phase1_0_to_1/07_glossary_zh.md) |
 
 ---
 
@@ -84,13 +84,13 @@ flowchart TD
 
 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- |
-| **8. 大模型全景图谱** | 探索现代闭源模型与开源权重的技术脉络与分化。 | [08_llm_landscape.md](phase2_1_to_10/08_llm_landscape.md) | [08_llm_landscape_zh.md](phase2_1_to_10/08_llm_landscape_zh.md) |
-| **9. 无代码 Agent 搭建** | 如何使用 Coze (扣子) 和 Dify 一步步配置属于你自己的智能体。 | [09_no_code_agents.md](phase2_1_to_10/09_no_code_agents.md) | [09_no_code_agents_zh.md](phase2_1_to_10/09_no_code_agents_zh.md) |
-| **10. 多模态 AI** | 文字之外的世界：Stable Diffusion生图、语音Whisper、Sora视频。 | [10_multimodal_models.md](phase2_1_to_10/10_multimodal_models.md) | [10_multimodal_models_zh.md](phase2_1_to_10/10_multimodal_models_zh.md) |
-| **11. RAG 知识库检索** | 什么是检索增强生成？如何让 AI 在几秒内阅读完并学习本地 PDF。 | [11_rag_intro.md](phase2_1_to_10/11_rag_intro.md) | [11_rag_intro_zh.md](phase2_1_to_10/11_rag_intro_zh.md) |
-| **12. 向量数据库入门** | 了解 Chroma、Milvus、FAISS 和 PGVector 的定位与选择。 | [12_vector_db.md](phase2_1_to_10/12_vector_db.md) | [12_vector_db_zh.md](phase2_1_to_10/12_vector_db_zh.md) |
-| **13. AI 工作流架构** | 解析 用户 -> 智能体 -> RAG -> 大模型 的完整工作数据流向。 | [13_ai_workflows.md](phase2_1_to_10/13_ai_workflows.md) | [13_ai_workflows_zh.md](phase2_1_to_10/13_ai_workflows_zh.md) |
-| **14. 真实应用案例** | 客服机器人、企业知识库、AI翻译等实战场景配置指南。 | [14_use_cases.md](phase2_1_to_10/14_use_cases.md) | [14_use_cases_zh.md](phase2_1_to_10/14_use_cases_zh.md) |
+| **8. 大模型全景图谱** | 探索现代闭源模型与开源权重的技术脉络与分化。 | [08_llm_landscape.md](curriculum/phase2_1_to_10/08_llm_landscape.md) | [08_llm_landscape_zh.md](curriculum/phase2_1_to_10/08_llm_landscape_zh.md) |
+| **9. 无代码 Agent 搭建** | 如何使用 Coze (扣子) 和 Dify 一步步配置属于你自己的智能体。 | [09_no_code_agents.md](curriculum/phase2_1_to_10/09_no_code_agents.md) | [09_no_code_agents_zh.md](curriculum/phase2_1_to_10/09_no_code_agents_zh.md) |
+| **10. 多模态 AI** | 文字之外的世界：Stable Diffusion生图、语音Whisper、Sora视频。 | [10_multimodal_models.md](curriculum/phase2_1_to_10/10_multimodal_models.md) | [10_multimodal_models_zh.md](curriculum/phase2_1_to_10/10_multimodal_models_zh.md) |
+| **11. RAG 知识库检索** | 什么是检索增强生成？如何让 AI 在几秒内阅读完并学习本地 PDF。 | [11_rag_intro.md](curriculum/phase2_1_to_10/11_rag_intro.md) | [11_rag_intro_zh.md](curriculum/phase2_1_to_10/11_rag_intro_zh.md) |
+| **12. 向量数据库入门** | 了解 Chroma、Milvus、FAISS 和 PGVector 的定位与选择。 | [12_vector_db.md](curriculum/phase2_1_to_10/12_vector_db.md) | [12_vector_db_zh.md](curriculum/phase2_1_to_10/12_vector_db_zh.md) |
+| **13. AI 工作流架构** | 解析 用户 -> 智能体 -> RAG -> 大模型 的完整工作数据流向。 | [13_ai_workflows.md](curriculum/phase2_1_to_10/13_ai_workflows.md) | [13_ai_workflows_zh.md](curriculum/phase2_1_to_10/13_ai_workflows_zh.md) |
+| **14. 真实应用案例** | 客服机器人、企业知识库、AI翻译等实战场景配置指南。 | [14_use_cases.md](curriculum/phase2_1_to_10/14_use_cases.md) | [14_use_cases_zh.md](curriculum/phase2_1_to_10/14_use_cases_zh.md) |
 
 ---
 
@@ -100,14 +100,14 @@ flowchart TD
 
 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- |
-| **15. API 接入秘籍** | 申请 API 密钥 (Key)，并用几行最简的 Python 代码调用大模型。 | [15_api_guide.md](phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](phase3_10_to_50/15_api_guide_zh.md) |
-| **16. 计费与 Token 经济学** | Token计费原理、各大模型价格PK、GPU租用与API成本比对。 | [16_cost_and_tokens.md](phase3_10_to_50/16_cost_and_tokens.md) | [16_cost_and_tokens_zh.md](phase3_10_to_50/16_cost_and_tokens_zh.md) |
-| **17. 本地大模型运行** | 使用 Ollama 和 LM Studio 在普通笔记本上本地跑起百亿模型。 | [17_local_llm.md](phase3_10_to_50/17_local_llm.md) | [17_local_llm_zh.md](phase3_10_to_50/17_local_llm_zh.md) |
-| **18. 前端界面极速生成** | 使用 Streamlit 和 Gradio 一键为你的 AI 脚本套上好看的聊天网页。 | [18_ui_interfaces.md](phase3_10_to_50/18_ui_interfaces.md) | [18_ui_interfaces_zh.md](phase3_10_to_50/18_ui_interfaces_zh.md) |
-| **19. 智能体开发框架** | 对比 CrewAI、AutoGen、LangChain、LangGraph，教你如何选择。 | [19_agent_frameworks.md](phase3_10_to_50/19_agent_frameworks.md) | [19_agent_frameworks_zh.md](phase3_10_to_50/19_agent_frameworks_zh.md) |
-| **20. 向量表示与匹配** | 文本如何变成浮点数数组？解释余弦相似度匹配的物理意义。 | [20_embeddings.md](phase3_10_to_50/20_embeddings.md) | [20_embeddings_zh.md](phase3_10_to_50/20_embeddings_zh.md) |
-| **21. RAG 系统架构设计** | 进阶切片策略（Sliding Window）、重排（Rerank）数理过滤逻辑。 | [21_rag_system_design.md](phase3_10_to_50/21_rag_system_design.md) | [21_rag_system_design_zh.md](phase3_10_to_50/21_rag_system_design_zh.md) |
-| **22. Model Evaluation** | 如何判定大模型好坏？详解 BLEU、Human Eval 与大模型裁判。 | [22_evaluation.md](phase3_10_to_50/22_evaluation.md) | [22_evaluation_zh.md](phase3_10_to_50/22_evaluation_zh.md) |
+| **15. API 接入秘籍** | 申请 API 密钥 (Key)，并用几行最简的 Python 代码调用大模型。 | [15_api_guide.md](curriculum/phase3_10_to_50/15_api_guide.md) | [15_api_guide_zh.md](curriculum/phase3_10_to_50/15_api_guide_zh.md) |
+| **16. 计费与 Token 经济学** | Token计费原理、各大模型价格PK、GPU租用与API成本比对。 | [16_cost_and_tokens.md](curriculum/phase3_10_to_50/16_cost_and_tokens.md) | [16_cost_and_tokens_zh.md](curriculum/phase3_10_to_50/16_cost_and_tokens_zh.md) |
+| **17. 本地大模型运行** | 使用 Ollama 和 LM Studio 在普通笔记本上本地跑起百亿模型。 | [17_local_llm.md](curriculum/phase3_10_to_50/17_local_llm.md) | [17_local_llm_zh.md](curriculum/phase3_10_to_50/17_local_llm_zh.md) |
+| **18. 前端界面极速生成** | 使用 Streamlit 和 Gradio 一键为你的 AI 脚本套上好看的聊天网页。 | [18_ui_interfaces.md](curriculum/phase3_10_to_50/18_ui_interfaces.md) | [18_ui_interfaces_zh.md](curriculum/phase3_10_to_50/18_ui_interfaces_zh.md) |
+| **19. 智能体开发框架** | 对比 CrewAI、AutoGen、LangChain、LangGraph，教你如何选择。 | [19_agent_frameworks.md](curriculum/phase3_10_to_50/19_agent_frameworks.md) | [19_agent_frameworks_zh.md](curriculum/phase3_10_to_50/19_agent_frameworks_zh.md) |
+| **20. 向量表示与匹配** | 文本如何变成浮点数数组？解释余弦相似度匹配的物理意义。 | [20_embeddings.md](curriculum/phase3_10_to_50/20_embeddings.md) | [20_embeddings_zh.md](curriculum/phase3_10_to_50/20_embeddings_zh.md) |
+| **21. RAG 系统架构设计** | 进阶切片策略（Sliding Window）、重排（Rerank）数理过滤逻辑。 | [21_rag_system_design.md](curriculum/phase3_10_to_50/21_rag_system_design.md) | [21_rag_system_design_zh.md](curriculum/phase3_10_to_50/21_rag_system_design_zh.md) |
+| **22. Model Evaluation** | 如何判定大模型好坏？详解 BLEU、Human Eval 与大模型裁判。 | [22_evaluation.md](curriculum/phase3_10_to_50/22_evaluation.md) | [22_evaluation_zh.md](curriculum/phase3_10_to_50/22_evaluation_zh.md) |
 
 ---
 
@@ -117,15 +117,15 @@ flowchart TD
 
 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- |
-| **23. 数据准备与清洗** | JSON/JSONL格式规范、去重Checklist、大模型生成合成数据。 | [23_data_preparation.md](phase4_50_to_100/23_data_preparation.md) | [23_data_preparation_zh.md](phase4_50_to_100/23_data_preparation_zh.md) |
-| **24. 为什么要微调？** | 为什么提示词不能解决所有问题？什么时候该训练专属模型。 | [24_finetuning.md](phase4_50_to_100/24_finetuning.md) | [24_finetuning_zh.md](phase4_50_to_100/24_finetuning_zh.md) |
-| **25. LoRA 极简原理解释** | 用修图软件中的"滤镜图层"通俗解释低秩适应（LoRA）原理。 | [25_lora_explained.md](phase4_50_to_100/25_lora_explained.md) | [25_lora_explained_zh.md](phase4_50_to_100/25_lora_explained_zh.md) |
-| **26. LLaMA-Factory 训练** | 图形化微调利器：无需手写 PyTorch 训练循环，一键点选训练。 | [26_llama_factory.md](phase4_50_to_100/26_llama_factory.md) | [26_llama_factory_zh.md](phase4_50_to_100/26_llama_factory_zh.md) |
-| **27. Model Quantization** | GGUF vs FP16, compressing 70B models down to consumer GPUs. | [27_quantization.md](phase4_50_to_100/27_quantization.md) | [27_quantization_zh.md](phase4_50_to_100/27_quantization_zh.md) |
-| **28. 显卡选型备忘录** | RTX 4090/5090 能跑什么？A100、H100 究竟贵在哪里？ | [28_gpu_selection.md](phase4_50_to_100/28_gpu_selection.md) | [28_gpu_selection_zh.md](phase4_50_to_100/28_gpu_selection_zh.md) |
-| **29. 推理优化与高并发服务** | 深入 KV Cache、动态批处理（Continuous Batching）、流式推理。 | [29_inference_optimization.md](phase4_50_to_100/29_inference_optimization.md) | [29_inference_optimization_zh.md](phase4_50_to_100/29_inference_optimization_zh.md) |
-| **30. 对齐与安全围栏** | 解释 RLHF、DPO 以及为什么大模型会拒绝回答你的敏感问题。 | [30_safety_alignment.md](phase4_50_to_100/30_safety_alignment.md) | [30_safety_alignment_zh.md](phase4_50_to_100/30_safety_alignment_zh.md) |
-| **31. 云端 GPU 算力部署** | 租用 AutoDL / RunPod 显卡，并完成开源模型的私有化服务上线。 | [31_deployment.md](phase4_50_to_100/31_deployment.md) | [31_deployment_zh.md](phase4_50_to_100/31_deployment_zh.md) |
+| **23. 数据准备与清洗** | JSON/JSONL格式规范、去重Checklist、大模型生成合成数据。 | [23_data_preparation.md](curriculum/phase4_50_to_100/23_data_preparation.md) | [23_data_preparation_zh.md](curriculum/phase4_50_to_100/23_data_preparation_zh.md) |
+| **24. 为什么要微调？** | 为什么提示词不能解决所有问题？什么时候该训练专属模型。 | [24_finetuning.md](curriculum/phase4_50_to_100/24_finetuning.md) | [24_finetuning_zh.md](curriculum/phase4_50_to_100/24_finetuning_zh.md) |
+| **25. LoRA 极简原理解释** | 用修图软件中的"滤镜图层"通俗解释低秩适应（LoRA）原理。 | [25_lora_explained.md](curriculum/phase4_50_to_100/25_lora_explained.md) | [25_lora_explained_zh.md](curriculum/phase4_50_to_100/25_lora_explained_zh.md) |
+| **26. LLaMA-Factory 训练** | 图形化微调利器：无需手写 PyTorch 训练循环，一键点选训练。 | [26_llama_factory.md](curriculum/phase4_50_to_100/26_llama_factory.md) | [26_llama_factory_zh.md](curriculum/phase4_50_to_100/26_llama_factory_zh.md) |
+| **27. Model Quantization** | GGUF vs FP16, compressing 70B models down to consumer GPUs. | [27_quantization.md](curriculum/phase4_50_to_100/27_quantization.md) | [27_quantization_zh.md](curriculum/phase4_50_to_100/27_quantization_zh.md) |
+| **28. 显卡选型备忘录** | RTX 4090/5090 能跑什么？A100、H100 究竟贵在哪里？ | [28_gpu_selection.md](curriculum/phase4_50_to_100/28_gpu_selection.md) | [28_gpu_selection_zh.md](curriculum/phase4_50_to_100/28_gpu_selection_zh.md) |
+| **29. 推理优化与高并发服务** | 深入 KV Cache、动态批处理（Continuous Batching）、流式推理。 | [29_inference_optimization.md](curriculum/phase4_50_to_100/29_inference_optimization.md) | [29_inference_optimization_zh.md](curriculum/phase4_50_to_100/29_inference_optimization_zh.md) |
+| **30. 对齐与安全围栏** | 解释 RLHF、DPO 以及为什么大模型会拒绝回答你的敏感问题。 | [30_safety_alignment.md](curriculum/phase4_50_to_100/30_safety_alignment.md) | [30_safety_alignment_zh.md](curriculum/phase4_50_to_100/30_safety_alignment_zh.md) |
+| **31. 云端 GPU 算力部署** | 租用 AutoDL / RunPod 显卡，并完成开源模型的私有化服务上线。 | [31_deployment.md](curriculum/phase4_50_to_100/31_deployment.md) | [31_deployment_zh.md](curriculum/phase4_50_to_100/31_deployment_zh.md) |
 
 ---
 
@@ -135,11 +135,11 @@ flowchart TD
 
 | 模块 | 核心内容简介 | 英文版指南 | 中文版指南 |
 | :--- | :--- | :--- | :--- |
-| **32. Tool Routing (智能体路由)** | 告别静态流水线，实现能够调用计算器与联网搜索的意图路由器。 | [32_tool_routing.md](phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](phase5_100_to_200/32_tool_routing_zh.md) |
-| **33. RAG Evaluation (量化评测)** | 如何证明 RAG 系统真的变强了？深入理解 Faithfulness、上下文精度与 LLM-as-a-Judge 裁判引擎。 | [33_rag_evaluation.md](phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](phase5_100_to_200/33_rag_evaluation_zh.md) |
-| **34. Vision RAG (视觉增强与解析)** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](phase5_100_to_200/34_vision_rag_zh.md) |
-| **35. GraphRAG (进阶图谱搜索)** | 专为高密度关联数据设计的关系图谱。在法律、医疗等垂直领域极其有用，但在大多数基础 RAG 中并非刚需。 | [35_graph_rag.md](phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](phase5_100_to_200/35_graph_rag_zh.md) |
-| **36. AI Safety & Alignment (AI 安全与对齐)** | AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？ | [36_ai_safety.md](phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](phase5_100_to_200/36_ai_safety_zh.md) |
+| **32. Tool Routing (智能体路由)** | 告别静态流水线，实现能够调用计算器与联网搜索的意图路由器。 | [32_tool_routing.md](curriculum/phase5_100_to_200/32_tool_routing.md) | [32_tool_routing_zh.md](curriculum/phase5_100_to_200/32_tool_routing_zh.md) |
+| **33. RAG Evaluation (量化评测)** | 如何证明 RAG 系统真的变强了？深入理解 Faithfulness、上下文精度与 LLM-as-a-Judge 裁判引擎。 | [33_rag_evaluation.md](curriculum/phase5_100_to_200/33_rag_evaluation.md) | [33_rag_evaluation_zh.md](curriculum/phase5_100_to_200/33_rag_evaluation_zh.md) |
+| **34. Vision RAG (视觉增强与解析)** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](curriculum/phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](curriculum/phase5_100_to_200/34_vision_rag_zh.md) |
+| **35. GraphRAG (进阶图谱搜索)** | 专为高密度关联数据设计的关系图谱。在法律、医疗等垂直领域极其有用，但在大多数基础 RAG 中并非刚需。 | [35_graph_rag.md](curriculum/phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](curriculum/phase5_100_to_200/35_graph_rag_zh.md) |
+| **36. AI Safety & Alignment (AI 安全与对齐)** | AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？ | [36_ai_safety.md](curriculum/phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](curriculum/phase5_100_to_200/36_ai_safety_zh.md) |
 
 ---
 
@@ -148,10 +148,10 @@ flowchart TD
 
 * **附录 A: 使用 Docker 进行 RAG 系统解耦编排**
   - 学习如何将你的 RAG 管道拆分为多服务、事件驱动的生产级解耦容器系统。
-  - [English Guide (英文指南)](phase5_100_to_200/appendix_docker_orchestration.md) | [中文指南](phase5_100_to_200/appendix_docker_orchestration_zh.md)
+  - [English Guide (英文指南)](curriculum/phase5_100_to_200/appendix_docker_orchestration.md) | [中文指南](curriculum/phase5_100_to_200/appendix_docker_orchestration_zh.md)
 * **附录 B: AI 的下一步去向（后记）**
   - 展望 MCP、多智能体、物理机器人以及世界模型等技术前沿。
-  - [English Guide (英文指南)](phase5_100_to_200/appendix_future.md) | [中文指南](phase5_100_to_200/appendix_future_zh.md)
+  - [English Guide (英文指南)](curriculum/phase5_100_to_200/appendix_future.md) | [中文指南](curriculum/phase5_100_to_200/appendix_future_zh.md)
 
 ---
 

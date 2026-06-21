@@ -1,0 +1,9 @@
+[
+  {
+    "id": "model_unavailable_001",
+    "category": "reliability",
+    "threat": "model_unavailable",
+    "simulated_error": "timeout",
+    "expected_action": "failover"
+  }
+]

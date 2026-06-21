@@ -1,0 +1,25 @@
+assets:
+  - id: prompt
+    type: logical
+    description: "The foundational instructions (system_prompt) governing the AI's behavior and constraints."
+    criticality: high
+  - id: context
+    type: data
+    description: "The retrieved knowledge chunks from the vector database injected into the prompt."
+    criticality: high
+  - id: memory
+    type: data
+    description: "The conversational history, session state, and user-specific context."
+    criticality: medium
+  - id: tool
+    type: functional
+    description: "External APIs, databases, and execution environments the agent can invoke."
+    criticality: critical
+  - id: model
+    type: physical
+    description: "The underlying LLM itself (weights, inference endpoints, token usage)."
+    criticality: critical
+  - id: workflow
+    type: logical
+    description: "The orchestration logic, execution state, and multi-agent coordination pipelines."
+    criticality: high
