@@ -12,7 +12,8 @@
 > 🎯 从一个学习地图演进为**生产级 AI 安全工程参考架构**。
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
-[![CC BY 4.0](https://img.shields.io/badge/%E6%96%8B%E6%A1%A3-CC%20BY%204.0-lightgrey)](LICENSE)
+[![CC BY 4.0](https://img.shields.io/badge/%E6%96%87%E6%A1%A3-CC%20BY%204.0-lightgrey)](LICENSE)
+[![Security Pipeline](https://github.com/Hao610/AI-Model-Atlas/actions/workflows/security_pipeline.yml/badge.svg)](https://github.com/Hao610/AI-Model-Atlas/actions/workflows/security_pipeline.yml)
 [![Bilingual](https://img.shields.io/badge/lang-EN-green)](README.md)
 
 ---
@@ -32,7 +33,7 @@
 | 🧬 **理解原理与内部机制** | [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 17 章 |
 | 🛡️ **查看全新 DevSecOps 安全蓝图** | [CONSTRAINT_THREAT_MODEL_zh.md](docs/CONSTRAINT_THREAT_MODEL_zh.md) — 36 章，DevSecOps 安全蓝图 |
 | 📐 **查看系统架构** | [ARCHITECTURE_zh.md](docs/ARCHITECTURE_zh.md) |
-| ▶️ **5 分钟跑起来** | [快速开始 ↓](#-快速开始-quick-start) |
+| ▶️ **5 分钟运行沙盒** | [快速开始 ↓](#-快速开始-quick-start) |
 | 🗺️ **选择一条学习路径** | [入门指南](docs/GETTING_STARTED_zh.md) |
 
 ---

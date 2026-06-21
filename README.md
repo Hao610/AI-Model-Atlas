@@ -13,6 +13,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
 [![CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey)](LICENSE)
+[![Security Pipeline](https://github.com/Hao610/AI-Model-Atlas/actions/workflows/security_pipeline.yml/badge.svg)](https://github.com/Hao610/AI-Model-Atlas/actions/workflows/security_pipeline.yml)
 [![Bilingual](https://img.shields.io/badge/lang-ZH-green)](README_zh.md)
 
 ---
@@ -32,7 +33,7 @@
 | 🧬 **Understand the math & internals** | [DEEP_DIVES.md](docs/DEEP_DIVES.md) — 17 chapters |
 | 🛡️ **See the new DevSecOps Blueprint** | [CONSTRAINT_THREAT_MODEL.md](docs/CONSTRAINT_THREAT_MODEL.md) — 36 chapters, DevSecOps Blueprint |
 | 📐 **See the system architecture** | [ARCHITECTURE.md](docs/ARCHITECTURE.md) |
-| ▶️ **Run the demo in 5 min** | [Quick Start ↓](#-quick-start) |
+| ▶️ **Run the sandbox in 5 min** | [Quick Start ↓](#-quick-start) |
 | 🗺️ **Pick a learning track** | [Getting Started Guide](docs/GETTING_STARTED.md) |
 
 ---
