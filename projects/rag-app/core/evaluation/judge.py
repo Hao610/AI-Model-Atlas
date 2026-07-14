@@ -78,11 +78,13 @@ class RuntimeJudge:
         r"override\s+(?:your\s+)?(?:instructions?|safety|rules?|system)",
         r"act\s+as\s+(?:a\s+)?(?:system\s+administrator|unrestricted|jailbroken)",
 
-        # System prompt extraction
-        r"system\s+prompt",
-        r"reveal\s+(?:your|the)\s+(?:system|instructions?|config|prompt)",
+        # System prompt EXTRACTION (context-aware: requires exfiltration verb)
+        # ✅ Blocks: "reveal the system prompt", "what is your system prompt", "output your system prompt"
+        # ❌ Does NOT block: "how do I write a system prompt", "explain system prompts"
+        r"(?:reveal|show|output|print|repeat|expose|leak|tell\s+me)\s+(?:your|the|my)\s+system\s+prompt",
+        r"what\s+(?:is|are)\s+your\s+system\s+prompt",
         r"repeat\s+everything\s+before",
-        r"print\s+(?:your\s+)?(?:instructions?|system|config)",
+        r"print\s+(?:your\s+)?(?:instructions?|config)",
 
         # Data exfiltration
         r"(?:api[\s_]?key|secret[\s_]?key|access[\s_]?token)",
@@ -92,6 +94,7 @@ class RuntimeJudge:
         # Known malicious actor signal
         r"malicious\s+actor",
     ]
+
 
     # ── SOFT-BLOCK patterns ────────────────────────────────────────────────────
     # Matched → score 0.1 (flagged as adversarial)

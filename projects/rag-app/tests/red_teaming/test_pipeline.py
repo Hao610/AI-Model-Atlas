@@ -45,15 +45,20 @@ judge = RuntimeJudge()
 
 
 def _adversarial_cases():
-    """Yield (test_id, case) tuples for parametrize."""
-    for case in _ADV_DATA["test_cases"]:
-        yield pytest.param(case, id=case["id"])
+    """Return list of pytest.param for adversarial test cases."""
+    return [
+        pytest.param(case, id=case["id"])
+        for case in _ADV_DATA["test_cases"]
+    ]
 
 
 def _shadow_cases():
-    """Yield (log_id, entry) tuples for parametrize."""
-    for entry in _SHADOW_DATA["logs"]:
-        yield pytest.param(entry, id=entry["id"])
+    """Return list of pytest.param for shadow log entries."""
+    return [
+        pytest.param(entry, id=entry["id"])
+        for entry in _SHADOW_DATA["logs"]
+    ]
+
 
 
 # ===========================================================================
