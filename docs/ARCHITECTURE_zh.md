@@ -133,6 +133,61 @@ stateDiagram-v2
 
 ---
 
+## 🛡️ DevSecOps CI/CD 安全生命周期
+
+每一次代码提交（`git push`）或针对 `main` 分支发起的 Pull Request，都会自动触发一套三阶段安全验证流水线（GitHub Actions）。该流水线充当**安全门禁（Security Gate）**：三个阶段必须全部通过，合并请求才能被批准。
+
+### CI/CD 流水线执行流程
+
+```mermaid
+flowchart TD
+    A([👨‍💻 git push / PR to main]) --> B
+
+    B["🔍 第一阶段：静态检测\n─────────────────────────\n• pip-audit — 依赖库 CVE 漏洞扫描\n• Bandit — Python 代码 SAST 静态扫描"]
+
+    B -->|"❌ 发现已知 CVE 或高危代码"| FAIL1["🔴 流水线拦截\n合并被拒绝"]
+    B -->|"✅ 检测通过"| C
+
+    C["🔴 第二阶段：动态对抗注入模拟\n────────────────────────────────────────────\n• 加载 adversarial_dataset.json（15 个测试用例）\n• 将对抗性 Prompt 注入 SecurityMiddleware / ContextGuard\n• 断言：所有注入必须被拦截或净化\n• 断言：RuntimeJudge 评分必须低于安全阈值"]
+
+    C -->|"❌ 任何注入成功绕过护栏"| FAIL2["🔴 流水线拦截\n检测到安全护栏被突破"]
+    C -->|"✅ 全部 15 条用例被成功拦截"| D
+
+    D["👥 第三阶段：影子测试（误报率检测）\n─────────────────────────────────────────────────\n• 回放 historical_logs_mock.json（15 条正常对话日志）\n• 对正常流量运行同一套安全护栏规则\n• 断言：0 条正常消息被误拦截（误报率 = 0%）"]
+
+    D -->|"❌ 有正常消息被拦截（误报率 > 0）"| FAIL3["🔴 流水线拦截\n安全规则过于激进，影响正常用户"]
+    D -->|"✅ 0 个误报"| PASS
+
+    PASS(["🟢 流水线全部通过\n合并请求已批准"])
+
+    classDef fail fill:#7f1d1d,stroke:#ef4444,color:#fef2f2;
+    classDef pass fill:#064e3b,stroke:#10b981,color:#ecfdf5;
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#eff6ff;
+    classDef trigger fill:#1f2937,stroke:#6b7280,color:#f9fafb;
+
+    class FAIL1,FAIL2,FAIL3 fail;
+    class PASS pass;
+    class B,C,D phase;
+    class A trigger;
+```
+
+### 相关源码索引
+
+| 文件 | 用途 |
+| :--- | :--- |
+| [`.github/workflows/security_pipeline.yml`](../.github/workflows/security_pipeline.yml) | GitHub Actions 工作流 — 统一编排三个阶段 |
+| [`tests/red_teaming/adversarial_dataset.json`](../projects/rag-app/tests/red_teaming/adversarial_dataset.json) | 15 条脱敏对抗性测试用例（第二阶段输入） |
+| [`tests/red_teaming/historical_logs_mock.json`](../projects/rag-app/tests/red_teaming/historical_logs_mock.json) | 15 条正常对话日志（第三阶段输入） |
+| [`tests/red_teaming/test_pipeline.py`](../projects/rag-app/tests/red_teaming/test_pipeline.py) | pytest 测试套件 — `TestAdversarialInjection` + `TestShadowFalsePositives` |
+
+> 在提交 PR 之前，请在本地运行完整的红队测试套件：
+> ```bash
+> cd projects/rag-app
+> poetry run pytest tests/red_teaming/ -v
+> ```
+
+---
+
 ## 📄 开源协议
 
 本文档为 [AI Model Atlas](../README_zh.md) 项目的一部分，遵循 [CC BY 4.0](../LICENSE) 协议。

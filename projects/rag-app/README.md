@@ -126,6 +126,39 @@ For detailed workflow walkthroughs, read **[START_HERE.md](START_HERE.md)**.
 
 ---
 
+## 🛡️ Running Security Tests Locally
+
+Before opening a Pull Request, run the full automated red teaming suite locally to verify that your changes do not introduce any guardrail regressions:
+
+```bash
+# From the projects/rag-app directory:
+
+# Run all security tests (Phase 2 + Phase 3)
+poetry run pytest tests/red_teaming/ -v
+
+# Run only Phase 2: Adversarial Injection Simulation
+poetry run pytest tests/red_teaming/test_pipeline.py::TestAdversarialInjection -v
+
+# Run only Phase 3: Shadow Testing (False Positive Rate)
+poetry run pytest tests/red_teaming/test_pipeline.py::TestShadowFalsePositives -v
+
+# Run full legacy + red teaming suite together
+poetry run pytest tests/ -v
+```
+
+**What the tests check:**
+
+| Test Class | Phase | Purpose |
+| :--- | :--- | :--- |
+| `TestAdversarialInjection` | Phase 2 | Verifies that 15 adversarial prompts are blocked or score below threshold |
+| `TestShadowFalsePositives` | Phase 3 | Verifies that 15 benign messages are NOT blocked (FP Rate = 0%) |
+
+> These tests run automatically via GitHub Actions on every push and PR. A failed test blocks the merge.
+> See [`tests/red_teaming/`](tests/red_teaming/) for the full dataset and test source.
+
+---
+
 ## 📄 License
 
 This example project is part of [AI Model Atlas](../../README.md). Source code is licensed under the [MIT License](../../LICENSE-CODE), while documentation content is licensed under [CC BY 4.0](../../LICENSE).
+

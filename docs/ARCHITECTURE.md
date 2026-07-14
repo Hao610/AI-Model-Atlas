@@ -120,6 +120,62 @@ stateDiagram-v2
     Success --> [*]
 ```
 
+
+---
+
+## 🛡️ DevSecOps CI/CD Lifecycle
+
+Every code commit or Pull Request to `main` automatically triggers a 3-phase security validation pipeline via GitHub Actions. The pipeline acts as a **security gate**: all three phases must pass before a merge is permitted.
+
+### CI/CD Pipeline Flow
+
+```mermaid
+flowchart TD
+    A([👨‍💻 git push / PR to main]) --> B
+
+    B["🔍 Phase 1: Static Analysis\n─────────────────────────\n• pip-audit — dependency CVE scan\n• Bandit — Python SAST code scan"]
+
+    B -->|"❌ CVE or HIGH severity code issue found"| FAIL1["🔴 Pipeline BLOCKED\nMerge rejected"]
+    B -->|"✅ Clean"| C
+
+    C["🔴 Phase 2: Adversarial Injection Simulation\n────────────────────────────────────────────\n• Load adversarial_dataset.json (15 test cases)\n• Feed payloads → SecurityMiddleware / ContextGuard\n• Assert: all injections must be BLOCKED or SANITIZED\n• Assert: RuntimeJudge scores must be below threshold"]
+
+    C -->|"❌ Any injection bypasses guardrails"| FAIL2["🔴 Pipeline BLOCKED\nGuardrail breach detected"]
+    C -->|"✅ All 15 cases intercepted"| D
+
+    D["👥 Phase 3: Shadow Testing — False Positive Rate\n─────────────────────────────────────────────────\n• Replay historical_logs_mock.json (15 benign logs)\n• Run same guardrails on benign traffic\n• Assert: 0 benign messages blocked (FP Rate = 0%)"]
+
+    D -->|"❌ Any benign message blocked (FP > 0)"| FAIL3["🔴 Pipeline BLOCKED\nOver-aggressive rules detected"]
+    D -->|"✅ 0 false positives"| PASS
+
+    PASS(["🟢 Pipeline PASSED\nMerge approved"])
+
+    classDef fail fill:#7f1d1d,stroke:#ef4444,color:#fef2f2;
+    classDef pass fill:#064e3b,stroke:#10b981,color:#ecfdf5;
+    classDef phase fill:#1e3a5f,stroke:#3b82f6,color:#eff6ff;
+    classDef trigger fill:#1f2937,stroke:#6b7280,color:#f9fafb;
+
+    class FAIL1,FAIL2,FAIL3 fail;
+    class PASS pass;
+    class B,C,D phase;
+    class A trigger;
+```
+
+### Source References
+
+| Artifact | Purpose |
+| :--- | :--- |
+| [`.github/workflows/security_pipeline.yml`](../.github/workflows/security_pipeline.yml) | GitHub Actions workflow — orchestrates all 3 phases |
+| [`tests/red_teaming/adversarial_dataset.json`](../projects/rag-app/tests/red_teaming/adversarial_dataset.json) | 15 sanitized adversarial test cases (Phase 2 input) |
+| [`tests/red_teaming/historical_logs_mock.json`](../projects/rag-app/tests/red_teaming/historical_logs_mock.json) | 15 benign conversation logs (Phase 3 input) |
+| [`tests/red_teaming/test_pipeline.py`](../projects/rag-app/tests/red_teaming/test_pipeline.py) | pytest suite — `TestAdversarialInjection` + `TestShadowFalsePositives` |
+
+> Run the full red teaming suite locally before opening a PR:
+> ```bash
+> cd projects/rag-app
+> poetry run pytest tests/red_teaming/ -v
+> ```
+
 ---
 
 ## 📄 License

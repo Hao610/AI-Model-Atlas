@@ -116,6 +116,17 @@ rag-app/
 # 1. 安装项目环境
 pip install -r requirements.txt
 
+
+---
+
+## 🏃 1 分钟快速启动
+
+运行本项目前，请确保系统已安装 Python 3.9+ 并确保本地 Ollama 服务正在运行。
+
+```bash
+# 1. 安装项目环境
+pip install -r requirements.txt
+
 # 2. 提前拉取本地大模型
 ollama pull llama3
 
@@ -123,6 +134,38 @@ ollama pull llama3
 python app.py
 ```
 更详尽的测试流程，请阅读 **[START_HERE_zh.md](START_HERE_zh.md)**。
+
+---
+
+## 🛡️ 本地运行安全测试
+
+在提交 Pull Request 之前，请先在本地运行完整的自动化红队测试套件，确保你的代码改动没有破坏任何安全护栏：
+
+```bash
+# 进入 projects/rag-app 目录执行：
+
+# 运行全部安全测试（第二阶段 + 第三阶段）
+poetry run pytest tests/red_teaming/ -v
+
+# 仅运行第二阶段：对抗性注入模拟
+poetry run pytest tests/red_teaming/test_pipeline.py::TestAdversarialInjection -v
+
+# 仅运行第三阶段：影子测试（误报率检测）
+poetry run pytest tests/red_teaming/test_pipeline.py::TestShadowFalsePositives -v
+
+# 运行全部测试（原有单元测试 + 红队测试）
+poetry run pytest tests/ -v
+```
+
+**测试覆盖范围说明：**
+
+| 测试类 | 阶段 | 目的 |
+| :--- | :--- | :--- |
+| `TestAdversarialInjection` | 第二阶段 | 验证 15 条对抗性 Prompt 均被拦截或评分低于安全阈值 |
+| `TestShadowFalsePositives` | 第三阶段 | 验证 15 条正常消息均未被误拦截（误报率 = 0%） |
+
+> 以上测试会在每次 push 和 PR 时通过 GitHub Actions 自动运行。任何测试失败都会阻止合并。
+> 完整的数据集与测试源码请参阅 [`tests/red_teaming/`](tests/red_teaming/) 目录。
 
 ---
 
