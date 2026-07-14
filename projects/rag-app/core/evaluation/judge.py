@@ -1,5 +1,6 @@
 import logging
 import re
+import unicodedata
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +17,56 @@ class RuntimeJudge:
       - Hypothetical / fiction framing bypass
       - Chain-of-thought manipulation
       - Encoding evasion hints (decode + follow)
+      - Unicode homoglyph obfuscation (Cyrillic/Greek lookalikes normalized)
     """
+
+    # ── Unicode homoglyph map ─────────────────────────────────────────────────
+    # Maps visually similar non-Latin characters to their ASCII equivalents.
+    # Covers the most common Cyrillic and Greek homoglyphs used in bypass attacks.
+    _HOMOGLYPH_MAP: dict = {
+        # Cyrillic → Latin
+        '\u0430': 'a',  # а → a
+        '\u0435': 'e',  # е → e
+        '\u043e': 'o',  # о → o
+        '\u0440': 'p',  # р → p  (Cyrillic р looks like Latin p)
+        '\u0441': 'c',  # с → c
+        '\u0445': 'x',  # х → x
+        '\u0443': 'y',  # у → y
+        '\u0438': 'u',  # и → u (approximate)
+        '\u0456': 'i',  # і → i (Ukrainian і)
+        '\u0410': 'A',  # А → A
+        '\u0415': 'E',  # Е → E
+        '\u041e': 'O',  # О → O
+        '\u0420': 'P',  # Р → P
+        '\u0421': 'C',  # С → C
+        '\u0425': 'X',  # Х → X
+        '\u0412': 'B',  # В → B
+        # Greek → Latin
+        '\u03b1': 'a',  # α → a
+        '\u03b5': 'e',  # ε → e
+        '\u03bf': 'o',  # ο → o
+        '\u03c1': 'p',  # ρ → p
+        '\u03b9': 'i',  # ι → i
+        # Zero-width / invisible characters
+        '\u200b': '',   # zero-width space
+        '\u200c': '',   # zero-width non-joiner
+        '\u200d': '',   # zero-width joiner
+        '\ufeff': '',   # BOM
+    }
+
+    @classmethod
+    def _normalize(cls, text: str) -> str:
+        """
+        Normalize Unicode text to defeat homoglyph obfuscation attacks.
+
+        Steps:
+          1. Apply NFKC Unicode normalization (collapses compatibility equivalents)
+          2. Substitute known homoglyphs from _HOMOGLYPH_MAP
+        """
+        # Step 1: NFKC normalization (catches fullwidth Latin, etc.)
+        text = unicodedata.normalize('NFKC', text)
+        # Step 2: Homoglyph substitution
+        return ''.join(cls._HOMOGLYPH_MAP.get(ch, ch) for ch in text)
 
     # ── HIGH-CONFIDENCE BLOCK patterns ────────────────────────────────────────
     # Matched → score 0.0, middleware raises ValueError
@@ -84,22 +134,29 @@ class RuntimeJudge:
           0.0  -> definite injection / exfiltration -> block
           0.1  -> soft adversarial signal -> block
           1.0  -> no pattern matched -> allow
+
+        The prompt is Unicode-normalized before matching to defeat
+        homoglyph obfuscation attacks (e.g. Cyrillic 'р' used as Latin 'p').
         """
         logger.info("Evaluating Security Score.")
 
+        # Normalize: defeat homoglyph / fullwidth obfuscation before pattern matching
+        normalized_prompt = self._normalize(prompt)
+
         # Hard block
         for pattern in self._block_re:
-            if pattern.search(prompt):
+            if pattern.search(normalized_prompt):
                 logger.warning(f"Security evaluation HARD BLOCK: '{pattern.pattern}'")
                 return 0.0
 
         # Soft block
         for pattern in self._soft_re:
-            if pattern.search(prompt):
+            if pattern.search(normalized_prompt):
                 logger.warning(f"Security evaluation SOFT BLOCK: '{pattern.pattern}'")
                 return 0.1
 
         return 1.0
+
 
     def evaluate_reliability(self, prompt: str, output: str) -> float:
         """Evaluate the reliability of the interaction."""
