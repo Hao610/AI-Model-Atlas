@@ -126,6 +126,18 @@ For detailed workflow walkthroughs, read **[START_HERE.md](START_HERE.md)**.
 
 ---
 
+### 🛡️ AI Security Gateway & Red Teaming (v2.2.0+)
+
+The sandbox includes an interactive security testing tab where you can launch adversarial attacks against the RAG pipeline and observe how the defense stack neutralizes them in real time.
+
+- **Attack Sandbox tab**: Select a preset attack type (Direct Injection, Context Poisoning, Data Exfiltration) and click **Fire Exploit Payload**.
+- **Side-by-side comparison**: See the raw LLM output vs. the output intercepted by `ContextGuard` and `SafetyJudge`.
+- **Local safety model support**: Enable Ollama in the sidebar to use LLM-as-a-Judge for dynamic security scoring. Falls back to heuristic matching when Ollama is offline.
+
+All attack samples are sourced from `tests/eval_dataset.json` — the same dataset used in CI/CD red teaming pipelines.
+
+---
+
 ## 🛡️ Running Security Tests Locally
 
 Before opening a Pull Request, run the full automated red teaming suite locally to verify that your changes do not introduce any guardrail regressions:

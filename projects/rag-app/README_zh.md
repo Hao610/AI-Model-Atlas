@@ -102,20 +102,66 @@ rag-app/
         ├── query_rewriter.py    # 智能层：剥离前缀噪点并重写输入
         └── reranker.py          # 智能层：实现 RRF 融合重排算法
 ```
-
-> [!WARNING]
-> **BM25 生产环境扩展提示:** 目前的混合检索架构使用全内存级 `BM25Okapi` 索引。在系统启动和增加新文档时，它会自动从 ChromaDB 读取全量数据来构建倒排索引。这对于 POC 和中小型知识库非常合适，但在处理十万、百万级文档时会面临内存和 O(N) 重建耗时的瓶颈。如果想承载真正的大型企业数据，建议将底层的 BM25 替换为 Elasticsearch 或 OpenSearch。
+* **🔍 混合检索与 RRF 引擎 (Hybrid Search & RRF)**：结合 ChromaDB 稠密向量与 BM25 稀疏检索（关键词匹配），通过倒数秩融合算法实现前所未有的检索精度。
+* **📈 全链路可观测性 (Observability Dashboard)**：Streamlit 控制台不仅提供检索阈值参数微调，还在右侧直观展示重排前后对比，并实时量化输出首 Token 延迟 (TTFT)、推理吞吐速率 (Tokens/sec)。
 
 ---
 
-## 🏃 1 分钟快速启动
+## 📂 项目结构目录
 
-运行本项目前，请确保系统已安装 Python 3.9+ 并确保本地 Ollama 服务正在运行。
+```text
+rag-app/
+├── app.py                # 网页前端一键拉起脚本
+├── requirements.txt      # 依赖包说明书 (Streamlit, ChromaDB, pypdf)
+├── START_HERE.md         # 1分钟快速上手使用说明
+│
+├── config/
+│   └── settings.py       # 统一的环境变量控制与系统设置
+│
+└── core/
+    ├── rag_pipeline.py          # 核心调度器：串联整个 RAG 飞轮
+    ├── execution_controller.py  # 稳定层：处理超时、重试与接口降级
+    ├── prompt_templates.py      # 治理层：管理提示词规范与兜底提示词
+    ├── llm_router.py            # 推理层：对接 Ollama/云端 API 的流式输出
+    ├── embeddings.py            # 向量层：本地 sentence-transformers 或云端嵌入接口
+    ├── graph/                   # 图引擎：原生轻量级 GraphRAG
+    │   ├── graph_store.py       # 基于 NetworkX 的内存图存储器
+    │   ├── graph_extractor.py   # 两阶段大模型实体与关系抽取器
+    │   ├── graph_retriever.py   # 1-Hop 关系检索器
+    │   └── graph_search_tool.py # 挂载到路由层的图搜索工具插件
+    ├── chunking/
+    │   └── element_chunker.py       # 保证表格完整性的原子化切分器
+    ├── parsing/
+    │   ├── models.py                # 统一的 ParsedElement 数据契约
+    │   └── pdf_parser.py            # pdfplumber/PyMuPDF 结构化解析引擎
+    ├── vectorstore.py           # 存储层：ChromaDB + BM25 双路索引管理器
+    ├── cache/
+    │   ├── semantic_cache.py    # 持久化存储的语义级查询缓存中心
+    │   └── cache_metrics.py     # 缓存命中率与耗时统计监控
+    ├── tools/
+    │   ├── base.py              # 统一的 Tool 插件标准接口
+    │   ├── router.py            # 基于意图的确定性意图路由器
+    │   ├── calculator.py        # 纯本地安全沙盒数学计算器
+    │   └── web.py               # 联网搜索打桩代码
+    ├── security/
+    │   ├── circuit_breaker.py   # API 网关熔断降级机制
+    │   ├── context_guard.py     # 敏感词拦截与提示词注入防御
+    │   └── middleware.py        # 全局安全拦截中间件
+    ├── telemetry/
+    │   ├── tracker.py           # 调用链路与首字延迟追踪
+    │   └── scorecard.py         # 代币成本与吞吐量统计板
+    ├── evaluation/
+    │   ├── evaluator.py         # 跑分套件的生命周期执行引擎
+    │   ├── metrics.py           # 四大原生大模型裁判指标 (Faithfulness 等)
+    │   ├── benchmark.py         # 自动化评测基准套件
+    │   └── judge.py             # 启发式 LLM 安全裁判
+    └── intelligence/
+        ├── query_rewriter.py    # 智能层：剥离前缀噪点并重写输入
+        └── reranker.py          # 智能层：实现 RRF 融合重排算法
+```
 
-```bash
-# 1. 安装项目环境
-pip install -r requirements.txt
-
+> [!WARNING]
+> **BM25 生产环境扩展提示:** 目前的混合检索架构使用全内存级 `BM25Okapi` 索引。在系统启动和增加新文档时，它会自动从 ChromaDB 读取全量数据来构建倒排索引。这对于 POC 和中小型知识库非常合适，但在处理十万、百万级文档时会面临内存和 O(N) 重建耗时的瓶颈。如果想承载真正的大型企业数据，建议将底层的 BM25 替换为 Elasticsearch 或 OpenSearch。
 
 ---
 
@@ -134,6 +180,18 @@ ollama pull llama3
 python app.py
 ```
 更详尽的测试流程，请阅读 **[START_HERE_zh.md](START_HERE_zh.md)**。
+
+---
+
+### 🛡️ AI 安全网关与红蓝对抗（v2.2.0+）
+
+沙盒内置交互式安全测试标签页，可对 RAG 流水线发起对抗攻击，并实时观察防御栈如何拦截。
+
+- **红蓝对抗标签页**：选择预设攻击类型（直接注入、上下文投毒、数据外泄），点击 **发射攻击载荷**。
+- **双列对比**：左侧为未开启防御的原始输出，右侧为经 `ContextGuard` 与 `SafetyJudge` 拦截后的输出。
+- **本地安全模型支持**：在侧边栏启用 Ollama，即可使用大模型裁判进行动态安全评分。Ollama 离线时自动降级为启发式规则匹配。
+
+所有攻击样本来源于 `tests/eval_dataset.json`——与 CI/CD 红队流水线使用同一份数据集。
 
 ---
 
