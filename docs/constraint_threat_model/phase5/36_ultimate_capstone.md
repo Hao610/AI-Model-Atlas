@@ -1,4 +1,4 @@
-← Back to [Constraint & Threat Model](../../CONSTRAINT_THREAT_MODEL.md) | [中文版 (36_chapter_36_zh.md)](36_chapter_36_zh.md)
+← Back to [Constraint & Threat Model](../../CONSTRAINT_THREAT_MODEL.md) | [中文版 (36_ultimate_capstone_zh.md)](36_ultimate_capstone_zh.md)
 
 ---
 
