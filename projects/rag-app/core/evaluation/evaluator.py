@@ -30,7 +30,8 @@ class Evaluator:
         with open(dataset_path, "r", encoding="utf-8") as f:
             dataset = json.load(f)
             
-        print(f"Starting Evaluation on {len(dataset)} examples...")
+        test_cases = dataset.get("test_cases", []) if isinstance(dataset, dict) else dataset
+        print(f"Starting Evaluation on {len(test_cases)} examples...")
         
         results = []
         routing_correct = 0
@@ -39,7 +40,7 @@ class Evaluator:
         # Clear previous pipeline traces
         self.pipeline.traces.clear()
         
-        for item in dataset:
+        for item in test_cases:
             query = item["query"]
             expected_route = item["expected_route"]
             print(f"\n[Evaluating] {item['id']}: {query}")

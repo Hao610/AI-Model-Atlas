@@ -101,6 +101,18 @@ class RAGPipeline:
                       cache_active: bool = True, cache_threshold: float = 0.9):
         """Retrieves contexts, optimizes using intelligence modules, and yields streams."""
         start_time = time.time()
+
+        # Security Check: Prompt Injection
+        from core.security.middleware import SecurityMiddleware
+        try:
+            middleware = SecurityMiddleware()
+            req = {"prompt": query, "context": ""}
+            middleware.intercept_request(req)
+        except ValueError as ve:
+            self.controller.log(f"Security Gateway Intercepted Request: {ve}")
+            def blocked_stream():
+                yield f"⚠️ **Security Gateway Blocked Request:** {ve}"
+            return blocked_stream(), []
         
         # 0. Tool Routing Layer (Stage A)
         self.controller.log("Analyzing intent via ToolRouter...")
@@ -194,9 +206,19 @@ class RAGPipeline:
         if filtered_matches:
             self.controller.log("Fused Top3: " + ", ".join(d["id"] for d in filtered_matches[:3]))
         
+        # Context Sanitization & Quarantine
+        from core.security.context_guard import ContextGuard
+        guard = ContextGuard()
+        clean_matches, quarantined_matches = guard.quarantine(filtered_matches)
+        
+        if quarantined_matches:
+            self.controller.log(f"ContextGuard quarantined {len(quarantined_matches)} malicious context chunks.")
+            for qm in quarantined_matches:
+                self.controller.log(f"Quarantined Chunk ID: {qm.get('id', 'Unknown')}")
+        
         context_str = ""
         sources = []
-        for match in filtered_matches:
+        for match in clean_matches:
             context_str += f"\n[Source: {match['metadata'].get('source', 'Unknown')}]\n{match['content']}\n"
             sources.append(match)
             
