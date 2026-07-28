@@ -120,4 +120,4 @@ async def handle_request(user_input: str):
 
 ---
 
-← [Prev Chapter](34_nvidia_nemo_guardrai.md) | [Next Chapter](36_chapter_36.md) →
+← [Prev Chapter](34_nvidia_nemo_guardrai.md) | [Next Chapter](36_ultimate_capstone.md) →

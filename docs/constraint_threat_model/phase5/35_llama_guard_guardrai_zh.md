@@ -120,4 +120,4 @@ async def handle_request(user_input: str):
 
 ---
 
-← [上一章](34_nvidia_nemo_guardrai_zh.md) | [下一章](36_chapter_36_zh.md) →
+← [上一章](34_nvidia_nemo_guardrai_zh.md) | [下一章](36_ultimate_capstone_zh.md) →

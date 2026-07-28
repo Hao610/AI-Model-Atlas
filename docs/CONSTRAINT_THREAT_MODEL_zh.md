@@ -112,7 +112,7 @@
 | :--- | :--- | :--- | :--- |
 | **34. NeMo Guardrails** | 深度实战：通过 `.co` 规则建立运行时输入/输出防御墙。 | [34_nvidia_nemo_guardrai.md](constraint_threat_model/phase5/34_nvidia_nemo_guardrai.md) | [34_nvidia_nemo_guardrai_zh.md](constraint_threat_model/phase5/34_nvidia_nemo_guardrai_zh.md) |
 | **35. 本地轻量级护栏** | 部署 Llama Guard 作为流量的双向安全护栏。 | [35_llama_guard_guardrai.md](constraint_threat_model/phase5/35_llama_guard_guardrai.md) | [35_llama_guard_guardrai_zh.md](constraint_threat_model/phase5/35_llama_guard_guardrai_zh.md) |
-| **36. 终极实战交付** | 在检索失效与模型崩溃的三重约束下优雅降级的企业系统。 | [36_chapter_36.md](constraint_threat_model/phase5/36_chapter_36.md) | [36_chapter_36_zh.md](constraint_threat_model/phase5/36_chapter_36_zh.md) |
+| **36. 终极实战交付** | 在检索失效与模型崩溃的三重约束下优雅降级的企业系统。 | [36_ultimate_capstone.md](constraint_threat_model/phase5/36_ultimate_capstone.md) | [36_ultimate_capstone_zh.md](constraint_threat_model/phase5/36_ultimate_capstone_zh.md) |
 
 
 ## 1. 能力地图 (Capability Map)

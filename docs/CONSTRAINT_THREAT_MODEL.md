@@ -112,7 +112,7 @@
 | :--- | :--- | :--- | :--- |
 | **34. NVIDIA NeMo Guardrails** | Enforcing strict I/O walls using `.co` rules. | [34_nvidia_nemo_guardrai.md](constraint_threat_model/phase5/34_nvidia_nemo_guardrai.md) | [34_nvidia_nemo_guardrai_zh.md](constraint_threat_model/phase5/34_nvidia_nemo_guardrai_zh.md) |
 | **35. Local Guard Models** | Deploying Llama Guard as a lightweight safety interceptor. | [35_llama_guard_guardrai.md](constraint_threat_model/phase5/35_llama_guard_guardrai.md) | [35_llama_guard_guardrai_zh.md](constraint_threat_model/phase5/35_llama_guard_guardrai_zh.md) |
-| **36. The Ultimate Capstone** | Delivering an Enterprise RAG that survives extreme constraints. | [36_chapter_36.md](constraint_threat_model/phase5/36_chapter_36.md) | [36_chapter_36_zh.md](constraint_threat_model/phase5/36_chapter_36_zh.md) |
+| **36. The Ultimate Capstone** | Delivering an Enterprise RAG that survives extreme constraints. | [36_ultimate_capstone.md](constraint_threat_model/phase5/36_ultimate_capstone.md) | [36_ultimate_capstone_zh.md](constraint_threat_model/phase5/36_ultimate_capstone_zh.md) |
 
 
 ## 1. Capability Map
