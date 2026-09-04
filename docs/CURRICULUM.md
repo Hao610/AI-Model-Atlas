@@ -6,7 +6,7 @@
 
 ### The "0 to 200" Roadmap: From Zero to Production-Grade AI Systems
 
-> A structured, phase-based learning path covering 36 modules across 4 tracks — from basic AI concepts to cloud-scale model deployment and advanced agentic workflows.
+> A structured, phase-based learning path covering 37 modules across 4 tracks — from basic AI concepts to cloud-scale model deployment and advanced agentic workflows.
 
 ← Back to [README](../README.md) | [中文课程 (CURRICULUM_zh.md)](CURRICULUM_zh.md)
 
@@ -35,7 +35,7 @@ flowchart TD
 
 > [!NOTE]
 > **💡 Quick Note on the Reading Order:**
-> The 36 modules listed in the table below are physically organized linearly by technical level (Phases 1 to 5). However, to keep your learning experience smooth and cohesive, the `Next Chapter` link at the bottom of each document is linked **non-linearly by cognitive dependency** (e.g., *No-Code Agents* skips *Multimodal AI* and goes straight to *RAG Introduction*).
+> The 37 modules listed in the table below are physically organized linearly by technical level (Phases 1 to 5). However, to keep your learning experience smooth and cohesive, the `Next Chapter` link at the bottom of each document is linked **non-linearly by cognitive dependency** (e.g., *No-Code Agents* skips *Multimodal AI* and goes straight to *RAG Introduction*).
 > 
 > We highly recommend **following the navigation links at the bottom of each page** for a guided, step-by-step experience, or using this curriculum as a **dictionary** to lookup specific topics. You can also expand the section below to view our 4 curated learning tracks:
 
@@ -140,6 +140,7 @@ flowchart TD
 | **34. Vision RAG & OCR** | Processing complex PDF charts, tables, and raw image inputs. | [34_vision_rag.md](curriculum/phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](curriculum/phase5_100_to_200/34_vision_rag_zh.md) |
 | **35. GraphRAG (Advanced)** | Knowledge graphs for highly relational data. Useful in domains such as law, medicine, and research. Not required for most RAG systems. | [35_graph_rag.md](curriculum/phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](curriculum/phase5_100_to_200/35_graph_rag_zh.md) |
 | **36. AI Safety & Alignment** | Why do AI systems hallucinate? How are modern models aligned with human values? What are the risks of autonomous AI systems? | [36_ai_safety.md](curriculum/phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](curriculum/phase5_100_to_200/36_ai_safety_zh.md) |
+| **37. LangChain Security** | Dissecting agent call execution traces, injection attack vectors, and runtime guardrail defenses. | [37_langchain_security.md](curriculum/phase5_100_to_200/37_langchain_security.md) | [37_langchain_security_zh.md](curriculum/phase5_100_to_200/37_langchain_security_zh.md) |
 
 ---
 

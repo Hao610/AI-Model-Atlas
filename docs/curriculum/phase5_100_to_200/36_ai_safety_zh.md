@@ -49,4 +49,4 @@ LLM 恰恰相反。它看起来极其聪明。它能理解细微的差别，解�
 如果你的系统脱轨了，那不是模型的错——那是你的系统的错。为安全而设计不是事后诸葛亮或附录；这是部署用户真正可以信任的 AI 的基本要求。
 
 ---
-← 上一章: [35 graph rag](35_graph_rag_zh.md) | 下一章: [appendix docker orchestration](appendix_docker_orchestration_zh.md) →
+← 上一章: [35 graph rag](35_graph_rag_zh.md) | 下一章: [37 langchain security](37_langchain_security_zh.md) →

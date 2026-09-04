@@ -29,7 +29,7 @@
 
 | I want to… | Go to |
 | :--- | :--- |
-| 📚 **Learn from scratch** (step-by-step) | [CURRICULUM.md](docs/CURRICULUM.md) — 36 modules, Phase 1→5 |
+| 📚 **Learn from scratch** (step-by-step) | [CURRICULUM.md](docs/CURRICULUM.md) — 37 modules, Phase 1→5 |
 | 🧬 **Understand the math & internals** | [DEEP_DIVES.md](docs/DEEP_DIVES.md) — 17 chapters |
 | 🛡️ **See the new DevSecOps Blueprint** | [CONSTRAINT_THREAT_MODEL.md](docs/CONSTRAINT_THREAT_MODEL.md) — 36 chapters, DevSecOps Blueprint |
 | 📐 **See the system architecture** | [ARCHITECTURE.md](docs/ARCHITECTURE.md) |
@@ -42,7 +42,7 @@
 
 | Content | Count | Description |
 | :--- | :---: | :--- |
-| [Curriculum](docs/CURRICULUM.md) | **36 modules** | Prompt → RAG → API → Fine-tune → Deploy → Agent |
+| [Curriculum](docs/CURRICULUM.md) | **37 modules** | Prompt → RAG → API → Fine-tune → Deploy → Agent |
 | [Deep Dives](docs/DEEP_DIVES.md) | **17 chapters** | Transformer, MoE, Reasoning, Alignment, Evaluation… |
 | [DevSecOps Blueprint](docs/CONSTRAINT_THREAT_MODEL.md) | **36 chapters** | Prompt Injection, RAG Poisoning, Agent Hijacking, Observability |
 | [RAG Sandbox](projects/rag-app/README.md) | 1 app | Streamlit demo: cache, rerank, routing, security, monitoring |

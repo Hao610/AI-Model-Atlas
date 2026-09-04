@@ -29,7 +29,7 @@
 
 | 我想… | 去这里 |
 | :--- | :--- |
-| 📚 **系统学习**（从零开始） | [CURRICULUM_zh.md](docs/CURRICULUM_zh.md) — 36 模块，Phase 1→5 |
+| 📚 **系统学习**（从零开始） | [CURRICULUM_zh.md](docs/CURRICULUM_zh.md) — 37 模块，Phase 1→5 |
 | 🧬 **理解原理与内部机制** | [DEEP_DIVES_zh.md](docs/DEEP_DIVES_zh.md) — 17 章 |
 | 🛡️ **查看全新 DevSecOps 安全蓝图** | [CONSTRAINT_THREAT_MODEL_zh.md](docs/CONSTRAINT_THREAT_MODEL_zh.md) — 36 章，DevSecOps 安全蓝图 |
 | 📐 **查看系统架构** | [ARCHITECTURE_zh.md](docs/ARCHITECTURE_zh.md) |
@@ -42,7 +42,7 @@
 
 | 内容 | 数量 | 说明 |
 | :--- | :---: | :--- |
-| [课程](docs/CURRICULUM_zh.md) | **36 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
+| [课程](docs/CURRICULUM_zh.md) | **37 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
 | [深潜专题](docs/DEEP_DIVES_zh.md) | **17 章** | Transformer, MoE, 推理模型, 对齐, 评测… |
 | [DevSecOps 蓝图](docs/CONSTRAINT_THREAT_MODEL_zh.md) | **36 章** | 提示词注入，间接投毒，Agent 安全，可观测性 |
 | [RAG 沙盒](projects/rag-app/README_zh.md) | 1 个应用 | Streamlit 演示：缓存、重排、路由、安全、监控 |

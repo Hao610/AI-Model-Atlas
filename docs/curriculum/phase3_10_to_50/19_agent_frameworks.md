@@ -42,6 +42,19 @@ When your workflows are not linear (e.g. if the user says "No", go back to Step 
 
 ---
 
+## 🛡️ LangChain Security Overview
+
+LangChain is the most widely adopted framework in enterprise agent ecosystems, but its flexible tool-execution pipeline makes it a primary surface for adversarial attacks:
+
+* **PromptTemplate Injection**: Untrusted user variables breaking out of template formatting delimiters to hijack agent intent.
+* **Tool Description Poisoning**: Malicious semantic overrides within tool `description` fields tricking LLMs into unauthorized tool calls.
+* **Memory Buffer Hijacking**: Poisoning conversation history buffers to manipulate downstream multi-turn agent decisions.
+* **OutputParser Manipulation**: Coercing output parsers into triggering unintended fallback actions or raw code execution.
+
+> 📖 **Deep Dive Available**: For a full trust-boundary dissection, attack vector taxonomy, and runtime defense implementation with `ContextGuard` and `SafetyJudge`, see **[Module 37: LangChain Security Deep Dive](../phase5_100_to_200/37_langchain_security.md)**.
+
+---
+
 ## 🔍 How to Start?
 
 1. **If you want to build a content writing or marketing pipeline**: Use **CrewAI**. It is highly intuitive and gets multi-agent systems running in minutes.

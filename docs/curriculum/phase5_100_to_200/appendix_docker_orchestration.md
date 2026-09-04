@@ -108,4 +108,4 @@ By wrapping this decoupled architecture into Docker Compose:
 
 ---
 
-← Prev: [Module 36: AI Safety & Alignment](36_ai_safety.md) | Next: [Appendix: Where AI May Go Next](appendix_future.md) →
+← Prev: [Module 37: LangChain Security Deep Dive](37_langchain_security.md) | Next: [Appendix: Where AI May Go Next](appendix_future.md) →

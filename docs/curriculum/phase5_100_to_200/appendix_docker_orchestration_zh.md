@@ -108,4 +108,4 @@ Streamlit UI 作为系统健康的**只读观测者**。通过轮询探测 Qdran
 
 ---
 
-← 上一章: [模块 36: 安全对齐 (AI Safety)](36_ai_safety_zh.md) | 下一章: [附录: AI 的下一步去向 🔭](appendix_future_zh.md) →
+← 上一章: [模块 37: LangChain 安全深度剖析](37_langchain_security_zh.md) | 下一章: [附录: AI 的下一步去向 🔭](appendix_future_zh.md) →

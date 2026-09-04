@@ -6,7 +6,7 @@
 
 ### “从 0 到 200” 全栈 AI 学习路线图
 
-> 一套系统化、分阶段的学习路径，涵盖 4 大核心线路、36 个模块 —— 从 AI 基础概念、云端规模化部署，一路通关到前沿的多智能体架构。
+> 一套系统化、分阶段的学习路径，涵盖 4 大核心线路、37 个模块 —— 从 AI 基础概念、云端规模化部署，一路通关到前沿的多智能体架构。
 
 ← 返回 [中文首页](../README_zh.md) | [English Curriculum (CURRICULUM.md)](CURRICULUM.md)
 
@@ -35,7 +35,7 @@ flowchart TD
 
 > [!NOTE]
 > **💡 温馨提示（关于阅读顺序）：**
-> 本页面下方的 36 个模块是按技术体系线性排列的。为了保障您的学习心流，每个文档底部的 `下一章` 链接是根据**心智依赖关系**进行非线性串联的（例如：读完《无代码智能体》会跳过《多模态》，直接进入《RAG原理》）。
+> 本页面下方的 37 个模块是按技术体系线性排列的。为了保障您的学习心流，每个文档底部的 `下一章` 链接是根据**心智依赖关系**进行非线性串联的（例如：读完《无代码智能体》会跳过《多模态》，直接进入《RAG原理》）。
 > 
 > 推荐您直接**跟随每个文档底部的导航一站式通关**，或者将本页面作为**字典**随时检索。您也可以展开下方查看我们推荐的 4 条主题学习路线：
 
@@ -140,6 +140,7 @@ flowchart TD
 | **34. Vision RAG (视觉增强与解析)** | 攻克 PDF 解析最后壁垒：图表、表格与扫描件处理。 | [34_vision_rag.md](curriculum/phase5_100_to_200/34_vision_rag.md) | [34_vision_rag_zh.md](curriculum/phase5_100_to_200/34_vision_rag_zh.md) |
 | **35. GraphRAG (进阶图谱搜索)** | 专为高密度关联数据设计的关系图谱。在法律、医疗等垂直领域极其有用，但在大多数基础 RAG 中并非刚需。 | [35_graph_rag.md](curriculum/phase5_100_to_200/35_graph_rag.md) | [35_graph_rag_zh.md](curriculum/phase5_100_to_200/35_graph_rag_zh.md) |
 | **36. AI Safety & Alignment (AI 安全与对齐)** | AI 为什么会产生幻觉？现代大模型是如何对齐人类价值观的？不受控的自主 AI 会带来什么风险？ | [36_ai_safety.md](curriculum/phase5_100_to_200/36_ai_safety.md) | [36_ai_safety_zh.md](curriculum/phase5_100_to_200/36_ai_safety_zh.md) |
+| **37. LangChain Security (LangChain 安全剖析)** | 深度拆解 Agent 调用链路、4 大注入攻击面与运行时护栏加固。 | [37_langchain_security.md](curriculum/phase5_100_to_200/37_langchain_security.md) | [37_langchain_security_zh.md](curriculum/phase5_100_to_200/37_langchain_security_zh.md) |
 
 ---
 
