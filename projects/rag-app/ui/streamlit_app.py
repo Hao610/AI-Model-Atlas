@@ -6,6 +6,7 @@ import requests
 # Ensure projects/rag-app directory is in python module path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
+import streamlit.components.v1 as components
 from core.rag_pipeline import RAGPipeline
 from core.security.jev_gateway import JevGateway, JevDecisionTriage
 from core.tools.router import ToolType
@@ -20,33 +21,208 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Custom precision CSS styling that natively adapts to Streamlit's Light/Dark mode
+# Auto-sync Streamlit's top-right theme selection to DOM
+components.html("""
+<script>
+function syncStreamlitTheme() {
+    try {
+        const doc = window.parent.document;
+        const app = doc.querySelector('.stApp');
+        if (!app) return;
+        const style = window.parent.getComputedStyle(app);
+        const bg = style.backgroundColor;
+        const scheme = style.colorScheme;
+        let isLight = false;
+        if (scheme === 'light') {
+            isLight = true;
+        } else if (bg) {
+            const rgb = bg.match(/\\d+/g);
+            if (rgb && rgb.length >= 3) {
+                const brightness = (parseInt(rgb[0])*299 + parseInt(rgb[1])*587 + parseInt(rgb[2])*114) / 1000;
+                if (brightness > 128) isLight = true;
+            }
+        }
+        const currentTheme = doc.documentElement.getAttribute('data-theme');
+        const targetTheme = isLight ? 'light' : 'dark';
+        if (currentTheme !== targetTheme) {
+            doc.documentElement.setAttribute('data-theme', targetTheme);
+            doc.body.setAttribute('data-theme', targetTheme);
+            app.setAttribute('data-theme', targetTheme);
+        }
+    } catch(e) {}
+}
+syncStreamlitTheme();
+setInterval(syncStreamlitTheme, 300);
+</script>
+""", height=0, width=0)
+
+# Pure Design System: Obsidian Titanium & Monolithic Precision (Dark) + Titanium Light
 st.markdown("""
 <style>
-    /* Subtle dot grid canvas */
+    /* ================================================================= */
+    /* 1. OBSIDIAN TITANIUM (Dark Theme - User's Exact Design System)   */
+    /* ================================================================= */
+    :root,
+    [data-theme="dark"],
+    .stApp[data-theme="dark"] {
+        --app-bg: #050507;
+        --dot-color: rgba(255, 255, 255, 0.08);
+        --sidebar-bg: #0c0c10;
+        --border-color: rgba(255, 255, 255, 0.08);
+        --border-hover: rgba(255, 255, 255, 0.25);
+        --card-bg: rgba(12, 12, 16, 0.40);
+        --card-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        --text-primary: #ffffff;
+        --text-secondary: #a1a1aa;
+        --text-muted: #71717a;
+        --tab-indicator: #ffffff;
+        --tab-glow: rgba(255, 255, 255, 0.35);
+        --tab-bg-active: rgba(255, 255, 255, 0.03);
+        --tab-bg-hover: rgba(255, 255, 255, 0.02);
+        --btn-primary-bg: #ffffff;
+        --btn-primary-text: #000000;
+        --btn-sec-bg: rgba(255, 255, 255, 0.04);
+        --btn-sec-border: rgba(255, 255, 255, 0.10);
+        --btn-sec-text: #ffffff;
+        --input-bg: rgba(255, 255, 255, 0.03);
+        --input-border: rgba(255, 255, 255, 0.10);
+        --input-text: #ffffff;
+        --title-gradient: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+        --table-header-bg: rgba(255, 255, 255, 0.04);
+        --glow-display: block;
+    }
+
+    /* ================================================================= */
+    /* 2. TITANIUM PRECISION (Light Theme Companion)                     */
+    /* ================================================================= */
+    [data-theme="light"],
+    .stApp[data-theme="light"],
+    [data-theme="light"] .stApp {
+        --app-bg: #f8fafc !important;
+        --dot-color: rgba(15, 23, 42, 0.06) !important;
+        --sidebar-bg: #ffffff !important;
+        --border-color: rgba(15, 23, 42, 0.10) !important;
+        --border-hover: rgba(15, 23, 42, 0.28) !important;
+        --card-bg: #ffffff !important;
+        --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+        --text-primary: #0f172a !important;
+        --text-secondary: #475569 !important;
+        --text-muted: #64748b !important;
+        --tab-indicator: #0f172a !important;
+        --tab-glow: rgba(15, 23, 42, 0.15) !important;
+        --tab-bg-active: rgba(15, 23, 42, 0.02) !important;
+        --tab-bg-hover: rgba(15, 23, 42, 0.04) !important;
+        --btn-primary-bg: #0f172a !important;
+        --btn-primary-text: #ffffff !important;
+        --btn-sec-bg: #ffffff !important;
+        --btn-sec-border: rgba(15, 23, 42, 0.14) !important;
+        --btn-sec-text: #0f172a !important;
+        --input-bg: #ffffff !important;
+        --input-border: rgba(15, 23, 42, 0.14) !important;
+        --input-text: #0f172a !important;
+        --title-gradient: linear-gradient(180deg, #0f172a 0%, #475569 100%) !important;
+        --table-header-bg: #f1f5f9 !important;
+        --glow-display: none !important;
+    }
+
+    @media (prefers-color-scheme: light) {
+        :root:not([data-theme="dark"]) {
+            --app-bg: #f8fafc;
+            --dot-color: rgba(15, 23, 42, 0.06);
+            --sidebar-bg: #ffffff;
+            --border-color: rgba(15, 23, 42, 0.10);
+            --border-hover: rgba(15, 23, 42, 0.28);
+            --card-bg: #ffffff;
+            --card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 1);
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #64748b;
+            --tab-indicator: #0f172a;
+            --tab-glow: rgba(15, 23, 42, 0.15);
+            --tab-bg-active: rgba(15, 23, 42, 0.02);
+            --tab-bg-hover: rgba(15, 23, 42, 0.04);
+            --btn-primary-bg: #0f172a;
+            --btn-primary-text: #ffffff;
+            --btn-sec-bg: #ffffff;
+            --btn-sec-border: rgba(15, 23, 42, 0.14);
+            --btn-sec-text: #0f172a;
+            --input-bg: #ffffff;
+            --input-border: rgba(15, 23, 42, 0.14);
+            --input-text: #0f172a;
+            --title-gradient: linear-gradient(180deg, #0f172a 0%, #475569 100%);
+            --table-header-bg: #f1f5f9;
+            --glow-display: none;
+        }
+    }
+
+    /* 3. Global Canvas & Dot Grid */
     .stApp {
-        background-image: radial-gradient(rgba(128, 128, 128, 0.10) 1px, transparent 1px) !important;
+        background-color: var(--app-bg) !important;
+        background-image: radial-gradient(var(--dot-color) 1px, transparent 1px) !important;
         background-size: 24px 24px !important;
+        color: var(--text-primary) !important;
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif !important;
+    }
+
+    /* Ambient Lighting */
+    .ambient-glow {
+        display: var(--glow-display) !important;
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 300px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, transparent 70%);
+        pointer-events: none;
+        filter: blur(80px);
+        z-index: 0;
     }
 
     /* Main Headings */
     .main-title {
+        background: var(--title-gradient) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
         margin: 0 0 6px 0 !important;
-        font-size: 2.1rem !important;
+        font-size: 2.2rem !important;
         font-weight: 700 !important;
         letter-spacing: -0.03em !important;
-        color: inherit !important;
     }
     .main-subtitle {
-        opacity: 0.65 !important;
+        color: var(--text-muted) !important;
         font-family: 'SF Mono', Consolas, monospace !important;
         font-size: 0.82rem !important;
         letter-spacing: 0.02em !important;
-        color: inherit !important;
     }
 
-    /* Clean Underline Navbar (四等分平铺居中与底部拉条指示栏) */
+    /* 4. Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: var(--sidebar-bg) !important;
+        border-right: 1px solid var(--border-color) !important;
+        box-shadow: 20px 0 50px -10px rgba(0, 0, 0, 0.15) !important;
+    }
+    [data-testid="stSidebar"] hr {
+        border-color: var(--border-color) !important;
+    }
+
+    /* 5. Typography */
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text-primary) !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.02em !important;
+    }
+    p, span, label {
+        color: var(--text-secondary) !important;
+    }
+    small, .stCaption {
+        color: var(--text-muted) !important;
+        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+        font-size: 0.82rem !important;
+    }
+
+    /* 6. Clean Underline Navbar (四等分平铺居中与底部拉条指示栏) */
     [data-testid="stTabs"] {
         width: 100% !important;
     }
@@ -59,7 +235,7 @@ st.markdown("""
         align-items: stretch !important;
         width: 100% !important;
         background: transparent !important;
-        border-bottom: 1px solid rgba(128, 128, 128, 0.22) !important;
+        border-bottom: 1px solid var(--border-color) !important;
         border-radius: 0 !important;
         box-shadow: none !important;
         padding: 0 !important;
@@ -92,8 +268,7 @@ st.markdown("""
         border: none !important;
         border-bottom: 2px solid transparent !important;
         border-radius: 0 !important;
-        color: inherit !important;
-        opacity: 0.65 !important;
+        color: var(--text-secondary) !important;
         font-size: 0.94rem !important;
         font-weight: 500 !important;
         letter-spacing: 0.02em !important;
@@ -110,74 +285,169 @@ st.markdown("""
         text-align: center !important;
         justify-content: center !important;
         display: flex !important;
-        color: inherit !important;
     }
     [data-baseweb="tab"]:hover {
-        opacity: 0.95 !important;
-        border-bottom-color: rgba(128, 128, 128, 0.35) !important;
-        background: rgba(128, 128, 128, 0.04) !important;
+        color: var(--text-primary) !important;
+        border-bottom-color: var(--border-hover) !important;
+        background: var(--tab-bg-hover) !important;
     }
     /* Active Tab: 下面拉条 (Bottom indicator line) */
     [data-baseweb="tab"][aria-selected="true"] {
-        opacity: 1 !important;
+        color: var(--text-primary) !important;
         font-weight: 600 !important;
-        border-bottom: 2px solid currentColor !important;
-        background: rgba(128, 128, 128, 0.03) !important;
+        border-bottom: 2px solid var(--tab-indicator) !important;
+        box-shadow: 0 2px 8px var(--tab-glow) !important;
+        background: var(--tab-bg-active) !important;
     }
     [data-baseweb="tab-highlight"],
     [data-baseweb="tab-border"] {
         display: none !important;
     }
 
-    /* Cards & Containers: Adaptive to both Light and Dark seamlessly */
-    [data-testid="stMetric"],
-    .stChatMessage,
-    [data-testid="stExpander"],
-    div[data-testid="stAlert"] {
-        background: rgba(128, 128, 128, 0.04) !important;
-        border: 1px solid rgba(128, 128, 128, 0.16) !important;
-        border-radius: 14px !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
-        box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04) !important;
-    }
-    [data-testid="stMetric"]:hover,
-    [data-testid="stExpander"]:hover {
-        border-color: rgba(128, 128, 128, 0.35) !important;
-    }
+    /* 7. Metric Cards (Precision Card) */
     [data-testid="stMetric"] {
-        padding: 16px 20px !important;
+        background: var(--card-bg) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 16px !important;
+        padding: 18px 22px !important;
+        box-shadow: var(--card-shadow) !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    [data-testid="stMetric"]:hover {
+        border-color: var(--border-hover) !important;
+        transform: translateY(-2px) !important;
+    }
+    [data-testid="stMetricValue"] {
+        color: var(--text-primary) !important;
+        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+        font-weight: 600 !important;
+    }
+    [data-testid="stMetricLabel"] {
+        color: var(--text-secondary) !important;
+        font-size: 0.78rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.06em !important;
     }
 
-    /* Tables */
-    table {
-        background: rgba(128, 128, 128, 0.03) !important;
+    /* 8. Button System */
+    button[kind="primary"] {
+        background-color: var(--btn-primary-bg) !important;
+        color: var(--btn-primary-text) !important;
+        font-weight: 600 !important;
+        border-radius: 9999px !important;
+        border: none !important;
+        padding: 0.55rem 1.4rem !important;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    button[kind="primary"]:hover {
+        transform: scale(0.97) !important;
+        opacity: 0.92 !important;
+    }
+    button[kind="secondary"], .stButton > button:not([kind="primary"]) {
+        background: var(--btn-sec-bg) !important;
+        color: var(--btn-sec-text) !important;
+        font-weight: 500 !important;
+        border: 1px solid var(--btn-sec-border) !important;
+        border-radius: 9999px !important;
+        padding: 0.55rem 1.4rem !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    button[kind="secondary"]:hover, .stButton > button:not([kind="primary"]):hover {
+        border-color: var(--border-hover) !important;
+        transform: scale(0.97) !important;
+    }
+
+    /* 9. Form Controls & Inputs */
+    .stTextInput input, .stTextArea textarea, div[data-baseweb="select"] > div {
+        background: var(--input-bg) !important;
+        border: 1px solid var(--input-border) !important;
         border-radius: 12px !important;
-        border: 1px solid rgba(128, 128, 128, 0.16) !important;
+        color: var(--input-text) !important;
+        transition: border-color 0.2s ease-out !important;
+    }
+    .stTextInput input:focus, .stTextArea textarea:focus {
+        border-color: var(--border-hover) !important;
+    }
+
+    /* 10. Chat Messages & Chat Input */
+    .stChatMessage {
+        background: var(--card-bg) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 16px !important;
+        margin-bottom: 12px !important;
+        box-shadow: var(--card-shadow) !important;
+    }
+    .stChatInput {
+        background: var(--card-bg) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 14px !important;
+        box-shadow: var(--card-shadow) !important;
+    }
+
+    /* 11. Alerts & Status Boxes */
+    div[data-testid="stAlert"] {
+        background: var(--card-bg) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border-radius: 16px !important;
+        border: 1px solid var(--border-color) !important;
+        box-shadow: var(--card-shadow) !important;
+    }
+    div[data-testid="stAlert"] p {
+        color: var(--text-primary) !important;
+    }
+
+    /* 12. Expanders & Tables */
+    [data-testid="stExpander"] {
+        background: var(--card-bg) !important;
+        border: 1px solid var(--border-color) !important;
+        border-radius: 14px !important;
+        backdrop-filter: blur(12px) !important;
+        margin-bottom: 8px !important;
+        box-shadow: var(--card-shadow) !important;
+    }
+    [data-testid="stExpander"]:hover {
+        border-color: var(--border-hover) !important;
+    }
+    table {
+        background: var(--card-bg) !important;
+        border-radius: 12px !important;
+        border: 1px solid var(--border-color) !important;
         width: 100% !important;
     }
     th {
-        background: rgba(128, 128, 128, 0.06) !important;
+        background: var(--table-header-bg) !important;
+        color: var(--text-secondary) !important;
         font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
         font-size: 0.78rem !important;
         text-transform: uppercase !important;
         letter-spacing: 0.06em !important;
-        border-bottom: 1px solid rgba(128, 128, 128, 0.16) !important;
+        border-bottom: 1px solid var(--border-color) !important;
         padding: 10px 14px !important;
     }
     td {
-        border-bottom: 1px solid rgba(128, 128, 128, 0.08) !important;
+        color: var(--text-primary) !important;
+        border-bottom: 1px solid var(--border-color) !important;
         font-size: 0.88rem !important;
         padding: 10px 14px !important;
     }
     code {
-        background: rgba(128, 128, 128, 0.08) !important;
-        border: 1px solid rgba(128, 128, 128, 0.12) !important;
+        color: var(--text-primary) !important;
+        background: var(--border-color) !important;
+        border: 1px solid var(--border-color) !important;
         border-radius: 6px !important;
         font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
         padding: 2px 6px !important;
     }
 </style>
+<div class="ambient-glow"></div>
 """, unsafe_allow_html=True)
 
 @st.cache_resource
