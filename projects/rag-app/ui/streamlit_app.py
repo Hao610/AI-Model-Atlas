@@ -137,17 +137,21 @@ with st.sidebar:
             st.rerun()
 
     else:
-        api_model = st.text_input("Cloud API Model name", value=settings.API_MODEL)
-        api_key = st.text_input("API Access Key", value=settings.API_KEY, type="password")
-        api_base_url = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL)
+        api_model = st.text_input("Cloud API Model name", value=settings.API_MODEL, key="input_api_model")
+        api_key = st.text_input("API Access Key", value=settings.API_KEY, type="password", key="input_api_key")
+        api_base_url = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL, key="input_api_base_url")
         
         if not api_key.strip():
             st.caption("💡 提示: 填入 API Key 后点击下方按钮保存并测试连接。")
             
         if st.button("💾 保存配置并验证 API Token (Save & Test Connection)", type="primary", use_container_width=True):
-            settings.API_MODEL = api_model.strip()
-            settings.API_KEY = api_key.strip()
-            settings.API_BASE_URL = api_base_url.strip()
+            clean_key = api_key.strip().strip("'\"").strip()
+            clean_url = api_base_url.strip().rstrip("/")
+            clean_model = api_model.strip()
+
+            settings.API_MODEL = clean_model
+            settings.API_KEY = clean_key
+            settings.API_BASE_URL = clean_url
             settings.RAG_MODE = "api"
             st.session_state.pipeline.reload_llm()
             st.session_state.jev_gateway.llm_client = st.session_state.pipeline.router
@@ -156,6 +160,11 @@ with st.sidebar:
                 st.session_state.model_test_status = {
                     "type": "warning",
                     "msg": "⚠️ API Key 为空，请输入有效的密钥后再测试。"
+                }
+            elif "api.groq.com" in clean_url and not clean_key.startswith("gsk_"):
+                st.session_state.model_test_status = {
+                    "type": "error",
+                    "msg": f"🔴 密钥格式不匹配: 检测到目标 Endpoint 为 Groq，但输入的 API Key 不是以 `gsk_` 开头 (当前前缀: `{clean_key[:6] if clean_key else '空'}`，长度: {len(clean_key)} 位)。\n\n请前往 https://console.groq.com/keys 点击 **Create API Key** 生成并复制完整的 `gsk_...` 密钥。"
                 }
             else:
                 with st.spinner("正在向云端 API 发送鉴权测试探测包..."):
@@ -169,14 +178,16 @@ with st.sidebar:
                             max_tokens=1,
                             timeout=10
                         )
+                        masked_preview = f"{clean_key[:6]}...{clean_key[-4:]}" if len(clean_key) >= 10 else "***"
                         st.session_state.model_test_status = {
                             "type": "success",
-                            "msg": f"🟢 API Token 认证成功！模型 `{settings.API_MODEL}` 联通正常。"
+                            "msg": f"🟢 API Token 认证成功！已成功连接到 `{settings.API_MODEL}` (密钥: `{masked_preview}`, 长度 {len(clean_key)} 位)。"
                         }
                     except Exception as e:
+                        masked_preview = f"{clean_key[:6]}...{clean_key[-4:]}" if len(clean_key) >= 10 else "***"
                         st.session_state.model_test_status = {
                             "type": "error",
-                            "msg": f"🔴 API 鉴权/连接失败: {str(e)}"
+                            "msg": f"🔴 API 鉴权/连接失败: {str(e)}\n\n(已提交 Key 预览: `{masked_preview}`, 长度: {len(clean_key)} 字符)"
                         }
             st.rerun()
 
