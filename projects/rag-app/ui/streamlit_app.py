@@ -1,12 +1,15 @@
 import os
 import sys
 import json
+import time
 import requests
 # Ensure projects/rag-app directory is in python module path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
 from core.rag_pipeline import RAGPipeline
 from core.security.jev_gateway import JevGateway, JevDecisionTriage
+from core.tools.router import ToolType
+from core.evaluation.metrics import FaithfulnessMetric, AnswerRelevancyMetric
 from config.settings import settings
 
 # Page styling settings
@@ -477,11 +480,21 @@ with col_right:
 
 with col_left:
     tabs_labels = (
-        ["💬 智能问答助手 (RAG Assistant)", "🛡️ 安全网关与红队演练 (Red Teaming)", "⚡ TypeSafe Jev (快思考安全门禁)"]
+        [
+            "💬 智能问答助手 (RAG Assistant)", 
+            "🛡️ 安全网关与红队演练 (Red Teaming)", 
+            "⚡ TypeSafe Jev (快思考安全门禁)",
+            "📊 RAG 评测三元组与路由基准 (RAG Triad & Benchmark)"
+        ]
         if is_zh else
-        ["💬 Interactive RAG Assistant", "🛡️ AI Security Gateway & Red Teaming", "⚡ TypeSafe Jev (System One Gate)"]
+        [
+            "💬 Interactive RAG Assistant", 
+            "🛡️ AI Security Gateway & Red Teaming", 
+            "⚡ TypeSafe Jev (System One Gate)",
+            "📊 RAG Triad & Routing Benchmark"
+        ]
     )
-    tab_assistant, tab_security, tab_jev = st.tabs(tabs_labels)
+    tab_assistant, tab_security, tab_jev, tab_eval = st.tabs(tabs_labels)
     
     with tab_assistant:
         default_sys_prompt = (
@@ -500,23 +513,53 @@ with col_left:
         for msg in st.session_state.messages:
             with st.chat_message(msg["role"]):
                 st.write(msg["content"])
+                if "route_info" in msg and msg["route_info"]:
+                    r_info = msg["route_info"]
+                    r_tool = r_info.get("tool", "").upper()
+                    r_conf = r_info.get("confidence", 0.0)
+                    r_reason = r_info.get("reason", "")
+                    r_icon = "🧮" if r_tool == "CALCULATOR" else ("🌐" if r_tool == "WEB" else ("🕸️" if r_tool == "GRAPH" else "📚"))
+                    badge_str = (
+                        f"{r_icon} **路由分流 (Tool Dispatch)**: `{r_tool}` (置信度: `{r_conf:.2f}`, 依据: `{r_reason}`)"
+                        if is_zh else
+                        f"{r_icon} **Tool Dispatch Route**: `{r_tool}` (Confidence: `{r_conf:.2f}`, Rule: `{r_reason}`)"
+                    )
+                    st.caption(badge_str)
                 
         # Input field
-        chat_placeholder = "基于已上传的文档提出您的问题..." if is_zh else "Ask a question based on your uploaded document..."
+        chat_placeholder = (
+            "基于已上传的文档提问，或直接输入数学算式（如 125 * 45）..."
+            if is_zh else
+            "Ask a question from document, or test math (e.g. 125 * 45)..."
+        )
         if user_query := st.chat_input(chat_placeholder):
             st.session_state.messages.append({"role": "user", "content": user_query})
             with st.chat_message("user"):
                 st.write(user_query)
                 
             with st.chat_message("assistant"):
-                if not st.session_state.ingested_file:
+                # 1. Consult ToolRouter
+                route_decision = st.session_state.pipeline.tool_router.route(user_query)
+                is_standalone_tool = (route_decision.tool in [ToolType.CALCULATOR, ToolType.WEB])
+                
+                if not is_standalone_tool and not st.session_state.ingested_file:
                     warning_msg = (
-                        "⚠️ 请先在右侧面板上传并解析一份 PDF 文档后再进行提问。"
+                        "⚠️ 该提问被路由判定为【知识库检索】(Route: Vector Knowledge Base)，但当前尚未上传解析 PDF 文档。\n\n"
+                        "👉 请先在右侧面板上传并解析一份 PDF 文档后再进行知识问答；或者尝试输入数学算式（如 `125 * 45` 或 `calculate (15000 * 1.08)^5`）体验即时计算器工具路由！"
                         if is_zh else
-                        "⚠️ Please upload and process a PDF document in the right panel before querying."
+                        "⚠️ Query routed to [Vector Knowledge Base], but no PDF document is uploaded yet.\n\n"
+                        "👉 Please upload and process a PDF in the right panel; or try entering a math expression (e.g., `125 * 45` or `calculate (15000 * 1.08)^5`) to see instant tool routing!"
                     )
                     st.write(warning_msg)
-                    st.session_state.messages.append({"role": "assistant", "content": warning_msg})
+                    st.session_state.messages.append({
+                        "role": "assistant", 
+                        "content": warning_msg,
+                        "route_info": {
+                            "tool": route_decision.tool.value,
+                            "confidence": route_decision.confidence,
+                            "reason": route_decision.reason
+                        }
+                    })
                 else:
                     placeholder = st.empty()
                     response_txt = ""
@@ -541,8 +584,16 @@ with col_left:
                         placeholder.markdown(response_txt + "▌")
                     placeholder.markdown(response_txt)
                     
-                    # Save chat logs
-                    st.session_state.messages.append({"role": "assistant", "content": response_txt})
+                    # Save chat logs with route metadata
+                    st.session_state.messages.append({
+                        "role": "assistant", 
+                        "content": response_txt,
+                        "route_info": {
+                            "tool": route_decision.tool.value,
+                            "confidence": route_decision.confidence,
+                            "reason": route_decision.reason
+                        }
+                    })
                     st.rerun()
 
     with tab_security:
@@ -993,6 +1044,149 @@ with col_left:
                         f"✅ Evaluated {total} samples. Estimated token cost reduction: ~{((fast_blocks + fast_passes) / total) * 100:.1f}% by avoiding full LLM CoT."
                     )
                     st.success(success_eval)
+
+    with tab_eval:
+        st.subheader("📊 RAG 评测三元组与智能分流基准 (RAG Triad & Routing Benchmark)" if is_zh else "📊 RAG Triad & Routing Benchmark")
+        if is_zh:
+            st.markdown(
+                "本面板完整对标 **Phase 5 (32_tool_routing & 33_rag_evaluation)** 核心规范。 "
+                "现代工业级 RAG 绝不盲目依赖大模型自由发挥，必须具备 **分流拦截能力 (Deterministic Tool Routing)** "
+                "与量化评估指标 **RAG Triad (真实性、相关度、检索精确度)**。"
+            )
+            st.markdown("""
+            | 评估维度 (Metric) | 评估标尺 (What it Measures) | 目标基线 | 对应知识库笔记 |
+            | :--- | :--- | :--- | :--- |
+            | **🎯 真实性 (Faithfulness)** | 回答中的事实陈述是否完全可由检索 Context 推导（彻底杜绝幻觉 Hallucination） | `> 0.85` | `docs/curriculum/phase5_100_to_200/33_rag_evaluation.md` |
+            | **🎯 答案相关度 (Answer Relevancy)** | 回答是否精准解答用户提问（无答非所问、无多余虚饰） | `> 0.80` | `docs/curriculum/phase5_100_to_200/33_rag_evaluation.md` |
+            | **🎯 检索精确度 (Context Precision)** | 检索召回的切片中，有效高价值信息排在最前列的概率（减少噪声注入） | `> 0.75` | `docs/curriculum/phase5_100_to_200/33_rag_evaluation.md` |
+            | **🚦 路由准确率 (Routing Accuracy)** | 算式分流计算器、时效分流网络、关系分流图谱的意图识别率 | `> 90%` | `docs/curriculum/phase5_100_to_200/32_tool_routing.md` |
+            """)
+        else:
+            st.markdown(
+                "This benchmark suite natively implements **Phase 5 (32_tool_routing & 33_rag_evaluation)**. "
+                "Production RAG architectures enforce **deterministic tool routing** and quantitative **RAG Triad metrics** "
+                "(Faithfulness, Answer Relevancy, Context Precision) before deploying to production."
+            )
+            st.markdown("""
+            | Evaluation Metric | What it Measures | Target Benchmark | Curriculum Note Reference |
+            | :--- | :--- | :--- | :--- |
+            | **🎯 Faithfulness** | Factual consistency with retrieved context (Zero Hallucination) | `> 0.85` | `docs/curriculum/phase5_100_to_200/33_rag_evaluation.md` |
+            | **🎯 Answer Relevancy** | Directness and conciseness answering the user's question | `> 0.80` | `docs/curriculum/phase5_100_to_200/33_rag_evaluation.md` |
+            | **🎯 Context Precision** | Signal-to-noise ratio of top ranked retrieved context chunks | `> 0.75` | `docs/curriculum/phase5_100_to_200/33_rag_evaluation.md` |
+            | **🚦 Routing Accuracy** | Accuracy of dispatching queries to Calculator, Web, Graph, or Vector | `> 90%` | `docs/curriculum/phase5_100_to_200/32_tool_routing.md` |
+            """)
+
+        st.markdown("#### " + ("🚦 智能路由分流基准集评估 (Tool Routing Benchmark Suite)" if is_zh else "🚦 Deterministic Tool Routing Benchmark Suite"))
+        st.caption(
+            "对测试集中的数学计算、网络搜索、图谱关联、文档检索等样本进行零延迟意图路由判定，计算分流准确率与算力节省比例。"
+            if is_zh else
+            "Evaluates deterministic intent routing across math, web, graph, and vector queries, measuring dispatch accuracy and compute savings."
+        )
+
+        run_route_btn = "🚀 运行路由测试集评估 (Run Routing Benchmark)" if is_zh else "🚀 Run Routing Benchmark Suite"
+        if st.button(run_route_btn, key="btn_run_routing_suite"):
+            with st.spinner("正在评估测试集路由分流..." if is_zh else "Evaluating test dataset routing..."):
+                dataset_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests", "eval_dataset.json")
+                with open(dataset_path, "r", encoding="utf-8") as f:
+                    eval_data = json.load(f)
+                
+                test_cases = eval_data.get("test_cases", [])
+                correct_count = 0
+                b_rows = []
+                lat_list = []
+                bypassed_llm = 0
+                
+                for tc in test_cases:
+                    t_start = time.perf_counter()
+                    decision = st.session_state.pipeline.tool_router.route(tc["query"])
+                    dur_ms = (time.perf_counter() - t_start) * 1000
+                    lat_list.append(dur_ms)
+                    
+                    is_correct = (decision.tool.value == tc["expected_route"])
+                    if is_correct:
+                        correct_count += 1
+                    if decision.tool.value in ["calculator", "web"]:
+                        bypassed_llm += 1
+                        
+                    b_rows.append({
+                        ("编号" if is_zh else "ID"): tc["id"],
+                        ("测试提问" if is_zh else "Query"): tc["query"],
+                        ("预期路由" if is_zh else "Expected"): tc["expected_route"].upper(),
+                        ("实际路由" if is_zh else "Actual"): decision.tool.value.upper(),
+                        ("判定依据" if is_zh else "Rule"): decision.reason,
+                        ("匹配结果" if is_zh else "Match"): "✅ 命中" if is_correct else "❌ 偏差",
+                        ("延迟 (ms)" if is_zh else "Latency (ms)"): f"{dur_ms:.2f}"
+                    })
+                
+                total_cases = len(test_cases)
+                acc = (correct_count / total_cases) * 100 if total_cases else 0.0
+                avg_lat = sum(lat_list) / len(lat_list) if lat_list else 0.0
+                save_pct = (bypassed_llm / total_cases) * 100 if total_cases else 0.0
+                
+                ecol1, ecol2, ecol3, ecol4 = st.columns(4)
+                ecol1.metric("🚦 " + ("路由准确率" if is_zh else "Routing Accuracy"), f"{acc:.1f}%")
+                ecol2.metric("⚡ " + ("平均路由耗时" if is_zh else "Avg Route Latency"), f"{avg_lat:.2f} ms")
+                ecol3.metric("🧮 " + ("LLM 旁路分流率" if is_zh else "LLM Bypass Rate"), f"{save_pct:.1f}%")
+                ecol4.metric("📦 " + ("评测用例总数" if is_zh else "Total Test Cases"), f"{total_cases}")
+                
+                st.table(b_rows)
+                st.success(
+                    f"✅ 路由分流基准评测完成！准确率: {acc:.1f}%，在进入耗时大模型之前成功分流 {bypassed_llm} 个专用任务（0 Token 消耗）。"
+                    if is_zh else
+                    f"✅ Routing Benchmark complete! Accuracy: {acc:.1f}%. Successfully bypassed heavy LLM pipeline for {bypassed_llm} queries."
+                )
+
+        st.divider()
+
+        st.markdown("#### " + ("⚖️ 单次问答 RAG 质量验真打分 (Live LLM-as-a-Judge)" if is_zh else "⚖️ Live LLM-as-a-Judge Quality Scorer"))
+        st.caption(
+            "通过 LLM 裁判模型实时计算回答的真实性 (Faithfulness) 与答案相关度 (Answer Relevancy)，杜绝生成式幻觉。"
+            if is_zh else
+            "Computes quantitative Faithfulness and Answer Relevancy scores on demand using an LLM-as-a-judge."
+        )
+        
+        last_user_query = "What is RRF and how does it combine retrieval scores?"
+        last_context = "Reciprocal Rank Fusion (RRF) is a method that combines the results of multiple retrieval systems (like dense vector search and BM25 sparse search) by calculating a combined score based on their rank positions."
+        last_answer = "RRF merges rankings from dense and BM25 searches using reciprocal rank scores to improve precision."
+        
+        if st.session_state.messages:
+            for m in reversed(st.session_state.messages):
+                if m["role"] == "assistant" and m.get("content") and not m["content"].startswith("⚠️"):
+                    last_answer = m["content"]
+                    break
+            for m in reversed(st.session_state.messages):
+                if m["role"] == "user":
+                    last_user_query = m["content"]
+                    break
+        if "latest_sources" in st.session_state and st.session_state.latest_sources:
+            last_context = "\n---\n".join(s["content"] for s in st.session_state.latest_sources[:3])
+
+        judge_q = st.text_input("待评测提问 (Query)" if is_zh else "Query to Evaluate", value=last_user_query)
+        judge_ctx = st.text_area("检索到的参考上下文 (Retrieved Context)" if is_zh else "Retrieved Reference Context", value=last_context, height=90)
+        judge_ans = st.text_area("大模型生成的回答 (Generated Answer)" if is_zh else "Generated Answer to Grade", value=last_answer, height=90)
+        
+        judge_btn_txt = "⚖️ 执行 RAG Triad 质量仲裁打分" if is_zh else "⚖️ Execute RAG Triad Evaluation"
+        if st.button(judge_btn_txt, key="btn_run_triad_judge"):
+            spin_judge = "正在调用 LLM-as-a-Judge 评估各项指标..." if is_zh else "Invoking LLM-as-a-Judge to evaluate metrics..."
+            with st.spinner(spin_judge):
+                try:
+                    faith_metric = FaithfulnessMetric(st.session_state.pipeline.router)
+                    rel_metric = AnswerRelevancyMetric(st.session_state.pipeline.router)
+                    
+                    f_res = faith_metric.score(judge_q, judge_ans, judge_ctx)
+                    r_res = rel_metric.score(judge_q, judge_ans, judge_ctx)
+                    
+                    f_score = f_res.get("score", 0.0)
+                    r_score = r_res.get("score", 0.0)
+                    
+                    jcol1, jcol2 = st.columns(2)
+                    jcol1.metric("🎯 " + ("真实性 / 忠实度 (Faithfulness)" if is_zh else "Faithfulness Score"), f"{f_score * 100:.1f}%", help="回答中的事实是否完全源于上下文，杜绝无中生有" if is_zh else "Whether all factual claims in answer originate from context")
+                    jcol2.metric("🎯 " + ("答案相关度 (Answer Relevancy)" if is_zh else "Answer Relevancy Score"), f"{r_score * 100:.1f}%", help="回答是否切题并精准回答用户提问" if is_zh else "Whether answer directly and concisely answers the query")
+                    
+                    st.markdown("##### " + ("📋 仲裁审判依据 (Judge Reasoning Report)" if is_zh else "📋 Judge Reasoning Report"))
+                    st.info(f"**{'真实性裁决' if is_zh else 'Faithfulness Evaluation'}:** (Score: {f_score:.2f})\n\n{f_res.get('reason', 'N/A')}\n\n---\n\n**{'相关度裁决' if is_zh else 'Relevancy Evaluation'}:** (Score: {r_score:.2f})\n\n{r_res.get('reason', 'N/A')}")
+                except Exception as e:
+                    st.error(f"Evaluation execution error: {e}")
 
 # Add Cache Analytics Panel to Bottom of Sidebars
 with st.sidebar:
