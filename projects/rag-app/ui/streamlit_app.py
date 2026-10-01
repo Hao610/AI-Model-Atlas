@@ -27,32 +27,44 @@ components.html("""
 function syncStreamlitTheme() {
     try {
         const doc = window.parent.document;
-        const app = doc.querySelector('.stApp');
-        if (!app) return;
-        const style = window.parent.getComputedStyle(app);
-        const bg = style.backgroundColor;
-        const scheme = style.colorScheme;
-        let isLight = false;
-        if (scheme === 'light') {
-            isLight = true;
-        } else if (bg) {
-            const rgb = bg.match(/\\d+/g);
-            if (rgb && rgb.length >= 3) {
-                const brightness = (parseInt(rgb[0])*299 + parseInt(rgb[1])*587 + parseInt(rgb[2])*114) / 1000;
-                if (brightness > 128) isLight = true;
+        const storage = window.parent.localStorage;
+        let selectedTheme = null;
+        
+        // 1. Read Streamlit's user theme selection from localStorage
+        for (let i = 0; i < storage.length; i++) {
+            const key = storage.key(i);
+            if (key && key.indexOf("stActiveTheme") !== -1) {
+                const val = storage.getItem(key);
+                if (val) {
+                    if (val.indexOf('"Light"') !== -1 || val.indexOf('"base":"light"') !== -1) {
+                        selectedTheme = "light";
+                        break;
+                    } else if (val.indexOf('"Dark"') !== -1 || val.indexOf('"base":"dark"') !== -1) {
+                        selectedTheme = "dark";
+                        break;
+                    }
+                }
             }
         }
+        
+        // 2. If set to 'System' or empty, fallback to browser preference
+        if (!selectedTheme) {
+            const isSystemLight = window.parent.matchMedia && window.parent.matchMedia('(prefers-color-scheme: light)').matches;
+            selectedTheme = isSystemLight ? "light" : "dark";
+        }
+        
+        // 3. Apply active theme to DOM
         const currentTheme = doc.documentElement.getAttribute('data-theme');
-        const targetTheme = isLight ? 'light' : 'dark';
-        if (currentTheme !== targetTheme) {
-            doc.documentElement.setAttribute('data-theme', targetTheme);
-            doc.body.setAttribute('data-theme', targetTheme);
-            app.setAttribute('data-theme', targetTheme);
+        if (currentTheme !== selectedTheme) {
+            doc.documentElement.setAttribute('data-theme', selectedTheme);
+            doc.body.setAttribute('data-theme', selectedTheme);
+            const app = doc.querySelector('.stApp');
+            if (app) app.setAttribute('data-theme', selectedTheme);
         }
     } catch(e) {}
 }
 syncStreamlitTheme();
-setInterval(syncStreamlitTheme, 300);
+setInterval(syncStreamlitTheme, 200);
 </script>
 """, height=0, width=0)
 
