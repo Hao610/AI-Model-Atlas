@@ -494,8 +494,9 @@ with col_left:
                         
                     except ValueError as ve:
                         st.success("🟢 PIPELINE SECURED — Attack Blocked in Gateway!")
-                        st.error(f"Blocked: {ve}")
-                        st.markdown(f"**Security Judge Report:** {middleware.judge.last_reason}")
+                        st.error("🚫 安全异常拦截：检测到高危提示词注入攻击，流水线在网关层已直接切断！")
+                        st.markdown("#### 📋 安全审计报告 (Security Audit Report)")
+                        st.info(middleware.judge.last_reason)
                         
                 except Exception as e:
                     st.error(f"Pipeline error: {e}")
