@@ -88,19 +88,34 @@ with st.sidebar:
 
     if st.session_state.rag_mode == "ollama":
         ollama_host = st.text_input("Ollama Host URL", value=settings.OLLAMA_HOST)
-        ollama_model = st.text_input("Ollama LLM Model name", value=settings.OLLAMA_MODEL)
         
-        # If local models were already detected, allow 1-click select
         if st.session_state.ollama_detected_models:
-            idx = st.session_state.ollama_detected_models.index(settings.OLLAMA_MODEL) if settings.OLLAMA_MODEL in st.session_state.ollama_detected_models else 0
-            selected_local = st.selectbox(
-                "📋 检测到的本地模型 (点击选用):",
-                st.session_state.ollama_detected_models,
-                index=idx
+            ollama_input_type = st.radio(
+                "模型选择方式",
+                ["从本地检测到的模型中选择", "手动输入模型名称"],
+                horizontal=True,
+                key="ollama_model_source_type"
             )
-            if selected_local != settings.OLLAMA_MODEL:
-                ollama_model = selected_local
-                settings.OLLAMA_MODEL = selected_local
+            if ollama_input_type == "从本地检测到的模型中选择":
+                cur_idx = (
+                    st.session_state.ollama_detected_models.index(settings.OLLAMA_MODEL)
+                    if settings.OLLAMA_MODEL in st.session_state.ollama_detected_models
+                    else 0
+                )
+                ollama_model = st.selectbox(
+                    "本地模型列表",
+                    st.session_state.ollama_detected_models,
+                    index=cur_idx,
+                    key="select_ollama_model"
+                )
+            else:
+                ollama_model = st.text_input(
+                    "Ollama LLM Model name",
+                    value=settings.OLLAMA_MODEL,
+                    key="custom_ollama_model_text"
+                )
+        else:
+            ollama_model = st.text_input("Ollama LLM Model name", value=settings.OLLAMA_MODEL, key="default_ollama_model_text")
         
         if st.button("💾 保存配置并获取本地模型 (Save & Fetch Models)", type="primary", use_container_width=True):
             settings.OLLAMA_HOST = ollama_host.strip()
@@ -139,25 +154,42 @@ with st.sidebar:
             st.rerun()
 
     else:
-        api_model = st.text_input("Cloud API Model name", value=settings.API_MODEL, key="input_api_model")
         api_key = st.text_input("API Access Key", value=settings.API_KEY, type="password", key="input_api_key")
         api_base_url = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL, key="input_api_base_url")
-        
-        # If cloud models have been fetched, show quick 1-click selector
+
+        # Allow switching between selecting from detected models vs entering custom model
         if st.session_state.api_detected_models:
-            idx = st.session_state.api_detected_models.index(settings.API_MODEL) if settings.API_MODEL in st.session_state.api_detected_models else 0
-            selected_cloud = st.selectbox(
-                "📋 检测到的云端可用模型 (点击直接选用):",
-                st.session_state.api_detected_models,
-                index=idx
+            model_input_type = st.radio(
+                "模型指定方式",
+                ["手动输入自定义模型名称", "从已检测到的云端模型列表中选择"],
+                horizontal=True,
+                key="api_model_source_type"
             )
-            if selected_cloud != settings.API_MODEL:
-                api_model = selected_cloud
-                settings.API_MODEL = selected_cloud
-        
+            if model_input_type == "从已检测到的云端模型列表中选择":
+                cur_idx = (
+                    st.session_state.api_detected_models.index(settings.API_MODEL)
+                    if settings.API_MODEL in st.session_state.api_detected_models
+                    else 0
+                )
+                api_model = st.selectbox(
+                    "云端模型列表",
+                    st.session_state.api_detected_models,
+                    index=cur_idx,
+                    key="select_api_model"
+                )
+            else:
+                api_model = st.text_input(
+                    "自定义模型名称 (Custom Model Name)",
+                    value=settings.API_MODEL,
+                    key="custom_api_model_text",
+                    help="可直接填入任意模型名称，例如 llama-3.1-8b-instant, mixtral-8x7b-32768, gpt-4o-mini 等"
+                )
+        else:
+            api_model = st.text_input("Cloud API Model name", value=settings.API_MODEL, key="input_api_model")
+
         if not api_key.strip():
             st.caption("💡 提示: 填入 API Key 后点击下方按钮保存并测试连接。")
-            
+
         if st.button("💾 保存配置并验证 API Token (Save & Test Connection)", type="primary", use_container_width=True):
             clean_key = api_key.strip().strip("'\"").strip()
             clean_url = api_base_url.strip().rstrip("/")
@@ -169,7 +201,7 @@ with st.sidebar:
             settings.RAG_MODE = "api"
             st.session_state.pipeline.reload_llm()
             st.session_state.jev_gateway.llm_client = st.session_state.pipeline.router
-            
+
             if not settings.API_KEY:
                 st.session_state.model_test_status = {
                     "type": "warning",
@@ -181,13 +213,13 @@ with st.sidebar:
                     "msg": f"🔴 密钥格式不匹配: 检测到目标 Endpoint 为 Groq，但输入的 API Key 不是以 `gsk_` 开头 (当前前缀: `{clean_key[:6] if clean_key else '空'}`，长度: {len(clean_key)} 位)。\n\n请前往 https://console.groq.com/keys 点击 **Create API Key** 生成并复制完整的 `gsk_...` 密钥。"
                 }
             else:
-                with st.spinner("正在向云端 API 发送鉴权与可用模型查询..."):
+                with st.spinner("正在向云端 API 发送鉴权与探测请求..."):
                     try:
                         router = st.session_state.pipeline.router
                         if router.client is None:
                             raise ValueError("OpenAI client 初始化失败，请检查配置。")
-                        
-                        # 1. 尝试拉取当前 API Key 支持的真实模型列表
+
+                        # 1. 尝试拉取当前 API Key 支持的真实模型列表 (供备选)
                         try:
                             models_page = router.client.models.list()
                             valid_models = [m.id for m in models_page.data if hasattr(m, 'id') and not any(k in m.id.lower() for k in ['whisper', 'tts', 'embedding', 'embed', 'guard'])]
@@ -195,13 +227,7 @@ with st.sidebar:
                         except Exception:
                             st.session_state.api_detected_models = []
 
-                        # 2. 如果填写的模型在列表中，或者未拉取到列表，进行 ping 测试
-                        if st.session_state.api_detected_models and settings.API_MODEL not in st.session_state.api_detected_models:
-                            # 自动对齐最合适的推荐聊天模型
-                            rec = next((m for m in st.session_state.api_detected_models if "llama" in m or "chat" in m or "qwen" in m or "mixtral" in m), st.session_state.api_detected_models[0])
-                            settings.API_MODEL = rec
-                            st.session_state.pipeline.reload_llm()
-
+                        # 2. 严格对用户指定的 settings.API_MODEL 进行探测测试 (绝不强制覆盖用户的选择！)
                         router.client.chat.completions.create(
                             model=settings.API_MODEL,
                             messages=[{"role": "user", "content": "ping"}],
@@ -210,16 +236,16 @@ with st.sidebar:
                         )
                         masked_preview = f"{clean_key[:6]}...{clean_key[-4:]}" if len(clean_key) >= 10 else "***"
                         count = len(st.session_state.api_detected_models)
-                        count_info = f" (已自动发现 {count} 个可用模型，当前激活: `{settings.API_MODEL}`)" if count else f" (已激活模型 `{settings.API_MODEL}`)"
+                        count_info = f" (已自动发现 {count} 个可用模型)" if count else ""
                         st.session_state.model_test_status = {
                             "type": "success",
-                            "msg": f"🟢 API Token 认证成功！{count_info} (Key: `{masked_preview}`)"
+                            "msg": f"🟢 API Token 认证成功！已成功激活模型 `{settings.API_MODEL}`{count_info} (Key: `{masked_preview}`)"
                         }
                     except Exception as e:
                         masked_preview = f"{clean_key[:6]}...{clean_key[-4:]}" if len(clean_key) >= 10 else "***"
                         st.session_state.model_test_status = {
                             "type": "error",
-                            "msg": f"🔴 API 鉴权/连接失败: {str(e)}\n\n(已提交 Key 预览: `{masked_preview}`, 长度: {len(clean_key)} 字符)"
+                            "msg": f"🔴 API 鉴权/连接失败: {str(e)}\n\n(当前测试模型: `{settings.API_MODEL}`, Key: `{masked_preview}`)"
                         }
             st.rerun()
 
