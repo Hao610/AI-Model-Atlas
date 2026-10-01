@@ -74,23 +74,61 @@ st.markdown("""
 
     /* 4. Floating Capsule Pill Bar (Tabs) */
     [data-baseweb="tab-list"] {
+        display: flex !important;
+        align-items: center !important;
         background: rgba(12, 12, 16, 0.55) !important;
         backdrop-filter: blur(16px) saturate(180%) !important;
         -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
         border: 1px solid rgba(255, 255, 255, 0.10) !important;
         border-radius: 9999px !important;
-        padding: 5px 8px !important;
+        padding: 4px 6px !important;
         margin: 16px 0 24px 0 !important;
-        gap: 6px !important;
+        gap: 4px !important;
         box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
     }
+    /* Centering navbar scroll arrows */
+    [data-baseweb="tab-list"] > button:not([data-baseweb="tab"]),
+    [data-baseweb="tab-list"] [role="button"],
+    [data-baseweb="tab-border"] ~ button,
+    [data-baseweb="tab-list"] button[aria-label*="scroll"],
+    [data-baseweb="tab-list"] button[aria-label*="Scroll"] {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        align-self: center !important;
+        vertical-align: middle !important;
+        margin: auto 2px !important;
+        height: 32px !important;
+        width: 32px !important;
+        min-width: 32px !important;
+        padding: 0 !important;
+        background: transparent !important;
+        border: none !important;
+        color: #a1a1aa !important;
+        border-radius: 9999px !important;
+        transform: translateY(0) !important;
+    }
+    [data-baseweb="tab-list"] > button:not([data-baseweb="tab"]):hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+    }
+    [data-baseweb="tab-list"] svg {
+        display: block !important;
+        margin: auto !important;
+        vertical-align: middle !important;
+        fill: currentColor !important;
+    }
     [data-baseweb="tab"] {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        align-self: center !important;
         border-radius: 9999px !important;
         color: #a1a1aa !important;
         font-size: 0.82rem !important;
         font-weight: 500 !important;
         letter-spacing: 0.03em !important;
-        padding: 8px 18px !important;
+        padding: 7px 16px !important;
         border: none !important;
         background: transparent !important;
         transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
@@ -643,13 +681,9 @@ with st.sidebar:
 is_zh = (st.session_state.get("ui_lang", "English") == "中文")
 title_text = "🗺️ 混合检索增强 (Hybrid RAG) 工业级应用" if is_zh else "🗺️ Hybrid RAG Reference Application"
 subtitle_text = "v2.4 工业基准级工控实现 // 基于 AI Model Atlas 认知体系" if is_zh else "v2.4 Reference-Grade Monolithic Engine // AI Model Atlas Ecosystem"
-badge_text = "OBSIDIAN TITANIUM // SYS-GATE ACTIVE"
 
 st.markdown(f"""
 <div style="margin-bottom: 20px;">
-    <div style="display: inline-block; padding: 3px 10px; border-radius: 9999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); font-family: 'SF Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: #a1a1aa; margin-bottom: 8px;">
-        <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.8); margin-right: 6px;"></span>{badge_text}
-    </div>
     <h1 style="background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 6px 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em;">{title_text}</h1>
     <div style="color: #71717a; font-family: 'SF Mono', Consolas, monospace; font-size: 0.82rem; letter-spacing: 0.02em;">{subtitle_text}</div>
 </div>
