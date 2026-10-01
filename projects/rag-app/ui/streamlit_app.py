@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 # Ensure projects/rag-app directory is in python module path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
