@@ -46,7 +46,7 @@ This will automatically open your web browser pointing to: `http://localhost:850
 ---
 
 ## ⚡ Step 6: Test TypeSafe Jev System One Decision Gate
-1. Click the **"⚡ TypeSafe Jev (System One Gate)"** tab at the top.
+1. After launching the app (`http://localhost:8501`), locate the 3rd tab at the top of the **left main panel**: **"⚡ TypeSafe Jev (System One Gate)"** (positioned next to "💬 Interactive RAG Assistant" and "🛡️ AI Security Gateway & Red Teaming").
 2. Select an adversarial or benign preset from the dropdown (or input a custom prompt).
 3. Adjust the **Fast-Block (τ_strict)** and **Fast-Pass (τ_safe)** sliders.
 4. Click **"Execute Jev System One Screening"** to watch sub-100ms decision primitives (`Noul`, `Choice`, `Score`) triage the request into `FAST_BLOCK`, `FAST_PASS`, or `ESCALATE`.

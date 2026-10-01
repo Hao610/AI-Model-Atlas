@@ -91,6 +91,7 @@ rag-app/
     ├── security/
     │   ├── circuit_breaker.py   # API 网关熔断降级机制
     │   ├── context_guard.py     # 敏感词拦截与提示词注入防御
+    │   ├── jev_gateway.py       # TypeSafe Jev 系统一决策原语与级联分流
     │   └── middleware.py        # 全局安全拦截中间件
     ├── telemetry/
     │   ├── tracker.py           # 调用链路与首字延迟追踪
