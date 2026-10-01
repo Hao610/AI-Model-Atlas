@@ -55,6 +55,8 @@ if "model_test_status" not in st.session_state:
     st.session_state.model_test_status = None
 if "ollama_detected_models" not in st.session_state:
     st.session_state.ollama_detected_models = []
+if "api_detected_models" not in st.session_state:
+    st.session_state.api_detected_models = []
 
 st.title("🗺️ Hybrid RAG Reference Application")
 st.caption("v2.4 Reference-Grade Implementation | Built on top of the AI Model Atlas Roadmap")
@@ -141,6 +143,18 @@ with st.sidebar:
         api_key = st.text_input("API Access Key", value=settings.API_KEY, type="password", key="input_api_key")
         api_base_url = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL, key="input_api_base_url")
         
+        # If cloud models have been fetched, show quick 1-click selector
+        if st.session_state.api_detected_models:
+            idx = st.session_state.api_detected_models.index(settings.API_MODEL) if settings.API_MODEL in st.session_state.api_detected_models else 0
+            selected_cloud = st.selectbox(
+                "📋 检测到的云端可用模型 (点击直接选用):",
+                st.session_state.api_detected_models,
+                index=idx
+            )
+            if selected_cloud != settings.API_MODEL:
+                api_model = selected_cloud
+                settings.API_MODEL = selected_cloud
+        
         if not api_key.strip():
             st.caption("💡 提示: 填入 API Key 后点击下方按钮保存并测试连接。")
             
@@ -167,11 +181,27 @@ with st.sidebar:
                     "msg": f"🔴 密钥格式不匹配: 检测到目标 Endpoint 为 Groq，但输入的 API Key 不是以 `gsk_` 开头 (当前前缀: `{clean_key[:6] if clean_key else '空'}`，长度: {len(clean_key)} 位)。\n\n请前往 https://console.groq.com/keys 点击 **Create API Key** 生成并复制完整的 `gsk_...` 密钥。"
                 }
             else:
-                with st.spinner("正在向云端 API 发送鉴权测试探测包..."):
+                with st.spinner("正在向云端 API 发送鉴权与可用模型查询..."):
                     try:
                         router = st.session_state.pipeline.router
                         if router.client is None:
                             raise ValueError("OpenAI client 初始化失败，请检查配置。")
+                        
+                        # 1. 尝试拉取当前 API Key 支持的真实模型列表
+                        try:
+                            models_page = router.client.models.list()
+                            valid_models = [m.id for m in models_page.data if hasattr(m, 'id') and not any(k in m.id.lower() for k in ['whisper', 'tts', 'embedding', 'embed', 'guard'])]
+                            st.session_state.api_detected_models = sorted(valid_models)
+                        except Exception:
+                            st.session_state.api_detected_models = []
+
+                        # 2. 如果填写的模型在列表中，或者未拉取到列表，进行 ping 测试
+                        if st.session_state.api_detected_models and settings.API_MODEL not in st.session_state.api_detected_models:
+                            # 自动对齐最合适的推荐聊天模型
+                            rec = next((m for m in st.session_state.api_detected_models if "llama" in m or "chat" in m or "qwen" in m or "mixtral" in m), st.session_state.api_detected_models[0])
+                            settings.API_MODEL = rec
+                            st.session_state.pipeline.reload_llm()
+
                         router.client.chat.completions.create(
                             model=settings.API_MODEL,
                             messages=[{"role": "user", "content": "ping"}],
@@ -179,9 +209,11 @@ with st.sidebar:
                             timeout=10
                         )
                         masked_preview = f"{clean_key[:6]}...{clean_key[-4:]}" if len(clean_key) >= 10 else "***"
+                        count = len(st.session_state.api_detected_models)
+                        count_info = f" (已自动发现 {count} 个可用模型，当前激活: `{settings.API_MODEL}`)" if count else f" (已激活模型 `{settings.API_MODEL}`)"
                         st.session_state.model_test_status = {
                             "type": "success",
-                            "msg": f"🟢 API Token 认证成功！已成功连接到 `{settings.API_MODEL}` (密钥: `{masked_preview}`, 长度 {len(clean_key)} 位)。"
+                            "msg": f"🟢 API Token 认证成功！{count_info} (Key: `{masked_preview}`)"
                         }
                     except Exception as e:
                         masked_preview = f"{clean_key[:6]}...{clean_key[-4:]}" if len(clean_key) >= 10 else "***"
