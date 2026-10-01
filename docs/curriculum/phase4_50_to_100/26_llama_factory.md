@@ -1,12 +1,12 @@
 # LLaMA-Factory Training Guide 🛠️
 
-> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+> 📅 Last updated: 2026-10. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
 
 [English] | [中文 (26_llama_factory_zh.md)](26_llama_factory_zh.md)
 
 Writing PyTorch training loops, loss functions, and hardware tokenization from scratch is highly complex. 
 
-To simplify this, the open-source community created **LLaMA-Factory**, a unified training dashboard. It provides a beautiful web interface where you can configure and fine-tune models using a simple click-and-run UI.
+To simplify this, the open-source community created **LLaMA-Factory**, a unified training dashboard supporting hundreds of contemporary architectures (including Llama 3.3, Qwen 2.5, and DeepSeek distilled models). It provides a web interface where you can configure and fine-tune models using a simple click-and-run UI with SFT, DPO, and ORPO alignment.
 
 ---
 

@@ -1,6 +1,6 @@
 # Agent Frameworks: Building Teams of AI 👥
 
-> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+> 📅 Last updated: 2026-10. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
 
 [English] | [中文 (19_agent_frameworks_zh.md)](19_agent_frameworks_zh.md)
 
@@ -8,19 +8,20 @@ What happens when a single AI prompt isn't enough to solve a complex business pr
 
 Instead of asking one general AI to do everything, you create a **team of specialized AI agents** (e.g., a Researcher, a Writer, and a Critic) and let them talk to each other to complete a task.
 
-To build these teams in Python, developers use specialized **Agent Frameworks**.
+To build these teams in Python, developers use specialized **Agent Frameworks** alongside standardized protocols like **MCP (Model Context Protocol)**.
 
 ---
 
 ## 🆚 Comparing the Major Frameworks
 
-| Framework | Complexity | Architecture Style | Best Used For |
+| Framework / Tool | Complexity | Architecture Style | Best Used For |
 | :--- | :--- | :--- | :--- |
 | **Dify / Coze** | ★ | Visual Drag & Drop | Quick prototypes, basic pipelines. |
 | **CrewAI** | ★★ | Role-Play / Sequential | Writing blogs, market research, structured reports (Agent A -> Agent B). |
 | **AutoGen** (by Microsoft) | ★★★ | Conversation-Driven | Multi-agent debates, brainstorming, autonomous coding games. |
-| **LangChain** | ★★★★ | Chain / Legacy Lego blocks | Complex custom chains, connecting legacy databases to LLMs. |
-| **LangGraph** (by LangChain) | ★★★★★ | Graph (Nodes & Edges) | Highly complex, circular workflows with loops, state management, and memory. |
+| **LangGraph** (by LangChain) | ★★★★★ | Graph (Nodes & Edges) | Production-grade cyclical workflows with loops, state persistence, and human-in-the-loop. |
+| **MCP (Model Context Protocol)** | ★★ | Protocol Standard | Universal standard for connecting agents to external databases, files, and tools. |
+| **TypeSafe Jev Gateway** | ★ | System One Decision Gate | Sub-100ms deterministic gating for tool approvals and safety guards before expensive agent runs. |
 
 ---
 

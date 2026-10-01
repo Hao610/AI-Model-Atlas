@@ -1,6 +1,6 @@
 # AI Tools Guide 🛠️
 
-> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+> 📅 Last updated: 2026-10. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
 
 [English] | [中文 (04_ai_tools_zh.md)](04_ai_tools_zh.md)
 
@@ -14,10 +14,10 @@ These are your primary conversers, researchers, and writers.
 
 | Tool | Creator | Best For | Standout Feature |
 | :--- | :--- | :--- | :--- |
-| **ChatGPT** | OpenAI | General reasoning, brainstorming, writing. | **GPT-4o / o1 / o3** models; Voice Mode; Canvas workspace. |
-| **Claude** | Anthropic | Coding, complex analysis, writing polish. | **Sonnet** model; "Artifacts" panel to run code/previews live. |
-| **DeepSeek Chat** | DeepSeek | Math, logic, high-value coding at low cost. | Excellent reasoning (**R1**), deeply optimized for developer use. |
-| **Gemini** | Google | Integration with Google ecosystem, YouTube. | Massive **2 Million Token** context window. |
+| **ChatGPT** | OpenAI | General reasoning, brainstorming, writing. | **GPT-4o / o1 / o3-mini** models; Advanced Voice; Canvas interactive workspace. |
+| **Claude** | Anthropic | Coding, complex analysis, writing polish. | **Claude 3.5 Sonnet & Haiku**; "Artifacts" live execution panel; Claude Code. |
+| **DeepSeek Chat** | DeepSeek | Math, logic, high-value coding at low cost. | Frontier open reasoning (**R1 / V3**), deeply optimized for developer use. |
+| **Gemini** | Google | Integration with Google ecosystem, YouTube. | Massive **2 Million Token** context window; native audio/video multimodal processing. |
 
 ---
 

@@ -1,6 +1,6 @@
 # GPU Selection Guide 🖥️
 
-> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+> 📅 Last updated: 2026-10. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
 
 [English] | [中文 (28_gpu_selection_zh.md)](28_gpu_selection_zh.md)
 
@@ -16,11 +16,11 @@ Here is your hardware guide for choosing the right card for your goals and budge
 
 | GPU Model | Class | VRAM Size | Best Used For | VRAM Speed | Approx. Value |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **RTX 4060 Ti (16GB)** | Consumer | 16 GB | **Budget local running**: Best price-to-VRAM ratio for hobbyists starting out. | Slow (128-bit bus) | Low |
-| **RTX 3090 / 4090** | Consumer | 24 GB | **Developer Sweet-Spot**: Running 8B/14B models at full speed, LoRA training. | Fast | Mid-High |
-| **RTX 5090** | Consumer | 32 GB | **Next-Gen Powerhouse**: Running 32B models locally or complex multi-LoRA pipelines. | Very Fast | High |
-| **Mac Studio (M2/M3 Ultra)** | Unified Memory | Up to 192 GB | **Ultra-large inference**: Running massive 70B/405B models locally on a single desktop (acts as system+GPU RAM). | Medium (Shared memory) | High |
-| **Nvidia A100 / H100** | Enterprise | 80 GB | **Heavy cloud fine-tuning & pre-training**: Renting on clusters to train multi-billion parameter models. | Hyper-Fast (HBM3) | Extreme |
+| **RTX 4060 Ti (16GB)** | Consumer | 16 GB | **Budget local running**: Best price-to-VRAM ratio for hobbyists starting out. | Moderate (128-bit bus) | Low |
+| **RTX 3090 / 4090** | Consumer | 24 GB | **Developer Sweet-Spot**: Running 8B/14B models at full speed, LoRA training. | Fast (GDDR6X) | Mid-High |
+| **RTX 5090** | Consumer | 32 GB | **Next-Gen Powerhouse**: Running 32B models locally or complex multi-LoRA pipelines. | Very Fast (GDDR7) | High |
+| **Mac Studio (M2/M3/M4 Ultra)** | Unified Memory | Up to 192 GB | **Ultra-large inference**: Running massive 70B/405B models locally on a single desktop (acts as system+GPU RAM). | Medium (Shared memory) | High |
+| **Nvidia H100 / H200 / B200** | Enterprise | 80 GB - 141 GB+ | **Frontier fine-tuning & serving**: Cloud clusters training and serving 70B+ / 671B MoE models. | Hyper-Fast (HBM3e) | Rental-first |
 
 ---
 

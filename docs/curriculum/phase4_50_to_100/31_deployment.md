@@ -1,20 +1,20 @@
 # Cloud Deployment 🚀
 
-> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+> 📅 Last updated: 2026-10. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
 
 [English] | [中文 (31_deployment_zh.md)](31_deployment_zh.md)
 
 Once you have fine-tuned your model and verified its quality, the final step is to host it in the cloud. This allows other applications, websites, and clients to send questions to it over the internet.
 
-For production, developers use **vLLM**, a high-performance open-source model-serving engine.
+For production, developers use high-performance open-source model-serving engines like **vLLM** and **SGLang**.
 
 ---
 
-## ⚡ Why vLLM?
+## ⚡ Why vLLM & SGLang?
 
 Traditional tools like Ollama are designed for single-user offline running. If 100 users hit Ollama at the same time, it will lag and freeze.
 
-**vLLM** uses a technique called **PagedAttention** (which handles memory the way operating systems do). It allows a single GPU to serve dozens of users simultaneously at hyper-fast speeds.
+**vLLM** and **SGLang** use advanced techniques like **PagedAttention**, RadixAttention (KV cache sharing across prompts), and chunked prefill. They allow a single GPU cluster to serve dozens to hundreds of concurrent users simultaneously at hyper-fast throughput.
 
 ---
 

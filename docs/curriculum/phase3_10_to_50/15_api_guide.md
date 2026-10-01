@@ -1,12 +1,12 @@
 # API Integration Guide 🔑
 
-> 📅 Last updated: 2026-06. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
+> 📅 Last updated: 2026-10. AI ecosystems iterate rapidly; please refer to official documentation for the latest versions and pricing.
 
 [English] | [中文 (15_api_guide_zh.md)](15_api_guide_zh.md)
 
 An **API (Application Programming Interface)** is a bridge that lets your software talk directly to an LLM provider. Instead of using a web chat interface, your code sends a structured request and gets back a structured response.
 
-This guide will show you how to set up and run your first Python script to call a model.
+This guide will show you how to set up and run your first Python script to call a model, plus how to incorporate System One decision gating.
 
 ---
 
@@ -15,7 +15,7 @@ This guide will show you how to set up and run your first Python script to call 
 Make sure you have Python installed. Then, open your terminal/command prompt and install the official OpenAI SDK (which is also used by DeepSeek and Qwen):
 
 ```bash
-pip install openai
+pip install openai pydantic
 ```
 
 ---
@@ -26,7 +26,7 @@ pip install openai
    * **OpenAI**: [platform.openai.com](https://platform.openai.com)
    * **DeepSeek**: [platform.deepseek.com](https://platform.deepseek.com)
 2. Create an account, add credit, and generate a new **Secret Key** (looks like `sk-...`).
-3. **Important**: Store this key securely. Never upload it to GitHub!
+3. **Important**: Store this key securely in environment variables. Never upload it to GitHub!
 
 ---
 
@@ -39,15 +39,13 @@ import os
 from openai import OpenAI
 
 # Initialize the client.
-# By default, it looks for the OPENAI_API_KEY environment variable.
-# You can also pass it directly (not recommended for production):
 client = OpenAI(
-    api_key="your_api_key_here"  # Or use os.environ.get("OPENAI_API_KEY")
+    api_key=os.environ.get("OPENAI_API_KEY", "your_api_key_here")
 )
 
 # Call the model
 response = client.chat.completions.create(
-    model="gpt-4o-mini",  # For DeepSeek, use "deepseek-chat" and change base_url
+    model="gpt-4o-mini",  # For DeepSeek, use "deepseek-chat"
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Explain what an API key is in one sentence."}
@@ -68,16 +66,31 @@ The OpenAI SDK has become the industry standard. Most providers use the exact sa
 
 ```python
 client = OpenAI(
-    api_key="your_deepseek_key_here",
+    api_key=os.environ.get("DEEPSEEK_API_KEY", "your_deepseek_key_here"),
     base_url="https://api.deepseek.com"
 )
 
 response = client.chat.completions.create(
-    model="deepseek-chat",  # DeepSeek V3
+    model="deepseek-chat",  # DeepSeek-V3
     messages=[
         {"role": "user", "content": "Hello!"}
     ]
 )
+print(response.choices[0].message.content)
+```
+
+---
+
+## ⚡ Modern 2026 Pattern: System One Decision Gating
+
+In production, calling heavy LLMs for simple classification or safety checks wastes latency and budget. Modern architectures prepend a **System One decision gate** (like TypeSafe Jev) before calling generation APIs:
+
+```python
+from pydantic import BaseModel
+
+# 1. Sub-100ms deterministic decision check (e.g. TypeSafe Jev or lightweight router)
+# Only if query is classified as safe and requires generative reasoning:
+# 2. Forward to deep LLM (OpenAI o1 / Claude 3.5 / DeepSeek-V3)
 ```
 
 ---
