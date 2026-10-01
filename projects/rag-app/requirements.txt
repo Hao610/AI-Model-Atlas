@@ -4,7 +4,7 @@ sentence-transformers
 openai==1.30.0
 pypdf>=5.1.0
 python-dotenv>=1.1.0
-tiktoken==0.7.0
+tiktoken>=0.7.0
 requests
 numpy
 rank_bm25==0.2.2

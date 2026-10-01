@@ -15,11 +15,15 @@ class VectorStoreManager:
         self.chroma_client = chromadb.PersistentClient(path=settings.DB_DIR)
         
         # Custom embedding function adapter for ChromaDB
-        class ChromaEmbeddingAdapter:
+        from chromadb.api.types import EmbeddingFunction, Documents, Embeddings
+        
+        class ChromaEmbeddingAdapter(EmbeddingFunction[Documents]):
             def __init__(self, embedder):
                 self.embedder = embedder
-            def __call__(self, input):
+            def __call__(self, input: Documents) -> Embeddings:
                 return self.embedder.embed_documents(input)
+            def name(self) -> str:
+                return "custom_atlas_embedding"
                 
         self.embedding_fn = ChromaEmbeddingAdapter(self.embeddings)
         

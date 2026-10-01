@@ -2,3 +2,5 @@ ROADMAP.md
 .pytest_cache/
 __pycache__/
 *.pyc
+data/
+projects/rag-app/data/
