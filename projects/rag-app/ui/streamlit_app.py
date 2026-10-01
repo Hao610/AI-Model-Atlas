@@ -20,298 +20,164 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Force Obsidian Titanium & Monolithic Precision design system
+# Custom precision CSS styling that natively adapts to Streamlit's Light/Dark mode
 st.markdown("""
 <style>
-    /* 1. Global Base Canvas & Dot Grid Pattern */
+    /* Subtle dot grid canvas */
     .stApp {
-        background-color: #050507 !important;
-        background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
+        background-image: radial-gradient(rgba(128, 128, 128, 0.10) 1px, transparent 1px) !important;
         background-size: 24px 24px !important;
-        color: #f5f5f7 !important;
         font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif !important;
     }
 
-    /* Ambient Lighting (Top Glow) */
-    .ambient-glow {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 800px;
-        height: 280px;
-        background: radial-gradient(circle, rgba(255, 255, 255, 0.035) 0%, transparent 70%);
-        pointer-events: none;
-        filter: blur(80px);
-        z-index: 0;
+    /* Main Headings */
+    .main-title {
+        margin: 0 0 6px 0 !important;
+        font-size: 2.1rem !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.03em !important;
+        color: inherit !important;
     }
-
-    /* 2. Sidebar Aesthetics */
-    [data-testid="stSidebar"] {
-        background-color: #0c0c10 !important;
-        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
-        box-shadow: 20px 0 50px -10px rgba(0, 0, 0, 0.8) !important;
-    }
-    [data-testid="stSidebar"] hr {
-        border-color: rgba(255, 255, 255, 0.08) !important;
-    }
-
-    /* 3. Typography & Monolithic Precision */
-    h1, h2, h3, h4, h5, h6 {
-        color: #ffffff !important;
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
-        font-weight: 600 !important;
-        letter-spacing: -0.02em !important;
-    }
-    p, span, label {
-        color: #a1a1aa !important;
-    }
-    small, .stCaption {
-        color: #71717a !important;
-        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+    .main-subtitle {
+        opacity: 0.65 !important;
+        font-family: 'SF Mono', Consolas, monospace !important;
         font-size: 0.82rem !important;
+        letter-spacing: 0.02em !important;
+        color: inherit !important;
     }
 
-    /* 4. Floating Capsule Pill Bar (Tabs) */
+    /* Clean Underline Navbar (四等分平铺居中与底部拉条指示栏) */
+    [data-testid="stTabs"] {
+        width: 100% !important;
+    }
+    [data-baseweb="tabs"] {
+        width: 100% !important;
+    }
     [data-baseweb="tab-list"] {
         display: flex !important;
-        align-items: center !important;
-        background: rgba(12, 12, 16, 0.55) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
-        border-radius: 9999px !important;
-        padding: 4px 6px !important;
-        margin: 16px 0 24px 0 !important;
-        gap: 4px !important;
-        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-    }
-    /* Centering navbar scroll arrows */
-    [data-baseweb="tab-list"] > button:not([data-baseweb="tab"]),
-    [data-baseweb="tab-list"] [role="button"],
-    [data-baseweb="tab-border"] ~ button,
-    [data-baseweb="tab-list"] button[aria-label*="scroll"],
-    [data-baseweb="tab-list"] button[aria-label*="Scroll"] {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        align-self: center !important;
-        vertical-align: middle !important;
-        margin: auto 2px !important;
-        height: 32px !important;
-        width: 32px !important;
-        min-width: 32px !important;
+        flex-direction: row !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        background: transparent !important;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.22) !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
         padding: 0 !important;
-        background: transparent !important;
-        border: none !important;
-        color: #a1a1aa !important;
-        border-radius: 9999px !important;
-        transform: translateY(0) !important;
+        margin: 8px 0 28px 0 !important;
+        gap: 0 !important;
+        overflow: visible !important;
     }
-    [data-baseweb="tab-list"] > button:not([data-baseweb="tab"]):hover {
-        color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.08) !important;
+    /* Hide all ugly BaseWeb scroll buttons completely */
+    [data-baseweb="tab-list"] > button:not([data-baseweb="tab"]),
+    [data-baseweb="tab-scroll-backward"],
+    [data-baseweb="tab-scroll-forward"],
+    [data-baseweb="tabs"] > button:not([role="tab"]),
+    [data-testid="stTabs"] button[aria-label*="scroll" i] {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
     }
-    [data-baseweb="tab-list"] svg {
-        display: block !important;
-        margin: auto !important;
-        vertical-align: middle !important;
-        fill: currentColor !important;
-    }
+    /* Tab items: exactly 1/4 (25%) width each, centered */
     [data-baseweb="tab"] {
+        flex: 1 1 25% !important;
+        width: 25% !important;
+        max-width: 25% !important;
+        min-width: 0 !important;
         display: inline-flex !important;
         align-items: center !important;
         justify-content: center !important;
-        align-self: center !important;
-        border-radius: 9999px !important;
-        color: #a1a1aa !important;
-        font-size: 0.82rem !important;
-        font-weight: 500 !important;
-        letter-spacing: 0.03em !important;
-        padding: 7px 16px !important;
-        border: none !important;
+        text-align: center !important;
         background: transparent !important;
+        border: none !important;
+        border-bottom: 2px solid transparent !important;
+        border-radius: 0 !important;
+        color: inherit !important;
+        opacity: 0.65 !important;
+        font-size: 0.94rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.02em !important;
+        padding: 14px 8px !important;
+        margin-bottom: -1px !important;
+        cursor: pointer !important;
         transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        white-space: nowrap !important;
+    }
+    [data-baseweb="tab"] > div,
+    [data-baseweb="tab"] > p,
+    [data-baseweb="tab"] > span {
+        width: 100% !important;
+        text-align: center !important;
+        justify-content: center !important;
+        display: flex !important;
+        color: inherit !important;
     }
     [data-baseweb="tab"]:hover {
-        color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.04) !important;
+        opacity: 0.95 !important;
+        border-bottom-color: rgba(128, 128, 128, 0.35) !important;
+        background: rgba(128, 128, 128, 0.04) !important;
     }
+    /* Active Tab: 下面拉条 (Bottom indicator line) */
     [data-baseweb="tab"][aria-selected="true"] {
-        background: rgba(255, 255, 255, 0.12) !important;
-        color: #ffffff !important;
+        opacity: 1 !important;
         font-weight: 600 !important;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+        border-bottom: 2px solid currentColor !important;
+        background: rgba(128, 128, 128, 0.03) !important;
     }
-    [data-baseweb="tab-highlight"] {
+    [data-baseweb="tab-highlight"],
+    [data-baseweb="tab-border"] {
         display: none !important;
     }
 
-    /* 5. Precision Metric Cards */
-    [data-testid="stMetric"] {
-        background: rgba(14, 14, 18, 0.60) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px !important;
-        padding: 18px 22px !important;
-        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    [data-testid="stMetric"]:hover {
-        border-color: rgba(255, 255, 255, 0.25) !important;
-        transform: translateY(-2px) translateZ(0) !important;
-    }
-    [data-testid="stMetricValue"] {
-        color: #ffffff !important;
-        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
-        font-weight: 600 !important;
-    }
-    [data-testid="stMetricLabel"] {
-        color: #a1a1aa !important;
-        font-size: 0.78rem !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.06em !important;
-    }
-
-    /* 6. Button System (Obsidian Precision) */
-    /* Primary CTA: High contrast pure white pill */
-    button[kind="primary"] {
-        background-color: #ffffff !important;
-        color: #050507 !important;
-        font-weight: 600 !important;
-        border-radius: 9999px !important;
-        border: none !important;
-        padding: 0.55rem 1.4rem !important;
-        box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15) !important;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    button[kind="primary"]:hover {
-        background-color: #e4e4e7 !important;
-        transform: scale(0.97) !important;
-        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
-    }
-    button[kind="primary"]:active {
-        transform: scale(0.95) !important;
-    }
-    /* Secondary Action: Glass frosted translucent */
-    button[kind="secondary"], .stButton > button:not([kind="primary"]) {
-        background: rgba(255, 255, 255, 0.04) !important;
-        color: #f5f5f7 !important;
-        font-weight: 500 !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
-        border-radius: 9999px !important;
-        padding: 0.55rem 1.4rem !important;
-        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    }
-    button[kind="secondary"]:hover, .stButton > button:not([kind="primary"]):hover {
-        background: rgba(255, 255, 255, 0.08) !important;
-        border-color: rgba(255, 255, 255, 0.25) !important;
-        color: #ffffff !important;
-        transform: scale(0.97) !important;
-    }
-    button[kind="secondary"]:active, .stButton > button:not([kind="primary"]):active {
-        transform: scale(0.95) !important;
-    }
-
-    /* 7. Form Controls & Inputs */
-    .stTextInput input, .stTextArea textarea, div[data-baseweb="select"] > div {
-        background: rgba(255, 255, 255, 0.03) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
-        border-radius: 12px !important;
-        color: #ffffff !important;
-        transition: border-color 0.2s ease-out !important;
-    }
-    .stTextInput input:focus, .stTextArea textarea:focus {
-        border-color: rgba(255, 255, 255, 0.40) !important;
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
-    }
-
-    /* 8. Chat Messages & Chat Input */
-    .stChatMessage {
-        background: rgba(14, 14, 18, 0.50) !important;
-        backdrop-filter: blur(14px) !important;
-        -webkit-backdrop-filter: blur(14px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
-        border-radius: 16px !important;
-        margin-bottom: 12px !important;
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
-    }
-    .stChatInput {
-        background: rgba(12, 12, 16, 0.75) !important;
-        backdrop-filter: blur(16px) !important;
-        -webkit-backdrop-filter: blur(16px) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        border-radius: 14px !important;
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7) !important;
-    }
-
-    /* 9. Alerts & Status Boxes (Obsidian Glass) */
+    /* Cards & Containers: Adaptive to both Light and Dark seamlessly */
+    [data-testid="stMetric"],
+    .stChatMessage,
+    [data-testid="stExpander"],
     div[data-testid="stAlert"] {
-        background: rgba(14, 14, 18, 0.65) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border-radius: 16px !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
-        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
-    }
-    div[data-testid="stAlert"] p {
-        color: #f5f5f7 !important;
-    }
-
-    /* 10. Expanders & Tables */
-    [data-testid="stExpander"] {
-        background: rgba(12, 12, 16, 0.45) !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        background: rgba(128, 128, 128, 0.04) !important;
+        border: 1px solid rgba(128, 128, 128, 0.16) !important;
         border-radius: 14px !important;
         backdrop-filter: blur(12px) !important;
-        margin-bottom: 8px !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.04) !important;
     }
+    [data-testid="stMetric"]:hover,
     [data-testid="stExpander"]:hover {
-        border-color: rgba(255, 255, 255, 0.22) !important;
+        border-color: rgba(128, 128, 128, 0.35) !important;
     }
+    [data-testid="stMetric"] {
+        padding: 16px 20px !important;
+    }
+
+    /* Tables */
     table {
-        background: rgba(12, 12, 16, 0.60) !important;
+        background: rgba(128, 128, 128, 0.03) !important;
         border-radius: 12px !important;
-        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(128, 128, 128, 0.16) !important;
         width: 100% !important;
     }
     th {
-        background: rgba(255, 255, 255, 0.04) !important;
-        color: #a1a1aa !important;
+        background: rgba(128, 128, 128, 0.06) !important;
         font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
         font-size: 0.78rem !important;
         text-transform: uppercase !important;
         letter-spacing: 0.06em !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.16) !important;
         padding: 10px 14px !important;
     }
     td {
-        color: #f5f5f7 !important;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        border-bottom: 1px solid rgba(128, 128, 128, 0.08) !important;
         font-size: 0.88rem !important;
         padding: 10px 14px !important;
     }
     code {
-        color: #ffffff !important;
-        background: rgba(255, 255, 255, 0.06) !important;
-        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        background: rgba(128, 128, 128, 0.08) !important;
+        border: 1px solid rgba(128, 128, 128, 0.12) !important;
         border-radius: 6px !important;
         font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
         padding: 2px 6px !important;
     }
-
-    /* 11. Subtle Ambient Glow Container */
-    .glass-panel {
-        background: rgba(12, 12, 16, 0.40) !important;
-        backdrop-filter: blur(16px) saturate(180%) !important;
-        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
-        border: 1px solid rgba(255, 255, 255, 0.12) !important;
-        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
-        border-radius: 16px !important;
-    }
 </style>
-<div class="ambient-glow"></div>
 """, unsafe_allow_html=True)
 
 @st.cache_resource
@@ -684,25 +550,25 @@ subtitle_text = "v2.4 工业基准级工控实现 // 基于 AI Model Atlas 认�
 
 st.markdown(f"""
 <div style="margin-bottom: 20px;">
-    <h1 style="background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 6px 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em;">{title_text}</h1>
-    <div style="color: #71717a; font-family: 'SF Mono', Consolas, monospace; font-size: 0.82rem; letter-spacing: 0.02em;">{subtitle_text}</div>
+    <h1 class="main-title">{title_text}</h1>
+    <div class="main-subtitle">{subtitle_text}</div>
 </div>
 """, unsafe_allow_html=True)
 
 # Main dashboard tabs (Top-level layout)
 tabs_labels = (
     [
-        "💬 智能问答助手 (RAG Assistant)",
-        "🛡️ 安全网关与红队演练 (Red Teaming)",
-        "⚡ TypeSafe Jev (快思考安全门禁)",
-        "📊 RAG 评测三元组与路由基准 (RAG Triad & Benchmark)"
+        "💬 智能问答",
+        "🛡️ 安全演练",
+        "⚡ 快思考门禁",
+        "📊 质量评测"
     ]
     if is_zh else
     [
-        "💬 Interactive RAG Assistant",
-        "🛡️ AI Security Gateway & Red Teaming",
-        "⚡ TypeSafe Jev (System One Gate)",
-        "📊 RAG Triad & Routing Benchmark"
+        "💬 RAG Assistant",
+        "🛡️ Red Teaming",
+        "⚡ TypeSafe Jev",
+        "📊 RAG Evaluation"
     ]
 )
 tab_assistant, tab_security, tab_jev, tab_eval = st.tabs(tabs_labels)
