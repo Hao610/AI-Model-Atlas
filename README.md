@@ -45,7 +45,7 @@
 | [Curriculum](docs/CURRICULUM.md) | **37 modules** | Prompt → RAG → API → Fine-tune → Deploy → Agent |
 | [Deep Dives](docs/DEEP_DIVES.md) | **17 chapters** | Transformer, MoE, Reasoning, Alignment, Evaluation… |
 | [DevSecOps Blueprint](docs/CONSTRAINT_THREAT_MODEL.md) | **36 chapters** | Prompt Injection, RAG Poisoning, Agent Hijacking, Observability |
-| [RAG Sandbox](projects/rag-app/README.md) | 1 app | Streamlit demo: cache, rerank, routing, security, monitoring |
+| [RAG Sandbox](projects/rag-app/README.md) | 1 app | Streamlit demo: TypeSafe Jev System One gate, cache, rerank, routing, security, monitoring |
 | Languages | EN + ZH | Hand-written bilingual docs (not machine-translated) |
 
 ---
@@ -65,23 +65,25 @@
 ```bash
 cd projects/rag-app
 pip install -r requirements.txt
-streamlit run app.py
+python app.py
 ```
 
 ---
 
 ## 🧱 How It Works
 
-**AI Model Atlas** is a teaching-focused RAG architecture simulator. It walks you through the full stack of a modern RAG system — from semantic caching and hybrid retrieval to agent routing and fault recovery — all through runnable code and illustrated concepts.
+**AI Model Atlas** is a teaching-focused RAG architecture simulator. It walks you through the full stack of a modern RAG system — from **TypeSafe Jev System One decision gating (<100ms)** and semantic caching to hybrid retrieval, agent routing, and fault recovery — all through runnable code and illustrated concepts.
 
 ```mermaid
 graph LR
-    A[User Query] --> B[Semantic Cache]
+    A[User Query] --> Jev[TypeSafe Jev Gateway]
+    Jev -->|Fast Block| Block[Block / Intercept]
+    Jev -->|Fast Pass / Escalate| B[Semantic Cache]
     B --> C[Query Rewrite]
     C --> D[Hybrid Retrieval]
     D --> E[Rerank]
     E --> F[LLM Generation]
-    F --> G[Guardrails]
+    F --> G[Guardrails & Judge]
     G --> H[Response]
 ```
 

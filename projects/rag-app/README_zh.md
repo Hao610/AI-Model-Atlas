@@ -12,7 +12,9 @@
 
 ```mermaid
 flowchart TD
-    UserQuery[用户问题] --> ToolRouter[Tool Routing 路由层]
+    UserQuery[用户问题] --> JevGate[TypeSafe Jev 系统一决策网关]
+    JevGate -->|极速阻断 >= 0.80| DirectBlock[直接拦截 / 0 Token]
+    JevGate -->|极速放行 <= 0.20 或 升级| ToolRouter[Tool Routing 路由层]
     ToolRouter -->|数学计算| CalculatorTool[安全沙盒计算器]
     ToolRouter -->|最新资讯| WebTool[模拟联网搜索插件]
     ToolRouter -->|知识问答| QueryRewriter[查询改写器]

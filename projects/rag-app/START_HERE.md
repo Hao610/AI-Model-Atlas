@@ -42,3 +42,11 @@ This will automatically open your web browser pointing to: `http://localhost:850
 2. **Observe Latency**: Notice the token generation speed and the first-token latency (TTFT) metrics logged in the traces.
 3. **Trigger Cache Hit**: Re-send the exact same question (or a semantically similar one). You will notice the response outputs **instantly** (0.00s delay) via the **Semantic Cache**.
 4. **Tune Settings**: Toggle Reranking or adjust the Similarity Cutoff in the sidebar to see how the system adapts context retrieval in real-time.
+
+---
+
+## ⚡ Step 6: Test TypeSafe Jev System One Decision Gate
+1. Click the **"⚡ TypeSafe Jev (System One Gate)"** tab at the top.
+2. Select an adversarial or benign preset from the dropdown (or input a custom prompt).
+3. Adjust the **Fast-Block (τ_strict)** and **Fast-Pass (τ_safe)** sliders.
+4. Click **"Execute Jev System One Screening"** to watch sub-100ms decision primitives (`Noul`, `Choice`, `Score`) triage the request into `FAST_BLOCK`, `FAST_PASS`, or `ESCALATE`.

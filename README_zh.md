@@ -45,12 +45,12 @@
 | [课程](docs/CURRICULUM_zh.md) | **37 模块** | Prompt → RAG → API → 微调 → 部署 → Agent |
 | [深潜专题](docs/DEEP_DIVES_zh.md) | **17 章** | Transformer, MoE, 推理模型, 对齐, 评测… |
 | [DevSecOps 蓝图](docs/CONSTRAINT_THREAT_MODEL_zh.md) | **36 章** | 提示词注入，间接投毒，Agent 安全，可观测性 |
-| [RAG 沙盒](projects/rag-app/README_zh.md) | 1 个应用 | Streamlit 演示：缓存、重排、路由、安全、监控 |
+| [RAG 沙盒](projects/rag-app/README_zh.md) | 1 个应用 | Streamlit 演示：TypeSafe Jev 系统一决策网关、缓存、重排、路由、安全、监控 |
 | 语言 | 中 + 英 | 手写双语对照，非机器翻译 |
 
 ---
 
-## 🚀 快速开始
+## 🚀 快速开始 (Quick Start)
 
 ### 路线 A：阅读课程
 → [CURRICULUM_zh.md](docs/CURRICULUM_zh.md)
@@ -65,23 +65,25 @@
 ```bash
 cd projects/rag-app
 pip install -r requirements.txt
-streamlit run app.py
+python app.py
 ```
 
 ---
 
 ## 🧱 项目原理
 
-**AI Model Atlas** 是一个教学导向的 RAG 架构模拟器。它带你走完现代 RAG 系统的全链路——从语义缓存、混合检索，到智能体路由与故障恢复——全部通过可运行代码和可视化概念呈现。
+**AI Model Atlas** 是一个教学导向的 RAG 架构模拟器。它带你走完现代 RAG 系统的全链路——从 **TypeSafe Jev 系统一极速决策网关（<100ms）**、语义缓存、混合检索，到智能体路由与故障恢复——全部通过可运行代码和可视化概念呈现。
 
 ```mermaid
 graph LR
-    A[用户提问] --> B[语义缓存]
+    A[用户提问] --> Jev[TypeSafe Jev 决策网关]
+    Jev -->|极速阻断| Block[直接拦截 / 0 Token]
+    Jev -->|极速放行 / 升级| B[语义缓存]
     B --> C[查询改写]
     C --> D[混合检索]
     D --> E[重排序]
     E --> F[LLM 生成]
-    F --> G[安全护栏]
+    F --> G[安全护栏与审计]
     G --> H[返回结果]
 ```
 
