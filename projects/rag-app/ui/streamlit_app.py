@@ -1,6 +1,7 @@
 import os
 import sys
 import json
+import requests
 # Ensure projects/rag-app directory is in python module path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
@@ -48,6 +49,12 @@ if "ingested_file" not in st.session_state:
     st.session_state.ingested_file = None
 if "jev_gateway" not in st.session_state:
     st.session_state.jev_gateway = JevGateway(llm_client=st.session_state.pipeline.router)
+if "rag_mode" not in st.session_state:
+    st.session_state.rag_mode = settings.RAG_MODE
+if "model_test_status" not in st.session_state:
+    st.session_state.model_test_status = None
+if "ollama_detected_models" not in st.session_state:
+    st.session_state.ollama_detected_models = []
 
 st.title("🗺️ Hybrid RAG Reference Application")
 st.caption("v2.4 Reference-Grade Implementation | Built on top of the AI Model Atlas Roadmap")
@@ -56,48 +63,133 @@ st.caption("v2.4 Reference-Grade Implementation | Built on top of the AI Model A
 with st.sidebar:
     st.header("⚙️ Core Configurations")
     
-    # Mode selector
+    def on_mode_change():
+        selected = st.session_state.mode_selector
+        st.session_state.rag_mode = selected
+        settings.RAG_MODE = selected
+        st.session_state.pipeline.reload_llm()
+        st.session_state.jev_gateway.llm_client = st.session_state.pipeline.router
+        st.session_state.model_test_status = None
+
+    # Atomic 1-click Mode selector with on_change callback
     mode = st.selectbox(
         "Execution Mode (RAG_MODE)",
         options=["ollama", "api"],
-        index=0 if settings.RAG_MODE == "ollama" else 1
+        index=0 if st.session_state.rag_mode == "ollama" else 1,
+        key="mode_selector",
+        on_change=on_mode_change
     )
-    if mode != settings.RAG_MODE:
-        settings.RAG_MODE = mode
-        # Re-initialize only the LLM components with updated settings mode
-        st.session_state.pipeline.reload_llm()
-        st.success(f"Switched system execution mode to: **{mode.upper()}**")
         
     st.divider()
     
     st.subheader("🛠️ Model Options")
-    previous_config = {
-        "mode": settings.RAG_MODE,
-        "ollama_model": settings.OLLAMA_MODEL,
-        "api_model": settings.API_MODEL,
-        "api_key": settings.API_KEY,
-        "api_base_url": settings.API_BASE_URL,
-    }
 
-    if settings.RAG_MODE == "ollama":
-        settings.OLLAMA_MODEL = st.text_input("Ollama LLM Model name", value=settings.OLLAMA_MODEL)
-        st.info("Ensure Ollama service is active locally and the model is pulled (`ollama pull <model>`).")
+    if st.session_state.rag_mode == "ollama":
+        ollama_host = st.text_input("Ollama Host URL", value=settings.OLLAMA_HOST)
+        ollama_model = st.text_input("Ollama LLM Model name", value=settings.OLLAMA_MODEL)
+        
+        # If local models were already detected, allow 1-click select
+        if st.session_state.ollama_detected_models:
+            idx = st.session_state.ollama_detected_models.index(settings.OLLAMA_MODEL) if settings.OLLAMA_MODEL in st.session_state.ollama_detected_models else 0
+            selected_local = st.selectbox(
+                "📋 检测到的本地模型 (点击选用):",
+                st.session_state.ollama_detected_models,
+                index=idx
+            )
+            if selected_local != settings.OLLAMA_MODEL:
+                ollama_model = selected_local
+                settings.OLLAMA_MODEL = selected_local
+        
+        if st.button("💾 保存配置并获取本地模型 (Save & Fetch Models)", type="primary", use_container_width=True):
+            settings.OLLAMA_HOST = ollama_host.strip()
+            settings.OLLAMA_MODEL = ollama_model.strip()
+            settings.RAG_MODE = "ollama"
+            st.session_state.pipeline.reload_llm()
+            st.session_state.jev_gateway.llm_client = st.session_state.pipeline.router
+            
+            with st.spinner("正在连接本地 Ollama 服务..."):
+                try:
+                    resp = requests.get(f"{settings.OLLAMA_HOST}/api/tags", timeout=3)
+                    if resp.status_code == 200:
+                        models_data = resp.json().get("models", [])
+                        m_names = [m.get("name") for m in models_data if m.get("name")]
+                        st.session_state.ollama_detected_models = m_names
+                        if settings.OLLAMA_MODEL in m_names:
+                            st.session_state.model_test_status = {
+                                "type": "success",
+                                "msg": f"🟢 Ollama 在线！模型 `{settings.OLLAMA_MODEL}` 已就绪。"
+                            }
+                        else:
+                            st.session_state.model_test_status = {
+                                "type": "warning",
+                                "msg": f"🟡 Ollama 在线，但本地暂无 `{settings.OLLAMA_MODEL}`。\n检测到本地模型: {', '.join(m_names) if m_names else '无'}。\n可在终端执行: `ollama pull {settings.OLLAMA_MODEL}`"
+                            }
+                    else:
+                        st.session_state.model_test_status = {
+                            "type": "error",
+                            "msg": f"🔴 Ollama 响应异常 (HTTP {resp.status_code})"
+                        }
+                except Exception as e:
+                    st.session_state.model_test_status = {
+                        "type": "error",
+                        "msg": f"🔴 无法连接本地 Ollama ({settings.OLLAMA_HOST})。\n请确保在终端已执行 `ollama serve`。"
+                    }
+            st.rerun()
+
     else:
-        settings.API_MODEL = st.text_input("Cloud API Model name", value=settings.API_MODEL)
-        settings.API_KEY = st.text_input("API Access Key", value=settings.API_KEY, type="password")
-        settings.API_BASE_URL = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL)
-        if not (settings.API_KEY or "").strip():
-            st.warning("⚠️ Enter your API Access Key above to enable Cloud API generation.")
+        api_model = st.text_input("Cloud API Model name", value=settings.API_MODEL)
+        api_key = st.text_input("API Access Key", value=settings.API_KEY, type="password")
+        api_base_url = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL)
+        
+        if not api_key.strip():
+            st.caption("💡 提示: 填入 API Key 后点击下方按钮保存并测试连接。")
+            
+        if st.button("💾 保存配置并验证 API Token (Save & Test Connection)", type="primary", use_container_width=True):
+            settings.API_MODEL = api_model.strip()
+            settings.API_KEY = api_key.strip()
+            settings.API_BASE_URL = api_base_url.strip()
+            settings.RAG_MODE = "api"
+            st.session_state.pipeline.reload_llm()
+            st.session_state.jev_gateway.llm_client = st.session_state.pipeline.router
+            
+            if not settings.API_KEY:
+                st.session_state.model_test_status = {
+                    "type": "warning",
+                    "msg": "⚠️ API Key 为空，请输入有效的密钥后再测试。"
+                }
+            else:
+                with st.spinner("正在向云端 API 发送鉴权测试探测包..."):
+                    try:
+                        router = st.session_state.pipeline.router
+                        if router.client is None:
+                            raise ValueError("OpenAI client 初始化失败，请检查配置。")
+                        router.client.chat.completions.create(
+                            model=settings.API_MODEL,
+                            messages=[{"role": "user", "content": "ping"}],
+                            max_tokens=1,
+                            timeout=10
+                        )
+                        st.session_state.model_test_status = {
+                            "type": "success",
+                            "msg": f"🟢 API Token 认证成功！模型 `{settings.API_MODEL}` 联通正常。"
+                        }
+                    except Exception as e:
+                        st.session_state.model_test_status = {
+                            "type": "error",
+                            "msg": f"🔴 API 鉴权/连接失败: {str(e)}"
+                        }
+            st.rerun()
 
-    current_config = {
-        "mode": settings.RAG_MODE,
-        "ollama_model": settings.OLLAMA_MODEL,
-        "api_model": settings.API_MODEL,
-        "api_key": settings.API_KEY,
-        "api_base_url": settings.API_BASE_URL,
-    }
-    if current_config != previous_config:
-        st.session_state.pipeline.reload_llm()
+    # Display test status banner if available
+    if st.session_state.model_test_status:
+        st_type = st.session_state.model_test_status.get("type")
+        st_msg = st.session_state.model_test_status.get("msg")
+        if st_type == "success":
+            st.success(st_msg)
+        elif st_type == "warning":
+            st.warning(st_msg)
+        else:
+            st.error(st_msg)
         
     st.divider()
     
