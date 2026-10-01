@@ -12,3 +12,4 @@ jieba==0.42.1
 pdfplumber
 PyMuPDF
 networkx
+pydantic>=2.0

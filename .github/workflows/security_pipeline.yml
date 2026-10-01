@@ -86,7 +86,7 @@ jobs:
         run: |
           echo "🛡️ Running core security unit tests..."
           cd projects/rag-app
-          pytest tests/test_runtime.py -v --tb=short
+          pytest tests/test_runtime.py tests/test_jev_gateway.py -v --tb=short
 
       - name: "Phase 2 — Adversarial Injection Simulation"
         run: |
