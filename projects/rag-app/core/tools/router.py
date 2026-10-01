@@ -28,7 +28,7 @@ class ToolRouter:
         # Deterministic routing patterns
         self.math_patterns = [r'calculate', r'\d+[\+\-\*\/\^]\d+', r'how much is', r'\^']
         self.web_patterns = [r'latest', r'today', r'recent', r'current', r'news', r'now', r'price']
-        self.graph_patterns = [r'relation', r'connect', r'theme', r'overview', r'between', r'map', r'who is related to']
+        self.graph_patterns = [r'relation', r'related', r'connect', r'theme', r'overview', r'between', r'map', r'who is related to']
         
     def route(self, query: str) -> RouteDecision:
         query_lower = query.lower()
