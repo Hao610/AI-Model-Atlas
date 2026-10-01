@@ -92,6 +92,7 @@ rag-app/
     ├── security/
     │   ├── circuit_breaker.py   # API gateway failover and circuit breaker
     │   ├── context_guard.py     # Prompt injection checks and PII redaction
+    │   ├── jev_gateway.py       # TypeSafe Jev System One decision primitives & cascaded triage
     │   └── middleware.py        # Global request interception middleware
     ├── telemetry/
     │   ├── tracker.py           # Distributed tracing and latency tracking
@@ -138,6 +139,19 @@ The sandbox includes an interactive security testing tab where you can launch ad
 - **Local safety model support**: Enable Ollama in the sidebar to use LLM-as-a-Judge for dynamic security scoring. Falls back to heuristic matching when Ollama is offline.
 
 All attack samples are sourced from `tests/eval_dataset.json` — the same dataset used in CI/CD red teaming pipelines.
+
+### ⚡ TypeSafe Jev System One Gate (v2.4.0+)
+
+The 3rd interactive tab integrates TypeSafe AI's Jev typed decision primitives for sub-100ms request screening without natural language token generation:
+- **Dynamic Dual Thresholds**: Tune strict fast-block ($\tau_{strict}$) and safe fast-pass ($\tau_{safe}$) sliders in real time.
+- **2-Tier Cascaded Triage**: Evaluates attacks for immediate <100ms `FAST_BLOCK`, clear queries for `FAST_PASS`, and escalates borderline queries to heavy LLM safety judges.
+- **Batch Evaluation Matrix**: Run `eval_dataset.json` across Jev to visualize triage distributions, average latency, and ~80%+ token compute savings.
+
+### ⚖️ Benchmark Evaluation & LLM-as-a-Judge (v2.3.0+)
+
+The 4th interactive tab provides rigorous quantitative assessment tools:
+- **Deterministic Tool Routing Benchmark Suite**: Validates intent routing across Calculator, Web Search, Knowledge Graph, and Vector DB with 0 token consumption.
+- **Live RAG Triad Quality Scorer**: Uses an LLM-as-a-judge to evaluate Faithfulness (grounded context fidelity) and Answer Relevancy on any query and context in real time.
 
 ---
 
