@@ -91,11 +91,16 @@ st.markdown("""
         --tab-glow: rgba(255, 255, 255, 0.35);
         --tab-bg-active: rgba(255, 255, 255, 0.03);
         --tab-bg-hover: rgba(255, 255, 255, 0.02);
-        --btn-primary-bg: #ffffff;
-        --btn-primary-text: #000000;
+        --btn-primary-bg: linear-gradient(180deg, #27272a 0%, #18181b 100%);
+        --btn-primary-border: rgba(255, 255, 255, 0.28);
+        --btn-primary-text: #ffffff;
+        --btn-primary-hover-bg: linear-gradient(180deg, #3f3f46 0%, #27272a 100%);
+        --btn-primary-hover-border: rgba(255, 255, 255, 0.55);
+        --btn-primary-shadow: 0 4px 14px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.15);
         --btn-sec-bg: rgba(255, 255, 255, 0.04);
-        --btn-sec-border: rgba(255, 255, 255, 0.10);
-        --btn-sec-text: #ffffff;
+        --btn-sec-border: rgba(255, 255, 255, 0.12);
+        --btn-sec-text: #a1a1aa;
+        --btn-sec-hover-bg: rgba(255, 255, 255, 0.08);
         --input-bg: rgba(255, 255, 255, 0.03);
         --input-border: rgba(255, 255, 255, 0.10);
         --input-text: #ffffff;
@@ -124,11 +129,16 @@ st.markdown("""
         --tab-glow: rgba(15, 23, 42, 0.15) !important;
         --tab-bg-active: rgba(15, 23, 42, 0.02) !important;
         --tab-bg-hover: rgba(15, 23, 42, 0.04) !important;
-        --btn-primary-bg: #0f172a !important;
-        --btn-primary-text: #ffffff !important;
+        --btn-primary-bg: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%) !important;
+        --btn-primary-border: rgba(15, 23, 42, 0.25) !important;
+        --btn-primary-text: #0f172a !important;
+        --btn-primary-hover-bg: #ffffff !important;
+        --btn-primary-hover-border: #0f172a !important;
+        --btn-primary-shadow: 0 2px 8px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff !important;
         --btn-sec-bg: #ffffff !important;
         --btn-sec-border: rgba(15, 23, 42, 0.14) !important;
-        --btn-sec-text: #0f172a !important;
+        --btn-sec-text: #475569 !important;
+        --btn-sec-hover-bg: #f8fafc !important;
         --input-bg: #ffffff !important;
         --input-border: rgba(15, 23, 42, 0.14) !important;
         --input-text: #0f172a !important;
@@ -153,11 +163,16 @@ st.markdown("""
             --tab-glow: rgba(15, 23, 42, 0.15);
             --tab-bg-active: rgba(15, 23, 42, 0.02);
             --tab-bg-hover: rgba(15, 23, 42, 0.04);
-            --btn-primary-bg: #0f172a;
-            --btn-primary-text: #ffffff;
+            --btn-primary-bg: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
+            --btn-primary-border: rgba(15, 23, 42, 0.25);
+            --btn-primary-text: #0f172a;
+            --btn-primary-hover-bg: #ffffff;
+            --btn-primary-hover-border: #0f172a;
+            --btn-primary-shadow: 0 2px 8px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff;
             --btn-sec-bg: #ffffff;
             --btn-sec-border: rgba(15, 23, 42, 0.14);
-            --btn-sec-text: #0f172a;
+            --btn-sec-text: #475569;
+            --btn-sec-hover-bg: #f8fafc;
             --input-bg: #ffffff;
             --input-border: rgba(15, 23, 42, 0.14);
             --input-text: #0f172a;
@@ -343,22 +358,57 @@ st.markdown("""
         letter-spacing: 0.06em !important;
     }
 
-    /* 8. Button System */
-    button[kind="primary"] {
-        background-color: var(--btn-primary-bg) !important;
+    /* 8. Precision Button System */
+    button,
+    button *,
+    button p,
+    button span,
+    button div {
+        color: inherit !important;
+    }
+
+    button[data-testid="stBaseButton-primary"],
+    button[data-testid="baseButton-primary"],
+    button.etjibo41,
+    button[kind="primary"],
+    .stButton > button[kind="primary"] {
+        background: var(--btn-primary-bg) !important;
         color: var(--btn-primary-text) !important;
+        border: 1px solid var(--btn-primary-border) !important;
         font-weight: 600 !important;
         border-radius: 9999px !important;
-        border: none !important;
         padding: 0.55rem 1.4rem !important;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+        box-shadow: var(--btn-primary-shadow) !important;
         transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    button[kind="primary"]:hover {
-        transform: scale(0.97) !important;
-        opacity: 0.92 !important;
+    button[data-testid="stBaseButton-primary"] *,
+    button[data-testid="baseButton-primary"] *,
+    button.etjibo41 *,
+    button[kind="primary"] * {
+        color: var(--btn-primary-text) !important;
+        font-weight: 600 !important;
     }
-    button[kind="secondary"], .stButton > button:not([kind="primary"]) {
+    button[data-testid="stBaseButton-primary"]:hover,
+    button[data-testid="baseButton-primary"]:hover,
+    button.etjibo41:hover,
+    button[kind="primary"]:hover {
+        background: var(--btn-primary-hover-bg) !important;
+        border-color: var(--btn-primary-hover-border) !important;
+        color: var(--btn-primary-text) !important;
+        transform: scale(0.98) !important;
+    }
+    button[data-testid="stBaseButton-primary"]:hover *,
+    button[data-testid="baseButton-primary"]:hover *,
+    button.etjibo41:hover *,
+    button[kind="primary"]:hover * {
+        color: var(--btn-primary-text) !important;
+    }
+
+    button[data-testid="stBaseButton-secondary"],
+    button[data-testid="baseButton-secondary"],
+    button.etjibo42,
+    button[kind="secondary"],
+    .stButton > button:not([data-testid*="primary"]):not(.etjibo41):not([kind="primary"]) {
         background: var(--btn-sec-bg) !important;
         color: var(--btn-sec-text) !important;
         font-weight: 500 !important;
@@ -367,9 +417,28 @@ st.markdown("""
         padding: 0.55rem 1.4rem !important;
         transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
     }
-    button[kind="secondary"]:hover, .stButton > button:not([kind="primary"]):hover {
+    button[data-testid="stBaseButton-secondary"] *,
+    button[data-testid="baseButton-secondary"] *,
+    button.etjibo42 *,
+    button[kind="secondary"] *,
+    .stButton > button:not([data-testid*="primary"]):not(.etjibo41):not([kind="primary"]) * {
+        color: var(--btn-sec-text) !important;
+    }
+    button[data-testid="stBaseButton-secondary"]:hover,
+    button[data-testid="baseButton-secondary"]:hover,
+    button.etjibo42:hover,
+    button[kind="secondary"]:hover,
+    .stButton > button:not([data-testid*="primary"]):not(.etjibo41):not([kind="primary"]):hover {
         border-color: var(--border-hover) !important;
-        transform: scale(0.97) !important;
+        background: var(--btn-sec-hover-bg) !important;
+        transform: scale(0.98) !important;
+    }
+    button[data-testid="stBaseButton-secondary"]:hover *,
+    button[data-testid="baseButton-secondary"]:hover *,
+    button.etjibo42:hover *,
+    button[kind="secondary"]:hover *,
+    .stButton > button:not([data-testid*="primary"]):not(.etjibo41):not([kind="primary"]):hover * {
+        color: var(--text-primary) !important;
     }
 
     /* 9. Form Controls & Inputs */
@@ -815,7 +884,7 @@ with st.sidebar:
         step=0.05,
         help="语义命中判定阈值，高于此相似度则命中缓存。" if is_zh else "Cosine metric threshold to yield a semantic query hit."
     )
-    if st.button("清空语义缓存记忆 (Flush Cache)" if is_zh else "Reset Semantic Cache Memory"):
+    if st.button("清空语义缓存记忆 (Flush Cache)" if is_zh else "Reset Semantic Cache Memory", use_container_width=True):
         st.session_state.pipeline.cache.clear()
         st.success("已成功清空语义缓存库。" if is_zh else "Successfully flushed cache store.")
         
@@ -1160,7 +1229,7 @@ with tab_security:
     st.code(payload, language="text")
     
     fire_btn_txt = "🚀 发送攻击载荷并触发仿真 (Fire Exploit)" if is_zh else "🚀 Fire Exploit Payload"
-    if st.button(fire_btn_txt):
+    if st.button(fire_btn_txt, type="primary", use_container_width=True):
         sim_txt = "正在模拟攻击传导路径..." if is_zh else "Simulating attack propagation..."
         st.info(sim_txt)
         
@@ -1318,7 +1387,7 @@ with tab_jev:
         custom_prompt = st.text_area(input_eval_label, value=sample_prompts[selected_sample], height=100)
         
         run_jev_label = "⚡ 执行 Jev 快思考门禁筛查" if is_zh else "⚡ Execute Jev System One Screening"
-        if st.button(run_jev_label, type="primary"):
+        if st.button(run_jev_label, type="primary", use_container_width=True):
             spin_jev = "正在通过 TypeSafe Jev 原语进行快速筛查..." if is_zh else "Screening via TypeSafe Jev primitives..."
             with st.spinner(spin_jev):
                 triage, report, judge_verdict = st.session_state.jev_gateway.cascade_input(
@@ -1395,7 +1464,7 @@ with tab_jev:
         )
         
         run_batch_txt = "🚀 运行批量基准评估测试" if is_zh else "🚀 Run Batch Evaluation Suite"
-        if st.button(run_batch_txt):
+        if st.button(run_batch_txt, type="primary", use_container_width=True):
             spin_batch = "正在通过 TypeSafe Jev 评估测试集..." if is_zh else "Evaluating dataset across TypeSafe Jev..."
             with st.spinner(spin_batch):
                 dataset_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests", "eval_dataset.json")
@@ -1511,7 +1580,7 @@ with tab_eval:
     )
 
     run_route_btn = "🚀 运行路由测试集评估 (Run Routing Benchmark)" if is_zh else "🚀 Run Routing Benchmark Suite"
-    if st.button(run_route_btn, key="btn_run_routing_suite"):
+    if st.button(run_route_btn, type="primary", use_container_width=True, key="btn_run_routing_suite"):
         with st.spinner("正在评估测试集路由分流..." if is_zh else "Evaluating test dataset routing..."):
             dataset_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "tests", "eval_dataset.json")
             with open(dataset_path, "r", encoding="utf-8") as f:
@@ -1602,7 +1671,7 @@ with tab_eval:
     judge_ans = st.text_area("大模型生成的回答 (Generated Answer)" if is_zh else "Generated Answer to Grade", value=last_answer, height=90)
     
     judge_btn_txt = "⚖️ 执行 RAG Triad 质量仲裁打分" if is_zh else "⚖️ Execute RAG Triad Evaluation"
-    if st.button(judge_btn_txt, key="btn_run_triad_judge"):
+    if st.button(judge_btn_txt, type="primary", use_container_width=True, key="btn_run_triad_judge"):
         spin_judge = "正在调用 LLM-as-a-Judge 评估各项指标..." if is_zh else "Invoking LLM-as-a-Judge to evaluate metrics..."
         with st.spinner(spin_judge):
             try:
