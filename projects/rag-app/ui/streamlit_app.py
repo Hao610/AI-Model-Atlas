@@ -20,23 +20,260 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Force elegant premium dark aesthetics
+# Force Obsidian Titanium & Monolithic Precision design system
 st.markdown("""
 <style>
-    .reportview-container {
-        background: #0f172a;
+    /* 1. Global Base Canvas & Dot Grid Pattern */
+    .stApp {
+        background-color: #050507 !important;
+        background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px) !important;
+        background-size: 24px 24px !important;
+        color: #f5f5f7 !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Segoe UI", Roboto, sans-serif !important;
     }
-    .sidebar .sidebar-content {
-        background: #1e293b;
+
+    /* Ambient Lighting (Top Glow) */
+    .ambient-glow {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 800px;
+        height: 280px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.035) 0%, transparent 70%);
+        pointer-events: none;
+        filter: blur(80px);
+        z-index: 0;
     }
-    h1, h2, h3 {
-        color: #f8fafc !important;
-        font-family: 'Outfit', 'Inter', sans-serif;
+
+    /* 2. Sidebar Aesthetics */
+    [data-testid="stSidebar"] {
+        background-color: #0c0c10 !important;
+        border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+        box-shadow: 20px 0 50px -10px rgba(0, 0, 0, 0.8) !important;
+    }
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255, 255, 255, 0.08) !important;
+    }
+
+    /* 3. Typography & Monolithic Precision */
+    h1, h2, h3, h4, h5, h6 {
+        color: #ffffff !important;
+        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", sans-serif !important;
+        font-weight: 600 !important;
+        letter-spacing: -0.02em !important;
+    }
+    p, span, label {
+        color: #a1a1aa !important;
+    }
+    small, .stCaption {
+        color: #71717a !important;
+        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+        font-size: 0.82rem !important;
+    }
+
+    /* 4. Floating Capsule Pill Bar (Tabs) */
+    [data-baseweb="tab-list"] {
+        background: rgba(12, 12, 16, 0.55) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        border-radius: 9999px !important;
+        padding: 5px 8px !important;
+        margin: 16px 0 24px 0 !important;
+        gap: 6px !important;
+        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    }
+    [data-baseweb="tab"] {
+        border-radius: 9999px !important;
+        color: #a1a1aa !important;
+        font-size: 0.82rem !important;
+        font-weight: 500 !important;
+        letter-spacing: 0.03em !important;
+        padding: 8px 18px !important;
+        border: none !important;
+        background: transparent !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    [data-baseweb="tab"]:hover {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.04) !important;
+    }
+    [data-baseweb="tab"][aria-selected="true"] {
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: #ffffff !important;
+        font-weight: 600 !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.20), 0 4px 14px rgba(0, 0, 0, 0.5) !important;
+    }
+    [data-baseweb="tab-highlight"] {
+        display: none !important;
+    }
+
+    /* 5. Precision Metric Cards */
+    [data-testid="stMetric"] {
+        background: rgba(14, 14, 18, 0.60) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        padding: 18px 22px !important;
+        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    [data-testid="stMetric"]:hover {
+        border-color: rgba(255, 255, 255, 0.25) !important;
+        transform: translateY(-2px) translateZ(0) !important;
+    }
+    [data-testid="stMetricValue"] {
+        color: #ffffff !important;
+        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+        font-weight: 600 !important;
+    }
+    [data-testid="stMetricLabel"] {
+        color: #a1a1aa !important;
+        font-size: 0.78rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.06em !important;
+    }
+
+    /* 6. Button System (Obsidian Precision) */
+    /* Primary CTA: High contrast pure white pill */
+    button[kind="primary"] {
+        background-color: #ffffff !important;
+        color: #050507 !important;
+        font-weight: 600 !important;
+        border-radius: 9999px !important;
+        border: none !important;
+        padding: 0.55rem 1.4rem !important;
+        box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15) !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    button[kind="primary"]:hover {
+        background-color: #e4e4e7 !important;
+        transform: scale(0.97) !important;
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25) !important;
+    }
+    button[kind="primary"]:active {
+        transform: scale(0.95) !important;
+    }
+    /* Secondary Action: Glass frosted translucent */
+    button[kind="secondary"], .stButton > button:not([kind="primary"]) {
+        background: rgba(255, 255, 255, 0.04) !important;
+        color: #f5f5f7 !important;
+        font-weight: 500 !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        border-radius: 9999px !important;
+        padding: 0.55rem 1.4rem !important;
+        transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+    button[kind="secondary"]:hover, .stButton > button:not([kind="primary"]):hover {
+        background: rgba(255, 255, 255, 0.08) !important;
+        border-color: rgba(255, 255, 255, 0.25) !important;
+        color: #ffffff !important;
+        transform: scale(0.97) !important;
+    }
+    button[kind="secondary"]:active, .stButton > button:not([kind="primary"]):active {
+        transform: scale(0.95) !important;
+    }
+
+    /* 7. Form Controls & Inputs */
+    .stTextInput input, .stTextArea textarea, div[data-baseweb="select"] > div {
+        background: rgba(255, 255, 255, 0.03) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        border-radius: 12px !important;
+        color: #ffffff !important;
+        transition: border-color 0.2s ease-out !important;
+    }
+    .stTextInput input:focus, .stTextArea textarea:focus {
+        border-color: rgba(255, 255, 255, 0.40) !important;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.25) !important;
+    }
+
+    /* 8. Chat Messages & Chat Input */
+    .stChatMessage {
+        background: rgba(14, 14, 18, 0.50) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        margin-bottom: 12px !important;
+        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5) !important;
     }
     .stChatInput {
-        border-radius: 8px;
+        background: rgba(12, 12, 16, 0.75) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 14px !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7) !important;
+    }
+
+    /* 9. Alerts & Status Boxes (Obsidian Glass) */
+    div[data-testid="stAlert"] {
+        background: rgba(14, 14, 18, 0.65) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border-radius: 16px !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    }
+    div[data-testid="stAlert"] p {
+        color: #f5f5f7 !important;
+    }
+
+    /* 10. Expanders & Tables */
+    [data-testid="stExpander"] {
+        background: rgba(12, 12, 16, 0.45) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 14px !important;
+        backdrop-filter: blur(12px) !important;
+        margin-bottom: 8px !important;
+    }
+    [data-testid="stExpander"]:hover {
+        border-color: rgba(255, 255, 255, 0.22) !important;
+    }
+    table {
+        background: rgba(12, 12, 16, 0.60) !important;
+        border-radius: 12px !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        width: 100% !important;
+    }
+    th {
+        background: rgba(255, 255, 255, 0.04) !important;
+        color: #a1a1aa !important;
+        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+        font-size: 0.78rem !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.06em !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        padding: 10px 14px !important;
+    }
+    td {
+        color: #f5f5f7 !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+        font-size: 0.88rem !important;
+        padding: 10px 14px !important;
+    }
+    code {
+        color: #ffffff !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.10) !important;
+        border-radius: 6px !important;
+        font-family: 'SF Mono', 'JetBrains Mono', Consolas, monospace !important;
+        padding: 2px 6px !important;
+    }
+
+    /* 11. Subtle Ambient Glow Container */
+    .glass-panel {
+        background: rgba(12, 12, 16, 0.40) !important;
+        backdrop-filter: blur(16px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.15) !important;
+        border-radius: 16px !important;
     }
 </style>
+<div class="ambient-glow"></div>
 """, unsafe_allow_html=True)
 
 @st.cache_resource
@@ -404,12 +641,19 @@ with st.sidebar:
     )
 
 is_zh = (st.session_state.get("ui_lang", "English") == "中文")
-st.title("🗺️ 混合检索增强 (Hybrid RAG) 工业级应用" if is_zh else "🗺️ Hybrid RAG Reference Application")
-st.caption(
-    "v2.4 工业基准级实现 | 基于 AI Model Atlas 架构路线图"
-    if is_zh else
-    "v2.4 Reference-Grade Implementation | Built on top of the AI Model Atlas Roadmap"
-)
+title_text = "🗺️ 混合检索增强 (Hybrid RAG) 工业级应用" if is_zh else "🗺️ Hybrid RAG Reference Application"
+subtitle_text = "v2.4 工业基准级工控实现 // 基于 AI Model Atlas 认知体系" if is_zh else "v2.4 Reference-Grade Monolithic Engine // AI Model Atlas Ecosystem"
+badge_text = "OBSIDIAN TITANIUM // SYS-GATE ACTIVE"
+
+st.markdown(f"""
+<div style="margin-bottom: 20px;">
+    <div style="display: inline-block; padding: 3px 10px; border-radius: 9999px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.12); font-family: 'SF Mono', monospace; font-size: 0.72rem; letter-spacing: 0.08em; color: #a1a1aa; margin-bottom: 8px;">
+        <span style="display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: #34d399; box-shadow: 0 0 8px rgba(52, 211, 153, 0.8); margin-right: 6px;"></span>{badge_text}
+    </div>
+    <h1 style="background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0 0 6px 0; font-size: 2.2rem; font-weight: 700; letter-spacing: -0.03em;">{title_text}</h1>
+    <div style="color: #71717a; font-family: 'SF Mono', Consolas, monospace; font-size: 0.82rem; letter-spacing: 0.02em;">{subtitle_text}</div>
+</div>
+""", unsafe_allow_html=True)
 
 # Main dashboard tabs (Top-level layout)
 tabs_labels = (
