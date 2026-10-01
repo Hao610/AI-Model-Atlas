@@ -86,6 +86,8 @@ with st.sidebar:
         settings.API_MODEL = st.text_input("Cloud API Model name", value=settings.API_MODEL)
         settings.API_KEY = st.text_input("API Access Key", value=settings.API_KEY, type="password")
         settings.API_BASE_URL = st.text_input("API Provider Endpoint", value=settings.API_BASE_URL)
+        if not (settings.API_KEY or "").strip():
+            st.warning("⚠️ Enter your API Access Key above to enable Cloud API generation.")
 
     current_config = {
         "mode": settings.RAG_MODE,

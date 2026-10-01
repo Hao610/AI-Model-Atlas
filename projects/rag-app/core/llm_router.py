@@ -9,10 +9,17 @@ class LLMRouter:
         self.client = None
         
         if self.mode == "api":
-            self.client = OpenAI(
-                api_key=settings.API_KEY,
-                base_url=settings.API_BASE_URL
-            )
+            api_key = (settings.API_KEY or "").strip()
+            if api_key:
+                try:
+                    self.client = OpenAI(
+                        api_key=api_key,
+                        base_url=settings.API_BASE_URL
+                    )
+                except Exception:
+                    self.client = None
+            else:
+                self.client = None
             
     def generate_stream(self, system_prompt: str, user_prompt: str):
         """Generates streaming responses from either local Ollama or Cloud API."""
@@ -38,8 +45,8 @@ class LLMRouter:
             except Exception as e:
                 raise ConnectionError(f"Ollama connection error: {str(e)}")
         else:
-            if not settings.API_KEY:
-                raise ValueError("API Key is missing from settings configuration.")
+            if not self.client or not (settings.API_KEY or "").strip():
+                raise ValueError("Cloud API Key is missing or unconfigured. Please provide a valid API Key in the left sidebar under 'Model Options'.")
             try:
                 stream = self.client.chat.completions.create(
                     model=settings.API_MODEL,
@@ -76,8 +83,8 @@ class LLMRouter:
             except Exception as e:
                 raise ConnectionError(f"Ollama connection error: {str(e)}")
         else:
-            if not settings.API_KEY:
-                raise ValueError("API Key is missing from settings configuration.")
+            if not self.client or not (settings.API_KEY or "").strip():
+                raise ValueError("Cloud API Key is missing or unconfigured. Please provide a valid API Key in the left sidebar under 'Model Options'.")
             try:
                 response = self.client.chat.completions.create(
                     model=settings.API_MODEL,
