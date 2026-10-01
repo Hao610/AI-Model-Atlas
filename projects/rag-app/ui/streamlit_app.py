@@ -3,6 +3,7 @@ import sys
 import json
 import time
 import requests
+from urllib.parse import urlparse
 # Ensure projects/rag-app directory is in python module path
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import streamlit as st
@@ -758,6 +759,9 @@ with st.sidebar:
             st.session_state.pipeline.reload_llm()
             st.session_state.jev_gateway.llm_client = st.session_state.pipeline.router
 
+            parsed_host = (urlparse(clean_url if "://" in clean_url else f"https://{clean_url}").hostname or "").lower()
+            is_groq_endpoint = parsed_host == "api.groq.com" or parsed_host.endswith(".groq.com")
+
             if not settings.API_KEY:
                 st.session_state.model_test_status = {
                     "type": "warning",
@@ -767,7 +771,7 @@ with st.sidebar:
                         "⚠️ API Key is empty. Please enter a valid key before testing."
                     )
                 }
-            elif "api.groq.com" in clean_url and not clean_key.startswith("gsk_"):
+            elif is_groq_endpoint and not clean_key.startswith("gsk_"):
                 st.session_state.model_test_status = {
                     "type": "error",
                     "msg": (
