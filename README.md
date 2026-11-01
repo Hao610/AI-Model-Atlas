@@ -14,7 +14,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE-CODE)
 [![CC BY 4.0](https://img.shields.io/badge/Docs-CC%20BY%204.0-lightgrey)](LICENSE)
 [![Security Pipeline](https://github.com/Hao610/AI-Model-Atlas/actions/workflows/security_pipeline.yml/badge.svg)](https://github.com/Hao610/AI-Model-Atlas/actions/workflows/security_pipeline.yml)
-[![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/Hao610/AI-Model-Atlas)
+[![Ask DeepWiki](https://img.shields.io/badge/DeepWiki-Ask%20AI-6B46C1)](https://deepwiki.com/Hao610/AI-Model-Atlas)
 [![Bilingual](https://img.shields.io/badge/lang-ZH-green)](README_zh.md)
 
 ---
